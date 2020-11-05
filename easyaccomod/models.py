@@ -1,4 +1,4 @@
-from easyaccomod import db, app, login_manager
+from __init__ import db, app, login_manager
 from datetime import datetime
 from flask_login import UserMixin
 
