@@ -1,6 +1,6 @@
 from os import urandom
-from owner_models import Owner, Room
-from __init__ import db
+from easyaccomod.owner_models import Owner, Room
+from easyaccomod import db
 import hashlib
 
 def encrypt_string(hash_string):

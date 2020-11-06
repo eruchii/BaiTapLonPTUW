@@ -1,8 +1,8 @@
-from forms import LoginForm, RegistrationForm
-from __init__ import app, db, bcrypt
+from easyaccomod.forms import LoginForm, RegistrationForm
+from easyaccomod import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request, abort
 from flask_login import login_user, current_user, logout_user, login_required
-from models import User
+from easyaccomod.models import User
 
 @app.route('/')
 @app.route('/home')
