@@ -1,4 +1,5 @@
-from __init__ import db, app, login_manager
+from easyaccomod import db, app, login_manager
+#from easyaccomod.__init__ import db, app, login_manager # test
 
 
 class Owner(db.Model):

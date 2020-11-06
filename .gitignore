@@ -139,3 +139,7 @@ cython_debug/
 easyaccomod/__pycache__/__init__.cpython-38.pyc
 easyaccomod/__pycache__/forms.cpython-38.pyc
 easyaccomod/__pycache__/routes.cpython-38.pyc
+
+.vscode
+settings.json
+easyaccomod/.vscode/settings.json
