@@ -1,0 +1,4274 @@
+[
+  {
+    "city.code": "SG",
+    "id": 53,
+    "name": "Quận 1",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-1"
+  },
+  {
+    "city.code": "SG",
+    "id": 54,
+    "name": "Quận 2",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-2"
+  },
+  {
+    "city.code": "SG",
+    "id": 55,
+    "name": "Quận 3",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-3"
+  },
+  {
+    "city.code": "SG",
+    "id": 56,
+    "name": "Quận 4",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-4"
+  },
+  {
+    "city.code": "SG",
+    "id": 57,
+    "name": "Quận 5",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-5"
+  },
+  {
+    "city.code": "SG",
+    "id": 58,
+    "name": "Quận 6",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-6"
+  },
+  {
+    "city.code": "SG",
+    "id": 59,
+    "name": "Quận 7",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-7"
+  },
+  {
+    "city.code": "SG",
+    "id": 60,
+    "name": "Quận 8",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-8"
+  },
+  {
+    "city.code": "SG",
+    "id": 61,
+    "name": "Quận 9",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-9"
+  },
+  {
+    "city.code": "SG",
+    "id": 62,
+    "name": "Quận 10",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-10"
+  },
+  {
+    "city.code": "SG",
+    "id": 63,
+    "name": "Quận 11",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-11"
+  },
+  {
+    "city.code": "SG",
+    "id": 64,
+    "name": "Quận 12",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-12"
+  },
+  {
+    "city.code": "SG",
+    "id": 65,
+    "name": "Bình Tân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-tan"
+  },
+  {
+    "city.code": "SG",
+    "id": 66,
+    "name": "Bình Thạnh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-thanh"
+  },
+  {
+    "city.code": "SG",
+    "id": 67,
+    "name": "Gò Vấp",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-go-vap"
+  },
+  {
+    "city.code": "SG",
+    "id": 68,
+    "name": "Phú Nhuận",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-nhuan"
+  },
+  {
+    "city.code": "SG",
+    "id": 69,
+    "name": "Tân Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-binh"
+  },
+  {
+    "city.code": "SG",
+    "id": 70,
+    "name": "Tân Phú",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-phu"
+  },
+  {
+    "city.code": "SG",
+    "id": 71,
+    "name": "Thủ Đức",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thu-duc"
+  },
+  {
+    "city.code": "SG",
+    "id": 72,
+    "name": "Bình Chánh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-chanh"
+  },
+  {
+    "city.code": "SG",
+    "id": 73,
+    "name": "Cần Giờ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-can-gio"
+  },
+  {
+    "city.code": "SG",
+    "id": 74,
+    "name": "Củ Chi",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cu-chi"
+  },
+  {
+    "city.code": "SG",
+    "id": 75,
+    "name": "Hóc Môn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoc-mon"
+  },
+  {
+    "city.code": "SG",
+    "id": 76,
+    "name": "Nhà Bè",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nha-be"
+  },
+  {
+    "city.code": "HN",
+    "id": 1,
+    "name": "Hoàn Kiếm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoan-kiem"
+  },
+  {
+    "city.code": "HN",
+    "id": 2,
+    "name": "Ba Đình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ba-dinh"
+  },
+  {
+    "city.code": "HN",
+    "id": 3,
+    "name": "Đống Đa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-da"
+  },
+  {
+    "city.code": "HN",
+    "id": 4,
+    "name": "Hai Bà Trưng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hai-ba-trung"
+  },
+  {
+    "city.code": "HN",
+    "id": 5,
+    "name": "Thanh Xuân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-xuan"
+  },
+  {
+    "city.code": "HN",
+    "id": 6,
+    "name": "Tây Hồ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tay-ho"
+  },
+  {
+    "city.code": "HN",
+    "id": 7,
+    "name": "Cầu Giấy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cau-giay"
+  },
+  {
+    "city.code": "HN",
+    "id": 8,
+    "name": "Hoàng Mai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoang-mai"
+  },
+  {
+    "city.code": "HN",
+    "id": 9,
+    "name": "Long Biên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-long-bien"
+  },
+  {
+    "city.code": "HN",
+    "id": 10,
+    "name": "Đông Anh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-anh"
+  },
+  {
+    "city.code": "HN",
+    "id": 11,
+    "name": "Gia Lâm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-gia-lam"
+  },
+  {
+    "city.code": "HN",
+    "id": 12,
+    "name": "Sóc Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-soc-son"
+  },
+  {
+    "city.code": "HN",
+    "id": 13,
+    "name": "Thanh Trì",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-tri"
+  },
+  {
+    "city.code": "HN",
+    "id": 14,
+    "name": "Nam Từ Liêm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nam-tu-liem"
+  },
+  {
+    "city.code": "HN",
+    "id": 15,
+    "name": "Hà Đông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ha-dong"
+  },
+  {
+    "city.code": "HN",
+    "id": 16,
+    "name": "Sơn Tây",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-son-tay"
+  },
+  {
+    "city.code": "HN",
+    "id": 17,
+    "name": "Mê Linh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-me-linh"
+  },
+  {
+    "city.code": "HN",
+    "id": 18,
+    "name": "Ba Vì",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ba-vi"
+  },
+  {
+    "city.code": "HN",
+    "id": 19,
+    "name": "Phúc Thọ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phuc-tho"
+  },
+  {
+    "city.code": "HN",
+    "id": 20,
+    "name": "Đan Phượng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dan-phuong"
+  },
+  {
+    "city.code": "HN",
+    "id": 21,
+    "name": "Hoài Đức",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoai-duc"
+  },
+  {
+    "city.code": "HN",
+    "id": 22,
+    "name": "Quốc Oai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quoc-oai"
+  },
+  {
+    "city.code": "HN",
+    "id": 23,
+    "name": "Thạch Thất",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thach-that"
+  },
+  {
+    "city.code": "HN",
+    "id": 24,
+    "name": "Chương Mỹ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chuong-my"
+  },
+  {
+    "city.code": "HN",
+    "id": 25,
+    "name": "Thanh Oai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-oai"
+  },
+  {
+    "city.code": "HN",
+    "id": 26,
+    "name": "Thường Tín",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thuong-tin"
+  },
+  {
+    "city.code": "HN",
+    "id": 27,
+    "name": "Phú Xuyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-xuyen"
+  },
+  {
+    "city.code": "HN",
+    "id": 28,
+    "name": "Ứng Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ung-hoa"
+  },
+  {
+    "city.code": "HN",
+    "id": 29,
+    "name": "Mỹ Đức",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-my-duc"
+  },
+  {
+    "city.code": "HN",
+    "id": 718,
+    "name": "Bắc Từ Liêm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-tu-liem"
+  },
+  {
+    "city.code": "DDN",
+    "id": 45,
+    "name": "Cẩm Lệ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cam-le-ddn"
+  },
+  {
+    "city.code": "DDN",
+    "id": 46,
+    "name": "Hải Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hai-chau-ddn"
+  },
+  {
+    "city.code": "DDN",
+    "id": 47,
+    "name": "Liên Chiểu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lien-chieu-ddn"
+  },
+  {
+    "city.code": "DDN",
+    "id": 48,
+    "name": "Ngũ Hành Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ngu-hanh-son-ddn"
+  },
+  {
+    "city.code": "DDN",
+    "id": 49,
+    "name": "Sơn Trà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-son-tra-ddn"
+  },
+  {
+    "city.code": "DDN",
+    "id": 50,
+    "name": "Thanh Khê",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-khe-ddn"
+  },
+  {
+    "city.code": "DDN",
+    "id": 51,
+    "name": "Hòa Vang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoa-vang-ddn"
+  },
+  {
+    "city.code": "DDN",
+    "id": 52,
+    "name": "Hoàng Sa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoang-sa-ddn"
+  },
+  {
+    "city.code": "BD",
+    "id": 156,
+    "name": "Bến Cát",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ben-cat-bd"
+  },
+  {
+    "city.code": "BD",
+    "id": 157,
+    "name": "Dầu Tiếng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dau-tieng-bd"
+  },
+  {
+    "city.code": "BD",
+    "id": 158,
+    "name": "Dĩ An",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-di-an-bd"
+  },
+  {
+    "city.code": "BD",
+    "id": 159,
+    "name": "Phú Giáo",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-giao-bd"
+  },
+  {
+    "city.code": "BD",
+    "id": 160,
+    "name": "Tân Uyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-uyen-bd"
+  },
+  {
+    "city.code": "BD",
+    "id": 161,
+    "name": "Thuận An",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thuan-an-bd"
+  },
+  {
+    "city.code": "BD",
+    "id": 163,
+    "name": "Thủ Dầu Một",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thu-dau-mot-bd"
+  },
+  {
+    "city.code": "BD",
+    "id": 716,
+    "name": "Bàu Bàng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bau-bang-bd"
+  },
+  {
+    "city.code": "BD",
+    "id": 730,
+    "name": "Bắc Tân Uyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-tan-uyen-bd"
+  },
+  {
+    "city.code": "DNA",
+    "id": 236,
+    "name": "Cẩm Mỹ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cam-my-dna"
+  },
+  {
+    "city.code": "DNA",
+    "id": 237,
+    "name": "Định Quán",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dinh-quan-dna"
+  },
+  {
+    "city.code": "DNA",
+    "id": 238,
+    "name": "Long Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-long-thanh-dna"
+  },
+  {
+    "city.code": "DNA",
+    "id": 239,
+    "name": "Nhơn Trạch",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nhon-trach-dna"
+  },
+  {
+    "city.code": "DNA",
+    "id": 240,
+    "name": "Tân Phú",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-phu-dna"
+  },
+  {
+    "city.code": "DNA",
+    "id": 241,
+    "name": "Thống Nhất",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thong-nhat-dna"
+  },
+  {
+    "city.code": "DNA",
+    "id": 242,
+    "name": "Trảng Bom",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-trang-bom-dna"
+  },
+  {
+    "city.code": "DNA",
+    "id": 243,
+    "name": "Vĩnh Cửu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-cuu-dna"
+  },
+  {
+    "city.code": "DNA",
+    "id": 244,
+    "name": "Xuân Lộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-xuan-loc-dna"
+  },
+  {
+    "city.code": "DNA",
+    "id": 245,
+    "name": "Biên Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bien-hoa-dna"
+  },
+  {
+    "city.code": "DNA",
+    "id": 246,
+    "name": "Long Khánh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-long-khanh-dna"
+  },
+  {
+    "city.code": "KH",
+    "id": 343,
+    "name": "Cam Lâm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cam-lam-kh"
+  },
+  {
+    "city.code": "KH",
+    "id": 344,
+    "name": "Diên Khánh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dien-khanh-kh"
+  },
+  {
+    "city.code": "KH",
+    "id": 345,
+    "name": "Khánh Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-khanh-son-kh"
+  },
+  {
+    "city.code": "KH",
+    "id": 346,
+    "name": "Khánh Vĩnh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-khanh-vinh-kh"
+  },
+  {
+    "city.code": "KH",
+    "id": 347,
+    "name": "Ninh Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ninh-hoa-kh"
+  },
+  {
+    "city.code": "KH",
+    "id": 348,
+    "name": "Trường Sa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-truong-sa-kh"
+  },
+  {
+    "city.code": "KH",
+    "id": 349,
+    "name": "Vạn Ninh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-van-ninh-kh"
+  },
+  {
+    "city.code": "KH",
+    "id": 350,
+    "name": "Nha Trang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nha-trang-kh"
+  },
+  {
+    "city.code": "KH",
+    "id": 351,
+    "name": "Cam Ranh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cam-ranh-kh"
+  },
+  {
+    "city.code": "HP",
+    "id": 30,
+    "name": "Đồ Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-do-son-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 31,
+    "name": "Dương Kinh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duong-kinh-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 32,
+    "name": "Hải An",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hai-an-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 33,
+    "name": "Hồng Bàng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hong-bang-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 34,
+    "name": "Kiến An",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kien-an-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 35,
+    "name": "Lê Chân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-le-chan-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 36,
+    "name": "Ngô Quyền",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ngo-quyen-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 37,
+    "name": "An Dương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-an-duong-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 38,
+    "name": "An Lão",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-an-lao-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 39,
+    "name": "Bạch Long Vĩ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bach-long-vi-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 40,
+    "name": "Cát Hải",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cat-hai-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 41,
+    "name": "Kiến Thụy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kien-thuy-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 42,
+    "name": "Thủy Nguyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thuy-nguyen-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 43,
+    "name": "Tiên Lãng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tien-lang-hp"
+  },
+  {
+    "city.code": "HP",
+    "id": 44,
+    "name": "Vĩnh Bảo",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-bao-hp"
+  },
+  {
+    "city.code": "LA",
+    "id": 415,
+    "name": "Bến Lức",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ben-luc-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 416,
+    "name": "Cần Đước",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-can-duoc-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 417,
+    "name": "Cần Giuộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-can-giuoc-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 418,
+    "name": "Châu Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-thanh-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 419,
+    "name": "Đức Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duc-hoa-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 420,
+    "name": "Đức Huệ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duc-hue-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 421,
+    "name": "Mộc Hóa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-moc-hoa-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 422,
+    "name": "Tân Hưng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-hung-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 423,
+    "name": "Tân Thạnh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-thanh-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 424,
+    "name": "Tân Trụ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-tru-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 425,
+    "name": "Thạnh Hóa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-hoa-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 426,
+    "name": "Thủ Thừa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thu-thua-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 427,
+    "name": "Vĩnh Hưng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-hung-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 429,
+    "name": "Tân An",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-an-la"
+  },
+  {
+    "city.code": "LA",
+    "id": 724,
+    "name": "Kiến Tường",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kien-tuong-la"
+  },
+  {
+    "city.code": "QNA",
+    "id": 503,
+    "name": "Bắc Trà My",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-tra-my-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 504,
+    "name": "Đại Lộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dai-loc-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 505,
+    "name": "Điện Bàn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dien-ban-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 506,
+    "name": "Đông Giang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-giang-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 507,
+    "name": "Duy Xuyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duy-xuyen-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 508,
+    "name": "Hiệp Đức",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hiep-duc-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 509,
+    "name": "Nam Giang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nam-giang-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 510,
+    "name": "Nam Trà My",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nam-tra-my-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 511,
+    "name": "Núi Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nui-thanh-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 512,
+    "name": "Phú Ninh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-ninh-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 513,
+    "name": "Phước Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phuoc-son-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 514,
+    "name": "Quế Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-que-son-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 515,
+    "name": "Tây Giang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tay-giang-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 516,
+    "name": "Thăng Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thang-binh-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 517,
+    "name": "Tiên Phước",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tien-phuoc-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 519,
+    "name": "Tam Kỳ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tam-ky-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 520,
+    "name": "Hội An",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoi-an-qna"
+  },
+  {
+    "city.code": "QNA",
+    "id": 694,
+    "name": "Nông Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nong-son-qna"
+  },
+  {
+    "city.code": "VT",
+    "id": 96,
+    "name": "Châu Đức",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-duc-vt"
+  },
+  {
+    "city.code": "VT",
+    "id": 97,
+    "name": "Côn Đảo",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-con-dao-vt"
+  },
+  {
+    "city.code": "VT",
+    "id": 98,
+    "name": "Đất Đỏ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dat-do-vt"
+  },
+  {
+    "city.code": "VT",
+    "id": 99,
+    "name": "Long Điền",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-long-dien-vt"
+  },
+  {
+    "city.code": "VT",
+    "id": 100,
+    "name": "Phú Mỹ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-my_1-vt"
+  },
+  {
+    "city.code": "VT",
+    "id": 101,
+    "name": "Xuyên Mộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-xuyen-moc-vt"
+  },
+  {
+    "city.code": "VT",
+    "id": 102,
+    "name": "Vũng Tàu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vung-tau-vt"
+  },
+  {
+    "city.code": "VT",
+    "id": 103,
+    "name": "Bà Rịa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ba-ria-vt"
+  },
+  {
+    "city.code": "DDL",
+    "id": 205,
+    "name": "Buôn Đôn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-buon-don-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 206,
+    "name": "Cư Kuin",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cu-kuin-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 207,
+    "name": "Cư M'gar",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cu-m-gar-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 208,
+    "name": "Ea H'Leo",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ea-h-leo-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 209,
+    "name": "Ea Kar",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ea-kar-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 210,
+    "name": "Ea Súp",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ea-sup-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 211,
+    "name": "Krông Ana",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-krong-ana-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 212,
+    "name": "Krông Bông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-krong-bong-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 213,
+    "name": "Krông Buk",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-krong-buk-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 214,
+    "name": "Krông Năng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-krong-nang-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 215,
+    "name": "Krông Pắc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-krong-pac-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 216,
+    "name": "Lăk",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lak-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 217,
+    "name": "M'Đrăk",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-m-drak-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 218,
+    "name": "Buôn Ma Thuột",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-buon-ma-thuot-ddl"
+  },
+  {
+    "city.code": "DDL",
+    "id": 697,
+    "name": "Buôn Hồ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-buon-ho-ddl"
+  },
+  {
+    "city.code": "CT",
+    "id": 77,
+    "name": "Cờ Đỏ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-co-do-ct"
+  },
+  {
+    "city.code": "CT",
+    "id": 78,
+    "name": "Phong Điền",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phong-dien-ct"
+  },
+  {
+    "city.code": "CT",
+    "id": 79,
+    "name": "Thốt Nốt",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thot-not-ct"
+  },
+  {
+    "city.code": "CT",
+    "id": 80,
+    "name": "Vĩnh Thạnh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-thanh-ct"
+  },
+  {
+    "city.code": "CT",
+    "id": 81,
+    "name": "Bình Thủy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-thuy-ct"
+  },
+  {
+    "city.code": "CT",
+    "id": 82,
+    "name": "Cái Răng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cai-rang-ct"
+  },
+  {
+    "city.code": "CT",
+    "id": 83,
+    "name": "Ninh Kiều",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ninh-kieu-ct"
+  },
+  {
+    "city.code": "CT",
+    "id": 84,
+    "name": "Ô Môn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-o-mon-ct"
+  },
+  {
+    "city.code": "CT",
+    "id": 704,
+    "name": " Thới Lai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thoi-lai-ct"
+  },
+  {
+    "city.code": "BTH",
+    "id": 172,
+    "name": "Bắc Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-binh-bth"
+  },
+  {
+    "city.code": "BTH",
+    "id": 173,
+    "name": "Đảo Phú Quý",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dao-phu-quy-bth"
+  },
+  {
+    "city.code": "BTH",
+    "id": 174,
+    "name": "Đức Linh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duc-linh-bth"
+  },
+  {
+    "city.code": "BTH",
+    "id": 175,
+    "name": "Hàm Tân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ham-tan-bth"
+  },
+  {
+    "city.code": "BTH",
+    "id": 176,
+    "name": "Hàm Thuận Bắc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ham-thuan-bac-bth"
+  },
+  {
+    "city.code": "BTH",
+    "id": 177,
+    "name": "Hàm Thuận Nam",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ham-thuan-nam-bth"
+  },
+  {
+    "city.code": "BTH",
+    "id": 178,
+    "name": "Tánh Linh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tanh-linh-bth"
+  },
+  {
+    "city.code": "BTH",
+    "id": 179,
+    "name": "Tuy Phong",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tuy-phong-bth"
+  },
+  {
+    "city.code": "BTH",
+    "id": 181,
+    "name": "Phan Thiết",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phan-thiet-bth"
+  },
+  {
+    "city.code": "BTH",
+    "id": 182,
+    "name": "La Gi",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-la-gi-bth"
+  },
+  {
+    "city.code": "LDD",
+    "id": 381,
+    "name": "Bảo Lâm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bao-lam-ldd"
+  },
+  {
+    "city.code": "LDD",
+    "id": 382,
+    "name": "Cát Tiên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cat-tien-ldd"
+  },
+  {
+    "city.code": "LDD",
+    "id": 383,
+    "name": "Đạ Huoai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-da-huoai-ldd"
+  },
+  {
+    "city.code": "LDD",
+    "id": 384,
+    "name": "Đạ Tẻh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-da-teh-ldd"
+  },
+  {
+    "city.code": "LDD",
+    "id": 385,
+    "name": "Đam Rông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dam-rong-ldd"
+  },
+  {
+    "city.code": "LDD",
+    "id": 386,
+    "name": "Di Linh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-di-linh-ldd"
+  },
+  {
+    "city.code": "LDD",
+    "id": 387,
+    "name": "Đơn Dương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-don-duong-ldd"
+  },
+  {
+    "city.code": "LDD",
+    "id": 388,
+    "name": "Đức Trọng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duc-trong-ldd"
+  },
+  {
+    "city.code": "LDD",
+    "id": 389,
+    "name": "Lạc Dương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lac-duong-ldd"
+  },
+  {
+    "city.code": "LDD",
+    "id": 390,
+    "name": "Lâm Hà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lam-ha-ldd"
+  },
+  {
+    "city.code": "LDD",
+    "id": 391,
+    "name": "Đà Lạt",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-da-lat-ldd"
+  },
+  {
+    "city.code": "LDD",
+    "id": 392,
+    "name": "Bảo Lộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bao-loc-ldd"
+  },
+  {
+    "city.code": "TTH",
+    "id": 633,
+    "name": "A Lưới",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-a-luoi-tth"
+  },
+  {
+    "city.code": "TTH",
+    "id": 634,
+    "name": "Hương Thủy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-huong-thuy-tth"
+  },
+  {
+    "city.code": "TTH",
+    "id": 635,
+    "name": "Hương Trà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-huong-tra-tth"
+  },
+  {
+    "city.code": "TTH",
+    "id": 636,
+    "name": "Nam Đông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nam-dong-tth"
+  },
+  {
+    "city.code": "TTH",
+    "id": 637,
+    "name": "Phong Điền",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phong-dien-tth"
+  },
+  {
+    "city.code": "TTH",
+    "id": 638,
+    "name": "Phú Lộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-loc-tth"
+  },
+  {
+    "city.code": "TTH",
+    "id": 639,
+    "name": "Phú Vang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-vang-tth"
+  },
+  {
+    "city.code": "TTH",
+    "id": 640,
+    "name": "Quảng Điền",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quang-dien-tth"
+  },
+  {
+    "city.code": "TTH",
+    "id": 641,
+    "name": "Huế",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hue-tth"
+  },
+  {
+    "city.code": "KG",
+    "id": 352,
+    "name": "An Biên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-an-bien-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 353,
+    "name": "An Minh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-an-minh-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 354,
+    "name": "Châu Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-thanh-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 355,
+    "name": "Giồng Riềng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-giong-rieng-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 356,
+    "name": "Gò Quao",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-go-quao-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 357,
+    "name": "Hòn Đất",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hon-dat-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 358,
+    "name": "Kiên Hải",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kien-hai-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 359,
+    "name": "Kiên Lương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kien-luong-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 360,
+    "name": "Phú Quốc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-quoc-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 361,
+    "name": "Tân Hiệp",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-hiep-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 362,
+    "name": "U minh Thượng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-u-minh-thuong-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 363,
+    "name": "Vĩnh Thuận",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-thuan-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 364,
+    "name": "Rạch Giá",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-rach-gia-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 365,
+    "name": "Hà Tiên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ha-tien-kg"
+  },
+  {
+    "city.code": "KG",
+    "id": 723,
+    "name": "Giang Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-giang-thanh-kg"
+  },
+  {
+    "city.code": "BN",
+    "id": 129,
+    "name": "Gia Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-gia-binh-bn"
+  },
+  {
+    "city.code": "BN",
+    "id": 130,
+    "name": "Lương Tài",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-luong-tai-bn"
+  },
+  {
+    "city.code": "BN",
+    "id": 131,
+    "name": "Quế Võ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-que-vo-bn"
+  },
+  {
+    "city.code": "BN",
+    "id": 132,
+    "name": "Thuận Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thuan-thanh-bn"
+  },
+  {
+    "city.code": "BN",
+    "id": 133,
+    "name": "Tiên Du",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tien-du-bn"
+  },
+  {
+    "city.code": "BN",
+    "id": 134,
+    "name": "Từ Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tu-son-bn"
+  },
+  {
+    "city.code": "BN",
+    "id": 135,
+    "name": "Yên Phong",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-phong-bn"
+  },
+  {
+    "city.code": "BN",
+    "id": 136,
+    "name": "Bắc Ninh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-ninh-bn"
+  },
+  {
+    "city.code": "QNI",
+    "id": 535,
+    "name": "Ba Chẽ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ba-che-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 536,
+    "name": "Bình Liêu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-lieu-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 537,
+    "name": "Cô Tô",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-co-to-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 538,
+    "name": "Đầm Hà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dam-ha-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 539,
+    "name": "Đông Triều",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-trieu-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 540,
+    "name": "Hải Hà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hai-ha-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 541,
+    "name": "Hoành Bồ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoanh-bo-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 542,
+    "name": "Tiên Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tien-yen-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 543,
+    "name": "Vân Đồn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-van-don-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 546,
+    "name": "Hạ Long",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ha-long-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 547,
+    "name": "Cẩm Phả",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cam-pha-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 548,
+    "name": "Móng Cái",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-mong-cai-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 549,
+    "name": "Uông Bí",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-uong-bi-qni"
+  },
+  {
+    "city.code": "QNI",
+    "id": 708,
+    "name": "Quảng Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quang-yen-qni"
+  },
+  {
+    "city.code": "TH",
+    "id": 606,
+    "name": "Bá Thước",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ba-thuoc-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 607,
+    "name": "Cẩm Thủy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cam-thuy-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 608,
+    "name": "Đông Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-son-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 609,
+    "name": "Hà Trung",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ha-trung-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 610,
+    "name": "Hậu Lộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hau-loc-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 611,
+    "name": "Hoằng Hóa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoang-hoa-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 612,
+    "name": "Lang Chánh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lang-chanh-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 613,
+    "name": "Mường Lát",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-muong-lat-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 614,
+    "name": "Nga Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nga-son-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 615,
+    "name": "Ngọc Lặc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ngoc-lac-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 616,
+    "name": "Như Thanh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nhu-thanh-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 617,
+    "name": "Như Xuân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nhu-xuan-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 618,
+    "name": "Nông Cống",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nong-cong-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 619,
+    "name": "Quan Hóa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-hoa-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 620,
+    "name": "Quan Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-son-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 621,
+    "name": "Quảng Xương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quang-xuong-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 622,
+    "name": "Thạch Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thach-thanh-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 623,
+    "name": "Thiệu Hóa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thieu-hoa-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 624,
+    "name": "Thọ Xuân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tho-xuan-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 625,
+    "name": "Thường Xuân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thuong-xuan-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 626,
+    "name": "Nghi Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nghi-son-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 627,
+    "name": "Triệu Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-trieu-son-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 628,
+    "name": "Vĩnh Lộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-loc-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 629,
+    "name": "Yên Định",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-dinh-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 630,
+    "name": "Thanh Hóa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-hoa-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 631,
+    "name": "Bỉm Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bim-son-th"
+  },
+  {
+    "city.code": "TH",
+    "id": 632,
+    "name": "Sầm Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-sam-son-th"
+  },
+  {
+    "city.code": "NA",
+    "id": 440,
+    "name": "Anh Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-anh-son-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 441,
+    "name": "Con Cuông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-con-cuong-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 442,
+    "name": "Diễn Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dien-chau-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 443,
+    "name": "Đô Lương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-do-luong-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 444,
+    "name": "Hưng Nguyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hung-nguyen-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 445,
+    "name": "Kỳ Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ky-son-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 446,
+    "name": "Nam Đàn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nam-dan-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 447,
+    "name": "Nghi Lộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nghi-loc-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 448,
+    "name": "Nghĩa Đàn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nghia-dan-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 449,
+    "name": "Quế Phong",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-que-phong-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 450,
+    "name": "Quỳ Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quy-chau-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 451,
+    "name": "Quỳ Hợp",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quy-hop-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 452,
+    "name": "Quỳnh Lưu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quynh-luu-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 453,
+    "name": "Tân Kỳ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-ky-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 454,
+    "name": "Thanh Chương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-chuong-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 455,
+    "name": "Tương Dương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tuong-duong-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 456,
+    "name": "Yên Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-thanh-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 457,
+    "name": "Vinh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 458,
+    "name": "Cửa Lò",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cua-lo-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 692,
+    "name": "Thái Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thai-hoa-na"
+  },
+  {
+    "city.code": "NA",
+    "id": 725,
+    "name": "Hoàng Mai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoang-mai-1-na"
+  },
+  {
+    "city.code": "HD",
+    "id": 303,
+    "name": "Bình Giang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-giang-hd"
+  },
+  {
+    "city.code": "HD",
+    "id": 304,
+    "name": "Cẩm Giàng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cam-giang-hd"
+  },
+  {
+    "city.code": "HD",
+    "id": 305,
+    "name": "Chí Linh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chi-linh-hd"
+  },
+  {
+    "city.code": "HD",
+    "id": 306,
+    "name": "Gia Lộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-gia-loc-hd"
+  },
+  {
+    "city.code": "HD",
+    "id": 307,
+    "name": "Kim Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kim-thanh-hd"
+  },
+  {
+    "city.code": "HD",
+    "id": 308,
+    "name": "Kinh Môn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kinh-mon-hd"
+  },
+  {
+    "city.code": "HD",
+    "id": 309,
+    "name": "Nam Sách",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nam-sach-hd"
+  },
+  {
+    "city.code": "HD",
+    "id": 310,
+    "name": "Ninh Giang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ninh-giang-hd"
+  },
+  {
+    "city.code": "HD",
+    "id": 311,
+    "name": "Thanh Hà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-ha-hd"
+  },
+  {
+    "city.code": "HD",
+    "id": 312,
+    "name": "Thanh Miện",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-mien-hd"
+  },
+  {
+    "city.code": "HD",
+    "id": 313,
+    "name": "Tứ Kỳ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tu-ky-hd"
+  },
+  {
+    "city.code": "HD",
+    "id": 314,
+    "name": "Hải Dương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hai-duong-hd"
+  },
+  {
+    "city.code": "GL",
+    "id": 258,
+    "name": "AYun Pa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ayun-pa-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 259,
+    "name": "Chư Păh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chu-pah-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 260,
+    "name": "Chư Sê",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chu-se-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 261,
+    "name": "ChưPRông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chuprong-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 262,
+    "name": "Đăk Đoa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dak-doa-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 263,
+    "name": "Đăk Pơ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dak-po-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 264,
+    "name": "Đức Cơ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duc-co-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 265,
+    "name": "Ia Grai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ia-grai_1-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 266,
+    "name": "Ia Pa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ia-pa-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 267,
+    "name": "KBang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kbang-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 268,
+    "name": "Kông Chro",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kong-chro-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 269,
+    "name": "Krông Pa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-krong-pa-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 270,
+    "name": "Mang Yang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-mang-yang-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 271,
+    "name": "Phú Thiện",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-thien-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 272,
+    "name": "Plei Ku",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-plei-ku-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 273,
+    "name": "An Khê",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-an-khe-gl"
+  },
+  {
+    "city.code": "GL",
+    "id": 710,
+    "name": "Chư Pưh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chu-puh-gl"
+  },
+  {
+    "city.code": "BP",
+    "id": 164,
+    "name": "Bình Long",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-long-bp"
+  },
+  {
+    "city.code": "BP",
+    "id": 165,
+    "name": "Bù Đăng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bu-dang-bp"
+  },
+  {
+    "city.code": "BP",
+    "id": 166,
+    "name": "Bù Đốp",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bu-dop-bp"
+  },
+  {
+    "city.code": "BP",
+    "id": 167,
+    "name": "Chơn Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chon-thanh-bp"
+  },
+  {
+    "city.code": "BP",
+    "id": 168,
+    "name": "Đồng Phú",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-phu-bp"
+  },
+  {
+    "city.code": "BP",
+    "id": 169,
+    "name": "Lộc Ninh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-loc-ninh-bp"
+  },
+  {
+    "city.code": "BP",
+    "id": 170,
+    "name": "Phước Long",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phuoc-long-bp"
+  },
+  {
+    "city.code": "BP",
+    "id": 171,
+    "name": "Đồng Xoài",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-xoai-bp"
+  },
+  {
+    "city.code": "BP",
+    "id": 698,
+    "name": "Hớn Quản",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hon-quan-bp"
+  },
+  {
+    "city.code": "BP",
+    "id": 699,
+    "name": "Bù Gia Mập",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bu-gia-map-bp"
+  },
+  {
+    "city.code": "BP",
+    "id": 728,
+    "name": "Phú Riềng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-rieng-bp"
+  },
+  {
+    "city.code": "HY",
+    "id": 333,
+    "name": "Ân Thi",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-an-thi-hy"
+  },
+  {
+    "city.code": "HY",
+    "id": 334,
+    "name": "Khoái Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-khoai-chau-hy"
+  },
+  {
+    "city.code": "HY",
+    "id": 335,
+    "name": "Kim Động",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kim-dong-hy"
+  },
+  {
+    "city.code": "HY",
+    "id": 336,
+    "name": "Mỹ Hào",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-my-hao-hy"
+  },
+  {
+    "city.code": "HY",
+    "id": 337,
+    "name": "Phù Cừ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-cu-hy"
+  },
+  {
+    "city.code": "HY",
+    "id": 338,
+    "name": "Tiên Lữ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tien-lu-hy"
+  },
+  {
+    "city.code": "HY",
+    "id": 339,
+    "name": "Văn Giang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-van-giang-hy"
+  },
+  {
+    "city.code": "HY",
+    "id": 340,
+    "name": "Văn Lâm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-van-lam-hy"
+  },
+  {
+    "city.code": "HY",
+    "id": 341,
+    "name": "Yên Mỹ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-my-hy"
+  },
+  {
+    "city.code": "HY",
+    "id": 342,
+    "name": "Hưng Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hung-yen-hy"
+  },
+  {
+    "city.code": "BDD",
+    "id": 145,
+    "name": "An Lão",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-an-lao-bdd"
+  },
+  {
+    "city.code": "BDD",
+    "id": 146,
+    "name": "An Nhơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-an-nhon-bdd"
+  },
+  {
+    "city.code": "BDD",
+    "id": 147,
+    "name": "Hoài Ân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoai-an-bdd"
+  },
+  {
+    "city.code": "BDD",
+    "id": 148,
+    "name": "Hoài Nhơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoai-nhon-bdd"
+  },
+  {
+    "city.code": "BDD",
+    "id": 149,
+    "name": "Phù Cát",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-cat-bdd"
+  },
+  {
+    "city.code": "BDD",
+    "id": 150,
+    "name": "Phù Mỹ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-my-bdd"
+  },
+  {
+    "city.code": "BDD",
+    "id": 151,
+    "name": "Tây Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tay-son-bdd"
+  },
+  {
+    "city.code": "BDD",
+    "id": 152,
+    "name": "Tuy Phước",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tuy-phuoc-bdd"
+  },
+  {
+    "city.code": "BDD",
+    "id": 153,
+    "name": "Vân Canh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-van-canh-bdd"
+  },
+  {
+    "city.code": "BDD",
+    "id": 154,
+    "name": "Vĩnh Thạnh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-thanh-bdd"
+  },
+  {
+    "city.code": "BDD",
+    "id": 155,
+    "name": "Quy Nhơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quy-nhon-bdd"
+  },
+  {
+    "city.code": "TG",
+    "id": 642,
+    "name": "Cái Bè",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cai-be-tg"
+  },
+  {
+    "city.code": "TG",
+    "id": 643,
+    "name": "Huyện Cai Lậy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-huyen-cai-lay-tg"
+  },
+  {
+    "city.code": "TG",
+    "id": 644,
+    "name": "Châu Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-thanh-tg"
+  },
+  {
+    "city.code": "TG",
+    "id": 645,
+    "name": "Chợ Gạo",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cho-gao-tg"
+  },
+  {
+    "city.code": "TG",
+    "id": 646,
+    "name": "Gò Công Đông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-go-cong-dong-tg"
+  },
+  {
+    "city.code": "TG",
+    "id": 647,
+    "name": "Gò Công Tây",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-go-cong-tay-tg"
+  },
+  {
+    "city.code": "TG",
+    "id": 648,
+    "name": "Tân Phước",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-phuoc-tg"
+  },
+  {
+    "city.code": "TG",
+    "id": 649,
+    "name": "Tân Phú Đông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-phu-dong-tg"
+  },
+  {
+    "city.code": "TG",
+    "id": 650,
+    "name": "Mỹ Tho",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-my-tho-tg"
+  },
+  {
+    "city.code": "TG",
+    "id": 651,
+    "name": "Gò Công",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-go-cong-tg"
+  },
+  {
+    "city.code": "TG",
+    "id": 727,
+    "name": "Cai Lậy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cai-lay-tg"
+  },
+  {
+    "city.code": "TB",
+    "id": 589,
+    "name": "Đông Hưng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-hung-tb"
+  },
+  {
+    "city.code": "TB",
+    "id": 590,
+    "name": "Hưng Hà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hung-ha-tb"
+  },
+  {
+    "city.code": "TB",
+    "id": 591,
+    "name": "Kiến Xương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kien-xuong-tb"
+  },
+  {
+    "city.code": "TB",
+    "id": 592,
+    "name": "Quỳnh Phụ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quynh-phu-tb"
+  },
+  {
+    "city.code": "TB",
+    "id": 593,
+    "name": "Thái Thuỵ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thai-thuy-tb"
+  },
+  {
+    "city.code": "TB",
+    "id": 594,
+    "name": "Tiền Hải",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tien-hai-tb"
+  },
+  {
+    "city.code": "TB",
+    "id": 595,
+    "name": "Vũ Thư",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vu-thu-tb"
+  },
+  {
+    "city.code": "TB",
+    "id": 596,
+    "name": "Thái Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thai-binh-tb"
+  },
+  {
+    "city.code": "BG",
+    "id": 104,
+    "name": "Hiệp Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hiep-hoa-bg"
+  },
+  {
+    "city.code": "BG",
+    "id": 105,
+    "name": "Lạng Giang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lang-giang-bg"
+  },
+  {
+    "city.code": "BG",
+    "id": 106,
+    "name": "Lục Nam",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-luc-nam-bg"
+  },
+  {
+    "city.code": "BG",
+    "id": 107,
+    "name": "Lục Ngạn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-luc-ngan-bg"
+  },
+  {
+    "city.code": "BG",
+    "id": 108,
+    "name": "Sơn Động",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-son-dong-bg"
+  },
+  {
+    "city.code": "BG",
+    "id": 109,
+    "name": "Tân Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-yen-bg"
+  },
+  {
+    "city.code": "BG",
+    "id": 110,
+    "name": "Việt Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-viet-yen-bg"
+  },
+  {
+    "city.code": "BG",
+    "id": 111,
+    "name": "Yên Dũng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-dung-bg"
+  },
+  {
+    "city.code": "BG",
+    "id": 112,
+    "name": "Yên Thế",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-the-bg"
+  },
+  {
+    "city.code": "BG",
+    "id": 113,
+    "name": "Bắc Giang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-giang-bg"
+  },
+  {
+    "city.code": "HB",
+    "id": 322,
+    "name": "Cao Phong",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cao-phong-hb"
+  },
+  {
+    "city.code": "HB",
+    "id": 323,
+    "name": "Đà Bắc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-da-bac-hb"
+  },
+  {
+    "city.code": "HB",
+    "id": 324,
+    "name": "Kim Bôi",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kim-boi-hb"
+  },
+  {
+    "city.code": "HB",
+    "id": 325,
+    "name": "Kỳ Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ky-son-hb"
+  },
+  {
+    "city.code": "HB",
+    "id": 326,
+    "name": "Lạc Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lac-son-hb"
+  },
+  {
+    "city.code": "HB",
+    "id": 327,
+    "name": "Lạc Thủy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lac-thuy-hb"
+  },
+  {
+    "city.code": "HB",
+    "id": 328,
+    "name": "Lương Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-luong-son-hb"
+  },
+  {
+    "city.code": "HB",
+    "id": 329,
+    "name": "Mai Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-mai-chau-hb"
+  },
+  {
+    "city.code": "HB",
+    "id": 330,
+    "name": "Tân Lạc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-lac-hb"
+  },
+  {
+    "city.code": "HB",
+    "id": 331,
+    "name": "Yên Thủy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-thuy-hb"
+  },
+  {
+    "city.code": "HB",
+    "id": 332,
+    "name": "Hòa Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoa-binh-hb"
+  },
+  {
+    "city.code": "AG",
+    "id": 85,
+    "name": "An Phú",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-an-phu-ag"
+  },
+  {
+    "city.code": "AG",
+    "id": 86,
+    "name": "Châu Phú",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-phu-ag"
+  },
+  {
+    "city.code": "AG",
+    "id": 87,
+    "name": "Châu Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-thanh-ag"
+  },
+  {
+    "city.code": "AG",
+    "id": 88,
+    "name": "Chợ Mới",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cho-moi-ag"
+  },
+  {
+    "city.code": "AG",
+    "id": 89,
+    "name": "Tri Tôn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tri-ton-ag"
+  },
+  {
+    "city.code": "AG",
+    "id": 90,
+    "name": "Phú Tân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-tan-ag"
+  },
+  {
+    "city.code": "AG",
+    "id": 91,
+    "name": "Tân Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-chau-ag"
+  },
+  {
+    "city.code": "AG",
+    "id": 92,
+    "name": "Thoại Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thoai-son-ag"
+  },
+  {
+    "city.code": "AG",
+    "id": 93,
+    "name": "Tịnh Biên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tinh-bien-ag"
+  },
+  {
+    "city.code": "AG",
+    "id": 94,
+    "name": "Long Xuyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-long-xuyen-ag"
+  },
+  {
+    "city.code": "AG",
+    "id": 95,
+    "name": "Châu Đốc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-doc-ag"
+  },
+  {
+    "city.code": "VP",
+    "id": 674,
+    "name": "Bình Xuyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-xuyen-vp"
+  },
+  {
+    "city.code": "VP",
+    "id": 675,
+    "name": "Lập Thạch",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lap-thach-vp"
+  },
+  {
+    "city.code": "VP",
+    "id": 676,
+    "name": "Tam Đảo",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tam-dao-vp"
+  },
+  {
+    "city.code": "VP",
+    "id": 677,
+    "name": "Tam Dương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tam-duong-vp"
+  },
+  {
+    "city.code": "VP",
+    "id": 678,
+    "name": "Vĩnh Tường",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-tuong-vp"
+  },
+  {
+    "city.code": "VP",
+    "id": 679,
+    "name": "Yên Lạc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-lac-vp"
+  },
+  {
+    "city.code": "VP",
+    "id": 680,
+    "name": "Vĩnh Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-yen-vp"
+  },
+  {
+    "city.code": "VP",
+    "id": 681,
+    "name": "Phúc Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phuc-yen-vp"
+  },
+  {
+    "city.code": "VP",
+    "id": 696,
+    "name": "Sông Lô",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-song-lo-vp"
+  },
+  {
+    "city.code": "TNI",
+    "id": 580,
+    "name": "Bến Cầu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ben-cau-tni"
+  },
+  {
+    "city.code": "TNI",
+    "id": 581,
+    "name": "Châu Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-thanh-tni"
+  },
+  {
+    "city.code": "TNI",
+    "id": 582,
+    "name": "Dương Minh Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duong-minh-chau-tni"
+  },
+  {
+    "city.code": "TNI",
+    "id": 583,
+    "name": "Gò Dầu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-go-dau-tni"
+  },
+  {
+    "city.code": "TNI",
+    "id": 584,
+    "name": "Hòa Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoa-thanh-tni"
+  },
+  {
+    "city.code": "TNI",
+    "id": 585,
+    "name": "Tân Biên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-bien-tni"
+  },
+  {
+    "city.code": "TNI",
+    "id": 586,
+    "name": "Tân Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-chau-tni"
+  },
+  {
+    "city.code": "TNI",
+    "id": 587,
+    "name": "Trảng Bàng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-trang-bang-tni"
+  },
+  {
+    "city.code": "TNI",
+    "id": 588,
+    "name": "Tây Ninh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tay-ninh-tni"
+  },
+  {
+    "city.code": "TN",
+    "id": 597,
+    "name": "Đại Từ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dai-tu-tn"
+  },
+  {
+    "city.code": "TN",
+    "id": 598,
+    "name": "Định Hóa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dinh-hoa-tn"
+  },
+  {
+    "city.code": "TN",
+    "id": 599,
+    "name": "Đồng Hỷ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-hy-tn"
+  },
+  {
+    "city.code": "TN",
+    "id": 600,
+    "name": "Phổ Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-pho-yen-tn"
+  },
+  {
+    "city.code": "TN",
+    "id": 601,
+    "name": "Phú Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-binh-tn"
+  },
+  {
+    "city.code": "TN",
+    "id": 602,
+    "name": "Phú Lương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-luong-tn"
+  },
+  {
+    "city.code": "TN",
+    "id": 603,
+    "name": "Võ Nhai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vo-nhai-tn"
+  },
+  {
+    "city.code": "TN",
+    "id": 604,
+    "name": "Thái Nguyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thai-nguyen-tn"
+  },
+  {
+    "city.code": "TN",
+    "id": 605,
+    "name": "Sông Công",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-song-cong-tn"
+  },
+  {
+    "city.code": "LCA",
+    "id": 404,
+    "name": "Bắc Hà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-ha-lca"
+  },
+  {
+    "city.code": "LCA",
+    "id": 405,
+    "name": "Bảo Thắng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bao-thang-lca"
+  },
+  {
+    "city.code": "LCA",
+    "id": 406,
+    "name": "Bảo Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bao-yen-lca"
+  },
+  {
+    "city.code": "LCA",
+    "id": 407,
+    "name": "Bát Xát",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bat-xat-lca"
+  },
+  {
+    "city.code": "LCA",
+    "id": 408,
+    "name": "Mường Khương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-muong-khuong-lca"
+  },
+  {
+    "city.code": "LCA",
+    "id": 409,
+    "name": "Sa Pa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-sa-pa-lca"
+  },
+  {
+    "city.code": "LCA",
+    "id": 410,
+    "name": "Văn Bàn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-van-ban-lca"
+  },
+  {
+    "city.code": "LCA",
+    "id": 411,
+    "name": "Si Ma Cai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-si-ma-cai-lca"
+  },
+  {
+    "city.code": "LCA",
+    "id": 414,
+    "name": "Lào Cai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lao-cai-lca"
+  },
+  {
+    "city.code": "NDD",
+    "id": 430,
+    "name": "Giao Thủy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-giao-thuy-ndd"
+  },
+  {
+    "city.code": "NDD",
+    "id": 431,
+    "name": "Hải Hậu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hai-hau-ndd"
+  },
+  {
+    "city.code": "NDD",
+    "id": 432,
+    "name": "Mỹ Lộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-my-loc-ndd"
+  },
+  {
+    "city.code": "NDD",
+    "id": 433,
+    "name": "Nam Trực",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nam-truc-ndd"
+  },
+  {
+    "city.code": "NDD",
+    "id": 434,
+    "name": "Nghĩa Hưng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nghia-hung-ndd"
+  },
+  {
+    "city.code": "NDD",
+    "id": 435,
+    "name": "Trực Ninh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-truc-ninh-ndd"
+  },
+  {
+    "city.code": "NDD",
+    "id": 436,
+    "name": "Vụ Bản",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vu-ban-ndd"
+  },
+  {
+    "city.code": "NDD",
+    "id": 437,
+    "name": "Xuân Trường",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-xuan-truong-ndd"
+  },
+  {
+    "city.code": "NDD",
+    "id": 438,
+    "name": "Ý Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-y-yen-ndd"
+  },
+  {
+    "city.code": "NDD",
+    "id": 439,
+    "name": "Nam Định",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nam-dinh-ndd"
+  },
+  {
+    "city.code": "QNG",
+    "id": 521,
+    "name": "Ba Tơ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ba-to-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 522,
+    "name": "Bình Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-son-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 523,
+    "name": "Đức Phổ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duc-pho-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 524,
+    "name": "Lý Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ly-son-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 525,
+    "name": "Minh Long",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-minh-long-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 526,
+    "name": "Mộ Đức",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-mo-duc-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 527,
+    "name": "Nghĩa Hành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nghia-hanh-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 528,
+    "name": "Sơn Hà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-son-ha-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 529,
+    "name": "Sơn Tây",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-son-tay-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 530,
+    "name": "Sơn Tịnh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-son-tinh-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 531,
+    "name": "Tây Trà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tay-tra-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 532,
+    "name": "Trà Bồng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tra-bong-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 533,
+    "name": "Tư Nghĩa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tu-nghia-qng"
+  },
+  {
+    "city.code": "QNG",
+    "id": 534,
+    "name": "Quảng Ngãi",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quang-ngai-qng"
+  },
+  {
+    "city.code": "BTR",
+    "id": 137,
+    "name": "Ba Tri",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ba-tri-btr"
+  },
+  {
+    "city.code": "BTR",
+    "id": 138,
+    "name": "Bình Đại",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-dai-btr"
+  },
+  {
+    "city.code": "BTR",
+    "id": 139,
+    "name": "Châu Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-thanh-btr"
+  },
+  {
+    "city.code": "BTR",
+    "id": 140,
+    "name": "Chợ Lách",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cho-lach-btr"
+  },
+  {
+    "city.code": "BTR",
+    "id": 141,
+    "name": "Giồng Trôm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-giong-trom-btr"
+  },
+  {
+    "city.code": "BTR",
+    "id": 143,
+    "name": "Thạnh Phú",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-phu-btr"
+  },
+  {
+    "city.code": "BTR",
+    "id": 144,
+    "name": "Bến Tre",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ben-tre-btr"
+  },
+  {
+    "city.code": "BTR",
+    "id": 705,
+    "name": "Mỏ Cày Bắc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-mo-cay-bac-btr"
+  },
+  {
+    "city.code": "BTR",
+    "id": 706,
+    "name": "Mỏ Cày Nam",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-mo-cay-nam-btr"
+  },
+  {
+    "city.code": "DNO",
+    "id": 219,
+    "name": "Cư Jút",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cu-jut-dno"
+  },
+  {
+    "city.code": "DNO",
+    "id": 220,
+    "name": "Dăk GLong",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dak-glong-dno"
+  },
+  {
+    "city.code": "DNO",
+    "id": 221,
+    "name": "Dăk Mil",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dak-mil-dno"
+  },
+  {
+    "city.code": "DNO",
+    "id": 222,
+    "name": "Dăk R'Lấp",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dak-r-lap-dno"
+  },
+  {
+    "city.code": "DNO",
+    "id": 223,
+    "name": "Dăk Song",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dak-song-dno"
+  },
+  {
+    "city.code": "DNO",
+    "id": 224,
+    "name": "Krông Nô",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-krong-no-dno"
+  },
+  {
+    "city.code": "DNO",
+    "id": 225,
+    "name": "Tuy Đức",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tuy-duc-dno"
+  },
+  {
+    "city.code": "DNO",
+    "id": 226,
+    "name": "Gia Nghĩa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-gia-nghia-dno"
+  },
+  {
+    "city.code": "CM",
+    "id": 183,
+    "name": "Cái Nước",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cai-nuoc-cm"
+  },
+  {
+    "city.code": "CM",
+    "id": 184,
+    "name": "Đầm Dơi",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dam-doi-cm"
+  },
+  {
+    "city.code": "CM",
+    "id": 185,
+    "name": "Năm Căn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nam-can-cm"
+  },
+  {
+    "city.code": "CM",
+    "id": 186,
+    "name": "Ngọc Hiển",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ngoc-hien-cm"
+  },
+  {
+    "city.code": "CM",
+    "id": 187,
+    "name": "Phú Tân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-tan-cm"
+  },
+  {
+    "city.code": "CM",
+    "id": 188,
+    "name": "Thới Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thoi-binh-cm"
+  },
+  {
+    "city.code": "CM",
+    "id": 189,
+    "name": "Trần Văn Thời",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tran-van-thoi-cm"
+  },
+  {
+    "city.code": "CM",
+    "id": 190,
+    "name": "U Minh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-u-minh-cm"
+  },
+  {
+    "city.code": "CM",
+    "id": 191,
+    "name": "Cà Mau",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ca-mau-cm"
+  },
+  {
+    "city.code": "VL",
+    "id": 666,
+    "name": "Bình Minh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-minh-vl"
+  },
+  {
+    "city.code": "VL",
+    "id": 667,
+    "name": "Bình Tân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-tan-vl"
+  },
+  {
+    "city.code": "VL",
+    "id": 668,
+    "name": "Long Hồ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-long-ho-vl"
+  },
+  {
+    "city.code": "VL",
+    "id": 669,
+    "name": "Mang Thít",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-mang-thit-vl"
+  },
+  {
+    "city.code": "VL",
+    "id": 670,
+    "name": "Tam Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tam-binh-vl"
+  },
+  {
+    "city.code": "VL",
+    "id": 671,
+    "name": "Trà Ôn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tra-on-vl"
+  },
+  {
+    "city.code": "VL",
+    "id": 672,
+    "name": "Vũng Liêm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vung-liem-vl"
+  },
+  {
+    "city.code": "VL",
+    "id": 673,
+    "name": "Vĩnh Long",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-long-vl"
+  },
+  {
+    "city.code": "NB",
+    "id": 459,
+    "name": "Gia Viễn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-gia-vien-nb"
+  },
+  {
+    "city.code": "NB",
+    "id": 460,
+    "name": "Hoa Lư",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoa-lu-nb"
+  },
+  {
+    "city.code": "NB",
+    "id": 461,
+    "name": "Kim Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kim-son-nb"
+  },
+  {
+    "city.code": "NB",
+    "id": 462,
+    "name": "Nho Quan",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nho-quan-nb"
+  },
+  {
+    "city.code": "NB",
+    "id": 463,
+    "name": "Yên Khánh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-khanh-nb"
+  },
+  {
+    "city.code": "NB",
+    "id": 464,
+    "name": "Yên Mô",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-mo-nb"
+  },
+  {
+    "city.code": "NB",
+    "id": 465,
+    "name": "Ninh Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ninh-binh-nb"
+  },
+  {
+    "city.code": "NB",
+    "id": 466,
+    "name": "Tam Điệp",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tam-diep-nb"
+  },
+  {
+    "city.code": "PT",
+    "id": 473,
+    "name": "Cẩm Khê",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cam-khe-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 474,
+    "name": "Đoan Hùng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-doan-hung-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 475,
+    "name": "Hạ Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ha-hoa-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 476,
+    "name": "Lâm Thao",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lam-thao-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 477,
+    "name": "Phù Ninh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-ninh-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 478,
+    "name": "Tam Nông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tam-nong-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 479,
+    "name": "Tân Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-son-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 480,
+    "name": "Thanh Ba",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-ba-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 481,
+    "name": "Thanh Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-son-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 482,
+    "name": "Thanh Thủy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-thuy-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 483,
+    "name": "Yên Lập",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-lap-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 485,
+    "name": "Việt Trì",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-viet-tri-pt"
+  },
+  {
+    "city.code": "PT",
+    "id": 486,
+    "name": "Phú Thọ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-tho-pt"
+  },
+  {
+    "city.code": "NT",
+    "id": 467,
+    "name": "Bác Ái",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-ai-nt"
+  },
+  {
+    "city.code": "NT",
+    "id": 468,
+    "name": "Ninh Hải",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ninh-hai-nt"
+  },
+  {
+    "city.code": "NT",
+    "id": 469,
+    "name": "Ninh Phước",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ninh-phuoc-nt"
+  },
+  {
+    "city.code": "NT",
+    "id": 470,
+    "name": "Ninh Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ninh-son-nt"
+  },
+  {
+    "city.code": "NT",
+    "id": 471,
+    "name": "Thuận Bắc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thuan-bac-nt"
+  },
+  {
+    "city.code": "NT",
+    "id": 472,
+    "name": "Phan Rang - Tháp Chàm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phan-rang-thap-cham-nt"
+  },
+  {
+    "city.code": "NT",
+    "id": 693,
+    "name": "Thuận Nam",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thuan-nam-nt"
+  },
+  {
+    "city.code": "PY",
+    "id": 487,
+    "name": "Đông Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-hoa-py"
+  },
+  {
+    "city.code": "PY",
+    "id": 488,
+    "name": "Đồng Xuân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-xuan-py"
+  },
+  {
+    "city.code": "PY",
+    "id": 489,
+    "name": "Phú Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-hoa-py"
+  },
+  {
+    "city.code": "PY",
+    "id": 490,
+    "name": "Sơn Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-son-hoa-py"
+  },
+  {
+    "city.code": "PY",
+    "id": 491,
+    "name": "Sông Cầu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-song-cau-py"
+  },
+  {
+    "city.code": "PY",
+    "id": 492,
+    "name": "Sông Hinh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-song-hinh-py"
+  },
+  {
+    "city.code": "PY",
+    "id": 493,
+    "name": "Tây Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tay-hoa-py"
+  },
+  {
+    "city.code": "PY",
+    "id": 494,
+    "name": "Tuy An",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tuy-an-py"
+  },
+  {
+    "city.code": "PY",
+    "id": 495,
+    "name": "Tuy Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tuy-hoa-py"
+  },
+  {
+    "city.code": "HNA",
+    "id": 285,
+    "name": "Bình Lục",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-luc-hna"
+  },
+  {
+    "city.code": "HNA",
+    "id": 286,
+    "name": "Duy Tiên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duy-tien-hna"
+  },
+  {
+    "city.code": "HNA",
+    "id": 287,
+    "name": "Kim Bảng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kim-bang-hna"
+  },
+  {
+    "city.code": "HNA",
+    "id": 288,
+    "name": "Lý Nhân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ly-nhan-hna"
+  },
+  {
+    "city.code": "HNA",
+    "id": 289,
+    "name": "Thanh Liêm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-liem-hna"
+  },
+  {
+    "city.code": "HNA",
+    "id": 290,
+    "name": "Phủ Lý",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-ly-hna"
+  },
+  {
+    "city.code": "HT",
+    "id": 291,
+    "name": "Cẩm Xuyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cam-xuyen-ht"
+  },
+  {
+    "city.code": "HT",
+    "id": 292,
+    "name": "Can Lộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-can-loc-ht"
+  },
+  {
+    "city.code": "HT",
+    "id": 293,
+    "name": "Đức Thọ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duc-tho-ht"
+  },
+  {
+    "city.code": "HT",
+    "id": 294,
+    "name": "Hương Khê",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-huong-khe-ht"
+  },
+  {
+    "city.code": "HT",
+    "id": 295,
+    "name": "Hương Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-huong-son-ht"
+  },
+  {
+    "city.code": "HT",
+    "id": 296,
+    "name": "Kỳ Anh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ky-anh-ht"
+  },
+  {
+    "city.code": "HT",
+    "id": 297,
+    "name": "Lộc Hà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-loc-ha-ht"
+  },
+  {
+    "city.code": "HT",
+    "id": 298,
+    "name": "Nghi Xuân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nghi-xuan-ht"
+  },
+  {
+    "city.code": "HT",
+    "id": 299,
+    "name": "Thạch Hà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thach-ha-ht"
+  },
+  {
+    "city.code": "HT",
+    "id": 300,
+    "name": "Vũ Quang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vu-quang-ht"
+  },
+  {
+    "city.code": "HT",
+    "id": 301,
+    "name": "Hà Tĩnh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ha-tinh-ht"
+  },
+  {
+    "city.code": "HT",
+    "id": 302,
+    "name": "Hồng Lĩnh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hong-linh-ht"
+  },
+  {
+    "city.code": "DDT",
+    "id": 247,
+    "name": "Huyện Cao Lãnh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-huyen-cao-lanh-ddt"
+  },
+  {
+    "city.code": "DDT",
+    "id": 248,
+    "name": "Châu Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-thanh-ddt"
+  },
+  {
+    "city.code": "DDT",
+    "id": 249,
+    "name": "Hồng Ngự",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hong-ngu-ddt"
+  },
+  {
+    "city.code": "DDT",
+    "id": 250,
+    "name": "Lai Vung",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lai-vung-ddt"
+  },
+  {
+    "city.code": "DDT",
+    "id": 251,
+    "name": "Lấp Vò",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lap-vo-ddt"
+  },
+  {
+    "city.code": "DDT",
+    "id": 252,
+    "name": "Tam Nông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tam-nong-ddt"
+  },
+  {
+    "city.code": "DDT",
+    "id": 253,
+    "name": "Tân Hồng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-hong-ddt"
+  },
+  {
+    "city.code": "DDT",
+    "id": 254,
+    "name": "Thanh Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-binh-ddt"
+  },
+  {
+    "city.code": "DDT",
+    "id": 255,
+    "name": "Tháp Mười",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thap-muoi-ddt"
+  },
+  {
+    "city.code": "DDT",
+    "id": 257,
+    "name": "Sa Đéc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-sa-dec-ddt"
+  },
+  {
+    "city.code": "DDT",
+    "id": 721,
+    "name": "Cao Lãnh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cao-lanh-ddt"
+  },
+  {
+    "city.code": "DDT",
+    "id": 722,
+    "name": "Huyện Hồng Ngự",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-huyen-hong-ngu-ddt"
+  },
+  {
+    "city.code": "ST",
+    "id": 560,
+    "name": "Cù Lao Dung",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cu-lao-dung-st"
+  },
+  {
+    "city.code": "ST",
+    "id": 561,
+    "name": "Kế Sách",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ke-sach-st"
+  },
+  {
+    "city.code": "ST",
+    "id": 562,
+    "name": "Long Phú",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-long-phu-st"
+  },
+  {
+    "city.code": "ST",
+    "id": 563,
+    "name": "Mỹ Tú",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-my-tu-st"
+  },
+  {
+    "city.code": "ST",
+    "id": 564,
+    "name": "Mỹ Xuyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-my-xuyen-st"
+  },
+  {
+    "city.code": "ST",
+    "id": 565,
+    "name": "Ngã Năm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nga-nam-st"
+  },
+  {
+    "city.code": "ST",
+    "id": 566,
+    "name": "Thạnh Trị",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thanh-tri-st"
+  },
+  {
+    "city.code": "ST",
+    "id": 567,
+    "name": "Vĩnh Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-chau-st"
+  },
+  {
+    "city.code": "ST",
+    "id": 568,
+    "name": "Sóc Trăng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-soc-trang-st"
+  },
+  {
+    "city.code": "ST",
+    "id": 695,
+    "name": "Châu Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-thanh-st"
+  },
+  {
+    "city.code": "ST",
+    "id": 707,
+    "name": "Trần Đề",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tran-de-st"
+  },
+  {
+    "city.code": "KT",
+    "id": 366,
+    "name": "Đăk Glei",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dak-glei-kt"
+  },
+  {
+    "city.code": "KT",
+    "id": 367,
+    "name": "Đăk Hà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dak-ha-kt"
+  },
+  {
+    "city.code": "KT",
+    "id": 368,
+    "name": "Đăk Tô",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dak-to-kt"
+  },
+  {
+    "city.code": "KT",
+    "id": 369,
+    "name": "Kon Plông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kon-plong-kt"
+  },
+  {
+    "city.code": "KT",
+    "id": 370,
+    "name": "Kon Rẫy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kon-ray-kt"
+  },
+  {
+    "city.code": "KT",
+    "id": 371,
+    "name": "Ngọc Hồi",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ngoc-hoi-kt"
+  },
+  {
+    "city.code": "KT",
+    "id": 372,
+    "name": "Sa Thầy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-sa-thay-kt"
+  },
+  {
+    "city.code": "KT",
+    "id": 373,
+    "name": "Tu Mơ Rông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tu-mo-rong-kt"
+  },
+  {
+    "city.code": "KT",
+    "id": 374,
+    "name": "KonTum",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-kontum-kt"
+  },
+  {
+    "city.code": "KT",
+    "id": 729,
+    "name": "Ia H'Drai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ia-hdrai-kt"
+  },
+  {
+    "city.code": "QB",
+    "id": 496,
+    "name": "Bố Trạch",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bo-trach-qb"
+  },
+  {
+    "city.code": "QB",
+    "id": 497,
+    "name": "Lệ Thủy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-le-thuy-qb"
+  },
+  {
+    "city.code": "QB",
+    "id": 498,
+    "name": "Minh Hóa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-minh-hoa-qb"
+  },
+  {
+    "city.code": "QB",
+    "id": 499,
+    "name": "Quảng Ninh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quang-ninh-qb"
+  },
+  {
+    "city.code": "QB",
+    "id": 500,
+    "name": "Quảng Trạch",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quang-trach-qb"
+  },
+  {
+    "city.code": "QB",
+    "id": 501,
+    "name": "Tuyên Hóa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tuyen-hoa-qb"
+  },
+  {
+    "city.code": "QB",
+    "id": 502,
+    "name": "Đồng Hới",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-hoi-qb"
+  },
+  {
+    "city.code": "QB",
+    "id": 720,
+    "name": "Ba Đồn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ba-don-qb"
+  },
+  {
+    "city.code": "QT",
+    "id": 550,
+    "name": "Cam Lộ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cam-lo-qt"
+  },
+  {
+    "city.code": "QT",
+    "id": 551,
+    "name": "Đa Krông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-da-krong-qt"
+  },
+  {
+    "city.code": "QT",
+    "id": 552,
+    "name": "Đảo Cồn cỏ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dao-con-co-qt"
+  },
+  {
+    "city.code": "QT",
+    "id": 553,
+    "name": "Gio Linh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-gio-linh-qt"
+  },
+  {
+    "city.code": "QT",
+    "id": 554,
+    "name": "Hải Lăng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hai-lang-qt"
+  },
+  {
+    "city.code": "QT",
+    "id": 555,
+    "name": "Hướng Hóa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-huong-hoa-qt"
+  },
+  {
+    "city.code": "QT",
+    "id": 556,
+    "name": "Triệu Phong",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-trieu-phong-qt"
+  },
+  {
+    "city.code": "QT",
+    "id": 557,
+    "name": "Vĩnh Linh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-linh-qt"
+  },
+  {
+    "city.code": "QT",
+    "id": 558,
+    "name": "Đông Hà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-ha-qt"
+  },
+  {
+    "city.code": "QT",
+    "id": 559,
+    "name": "Quảng Trị",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quang-tri-qt"
+  },
+  {
+    "city.code": "TV",
+    "id": 652,
+    "name": "Càng Long",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cang-long-tv"
+  },
+  {
+    "city.code": "TV",
+    "id": 653,
+    "name": "Cầu Kè",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cau-ke-tv"
+  },
+  {
+    "city.code": "TV",
+    "id": 654,
+    "name": "Cầu Ngang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cau-ngang-tv"
+  },
+  {
+    "city.code": "TV",
+    "id": 655,
+    "name": "Châu Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-thanh-tv"
+  },
+  {
+    "city.code": "TV",
+    "id": 656,
+    "name": "Huyện Duyên Hải",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-huyen-duyen-hai-tv"
+  },
+  {
+    "city.code": "TV",
+    "id": 657,
+    "name": "Tiểu Cần",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tieu-can-tv"
+  },
+  {
+    "city.code": "TV",
+    "id": 658,
+    "name": "Trà Cú",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tra-cu-tv"
+  },
+  {
+    "city.code": "TV",
+    "id": 659,
+    "name": "Trà Vinh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tra-vinh-tv"
+  },
+  {
+    "city.code": "TV",
+    "id": 734,
+    "name": "Duyên Hải",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-duyen-hai-1-tv"
+  },
+  {
+    "city.code": "HGI",
+    "id": 315,
+    "name": "Châu Thành",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-thanh-hgi"
+  },
+  {
+    "city.code": "HGI",
+    "id": 316,
+    "name": "Châu Thành A",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chau-thanh-a-hgi"
+  },
+  {
+    "city.code": "HGI",
+    "id": 317,
+    "name": "Long Mỹ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-long-my-hgi"
+  },
+  {
+    "city.code": "HGI",
+    "id": 318,
+    "name": "Phụng Hiệp",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phung-hiep-hgi"
+  },
+  {
+    "city.code": "HGI",
+    "id": 319,
+    "name": "Vị Thủy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vi-thuy-hgi"
+  },
+  {
+    "city.code": "HGI",
+    "id": 320,
+    "name": "Ngã Bảy",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nga-bay-hgi"
+  },
+  {
+    "city.code": "HGI",
+    "id": 321,
+    "name": "Vị Thanh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vi-thanh-hgi"
+  },
+  {
+    "city.code": "HGI",
+    "id": 731,
+    "name": "Thị xã Long Mỹ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thi-xa-long-my-hgi"
+  },
+  {
+    "city.code": "SL",
+    "id": 569,
+    "name": "Bắc Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-yen-sl"
+  },
+  {
+    "city.code": "SL",
+    "id": 570,
+    "name": "Mai Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-mai-son-sl"
+  },
+  {
+    "city.code": "SL",
+    "id": 571,
+    "name": "Mộc Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-moc-chau-sl"
+  },
+  {
+    "city.code": "SL",
+    "id": 572,
+    "name": "Mường La",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-muong-la-sl"
+  },
+  {
+    "city.code": "SL",
+    "id": 573,
+    "name": "Phù Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phu-yen-sl"
+  },
+  {
+    "city.code": "SL",
+    "id": 574,
+    "name": "Quỳnh Nhai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quynh-nhai-sl"
+  },
+  {
+    "city.code": "SL",
+    "id": 575,
+    "name": "Sông Mã",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-song-ma-sl"
+  },
+  {
+    "city.code": "SL",
+    "id": 576,
+    "name": "Sốp Cộp",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-sop-cop-sl"
+  },
+  {
+    "city.code": "SL",
+    "id": 577,
+    "name": "Thuận Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thuan-chau-sl"
+  },
+  {
+    "city.code": "SL",
+    "id": 578,
+    "name": "Yên Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-chau-sl"
+  },
+  {
+    "city.code": "SL",
+    "id": 579,
+    "name": "Sơn La",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-son-la-sl"
+  },
+  {
+    "city.code": "SL",
+    "id": 726,
+    "name": "Vân Hồ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-van-ho-sl"
+  },
+  {
+    "city.code": "BL",
+    "id": 122,
+    "name": "Đông Hải",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-hai-bl"
+  },
+  {
+    "city.code": "BL",
+    "id": 123,
+    "name": "Giá Rai",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-gia-rai-bl"
+  },
+  {
+    "city.code": "BL",
+    "id": 124,
+    "name": "Hòa Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoa-binh-bl"
+  },
+  {
+    "city.code": "BL",
+    "id": 125,
+    "name": "Hồng Dân",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hong-dan-bl"
+  },
+  {
+    "city.code": "BL",
+    "id": 126,
+    "name": "Phước Long",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phuoc-long-bl"
+  },
+  {
+    "city.code": "BL",
+    "id": 127,
+    "name": "Vĩnh Lợi",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vinh-loi-bl"
+  },
+  {
+    "city.code": "BL",
+    "id": 128,
+    "name": "Bạc Liêu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-lieu-bl"
+  },
+  {
+    "city.code": "YB",
+    "id": 682,
+    "name": "Lục Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-luc-yen-yb"
+  },
+  {
+    "city.code": "YB",
+    "id": 683,
+    "name": "Mù Cang Chải",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-mu-cang-chai-yb"
+  },
+  {
+    "city.code": "YB",
+    "id": 684,
+    "name": "Trạm Tấu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tram-tau-yb"
+  },
+  {
+    "city.code": "YB",
+    "id": 685,
+    "name": "Trấn Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tran-yen-yb"
+  },
+  {
+    "city.code": "YB",
+    "id": 686,
+    "name": "Văn Chấn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-van-chan-yb"
+  },
+  {
+    "city.code": "YB",
+    "id": 687,
+    "name": "Văn Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-van-yen-yb"
+  },
+  {
+    "city.code": "YB",
+    "id": 688,
+    "name": "Yên Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-binh-yb"
+  },
+  {
+    "city.code": "YB",
+    "id": 689,
+    "name": "Yên Bái",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-bai-yb"
+  },
+  {
+    "city.code": "YB",
+    "id": 713,
+    "name": "Nghĩa Lộ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nghia-lo-yb"
+  },
+  {
+    "city.code": "TQ",
+    "id": 660,
+    "name": "Chiêm Hóa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chiem-hoa-tq"
+  },
+  {
+    "city.code": "TQ",
+    "id": 661,
+    "name": "Hàm Yên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ham-yen-tq"
+  },
+  {
+    "city.code": "TQ",
+    "id": 662,
+    "name": "Na Hang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-na-hang-tq"
+  },
+  {
+    "city.code": "TQ",
+    "id": 663,
+    "name": "Sơn Dương",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-son-duong-tq"
+  },
+  {
+    "city.code": "TQ",
+    "id": 664,
+    "name": "Yên Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-son-tq"
+  },
+  {
+    "city.code": "TQ",
+    "id": 665,
+    "name": "Tuyên Quang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tuyen-quang-tq"
+  },
+  {
+    "city.code": "TQ",
+    "id": 712,
+    "name": "Lâm Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lam-binh-tq"
+  },
+  {
+    "city.code": "DDB",
+    "id": 227,
+    "name": "Điện Biên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dien-bien-ddb"
+  },
+  {
+    "city.code": "DDB",
+    "id": 228,
+    "name": "Điện Biên Đông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dien-bien-dong-ddb"
+  },
+  {
+    "city.code": "DDB",
+    "id": 229,
+    "name": "Mường Ảng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-muong-ang-ddb"
+  },
+  {
+    "city.code": "DDB",
+    "id": 230,
+    "name": "Mường Chà",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-muong-cha-ddb"
+  },
+  {
+    "city.code": "DDB",
+    "id": 231,
+    "name": "Mường Nhé",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-muong-nhe-ddb"
+  },
+  {
+    "city.code": "DDB",
+    "id": 232,
+    "name": "Tủa Chùa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tua-chua-ddb"
+  },
+  {
+    "city.code": "DDB",
+    "id": 233,
+    "name": "Tuần Giáo",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tuan-giao-ddb"
+  },
+  {
+    "city.code": "DDB",
+    "id": 234,
+    "name": "Điện Biên Phủ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dien-bien-phu-ddb"
+  },
+  {
+    "city.code": "DDB",
+    "id": 235,
+    "name": "Mường Lay",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-muong-lay-ddb"
+  },
+  {
+    "city.code": "DDB",
+    "id": 711,
+    "name": "Nậm Pồ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nam-po-ddb"
+  },
+  {
+    "city.code": "LCH",
+    "id": 375,
+    "name": "Mường Tè",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-muong-te-lch"
+  },
+  {
+    "city.code": "LCH",
+    "id": 376,
+    "name": "Phong Thổ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phong-tho-lch"
+  },
+  {
+    "city.code": "LCH",
+    "id": 377,
+    "name": "Sìn Hồ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-sin-ho-lch"
+  },
+  {
+    "city.code": "LCH",
+    "id": 378,
+    "name": "Tam Đường",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tam-duong-lch"
+  },
+  {
+    "city.code": "LCH",
+    "id": 379,
+    "name": "Than Uyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-than-uyen-lch"
+  },
+  {
+    "city.code": "LCH",
+    "id": 380,
+    "name": "Lai Châu",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lai-chau-lch"
+  },
+  {
+    "city.code": "LCH",
+    "id": 691,
+    "name": "Tân Uyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tan-uyen-lch"
+  },
+  {
+    "city.code": "LCH",
+    "id": 709,
+    "name": "Nậm Nhùn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nam-nhun-lch"
+  },
+  {
+    "city.code": "LS",
+    "id": 393,
+    "name": "Bắc Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-son-ls"
+  },
+  {
+    "city.code": "LS",
+    "id": 394,
+    "name": "Bình Gia",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-binh-gia-ls"
+  },
+  {
+    "city.code": "LS",
+    "id": 395,
+    "name": "Cao Lộc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cao-loc-ls"
+  },
+  {
+    "city.code": "LS",
+    "id": 396,
+    "name": "Chi Lăng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-chi-lang-ls"
+  },
+  {
+    "city.code": "LS",
+    "id": 397,
+    "name": "Đình Lập",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dinh-lap-ls"
+  },
+  {
+    "city.code": "LS",
+    "id": 398,
+    "name": "Hữu Lũng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-huu-lung-ls"
+  },
+  {
+    "city.code": "LS",
+    "id": 399,
+    "name": "Lộc Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-loc-binh-ls"
+  },
+  {
+    "city.code": "LS",
+    "id": 400,
+    "name": "Tràng Định",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-trang-dinh-ls"
+  },
+  {
+    "city.code": "LS",
+    "id": 401,
+    "name": "Văn Lãng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-van-lang-ls"
+  },
+  {
+    "city.code": "LS",
+    "id": 402,
+    "name": "Văn Quan",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-van-quan-ls"
+  },
+  {
+    "city.code": "LS",
+    "id": 403,
+    "name": "Lạng Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-lang-son-ls"
+  },
+  {
+    "city.code": "HG",
+    "id": 274,
+    "name": "Bắc Mê",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-me-hg"
+  },
+  {
+    "city.code": "HG",
+    "id": 275,
+    "name": "Bắc Quang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-quang-hg"
+  },
+  {
+    "city.code": "HG",
+    "id": 276,
+    "name": "Đồng Văn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-dong-van-hg"
+  },
+  {
+    "city.code": "HG",
+    "id": 277,
+    "name": "Hoàng Su Phì",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoang-su-phi-hg"
+  },
+  {
+    "city.code": "HG",
+    "id": 278,
+    "name": "Mèo Vạc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-meo-vac-hg"
+  },
+  {
+    "city.code": "HG",
+    "id": 279,
+    "name": "Quản Bạ",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quan-ba-hg"
+  },
+  {
+    "city.code": "HG",
+    "id": 280,
+    "name": "Quang Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quang-binh-hg"
+  },
+  {
+    "city.code": "HG",
+    "id": 281,
+    "name": "Vị Xuyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-vi-xuyen-hg"
+  },
+  {
+    "city.code": "HG",
+    "id": 282,
+    "name": "Xín Mần",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-xin-man-hg"
+  },
+  {
+    "city.code": "HG",
+    "id": 283,
+    "name": "Yên Minh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-yen-minh-hg"
+  },
+  {
+    "city.code": "HG",
+    "id": 284,
+    "name": "Hà Giang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ha-giang-hg"
+  },
+  {
+    "city.code": "BK",
+    "id": 114,
+    "name": "Ba Bể",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ba-be-bk"
+  },
+  {
+    "city.code": "BK",
+    "id": 115,
+    "name": "Bạch Thông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bach-thong-bk"
+  },
+  {
+    "city.code": "BK",
+    "id": 116,
+    "name": "Chợ Đồn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cho-don-bk"
+  },
+  {
+    "city.code": "BK",
+    "id": 117,
+    "name": "Chợ Mới",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cho-moi-bk"
+  },
+  {
+    "city.code": "BK",
+    "id": 118,
+    "name": "Na Rì",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-na-ri-bk"
+  },
+  {
+    "city.code": "BK",
+    "id": 119,
+    "name": "Ngân Sơn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ngan-son-bk"
+  },
+  {
+    "city.code": "BK",
+    "id": 120,
+    "name": "Pác Nặm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-pac-nam-bk"
+  },
+  {
+    "city.code": "BK",
+    "id": 121,
+    "name": "Bắc Kạn",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bac-kan-bk"
+  },
+  {
+    "city.code": "CB",
+    "id": 192,
+    "name": "Bảo Lạc",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bao-lac-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 193,
+    "name": "Bảo Lâm",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-bao-lam-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 194,
+    "name": "Hạ Lang",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ha-lang-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 195,
+    "name": "Hà Quảng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-ha-quang-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 196,
+    "name": "Hòa An",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-hoa-an-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 197,
+    "name": "Nguyên Bình",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-nguyen-binh-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 198,
+    "name": "Phục Hòa",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-phuc-hoa-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 199,
+    "name": "Quảng Uyên",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-quang-uyen-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 200,
+    "name": "Thạch An",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thach-an-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 201,
+    "name": "Thông Nông",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-thong-nong-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 202,
+    "name": "Trà Lĩnh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-tra-linh-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 203,
+    "name": "Trùng Khánh",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-trung-khanh-cb"
+  },
+  {
+    "city.code": "CB",
+    "id": 204,
+    "name": "Cao Bằng",
+    "url": "https://batdongsan.com.vn/nha-dat-ban-cao-bang-cb"
+  }
+]
