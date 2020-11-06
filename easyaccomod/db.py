@@ -1,5 +1,5 @@
 from os import urandom
-from easyaccomod.owner_models import Owner, Room
+from easyaccomod.owner_models import Owner, Room, City, District, Ward
 from easyaccomod import db
 import hashlib
 
@@ -64,3 +64,21 @@ def check_user(username, password):
 		return (True, "Thành công")
 	else:
 		return (False, 'Không thành công')
+
+def add_city(code, name, commit=True):
+	new_city = City(code=code, name=name)
+	db.session.add(new_city)
+	if commit:
+		db.session.commit()
+
+def add_district(city_code,id, name, commit=True):
+	new_district = District(city_code=city_code, id=id, name=name)
+	db.session.add(new_district)
+	if commit:
+		db.session.commit()
+
+def add_ward(city_code, district_id, id, name, commit=True):
+	new_ward = Ward(city_code=city_code, district_id=district_id, id=id, name=name)
+	db.session.add(new_ward)
+	if commit:
+		db.session.commit()

@@ -45,12 +45,12 @@ class City(db.Model):
 	code = db.Column(db.String, primary_key=True)
 	name = db.Column(db.String)
 	def __repr__(self):
-		return "<City(city_code='{}', city_name='{}'>".format(self.city_code, self.city_name) 
+		return "<City(code='{}', name='{}'>".format(self.code, self.name) 
 
 class District(db.Model):
 	city_code = db.Column(db.String, db.ForeignKey('city.code'))
 	id = db.Column(db.String, primary_key=True)
-	ame = db.Column(db.String)
+	name = db.Column(db.String)
 	def __repr__(self):
 		return "<District(city.code='{}', id='{}', name='{}'>".format(self.city_code, self.id, self.name)
 
