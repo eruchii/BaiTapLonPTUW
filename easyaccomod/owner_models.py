@@ -17,7 +17,7 @@ class Owner(db.Model):
 class Room(db.Model):
 	__tablename__ = 'room_pending'
 	id = db.Column(db.Integer, primary_key=True)
-	owner_id = db.Column(db.Integer, db.ForeignKey('owner.id')) #lien ket owner 
+	owner_id = db.Column(db.Integer, db.ForeignKey('owner.id')) #lien ket owner
 	city_code = db.Column(db.String, db.ForeignKey('city.code')) #lien ket voi bang city
 	district_id = db.Column(db.Integer, db.ForeignKey('district.id')) #lien ket voi district
 	ward_id = db.Column(db.Integer, db.ForeignKey('ward.id')) #lien ket voi ward

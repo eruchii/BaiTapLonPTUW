@@ -8,6 +8,8 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '80e63eb7f7af4b8bb32edc7839994cb2'
 # mysql+pymysql://root:''@localhost/easyaccomod
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:''@localhost/easyaccomod' # test
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)

@@ -45,7 +45,7 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data) and (user.role_id == 2) :
+        if user and bcrypt.check_password_hash(user.password, form.password.data) and (user.status_confirm == 1) :
             login_user(user, remember=form.remember.data)
             flash("Login successful!", "success")
             return redirect(url_for("home"))
