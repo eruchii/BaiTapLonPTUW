@@ -1,5 +1,4 @@
 from easyaccomod import db, app, login_manager
-#from easyaccomod.__init__ import db, app, login_manager # test
 
 
 class Owner(db.Model):
@@ -18,7 +17,7 @@ class Owner(db.Model):
 class Room(db.Model):
 	__tablename__ = 'room_pending'
 	id = db.Column(db.Integer, primary_key=True)
-	owner_id = db.Column(db.Integer) 
+	owner_id = db.Column(db.Integer, db.ForeignKey('owner.id')) #lien ket owner
 	city_code = db.Column(db.String, db.ForeignKey('city.code')) #lien ket voi bang city
 	district_id = db.Column(db.Integer, db.ForeignKey('district.id')) #lien ket voi district
 	ward_id = db.Column(db.Integer, db.ForeignKey('ward.id')) #lien ket voi ward
@@ -46,7 +45,7 @@ class City(db.Model):
 	code = db.Column(db.String, primary_key=True)
 	name = db.Column(db.String)
 	def __repr__(self):
-		return "<City(city_code='{}', city_name='{}'>".format(self.city_code, self.city_name) 
+		return "<City(city_code='{}', city_name='{}'>".format(self.city_code, self.city_name)
 
 class District(db.Model):
 	city_code = db.Column(db.String, db.ForeignKey('city.code'))

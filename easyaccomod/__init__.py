@@ -19,3 +19,5 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
 from easyaccomod import routes
+from easyaccomod.owner_routes import owner_bp
+app.register_blueprint(owner_bp, url_prefix = '/owner')
