@@ -4,6 +4,7 @@ from wtforms import StringField
 from wtforms.fields.core import BooleanField, SelectField
 from wtforms.fields.simple import PasswordField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length, ValidationError
+from easyaccomod.owner_models import City
 
 class RegistrationForm(FlaskForm):
     username = StringField("Username", validators=[DataRequired(), Length(min=2, max=20)])
@@ -27,3 +28,14 @@ class LoginForm(FlaskForm):
     password = PasswordField("Password", validators=[DataRequired()])
     remember = BooleanField("Remember Me")
     submit = SubmitField("Login")
+
+class SearchForm(FlaskForm):
+    qry = City.query.all()
+    citiest =[]
+    for city in qry:
+        print(city.name)
+        citiest.append(city.name)
+    city = SelectField("Choose your City",choices=citiest)
+    district = SelectField("Choose your District",choices=None)
+    street = SelectField("Choose your Street",choices=None)
+    submit = SubmitField("Search")

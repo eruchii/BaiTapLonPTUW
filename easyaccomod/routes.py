@@ -1,8 +1,9 @@
-from easyaccomod.forms import LoginForm, RegistrationForm
+from easyaccomod.forms import LoginForm, RegistrationForm, SearchForm
 from easyaccomod import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request, abort
 from flask_login import login_user, current_user, logout_user, login_required
 from easyaccomod.models import User
+from easyaccomod.owner_models import City
 
 @app.route('/')
 @app.route('/home')
@@ -58,3 +59,10 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+@app.route("/search")
+@login_required
+def search():
+    cities = City.query.all()
+    form = SearchForm(cities) 
+    return render_template("searchRoom.html",form = form)

@@ -36,7 +36,7 @@ class Room(db.Model):
 	gia_nuoc = db.Column(db.Integer)
 	tien_ich_khac = db.Column(db.Text)
 	image = db.Column(db.Text)
-	pending = db.Colum(db.Boolean)
+	pending = db.Column(db.Boolean)
 
 	def __repr__(self):
 		return "<Room(id='{}', owner_id='{}'>".format(self.id, self.owner_id)
