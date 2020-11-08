@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block admin_header %}
+    <button type="button" class="btn btn-info mr-3">
+        Notifications <span class="badge badge-secondary">4</span>
+    </button>
+{% endblock %}
+{% block content %}
+    <h1>admin home Page</h1>
+    {% for post in posts %}
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="#" alt="image of author">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ post.author_username }}</a>
+                    <small class="text-muted">{{ post.date_posted }}</small>
+                    {% if post.pending == False %}
+                    <a class="btn btn-info btn-sm mt-1 mb-1" href="#">Accept</a>
+                    {% endif %}
+                    <!-- button better/ modal -->
+                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="#">Delete</a>
+                </div>
+                <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+                <p class="article-content">{{ post.content }}</p>
+                <p class="article-content">{{ post.address }} "and" {{ post.type }}</p>
+                <p class="article-content">{{ post.room_count }} "and" {{ post.area }}</p>
+                <p class="article-content">{{ post.infrastructure }} "and" {{ post.extension }}</p>
+                <p>{{ post.count }}</p>
+                <p><em>Pending: {{ post.pending }}</em></p>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock content %}
+
+{% block sidebar %}
+    <div class="content-section">
+        <h3>Our Sidebar</h3>
+        <p class='text-muted'>You can put any information here you'd like.
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light">Announcements</li>
+                <li class="list-group-item list-group-item-light">Calendars</li>
+                <li class="list-group-item list-group-item-light">etc</li>
+            </ul>
+        </p>
+    </div>
+{% endblock %}
