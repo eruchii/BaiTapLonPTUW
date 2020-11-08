@@ -1,9 +1,10 @@
 # db for admin
 
-from easyaccomod import db, app, bcrypt
+from easyaccomod import db, bcrypt
 from easyaccomod.models import *
 from easyaccomod.owner_models import *
 
+# db.drop_all()
 # db.create_all()
 
 # role1 = Role(title="admin", name="admin", description="admin can do anything, but can not register by normal way")
