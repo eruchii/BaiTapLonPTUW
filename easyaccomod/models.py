@@ -68,17 +68,36 @@ class Notification(db.Model):
     receiver = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # receiver
     shortdescription = db.Column(db.String(150), nullable=False)
     msg = db.Column(db.Text, nullable=False)
+    count_notification = db.Column(db.Integer, nullable=False, default=0)
+    seen_notification = db.Column(db.Boolean, nullable=False, default=True)  # True -> da xem, False -> chua xem
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
     def __repr__(self):
         return f"Notification('{self.id}', '{self.receiver}', '{self.msg}')"
 
+# sender & receiver use only Message content to save & load msg
+class MessageContent(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    content = db.Column(db.Text, nullable=False)
+
+    def __repr__(self):
+        return f"MessageContent('{self.id}', '{self.content}')"
+
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     created_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # sender
     receiver = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # receiver
-    msg = db.Column(db.Text, nullable=False)
+    msg_id = db.Column(db.Integer, db.ForeignKey('message_content.id'), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
     def __repr__(self):
-        return f"Notification('{self.id}', '{self.created_by}', '{self.receiver}')"
+        return f"Message('{self.id}', '{self.created_by}', '{self.receiver}')"
+
+class UserMessage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    seen_msg_status = db.Column(db.Boolean, nullable=False, default=True)
+    count_msg = db.Column(db.Integer, nullable=False, default=0)
+
+    def __repr__(self):
+        return f"UserMessage('{self.id}', '{self.user_id}', '{self.seen_msg_status}', '{self.count_msg}')"

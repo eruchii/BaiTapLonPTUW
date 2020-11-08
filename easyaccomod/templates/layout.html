@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block link_css %}
+    {% endblock %}
     {% if title %}
     <title>Accommodation - {{ title }}</title>
     {% else %}
@@ -30,7 +32,7 @@
                             <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
                         {% endif %}
                         <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
-                        {% if current_user.is_authenticated%}
+                        {% if current_user.is_authenticated and current_user.role_id == 2%}
                         <a class="nav-item nav-link" href="{{ url_for('search') }}">Search</a>
                         {% endif %}
                     </div>

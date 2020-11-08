@@ -29,4 +29,4 @@ from easyaccomod.owner_models import *
 # user = User(username="hones_admin", email="honest.1311.tbvn@gmail.com", password=hashed_password, role_id=1, status_confirm=1)
 # db.session.add(user)
 
-db.session.commit()
+# db.session.commit()
