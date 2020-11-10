@@ -1,5 +1,5 @@
 from easyaccomod import db, app, login_manager
-
+from easyaccomod.models import *
 
 class Owner(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -28,7 +28,7 @@ class Room(db.Model):
 	district_id = db.Column(db.String(10), db.ForeignKey('district.id')) #lien ket voi district
 	ward_id = db.Column(db.String(10), db.ForeignKey('ward.id')) #lien ket voi ward
 	info = db.Column(db.String(120))
-	room_type_id = db.Column(db.Integer)
+	room_type_id = db.Column(db.Integer, db.ForeignKey('roomtype.id'))
 	room_number = db.Column(db.Integer)
 	price = db.Column(db.Integer)
 
@@ -43,6 +43,8 @@ class Room(db.Model):
 	tien_ich_khac = db.Column(db.Text)
 	image = db.Column(db.Text)
 	pending = db.Column(db.Boolean)
+
+	post = db.relationship("Post", backref="room", lazy=True)
 
 	def __repr__(self):
 		return "<Room(id='{}', owner_id='{}'>".format(self.id, self.owner_id)
@@ -73,3 +75,10 @@ class Ward(db.Model):
 	rooms = db.relationship("Room", backref="ward", lazy=True)
 	def __repr__(self):
 		return "<Ward(city.code='{}', district.id='{}', id='{}', name='{}'>".format(self.city_code, self.district_id, self.id, self.name)
+
+class RoomType(db.Model):
+	id = db.Column(db.Integer, primary_key = True)
+	name = db.Column(db.String(100))
+	rooms = db.relationship("Room", backref="roomtype", lazy=True)
+	def __repr__(self):
+		return "<RoomType(id={}, name={})>".format(self.id, self.name)

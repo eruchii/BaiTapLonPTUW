@@ -107,7 +107,9 @@ def add_room(owner_id, city_code, district_id, ward_id, info, room_type_id, room
 	check_address = db.session.query(Ward).filter_by(city_code = city_code, district_id = district_id, id = ward_id).first()
 	if not check_address:
 		return (False, 'Địa chỉ không hợp lệ')
+
 	new_room = Room(owner_id, city_code, district_id, ward_id, info, room_type_id, room_number, price, chung_chu, phong_tam, nong_lanh, phong_bep, dieu_hoa, ban_cong, gia_dien, gia_nuoc, tien_ich_khac, image, pending)
 	db.session.add(new_room)
+	return (True, 'Gửi bài đăng cho admin duyệt thành công!')
 	if commit:
 		db.session.commit()

@@ -41,3 +41,14 @@ print("create 'ward'")
 for ward in wards:
     add_ward(city_code=ward["city.code"], district_id=ward["district.id"], id=ward["id"], name=ward["name"], commit=False)
 db.session.commit()
+
+#Room type
+RT1 = RoomType(name="Phòng trọ")
+RT2 = RoomType(name="Chung cư mini")
+RT3 = RoomType(name="Nhà nguyên căn")
+RT4 = RoomType(name="Chung cư nguyên căn")
+db.session.add(RT1)
+db.session.add(RT2)
+db.session.add(RT3)
+db.session.add(RT4)
+db.session.commit()
