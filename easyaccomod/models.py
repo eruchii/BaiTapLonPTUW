@@ -58,7 +58,7 @@ class Post(db.Model):
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     date_posted = db.Column(db.DateTime, nullable=False, default=(datetime.utcnow() + time_delay))
     date_out = db.Column(db.DateTime, nullable=False, default=(datetime.utcnow() + time_out))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # fix:: author !important
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"

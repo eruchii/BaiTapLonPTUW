@@ -12,6 +12,7 @@ class Owner(db.Model):
 	city_code = db.Column(db.String(5), db.ForeignKey('city.code'))
 	district_id = db.Column(db.String(10), db.ForeignKey('district.id'))
 	ward_id = db.Column(db.String(10), db.ForeignKey('ward.id'))
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # add fk to user_id
 	status = db.Column(db.Integer, db.ForeignKey('confirm.id'))
 
 	rooms = db.relationship("Room", backref="owner")
