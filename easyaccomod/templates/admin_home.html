@@ -1,4 +1,8 @@
 {% extends "layout.html" %}
+{% block linkcss %}
+<link rel="stylesheet" href="{{ url_for('static', filename='adminstyle.css') }}">
+{% endblock %}
+
 {% block admin_header %}
     <button type="button" class="btn btn-info mr-3">
         Notifications <span class="badge badge-secondary">4</span>
@@ -6,28 +10,53 @@
 {% endblock %}
 {% block content %}
     <h1>admin home Page</h1>
-    {% for post in posts %}
-        <article class="media content-section">
-            <img class="rounded-circle article-img" src="#" alt="image of author">
-            <div class="media-body">
-                <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ post.author_username }}</a>
-                    <small class="text-muted">{{ post.date_posted }}</small>
-                    {% if post.pending == False %}
-                    <a class="btn btn-info btn-sm mt-1 mb-1" href="#">Accept</a>
-                    {% endif %}
-                    <!-- button better/ modal -->
-                    <a class="btn btn-danger btn-sm mt-1 mb-1" href="#">Delete</a>
+    <div class="card text-center mb-2">
+        <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('posts.new_post') }}">Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Room</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">User</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Statistics</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    {% block posts %}
+    {% endblock %}
+    {% for room in rooms %}
+        <div class="max-height-content-section">
+            <article class="media content-section">
+                <img class="rounded-circle article-img" src="#" alt="image of author">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2" href="#">{{ room.owner_id }}</a>
+                        <small class="text-muted">{{ room.pending }}</small>
+                        {% if room.pending == False %}
+                        <a class="btn btn-info btn-sm mt-1 mb-1" href="#">Accept</a>
+                        {% endif %}
+                        <!-- button better/ modal -->
+                        <a class="btn btn-danger btn-sm mt-1 mb-1" href="#">Delete</a>
+                    </div>
+                    <h2><a class="article-title" href="#">{{ room.info }}</a></h2>
+                    <p class="article-content">{{ room.city_code }}</p>
+                    <p class="article-content">{{ room.district_id }} "and" {{ room.room_type_id }}</p>
+                    <p class="article-content">{{ room.room_number }} "and" {{ room.image }}</p>
+                    <p class="article-content">{{ room.gia_nuoc }} "and" {{ room.gia_dien }}</p>
+                    <p>{{ room.price }}</p>
+                    <p><em>Pending: {{ room.pending }}</em></p>
+                    
                 </div>
-                <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
-                <p class="article-content">{{ post.content }}</p>
-                <p class="article-content">{{ post.address }} "and" {{ post.type }}</p>
-                <p class="article-content">{{ post.room_count }} "and" {{ post.area }}</p>
-                <p class="article-content">{{ post.infrastructure }} "and" {{ post.extension }}</p>
-                <p>{{ post.count }}</p>
-                <p><em>Pending: {{ post.pending }}</em></p>
-            </div>
-        </article>
+            </article>
+        </div>
+        
     {% endfor %}
 {% endblock content %}
 

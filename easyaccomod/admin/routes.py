@@ -3,7 +3,9 @@ from easyaccomod.admin.forms import LoginForm, RegistrationForm
 from easyaccomod import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request, abort
 from flask_login import login_user, current_user, logout_user, login_required
+## import models
 from easyaccomod.models import User
+from easyaccomod.owner_models import *
 
 admin = Blueprint('admin', __name__)
 # dummy data
@@ -98,4 +100,5 @@ def logout():
 def admin_home():
     if current_user.role_id != 1 or current_user.status_confirm != 1:
         abort(403)
-    return render_template("admin_home.html", posts=posts)
+    rooms = Room.query.all()
+    return render_template("admin_home.html", rooms=rooms)

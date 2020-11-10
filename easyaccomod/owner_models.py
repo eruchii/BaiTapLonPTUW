@@ -8,6 +8,7 @@ class Owner(db.Model):
 	fullname = db.Column(db.String(120))
 	identity_number = db.Column(db.String(120))
 	phone_number = db.Column(db.String(120))
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # add fk to user_id
 	status = db.Column(db.Integer, db.ForeignKey('confirm.id'))
 	def __repr__(self):
 		return "<Owner(username='%s', password='%s', fullname='%s', identity_number='%s', phone_number='%s', status='%s'>" % (

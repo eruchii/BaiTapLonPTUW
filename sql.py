@@ -3,6 +3,7 @@
 from easyaccomod import db, bcrypt
 from easyaccomod.models import *
 from easyaccomod.owner_models import *
+from easyaccomod.admin.utils import addUserByAdmin
 
 # db.drop_all()
 # db.create_all()
@@ -23,10 +24,17 @@ from easyaccomod.owner_models import *
 # db.session.add(cnf2)
 # db.session.add(cnf3)
 
-# password = "123456"
+password = "123456"
 
-# hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-# user = User(username="hones_admin", email="honest.1311.tbvn@gmail.com", password=hashed_password, role_id=1, status_confirm=1)
+hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+# user = User(username="honest_admin", email="honest.1311.tbvn@gmail.com", password=hashed_password, role_id=1, status_confirm=1)
 # db.session.add(user)
+
+# owner1 = Owner(username="testowner", password=hashed_password, fullname="testfullname", identity_number="123456789", phone_number="0987654321", user_id=1, status="1")
+# addUserByAdmin(owner1.username, owner1.password, "eg@btl.com")
+# db.session.add(owner1)
+# db.session.flush()
+# room1 = Room(owner_id=owner1.id, city_code="HN", district_id="1", ward_id="44", info="thue nha",room_type_id=1, room_number=3, price=10000, chung_chu=True, phong_tam=2, nong_lanh=True, phong_bep=1, dieu_hoa=True, ban_cong=False, gia_dien=4000,gia_nuoc=20000, tien_ich_khac="None", image="df.jpg", pending=False)
+# db.session.add(room1)
 
 # db.session.commit()
