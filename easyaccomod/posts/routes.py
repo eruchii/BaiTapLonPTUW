@@ -23,3 +23,12 @@ def new_post():
         flash(f"Post has been created by { current_user.username }" , "success")
         return redirect(url_for('admin.admin_home'))
     return render_template("posts/create_post.html", title="New Post", form=form)
+
+@posts.route("/post")
+@login_required
+def post():
+    if current_user.role_id == 1:
+        posts = Post.query.all()
+        return render_template("posts/post.html", title="Manage Post", posts=posts)
+    else:
+        abort(403)

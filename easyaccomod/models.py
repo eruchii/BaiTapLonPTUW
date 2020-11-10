@@ -2,6 +2,7 @@ from sqlalchemy.orm import backref
 from easyaccomod import db, app, login_manager
 from datetime import datetime, timedelta
 from flask_login import UserMixin
+from easyaccomod.owner_models import *
 
 # callback -> This callback is used to reload the user object from the user ID stored in the session
 # It should take the unicode ID of a user, and return the corresponding user object.

@@ -1,6 +1,5 @@
 from easyaccomod import db, app, login_manager
 
-
 class Owner(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(120), unique = True)

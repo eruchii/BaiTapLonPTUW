@@ -95,10 +95,21 @@ def logout():
     logout_user()
     return redirect(url_for('main.home'))
 
-@admin.route("/admin_home")
+@admin.route("/admin-home")
 @login_required
 def admin_home():
     if current_user.role_id != 1 or current_user.status_confirm != 1:
         abort(403)
     rooms = Room.query.all()
     return render_template("admin_home.html", rooms=rooms)
+
+@admin.route("/manage-user")
+@login_required
+def manage_user():
+    if current_user.role_id == 1 and current_user.status_confirm == 1:
+        users = User.query.all()
+        
+        return render_template("admin/manage_user.html", users=users)
+    else:
+        abort(403)    
+    

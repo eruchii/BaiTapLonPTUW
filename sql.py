@@ -24,9 +24,9 @@ from easyaccomod.admin.utils import addUserByAdmin
 # db.session.add(cnf2)
 # db.session.add(cnf3)
 
-password = "123456"
+# password = "123456"
 
-hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+# hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 # user = User(username="honest_admin", email="honest.1311.tbvn@gmail.com", password=hashed_password, role_id=1, status_confirm=1)
 # db.session.add(user)
 
