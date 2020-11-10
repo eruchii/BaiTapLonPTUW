@@ -49,25 +49,25 @@
             <div class="form-group">
                 <label for="sel1"></label>
                     {{ form.city.label(class="form-control-label")}}
-                    {{form.city(class="form-control")}}
+                    {{ form.city(class="form-control city")}}
             </div>
             <div class="form-group">
                 <label for="sel1"></label>
                     {{form.district.label(class="form-control-label")}}
-                    {{form.district(class="form-control")}}
+                    {{form.district(class="form-control district")}}
                 </label>
             </div>
             <div class="form-group">
                 <label for="sel1"></label>
                     {{form.street.label(class="form-control-label")}}
-                    {{form.street(class="form-control")}}
+                    {{form.street(class="form-control street")}}
                 </label>
             </div>
             <div class="form-group">
                 {{ form.submit(class="btn-outline-info success") }}
             </div>
         </div>
-        <div class="col-sm-8" style="display:none">
+        <div class="col-sm-8 test" style="display:none">
             <p>
                 post
             </p>
@@ -75,21 +75,6 @@
     </div>
     </div>
 </body>
-<script>
-    document.querySelector(".form-control").onchange=function(){
-        console.log(document.querySelector(".form-control").value)
-    }
-    var submitBtn = document.querySelector(".btn-outline-info")
-    // submitBtn.onclick = function(){
-    //     var xhttp = XMLHttpRequest();
-    //     xhttp.onreadystatechange = function(){
-    //         if (this.readystate ==4 && this.status == 200)
-    //         {
-    //         }
-    //     }
-    //     xhttp.open("GET",)
-    //     document.querySelector(".col-sm-8").removeAttribute("style")
-    // }
-</script>
+<script src="{{ url_for('static', filename='renter_js/roomSearch.js') }}"></script>
 </html>
 

@@ -11,7 +11,6 @@ class SearchForm(FlaskForm):
     qry = City.query.all()
     citiest =[]
     for city in qry:
-        # print(city.name)
         citiest.append(city.name)
     city = SelectField("Choose your City",choices=citiest)
     district = SelectField("Choose your District",choices=None)
