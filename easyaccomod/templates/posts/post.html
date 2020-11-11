@@ -16,11 +16,11 @@
                         <a class="btn btn-danger btn-sm mt-1 mb-1" href="#">Delete</a>
                     </div>
                     <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+                    <span>{{post.id}}</span>
                     <p class="article-content">{{ post.content }}</p>
                     <p class="article-content">{{ post.date_created }} "and" {{ post.date_posted }}</p>
                     <p class="article-content">{{ post.date_out }}</p>
-                    <p class="article-content">post.author.email</p>
-                
+                    <p class="article-content">{{ post.author.email }}</p>
                     <p><em>Pending: {{ post.pending }}</em></p>
     
                 </div>

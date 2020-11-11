@@ -46,6 +46,7 @@ class User(db.Model, UserMixin):
     role_id = db.Column(db.Integer, db.ForeignKey("role.id"), nullable=False)
     status_confirm = db.Column(db.Integer, db.ForeignKey("confirm.id"), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
+    owner = db.relationship('Owner', backref='users', lazy=True)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}, '{self.image_file}')"
@@ -54,7 +55,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     content = db.Column(db.Text, nullable=False)
-    room_id = db.Column(db.Integer, db.ForeignKey("room_pending.id"), nullable=False)
+    room_id = db.Column(db.Integer, db.ForeignKey("room.id"), nullable=False)
     pending = db.Column(db.Boolean, nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     date_posted = db.Column(db.DateTime, nullable=False, default=(datetime.utcnow() + time_delay))
