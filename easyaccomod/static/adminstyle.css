@@ -6,4 +6,28 @@
     display: none;
 }
 
+ul.droplinemenu {
+    font-size: 25px;
+	position: relative;
+	background: #2f8d9a;
+	padding-top: 5px;
+    padding-bottom:5px;
+    border-radius: 3px;
+    height: 50px;
+}
 
+ul.droplinemenu > li {
+	display: inline;
+	padding: 5px 10px;
+	list-style-type: none;
+	cursor:pointer;
+}
+
+ul.droplinemenu li a {
+    text-decoration: none;
+    color: white;
+}
+
+ul.droplinemenu li>a:hover {
+    color: red;
+}
