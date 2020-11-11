@@ -1,3 +1,4 @@
+from easyaccomod.owner_models import Room
 from flask import flash
 from datetime import datetime
 from easyaccomod import db, bcrypt
@@ -8,7 +9,7 @@ def addUserByAdmin(username, password, email):
     """
         function: add user by admin -> status_confirm = 1 : OK
         user is added to the user table immediately with status "OK"
-        should be used : add renter, force add renter by admin, force add owner by admin or add admin to table user
+        should be used : force add owner by admin to table user
     """
     tmpUser = User.query.filter_by(username=username).first()
     if tmpUser:
@@ -61,3 +62,40 @@ def deletePostByID(post_id):
     db.session.delete(post)
     db.session.commit()
     flash(f"xoa bai thanh cong", "info")
+
+def checkUserExist(user_id):
+    """
+        check: user does exist in table user
+        True -> exist 
+        False -> not exist
+    """
+    user = User.query.filter_by(id=user_id).first()
+    if user:
+        return True
+    else : 
+        return False
+
+def checkRoomExist(room_id):
+    """
+        check: room does exist in table room
+        True -> exist : get room_id to post
+        False -> not exist: can't create post with room_id 
+    """
+    room = Room.query.filter_by(id=room_id).first()
+    if room:
+        return True
+    else :
+        return False
+
+def acceptOwner(user_id):
+    """
+        accept owner by admin
+        should be used for admin : accept account of owner
+        change status_confirm to OK
+    """
+    user_accept = User.query.filter_by(id=user_id).first()
+    user_accept.status_confirm = 1
+    owners = user_accept.owner
+    for owner in owners:
+        owner.status = 1
+    db.session.commit()

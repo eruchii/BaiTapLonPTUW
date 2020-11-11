@@ -1,6 +1,17 @@
 {% extends "admin_home.html" %}
 {% block info %}
     <h1>Manage User Page</h1>
+    <ul class="droplinemenu">
+        <li>
+            <a href="{{ url_for('admin.manage_user', rolename='user') }}">User</a>
+        </li>
+        <li>
+            <a href="{{ url_for('admin.manage_user', rolename='owner') }}">Owner</a>
+        </li>
+        <li>
+            <a href="{{ url_for('admin.manage_user', rolename='admin') }}">Admin</a>
+        </li>
+    </ul>
     {% for user in users %}
         <article class="media content-section">
             <img class="rounded-circle article-img" src="#" alt="image of author">
@@ -8,13 +19,16 @@
                 <div class="article-metadata">
                     <a class="mr-2" href="#">{{ user.username}}</a>
                     <small class="text-muted"> Pending: {{ user.confirms.name }}</small>
-                    {% if user.status_confirm == False %}
-                        <a class="btn btn-info btn-sm mt-1 mb-1 ml-2" href="#">Accept</a>
+                    {% if user.status_confirm != 1 %}
+                        <a class="btn btn-info btn-sm mt-1 mb-1 ml-2" href="{{ url_for('admin.accept_owner', user_id=user.id, rolename=rolename) }}">Accept</a>
                     {% endif %}
                         <!-- button better/ modal -->
-                    <a class="btn btn-danger btn-sm mt-1 mb-1 ml-2" href="#">Delete</a>
+                    {% if user.role_id != 1 %}
+                    <a class="btn btn-danger btn-sm mt-1 mb-1 ml-2" href="#">REJECT</a>
+                    {% endif %}
                 </div>
                 <h2><a class="article-title" href="#">{{ user.email }}</a></h2>
+                <h3>{{user.id}}</h3>
                 <p class="article-content"> Role: {{ user.roles.name }}</p>
             </div>
         </article>

@@ -27,7 +27,7 @@ from easyaccomod.owner_routes import owner_bp
 from easyaccomod.main.routes import main
 from easyaccomod.admin.routes import admin
 from easyaccomod.posts.routes import posts
-# from easyaccomod import renter_views
+from easyaccomod import renter_views
 
 # register Blueprint
 app.register_blueprint(owner_bp, url_prefix = '/owner')

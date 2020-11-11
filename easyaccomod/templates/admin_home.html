@@ -5,9 +5,9 @@
 
 {% block admin_header %}
     {% if current_user.role_id == 1 %}
-        <button type="button" class="btn btn-info mr-3">
-            Notifications <span class="badge badge-secondary">4</span>
-        </button>
+        <a class="nav-item nav-link" href="#">
+            <button type="button" class="btn btn-info mr-3">Notifications <span class="badge badge-secondary">4</span></button>
+        </a>
         <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
     {% endif %}
 {% endblock %}
