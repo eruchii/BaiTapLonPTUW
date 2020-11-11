@@ -16,8 +16,8 @@ def Fake_user():
 	ward_id = "43"
 	print(add_user(username, password, check_password, email, fullname, identity_number, phone_number, city_code, district_id, ward_id))
 
+# def Fake_room():
+	
 
 if __name__ == "__main__":
 	Fake_user()
-	a = Owner.query.all()[0]
-	print(a.district.name)

@@ -28,7 +28,7 @@ class Room(db.Model):
 	district_id = db.Column(db.String(10), db.ForeignKey('district.id')) #lien ket voi district
 	ward_id = db.Column(db.String(10), db.ForeignKey('ward.id')) #lien ket voi ward
 	info = db.Column(db.String(120))
-	room_type_id = db.Column(db.Integer, db.ForeignKey('roomtype.id'))
+	room_type_id = db.Column(db.Integer, db.ForeignKey('room_type.id'))
 	room_number = db.Column(db.Integer)
 	price = db.Column(db.Integer)
 
