@@ -14,6 +14,9 @@ def genrate_random_string(length):
 
 
 def add_user(username, password, check_password, email, fullname, identity_number, phone_number, city_code, district_id, ward_id, commit=True):
+	regex_user = '^[a-zA-Z0-9]+([a-zA-Z0-9](_|-| )[a-zA-Z0-9])*[a-zA-Z0-9]+$'
+	if not re.search(regex_user, username):
+		return (False, 'Tên đăng nhập không hợp lệ')
 	user = db.session.query(User).filter_by(username=username).first()
 	if user:
 		return (False, 'Người dùng đã tồn tại')
@@ -23,8 +26,8 @@ def add_user(username, password, check_password, email, fullname, identity_numbe
 	if password != check_password:
 		return (False, 'Mật khẩu nhập lại không trùng khớp')
 	
-	regex = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
-	if not re.search(regex, email):
+	regex_email = '^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$'
+	if not re.search(regex_email, email):
 		return (False, 'Email không hợp lệ')
 	check_mail = db.session.query(User).filter_by(email = email).first()
 	if check_mail:
@@ -38,16 +41,12 @@ def add_user(username, password, check_password, email, fullname, identity_numbe
 	
 	if not identity_number.isnumeric():
 		return (False, 'Số CCCD/CMND không hợp lệ')
-	check_identity_number = db.session.query(Owner).filter_by(identity_number = identity_number).first()
-	if check_identity_number:
-		return (False, 'Số CCCD/CMND đã được sử dụng')
-	
 	check_address = db.session.query(Ward).filter_by(city_code = city_code, district_id = district_id, id = ward_id).first()
 	if not check_address:
 		return (False, 'Địa chỉ không hợp lệ')
 
 	hashed = encrypt_string(password)
-	new_user = User(username=username, password=hashed, email=email, role_id=2, status_confirm=0)
+	new_user = User(username=username, password=hashed, email=email, role_id=3, status_confirm=2)
 	db.session.add(new_user)
 	db.session.flush()
 	new_owner = Owner(username=username,
@@ -59,8 +58,7 @@ def add_user(username, password, check_password, email, fullname, identity_numbe
 					city_code=city_code,
 					district_id=district_id,
 					ward_id=ward_id,
-					user_id=new_user.id,
-					status=0
+					user_id=new_user.id
 					)
 	db.session.add(new_owner)
 	if(commit):
@@ -68,26 +66,19 @@ def add_user(username, password, check_password, email, fullname, identity_numbe
 
 	return (True, 'Đăng kí thành công')
 
-
-def user_exists(username):
-	user = db.session.query(Owner).filter_by(username=username).first()
-
-	if not user:
-		return (False, 'Người dùng không tồn tại')
-
-	return (True, 'Người dùng tồn tại')
-
-
 def check_user(username, password):
-	user = db.session.query(Owner).filter_by(username=username).first()
+	user = db.session.query(User).filter_by(username=username).first()
 
 	if not user:
-		return (False, 'Không thành công')
-
-	if encrypt_string(password) == user.password:
-		return (True, "Thành công")
+		return (False, None)
+	if user.status_confirm == 2:
+		return (False, "Tài khoản chưa được xác thực, vui lòng đợi.")
+	if user.status_confirm == 3:
+		return (False, "Tài khoản đang bị khóa, vui lòng liên hệ với công ty để được giải quyết.")
+	if bcrypt.check_password_hash(user.password, password):
+		return (True, user)
 	else:
-		return (False, 'Không thành công')
+		return (False, None)
 
 def add_city(code, name, commit=True):
 	new_city = City(code=code, name=name)
@@ -109,7 +100,7 @@ def add_ward(city_code, district_id, id, name, commit=True):
 	
 def add_room(owner_id, city_code, district_id, ward_id, info, room_type_id, room_number, 
 			price, chung_chu, phong_tam, nong_lanh, phong_bep, dieu_hoa, ban_cong, gia_dien, 
-			gia_nuoc, tien_ich_khac, image, pending, commit=True):
+			gia_nuoc, tien_ich_khac, image, commit=True):
 	check_address = db.session.query(Ward).filter_by(city_code = city_code, district_id = district_id, id = ward_id).first()
 	if not check_address:
 		return (False, 'Địa chỉ không hợp lệ')
@@ -117,7 +108,7 @@ def add_room(owner_id, city_code, district_id, ward_id, info, room_type_id, room
 	try:
 		new_room = Room(owner_id, city_code, district_id, ward_id, info, room_type_id, room_number, 
 						int(price), int(chung_chu), int(phong_tam), int(nong_lanh), int(phong_bep), int(dieu_hoa), int(ban_cong), 
-						int(gia_dien), int(gia_nuoc), tien_ich_khac, image, pending)
+						int(gia_dien), int(gia_nuoc), tien_ich_khac, image, pending=0)
 		db.session.add(new_room)
 		if commit:
 			db.session.commit()

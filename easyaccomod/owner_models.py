@@ -1,7 +1,7 @@
 from easyaccomod import db, app, login_manager
 from easyaccomod.models import *
 
-class Owner(db.Model):
+class Owner(db.Model, UserMixin):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(120), unique = True)
 	password = db.Column(db.String(120))
@@ -13,7 +13,6 @@ class Owner(db.Model):
 	district_id = db.Column(db.String(10), db.ForeignKey('district.id'))
 	ward_id = db.Column(db.String(10), db.ForeignKey('ward.id'))
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # add fk to user_id
-	status = db.Column(db.Integer, db.ForeignKey('confirm.id'))
 
 	rooms = db.relationship("Room", backref="owner")
 	def __repr__(self):

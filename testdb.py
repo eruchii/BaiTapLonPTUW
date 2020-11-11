@@ -4,7 +4,7 @@ from easyaccomod.owner_models import *
 from easyaccomod.db import *
 
 def Fake_user():
-	username = "abcd"
+	username = "@@@@"
 	password = "123456"
 	check_password = "123456"
 	fullname = "a b c"
