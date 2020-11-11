@@ -1,5 +1,4 @@
 from easyaccomod.owner_models import Room
-from flask import flash
 from datetime import datetime
 from easyaccomod import db, bcrypt
 from easyaccomod.models import User, Post
@@ -12,9 +11,10 @@ def addUserByAdmin(username, password, email):
         should be used : force add owner by admin to table user
     """
     tmpUser = User.query.filter_by(username=username).first()
-    if tmpUser:
-        flash("Exist User", "danger")
+    tmpUser2 = User.query.filter_by(email=email).first()
+    if tmpUser or tmpUser2:
         print("Exist User")
+        return False
     else :
         hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
         owner = User(username=username, email=email, password=hashed_password, role_id=3, status_confirm=1)
@@ -30,8 +30,8 @@ def addUserByOwner(username, password, email):
         ---- return id of user added ----
     """
     tmpUser = User.query.filter_by(username=username).first()
-    if tmpUser:
-        flash("Exist User", "danger")
+    tmpUser2 = User.query.filter_by(email=email).first()
+    if tmpUser or tmpUser2:
         print("Exist User")
         return (False)
     else :
@@ -61,7 +61,6 @@ def deletePostByID(post_id):
     post = Post.query.filter_by(id=post_id).first()
     db.session.delete(post)
     db.session.commit()
-    flash(f"xoa bai thanh cong", "info")
 
 def checkUserExist(user_id):
     """
@@ -98,4 +97,18 @@ def acceptOwner(user_id):
     owners = user_accept.owner
     for owner in owners:
         owner.status = 1
+    db.session.commit()
+
+def rejectUser(user_id):
+    """
+        reject owner by admin
+        should be used for admin : reject account of owner
+        change status_confirm to REJECT
+        can use to ban owner ??
+    """
+    user_reject = User.query.filter_by(id=user_id).first()
+    user_reject.status_confirm = 3
+    owners = user_reject.owner
+    for owner in owners:
+        owner.status = 3
     db.session.commit()

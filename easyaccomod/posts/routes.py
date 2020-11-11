@@ -20,7 +20,6 @@ def new_post():
             room_id = form.room_id.data
             pending = form.pending.data
             if checkRoomExist(room_id=room_id):
-                print(title, " ", content, " ", room_id, " ", pending)
                 createPostByAdmin(title=title, content=content, room_id=room_id, admin_id=current_user.id)
                 flash(f"Post has been created by { current_user.username }" , "success")
                 return redirect(url_for('posts.post'))

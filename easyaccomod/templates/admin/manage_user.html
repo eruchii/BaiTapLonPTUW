@@ -24,7 +24,7 @@
                     {% endif %}
                         <!-- button better/ modal -->
                     {% if user.role_id != 1 %}
-                    <a class="btn btn-danger btn-sm mt-1 mb-1 ml-2" href="#">REJECT</a>
+                    <a class="btn btn-danger btn-sm mt-1 mb-1 ml-2" href="{{ url_for('admin.reject_owner', user_id=user.id, rolename=rolename) }}">REJECT/BAN</a>
                     {% endif %}
                 </div>
                 <h2><a class="article-title" href="#">{{ user.email }}</a></h2>

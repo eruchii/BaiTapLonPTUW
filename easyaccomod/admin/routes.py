@@ -1,4 +1,4 @@
-from easyaccomod.admin.utils import acceptOwner, checkUserExist
+from easyaccomod.admin.utils import *
 from flask import Blueprint
 from easyaccomod.admin.forms import LoginForm, RegistrationForm
 from easyaccomod import app, db, bcrypt
@@ -9,37 +9,6 @@ from easyaccomod.models import User
 from easyaccomod.owner_models import *
 
 admin = Blueprint('admin', __name__)
-# dummy data
-posts = [
-    {
-        'author_username': 'eruchii',
-        'title': 'eruchii title',
-        'content': 'eruchii content',
-        'date_posted': '06 11 2020',
-        'address': '144 duong-phuong-tinh',
-        'type': 'house',
-        'room_count': '3',
-        'area': '120m2',
-        'infrastructure': 'something.... full feature ...',
-        'extension': 'air conditioner',
-        'count': 1234,
-        'pending': True
-    },
-    {
-        'author_username': 'honest',
-        'title': 'honest title',
-        'content': 'honest content',
-        'date_posted': '07 11 2020',
-        'address': '212 duong-phuong-tinh-2',
-        'type': 'mini',
-        'room_count': '2',
-        'area': '30m2',
-        'infrastructure': 'somthing ... vv',
-        'extension': '',
-        'count': 2256,
-        'pending': False
-    }
-]
 
 @admin.route('/register', methods=['GET', 'POST'])
 def register():
@@ -120,7 +89,7 @@ def manage_user():
     else:
         abort(403)    
     
-@admin.route("/manage-user/<int:user_id>/accept", methods=["GET", "POST"])
+@admin.route("/manage-user/<int:user_id>/accept", methods=["GET","POST"])
 @login_required
 def accept_owner(user_id):
     if current_user.role_id == 1 and current_user.status_confirm == 1:
@@ -128,6 +97,18 @@ def accept_owner(user_id):
         if checkUserExist(user_id=user_id):
             acceptOwner(user_id)
             flash(f"Owner has been accepted by {current_user.username}!", "success")
+            return redirect(url_for("admin.manage_user", rolename=rolename))
+    else:
+        abort(403)
+
+@admin.route("/manage-user/<int:user_id>/reject", methods=["GET", "POST"])
+@login_required
+def reject_owner(user_id):
+    if current_user.role_id == 1 and current_user.status_confirm == 1:
+        rolename = request.args.get('rolename', 'user', type=str)
+        if checkUserExist(user_id=user_id):
+            rejectUser(user_id)
+            flash(f"Owner has been rejected by {current_user.username}!", "success")
             return redirect(url_for("admin.manage_user", rolename=rolename))
     else:
         abort(403)
