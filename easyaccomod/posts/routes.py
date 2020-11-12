@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 from flask import render_template, url_for, flash, redirect, request, abort
 from flask_login import current_user, login_required
 from easyaccomod import db
@@ -31,25 +31,58 @@ def new_post():
         abort(403)
     
 
+# @posts.route("/post")
+# @login_required
+# def post():
+#     if current_user.role_id == 1:
+#         posts = Post.query.all()
+#         return render_template("posts/post.html", title="Manage Post", posts=posts)
+#     else:
+#         abort(403)
+
 @posts.route("/post")
 @login_required
 def post():
+    ans = []
     if current_user.role_id == 1:
         posts = Post.query.all()
-        return render_template("posts/post.html", title="Manage Post", posts=posts)
-    else:
-        abort(403)
+        for post in posts:
+            res = {"id":post.id, "title":post.title, "content":post.content, "room_id":post.room_id, "pending":post.pending, "date_created":post.date_created, "date_posted":post.date_posted, "date_out":post.date_out, "user_id":post.user_id}
+            ans.append(res)
+        return jsonify({"posts":ans})
 
 @posts.route("/post/<int:post_id>/delete", methods=["POST"])
 @login_required
 def delete_post(post_id):
     if current_user.role_id == 1 and current_user.status_confirm == 1:
         post = Post.query.get_or_404(post_id)
-        if post.author != current_user:
-            abort(403)
         db.session.delete(post)
         db.session.commit()
-        flash(f"Your post has been deleted by {current_user.username}!", "success")
+        flash(f"Post has been deleted by {current_user.username}!", "success")
         return redirect(url_for("posts.post"))
     else:
+        abort(403)
+
+@posts.route("/post/<int:post_id>/accept", methods=["GET", "POST"])
+@login_required
+def accept_post(post_id):
+    if current_user.id == 1 and current_user.status_confirm == 1:
+        post = Post.query.get_or_404(post_id)
+        post.pending = True # True -> accept post
+        db.session.commit()
+        flash(f"Post {post_id} has been accepted by {current_user.username}!", "success")
+        return redirect(url_for("posts.post"))
+    else :
+        abort(403)
+
+@posts.route("/post/<int:post_id>/reject", methods=["GET", "POST"])
+@login_required
+def reject_post(post_id):
+    if current_user.id == 1 and current_user.status_confirm == 1:
+        post = Post.query.get_or_404(post_id)
+        post.pending = False # False -> reject post -> post wait
+        db.session.commit()
+        flash(f"Post {post_id} has been rejected by {current_user.username}!", "success")
+        return redirect(url_for("posts.post"))
+    else :
         abort(403)

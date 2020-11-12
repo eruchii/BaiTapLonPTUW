@@ -31,3 +31,7 @@ ul.droplinemenu li a {
 ul.droplinemenu li>a:hover {
     color: red;
 }
+
+div.card-header > ul#navigation li.nav-item span {
+    cursor: pointer;
+}

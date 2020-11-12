@@ -15,25 +15,28 @@
     <h1>admin home Page</h1>
     <div class="card text-center mb-2">
         <div class="card-header">
-            <ul class="nav nav-tabs card-header-tabs">
+            <ul id="navigation" class="nav nav-tabs card-header-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" href="{{ url_for('posts.post') }}">Post</a>
+                    <span id="post" class="nav-link active" onclick="setClassActive(this);" >Post</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Room</a>
+                    <span id="room" class="nav-link" onclick="setClassActive(this);">Room</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('admin.manage_user')}}">User</a>
+                    <span id="user" class="nav-link" onclick="setClassActive(this);">User</span>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Statistics</a>
+                    <span id="statistics" class="nav-link" onclick="setClassActive(this);">Statistics</span>
                 </li>
             </ul>
         </div>
     </div>
+
+    <div id="blockinfo">
+        {% block info %}
+        {% endblock %}
+    </div>
     
-    {% block info %}
-    {% endblock %}
     
 {% endblock content %}
 
@@ -49,4 +52,8 @@
             </ul>
         </p>
     </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='adminscripts.js') }}"></script>
 {% endblock %}

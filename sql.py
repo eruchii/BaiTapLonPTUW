@@ -1,5 +1,7 @@
 # db for admin
 
+import json
+from flask import jsonify
 from easyaccomod import db, bcrypt
 from easyaccomod.models import *
 from easyaccomod.owner_models import *

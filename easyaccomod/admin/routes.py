@@ -1,3 +1,4 @@
+from flask.json import jsonify
 from easyaccomod.admin.utils import *
 from flask import Blueprint
 from easyaccomod.admin.forms import LoginForm, RegistrationForm
@@ -112,3 +113,11 @@ def reject_owner(user_id):
             return redirect(url_for("admin.manage_user", rolename=rolename))
     else:
         abort(403)
+
+
+###########################################################################
+
+@admin.route("/api/test/<int:user_id>", methods=["GET", "POST"])
+def testAPI(user_id):
+    acceptOwner(user_id)
+    return jsonify({"ans":"OK"})

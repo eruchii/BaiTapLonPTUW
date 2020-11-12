@@ -3,7 +3,7 @@ from easyaccomod import app
 from flask_login import login_user, current_user
 from easyaccomod.owner_models import Owner
 from functools import wraps
-from easyaccomod.db import check_user, add_user
+from easyaccomod.owner_db import check_user, add_user
 
 owner_bp = Blueprint("owner", __name__, template_folder='templates/owner')
 

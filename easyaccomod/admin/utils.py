@@ -1,7 +1,8 @@
 from easyaccomod.owner_models import Room
 from datetime import datetime
-from easyaccomod import db, bcrypt
+from easyaccomod import bcrypt, db
 from easyaccomod.models import User, Post
+
 
 
 def addUserByAdmin(username, password, email):

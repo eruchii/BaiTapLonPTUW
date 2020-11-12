@@ -2,7 +2,7 @@ from easyaccomod import db, bcrypt
 from easyaccomod.models import *
 from easyaccomod.owner_models import *
 import json
-from easyaccomod.db import *
+from easyaccomod.owner_db import *
 
 db.drop_all()
 db.create_all()
