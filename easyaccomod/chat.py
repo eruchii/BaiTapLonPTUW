@@ -3,6 +3,9 @@ from flask import *
 from easyaccomod import app, db
 from flask_login import current_user
 from functools import wraps
+from easyaccomod.models import Message, User
+from sqlalchemy import or_, and_
+from datetime import datetime
 
 chat_bp = Blueprint("chat", __name__)
 socketio = SocketIO(app)
@@ -17,32 +20,112 @@ def can_send_msg(f):
 		return f(*args, **kwargs)
 	return decorated_func
 
-def send_msg_to_user(recv, msg):
+def send_msg_to_user(recv, msg, sender=False):
+	status = True
+	if not sender:
+		status, resp_msg = add_msg(recv, msg)
 	try:
 		client = clients[recv]
+		if(status):
+			data = {
+				"sender":current_user.username, "msg":msg, "date":datetime.now().strftime("%m/%d/%Y, %H:%M:%S"), "type":1, 
+				"img":"https://ptetutorials.com/images/user-profile.png"
+			}
+			if(sender):
+				data["type"] = 0
+			socketio.emit("new msg", data, room=client)
 	except:
-		client = clients[current_user.username]
-	socketio.emit("new msg", {"sender":current_user.username, "msg":msg}, room=client)
+		pass
+
+def add_msg(recv, msg):
+	recv_user = User.query.filter_by(username=recv).first()
+	if not recv_user:
+		return (False, "Không tồn tại người nhận.")
+	try:
+		new_msg = Message(sender=current_user.username, receiver=recv, content=msg)
+		db.session.add(new_msg)
+		db.session.commit()
+		return (True, "Thanh cong")
+	except:
+		return (False, "Khong thanh cong")
+
+def load_msg(sender, recv):
+	msgs = Message.query.filter( 
+		((Message.sender == recv) & (Message.receiver == sender)) |  
+		((Message.sender == sender) & (Message.receiver == recv))
+	)
+	res = []
+	for m in msgs:
+		msg = {}
+		msg["partner"] = recv
+		msg["msg"] = m.content
+		msg["type"] = 0
+		msg["img"] = "https://ptetutorials.com/images/user-profile.png"
+		msg["date"] = m.date_created.strftime("%m/%d/%Y, %H:%M:%S")
+		if(m.receiver == sender):
+			msg["type"] = 1
+		res.append(msg)
+		m.seen = True
+		db.session.flush()
+	db.session.commit()
+	return res
+
+@socketio.on("load msg")
+@can_send_msg
+def load_msg_his(data):
+	msgs = load_msg(current_user.username, data["recv"])
+	socketio.emit("chat log", msgs, room=clients[current_user.username])
 
 @socketio.on("send msg")
 @can_send_msg
 def send_msg(data):
+	send_msg_to_user(current_user.username, data["msg"], sender=True)
 	send_msg_to_user(data["recv"], data["msg"])
+	
 	
 @socketio.on("connected")
 @can_send_msg
 def connected():
 	clients[current_user.username] = request.sid
 
-@chat_bp.route('/fakemsg', methods=["POST"])
+def load_people(sender):
+	ppl = Message.query.filter(or_(Message.receiver==sender,Message.sender==sender))
+	res = []
+	for i in ppl:
+		res.append(i.sender)
+		res.append(i.receiver)
+	res = set(res)
+	if sender in res:
+		res.remove(sender)
+	return list(res)
+
+def load_latest_msg(sender, recv):
+	msgs = Message.query.filter( 
+		((Message.sender == recv) & (Message.receiver == sender)) |  
+		((Message.sender == sender) & (Message.receiver == recv))
+	)
+	latest_msg = msgs[-1]
+	resp = {}
+	resp["username"] = recv
+	resp["sender"] = latest_msg.sender
+	resp["receiver"] = latest_msg.receiver
+	resp["msg"] = latest_msg.content
+	resp["img"] = "https://ptetutorials.com/images/user-profile.png"
+	resp["date"] = latest_msg.date_created.strftime("%m/%d/%Y, %H:%M:%S")
+	return resp
+
+@socketio.on("load list people")
 @can_send_msg
-def fakemsg():
-	socketio.emit("send msg", {"sender":"nct", "msg":"hello"}, room=clients["nct1"])
-	return jsonify({"status":"success"})
+def load_list_people():
+	ppl = load_people(current_user.username)
+	resp = []
+	for p in ppl:
+		res = load_latest_msg(current_user.username, p)
+		resp.append(res)
+	resp.sort(key= lambda x: x["date"], reverse=True)
+	socketio.emit("loaded list people", resp, room = clients[current_user.username])
 
 @chat_bp.route("/")
 @can_send_msg
 def index():
-	for i in clients:
-		print(i, clients[i])
 	return render_template("chat.html", async_mode=socketio.async_mode)
