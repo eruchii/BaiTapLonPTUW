@@ -66,7 +66,6 @@ def load_msg(sender, recv):
 		if(m.receiver == sender):
 			msg["type"] = 1
 		res.append(msg)
-		m.seen = True
 		db.session.flush()
 	db.session.commit()
 	return res
@@ -82,7 +81,15 @@ def load_msg_his(data):
 def send_msg(data):
 	send_msg_to_user(current_user.username, data["msg"], sender=True)
 	send_msg_to_user(data["recv"], data["msg"])
-	
+	seen_msg(data["recv"])
+
+@can_send_msg
+def seen_msg(target):
+	msgs = Message.query.filter((Message.sender == target) & (Message.receiver == current_user.username) & (Message.seen==False))
+	for m in msgs:
+		m.seen=True
+		db.session.flush()
+	db.session.commit()	
 	
 @socketio.on("connected")
 @can_send_msg
@@ -114,6 +121,10 @@ def load_latest_msg(sender, recv):
 	resp["msg"] = latest_msg.content
 	resp["img"] = "https://ptetutorials.com/images/user-profile.png"
 	resp["date"] = latest_msg.date_created.strftime("%m/%d/%Y, %H:%M:%S")
+	
+	new_msgs = Message.query.filter((Message.sender == recv) & (Message.receiver == sender) & (Message.seen == False))
+	resp["new_msg"] = new_msgs.count()
+
 	return resp
 
 @socketio.on("load list people")

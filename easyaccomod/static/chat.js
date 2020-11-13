@@ -29,7 +29,6 @@ socket.on('loaded list people', function(data){
         console.log(receiver);
         createChatList(receiver);
     }
-    document.getElementById("receiver").value = data[0].username ;
 });
 
 function Send(){
@@ -118,7 +117,7 @@ function createChatList(data){
     dateText = document.createTextNode(data.date);
     date.appendChild(dateText);
     h5 = document.createElement("h5");
-    h5Text = document.createTextNode(data.username);
+    h5Text = document.createTextNode(data.username+" ("+data.new_msg+")");
     h5.appendChild(h5Text);
     h5.appendChild(date);
     p = document.createElement("p");
