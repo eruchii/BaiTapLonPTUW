@@ -83,8 +83,8 @@ class Message(db.Model):
     sender = db.Column(db.String(120), db.ForeignKey('user.username'), nullable=False) # sender
     receiver = db.Column(db.String(120), db.ForeignKey('user.username'), nullable=False) # receiver
     content = db.Column(db.String(120))
-    seen = db.Column(db.Boolean)
+    seen = db.Column(db.Boolean, default=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
     def __repr__(self):
-        return f"Message('{self.id}', '{self.created_by}', '{self.receiver}')"
+        return f"Message('{self.id}', '{self.sender}', '{self.receiver}','{self.content}')"
