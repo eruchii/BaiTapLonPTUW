@@ -143,3 +143,4 @@ easyaccomod/__pycache__/routes.cpython-38.pyc
 .vscode
 settings.json
 easyaccomod/.vscode/settings.json
+easyaccomod/site.db

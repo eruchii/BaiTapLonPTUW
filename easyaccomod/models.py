@@ -17,7 +17,7 @@ time_out = timedelta(weeks=4)   # default: a post can be published in 4 weeks fr
 class Role(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(120))
-    name = db.Column(db.String(30), unique=True, nullable=False)
+    name = db.Column(db.String(120), unique=True, nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     description = db.Column(db.Text)
     users = db.relationship("User", backref="roles", lazy=True)
@@ -28,7 +28,7 @@ class Role(db.Model):
 
 class Confirm(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(30), unique=True, nullable=False)
+    name = db.Column(db.String(120), unique=True, nullable=False)
     description = db.Column(db.Text)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     users = db.relationship("User", backref="confirms", lazy=True)
@@ -39,10 +39,10 @@ class Confirm(db.Model):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(30), unique=True, nullable=False)
+    username = db.Column(db.String(120), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
-    image_file = db.Column(db.String(20), nullable=False, default="default.jpg")
-    password = db.Column(db.String(60), nullable=False)
+    image_file = db.Column(db.String(120), nullable=False, default="default.jpg")
+    password = db.Column(db.String(120), nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey("role.id"), nullable=False)
     status_confirm = db.Column(db.Integer, db.ForeignKey("confirm.id"), nullable=False)
     posts = db.relationship('Post', backref='author', lazy=True)
@@ -53,7 +53,7 @@ class User(db.Model, UserMixin):
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(100), nullable=False)
+    title = db.Column(db.String(120), nullable=False)
     content = db.Column(db.Text, nullable=False)
     room_id = db.Column(db.Integer, db.ForeignKey("room.id"), nullable=False)
     pending = db.Column(db.Boolean, nullable=False)
@@ -77,29 +77,14 @@ class Notification(db.Model):
     def __repr__(self):
         return f"Notification('{self.id}', '{self.receiver}', '{self.msg}')"
 
-# sender & receiver use only Message content to save & load msg
-class MessageContent(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    content = db.Column(db.Text, nullable=False)
-
-    def __repr__(self):
-        return f"MessageContent('{self.id}', '{self.content}')"
 
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    created_by = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # sender
-    receiver = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # receiver
-    msg_id = db.Column(db.Integer, db.ForeignKey('message_content.id'), nullable=False)
+    sender = db.Column(db.String(120), db.ForeignKey('user.username'), nullable=False) # sender
+    receiver = db.Column(db.String(120), db.ForeignKey('user.username'), nullable=False) # receiver
+    content = db.Column(db.String(120))
+    seen = db.Column(db.Boolean, default=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
     def __repr__(self):
-        return f"Message('{self.id}', '{self.created_by}', '{self.receiver}')"
-
-class UserMessage(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    seen_msg_status = db.Column(db.Boolean, nullable=False, default=True)
-    count_msg = db.Column(db.Integer, nullable=False, default=0)
-
-    def __repr__(self):
-        return f"UserMessage('{self.id}', '{self.user_id}', '{self.seen_msg_status}', '{self.count_msg}')"
+        return f"Message('{self.id}', '{self.sender}', '{self.receiver}','{self.content}')"
