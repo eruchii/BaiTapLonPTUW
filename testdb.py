@@ -4,13 +4,13 @@ from easyaccomod.owner_models import *
 from easyaccomod.owner_db import *
 
 def Fake_user():
-	username = "nct2"
+	username = "nct1"
 	password = "123456"
 	check_password = "123456"
 	fullname = "a b c"
-	identity_number = "1123456789"
-	phone_number = "1123456789"
-	email = "asodasdk@ajfasf.com"
+	identity_number = "12"
+	phone_number = "12"
+	email = "assd@ajfasf.com"
 	city_code = "HN"
 	district_id = "1"
 	ward_id = "43"
