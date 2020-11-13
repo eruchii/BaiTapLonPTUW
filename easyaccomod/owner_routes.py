@@ -71,8 +71,8 @@ def api_login():
 	
 	return jsonify(res)
 	
-@owner_bp.route("/fakelogin")
-def fakelogin():
-	user = Owner.query.all()[0]
+@owner_bp.route("/fakelogin/<id>")
+def fakelogin(id):
+	user = Owner.query.all()[int(id)]
 	login_user(user, remember=True)
-	return user.username
+	return jsonify({"status":"ok"})
