@@ -5,8 +5,14 @@ socket.on('connect', function(){
     socket.emit("load list people");
 });
 socket.on('new msg', function(data) {
-    if(data.type == 1) createIncomingMsg(data);
-    else createOutgoingMsg(data);
+    if(document.getElementById("receiver").value == data.sender){
+        if(data.type == 1) createIncomingMsg(data);
+        else createOutgoingMsg(data);
+    }
+    else{
+        socket.emit("load list people");
+        Load();
+    }    
 });
 
 socket.on('chat log', function(msgs){
@@ -24,7 +30,6 @@ socket.on('loaded list people', function(data){
         createChatList(receiver);
     }
     document.getElementById("receiver").value = data[0].username ;
-    Load();
 });
 
 function Send(){
@@ -147,12 +152,12 @@ function createChatList(data){
 
 function switchChatWindow(){
     username = this.getAttribute("id");
-    current_active = document.getElementsByClassName("chat_active");
+    current_active = document.getElementsByClassName("active_chat");
     if(current_active.length != 0){
-        current_active[0].classList.remove("chat_active");
+        current_active[0].classList.remove("active_chat");
     }
     chat_list = document.getElementById(username);
-    chat_list.classList.add("chat_active");
+    chat_list.classList.add("active_chat");
     document.getElementById("receiver").value = username;
     Load();
 }

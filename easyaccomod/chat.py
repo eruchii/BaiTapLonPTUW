@@ -57,6 +57,7 @@ def load_msg(sender, recv):
 	res = []
 	for m in msgs:
 		msg = {}
+		msg["id"] = m.id
 		msg["partner"] = recv
 		msg["msg"] = m.content
 		msg["type"] = 0
@@ -106,6 +107,7 @@ def load_latest_msg(sender, recv):
 	)
 	latest_msg = msgs[-1]
 	resp = {}
+	resp["id"] = latest_msg.id
 	resp["username"] = recv
 	resp["sender"] = latest_msg.sender
 	resp["receiver"] = latest_msg.receiver
@@ -122,7 +124,7 @@ def load_list_people():
 	for p in ppl:
 		res = load_latest_msg(current_user.username, p)
 		resp.append(res)
-	resp.sort(key= lambda x: x["date"], reverse=True)
+	resp.sort(key= lambda x: x["id"], reverse=True)
 	socketio.emit("loaded list people", resp, room = clients[current_user.username])
 
 @chat_bp.route("/")
