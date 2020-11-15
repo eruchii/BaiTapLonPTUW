@@ -56,6 +56,7 @@
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8">
+                <div class="alert" id="msg"></div>
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                         {% for category, message in messages %} 
@@ -68,9 +69,10 @@
                 <!-- ---------------------------------- -->
                 <!-- content la ten cua block, endblock se dong cai block cua no -->
                 {% block content %}
+                
                 {% endblock %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 mt-5">
                 {% block sidebar %}
                 {% endblock %}
                 <div class="content-section">

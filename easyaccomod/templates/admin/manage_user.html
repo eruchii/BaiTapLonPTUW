@@ -1,4 +1,26 @@
 {% extends "admin_home.html" %}
+
+{% block navigation %}
+<div class="card text-center mb-2">
+    <div class="card-header">
+        <ul id="navigation" class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a id="post" class="nav-link" href="{{ url_for('posts.post') }}" >Post</a>
+            </li>
+            <li class="nav-item">
+                <a id="room" class="nav-link" href="#" >Room</a>
+            </li>
+            <li class="nav-item">
+                <a id="user" class="nav-link active" href="{{ url_for('admin.manage_user') }}">User</a>
+            </li>
+            <li class="nav-item">
+                <a id="statistics" class="nav-link" href="#">Statistics</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
 {% block info %}
     <h1>Manage User Page</h1>
     <ul class="droplinemenu">
@@ -12,6 +34,14 @@
             <a href="{{ url_for('admin.manage_user', rolename='admin') }}">Admin</a>
         </li>
     </ul>
+
+    <nav class="navbar-collapse navbar-light bg-light mb-3">
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search/ username" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+        </form>
+    </nav>    
+        
     {% for user in users %}
         <article class="media content-section">
             <img class="rounded-circle article-img" src="#" alt="image of author">
@@ -20,17 +50,14 @@
                     <a class="mr-2" href="#">{{ user.username}}</a>
                     <small class="text-muted"> Status: {{ user.confirms.name }}</small>
                     {% if user.status_confirm != 1 %}
-                    <a class="btn btn-info btn-sm mt-1 mb-1 ml-2"
-                        href="{{ url_for('admin.accept_owner', user_id=user.id, rolename=rolename) }}">Accept</a>
+                    <a id="acceptuser" class="btn btn-info btn-sm mt-1 mb-1 ml-2" onclick="acceptOwner(this, '{{ user.id }}')">Accept</a>
                     {% endif %}
-                    <!-- button better/ modal -->
                     {% if user.role_id != 1 %}
-                    <a class="btn btn-danger btn-sm mt-1 mb-1 ml-2"
-                        href="{{ url_for('admin.reject_owner', user_id=user.id, rolename=rolename) }}">REJECT/BAN</a>
+                    <a id="rejectuser" class="btn btn-danger btn-sm mt-1 mb-1 ml-2" onclick="rejectOwner(this, '{{ user.id }}')">REJECT/BAN</a>
                     {% endif %}
                 </div>
                 <h2><a class="article-title" href="#">{{ user.email }}</a></h2>
-                <h3>{{user.id}}</h3>
+                <h3>ID: {{user.id}}</h3>
                 <p class="article-content"> Role: {{ user.roles.name }}</p>
             </div>
         </article>

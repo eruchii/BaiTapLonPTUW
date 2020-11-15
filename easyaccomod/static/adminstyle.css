@@ -1,5 +1,6 @@
 .max-height-content-section {
     max-height: 500px;
+    overflow: auto;
 }
 
 .nodisplay{
