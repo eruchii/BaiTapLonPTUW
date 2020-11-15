@@ -93,11 +93,8 @@ def acceptOwner(user_id):
         should be used for admin : accept account of owner
         change status_confirm to OK
     """
-    user_accept = User.query.filter_by(id=user_id).first()
+    user_accept = User.query.get_or_404(user_id)
     user_accept.status_confirm = 1
-    owners = user_accept.owner
-    for owner in owners:
-        owner.status = 1
     db.session.commit()
 
 def rejectUser(user_id):
@@ -108,8 +105,9 @@ def rejectUser(user_id):
         can use to ban owner ??
     """
     user_reject = User.query.filter_by(id=user_id).first()
-    user_reject.status_confirm = 3
-    owners = user_reject.owner
-    for owner in owners:
-        owner.status = 3
-    db.session.commit()
+    if user_reject:
+        user_reject.status_confirm = 3
+        db.session.commit()
+        return user_reject.id
+    else:
+        return -1

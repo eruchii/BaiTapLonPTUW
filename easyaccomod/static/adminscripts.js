@@ -67,7 +67,7 @@ function Accept(myself, id){
             container.classList.add("alert-success");
             var accept_pr = myself.parentNode;
             myself.parentNode.childNodes[3].innerHTML = data["post_pending"];
-            myself.parentNode.parentNode.childNodes[15].firstChild.innerHTML = "Pending: " + data["post_pending"];
+            //myself.parentNode.parentNode.childNodes[15].firstChild.innerHTML = "Pending: " + data["post_pending"];
             console.log(myself.parentNode.childNodes);
             myself.parentNode.removeChild(myself.nextSibling);
             //console.log(myself.parentNode.childNodes);
@@ -104,7 +104,7 @@ function Reject(myself, id){
               acptNode.addEventListener("click", function() {
                   Accept(acptNode, id);
               });
-              myself.parentNode.parentNode.childNodes[15].firstChild.innerHTML = "Pending: " + data["post_pending"];
+              //myself.parentNode.parentNode.childNodes[15].firstChild.innerHTML = "Pending: " + data["post_pending"];
               reject_pr.insertBefore(acptNode, childafter);
               reject_pr.insertBefore(txtNode, acptNode);
           }
@@ -114,4 +114,38 @@ function Reject(myself, id){
   });
 }
 
-// onclick="Accept(this, {{ post.id }})"  // onclick="Reject(this, {{ post.id }})"      
+function acceptOwner(myself, id) {
+    postData("/owner/accept", {user_id:id}).then (data => {
+        container = document.getElementById("msg");
+        container.innerHTML = "";
+        container.empty();
+        if (data["status"] == "error") {
+            container.classList.add("alert-danger");
+        } else {
+            container.classList.add("alert-success");
+            var accept_pr = myself.parentNode;
+            accept_pr.querySelector("small.text-muted").innerHTML = "Status: " + data["owner_status_confirm"];
+            accept_pr.querySelector("#acceptuser").style.display = "none";
+        }
+        msg = document.createTextNode(data["msg"]);
+        container.appendChild(msg);
+    })
+}
+
+function rejectOwner(myself, id) {
+    postData("/owner/reject", {user_id:id}).then(data => {
+        container = document.getElementById("msg");
+        container.innerHTML = "";
+        container.empty();
+        if (data["status"] == "error") {
+            container.classList.add("alert-danger");
+        } else {
+            container.classList.add("alert-success");
+            var reject_pr = myself.parentNode;
+            reject_pr.querySelector("#acceptuser").style.display = "inline-block";
+            reject_pr.querySelector("small.text-muted").innerHTML = "Status: " + data["owner_status_confirm"];
+        }
+        msg = document.createTextNode(data["msg"])
+        container.appendChild(msg)
+    })
+}

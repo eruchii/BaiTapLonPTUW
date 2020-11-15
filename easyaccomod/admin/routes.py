@@ -90,29 +90,68 @@ def manage_user():
     else:
         abort(403)    
     
-@admin.route("/manage-user/<int:user_id>/accept", methods=["GET","POST"])
+@admin.route("/owner/accept", methods=["GET", "POST"])
 @login_required
-def accept_owner(user_id):
-    if current_user.role_id == 1 and current_user.status_confirm == 1:
-        rolename = request.args.get('rolename', 'user', type=str)
-        if checkUserExist(user_id=user_id):
-            acceptOwner(user_id)
-            flash(f"Owner has been accepted by {current_user.username}!", "success")
-            return redirect(url_for("admin.manage_user", rolename=rolename))
-    else:
-        abort(403)
+def new_accept_owner():
+    data = request.get_json()
+    print(data["user_id"])
+    resp = {}
+    resp["status"] = "error"
+    resp["msg"] = "co loi xra"
+    try:
+        if current_user.role_id == 1 and current_user.status_confirm == 1:
+            acceptOwner(data["user_id"])
+            own = User.query.filter_by(id=data["user_id"]).first()
+            resp["status"] = "success"
+            resp["msg"] = f"Accept owner with username: {own.username}, status: {own.confirms.name}"
+            resp["owner_status_confirm"] = own.confirms.name
+            return jsonify(resp)
+    except:
+        return jsonify(resp)
+    
+@admin.route("/owner/reject", methods=["GET", "POST"])
+@login_required
+def new_reject_owner():
+    data = request.get_json()
+    print(data["user_id"])
+    resp = {}
+    resp["status"] = "error"
+    resp["msg"] = "co loi xay ra"
+    try:
+        if current_user.role_id == 1 and current_user.status_confirm == 1:
+            own_id = rejectUser(data["user_id"])
+            if own_id != -1:
+                own = User.query.filter_by(id=own_id).first()
+                resp["status"] = "success"
+                resp["msg"] = f"Reject owner with username: {own.username}, status: {own.confirms.name}"
+                resp["owner_status_confirm"] = own.confirms.name
+            return jsonify(resp)
+    except:
+        return jsonify(resp)
 
-@admin.route("/manage-user/<int:user_id>/reject", methods=["GET", "POST"])
-@login_required
-def reject_owner(user_id):
-    if current_user.role_id == 1 and current_user.status_confirm == 1:
-        rolename = request.args.get('rolename', 'user', type=str)
-        if checkUserExist(user_id=user_id):
-            rejectUser(user_id)
-            flash(f"Owner has been rejected by {current_user.username}!", "success")
-            return redirect(url_for("admin.manage_user", rolename=rolename))
-    else:
-        abort(403)
+# @admin.route("/manage-user/<int:user_id>/accept", methods=["GET","POST"])
+# @login_required
+# def accept_owner(user_id):
+#     if current_user.role_id == 1 and current_user.status_confirm == 1:
+#         rolename = request.args.get('rolename', 'user', type=str)
+#         if checkUserExist(user_id=user_id):
+#             acceptOwner(user_id)
+#             flash(f"Owner has been accepted by {current_user.username}!", "success")
+#             return redirect(url_for("admin.manage_user", rolename=rolename))
+#     else:
+#         abort(403)
+
+# @admin.route("/manage-user/<int:user_id>/reject", methods=["GET", "POST"])
+# @login_required
+# def reject_owner(user_id):
+#     if current_user.role_id == 1 and current_user.status_confirm == 1:
+#         rolename = request.args.get('rolename', 'user', type=str)
+#         if checkUserExist(user_id=user_id):
+#             rejectUser(user_id)
+#             flash(f"Owner has been rejected by {current_user.username}!", "success")
+#             return redirect(url_for("admin.manage_user", rolename=rolename))
+#     else:
+#         abort(403)
 
 
 ###########################################################################

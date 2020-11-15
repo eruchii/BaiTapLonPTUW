@@ -15,13 +15,12 @@
                     Delete
                 </button>
             </div>
-            <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+            <h2><a class="article-title" href="{{ url_for('posts.update_post', post_id=post.id) }}">{{ post.title }}</a></h2>
             <span>{{post.id}}</span>
             <p class="article-content">{{ post.content }}</p>
             <p class="article-content"> <u>Date created</u> : {{ post.date_created }} and <u>Date posted</u> : {{ post.date_posted }}</p>
             <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out }}</p>
             <p class="article-content">{{ post.author.email }}</p>
-            <p><em>Pending: {{ post.pending }}</em></p>
         </div>
     </article>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

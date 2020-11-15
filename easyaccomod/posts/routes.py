@@ -3,7 +3,7 @@ from flask import render_template, url_for, flash, redirect, request, abort
 from flask_login import current_user, login_required
 from easyaccomod import db
 from easyaccomod.models import Post
-from easyaccomod.posts.forms import PostForm
+from easyaccomod.posts.forms import PostForm, UpdatePostForm
 
 from easyaccomod.admin.utils import checkRoomExist, createPostByAdmin
 
@@ -111,6 +111,31 @@ def view_post(post_id):
     if current_user.role_id == 1 and current_user.status_confirm == 1:
         post = Post.query.get_or_404(post_id)
         return render_template("posts/view_post.html", title="View Post", post=post)
+
+@posts.route("/post/update/<int:post_id>", methods=["GET", "POST"])
+@login_required
+def update_post(post_id):
+    post = Post.query.get_or_404(post_id)
+    if post.author != current_user :
+        abort(403)
+    form = UpdatePostForm()
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.content = form.content.data
+        post.room_id = form.room_id.data
+        post.date_posted = form.date_posted.data
+        post.pending = form.pending.data
+        db.session.commit()
+        flash("Your post has been updated!", "success")
+        return redirect(url_for('posts.view_post', post_id=post.id))
+    elif request.method == "GET":
+        form.title.data = post.title
+        form.content.data = post.content
+        form.room_id.data = post.room_id
+        form.date_posted.data = post.date_posted
+        form.pending.data = post.pending
+    return render_template("posts/update_post.html", title="Update Post", form=form)
+
 
 # @posts.route("/post/<int:post_id>/accept", methods=["GET", "POST"])
 # @login_required
