@@ -36,3 +36,7 @@ ul.droplinemenu li>a:hover {
 div.card-header > ul#navigation li.nav-item span {
     cursor: pointer;
 }
+
+.mrgleft-2 {
+    margin-left: -2px;
+}

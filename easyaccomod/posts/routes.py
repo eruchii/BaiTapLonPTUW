@@ -3,7 +3,7 @@ from flask import render_template, url_for, flash, redirect, request, abort
 from flask_login import current_user, login_required
 from easyaccomod import db
 from easyaccomod.models import Post
-from easyaccomod.posts.forms import PostForm, UpdatePostForm
+from easyaccomod.posts.forms import PostForm, RoomForm, UpdatePostForm
 
 from easyaccomod.admin.utils import checkRoomExist, createPostByAdmin
 
@@ -116,7 +116,7 @@ def view_post(post_id):
 @login_required
 def update_post(post_id):
     post = Post.query.get_or_404(post_id)
-    if post.author != current_user :
+    if current_user.role_id != 1 :
         abort(403)
     form = UpdatePostForm()
     if form.validate_on_submit():
@@ -136,6 +136,22 @@ def update_post(post_id):
         form.pending.data = post.pending
     return render_template("posts/update_post.html", title="Update Post", form=form)
 
+@posts.route("/room/new", methods=["GET", "POST"])
+@login_required
+def new_room():
+    if current_user.role_id == 1:
+        form = RoomForm()
+        if form.validate_on_submit():
+            print(form.city.data," ", form.district.data, " ", form.ward.data)
+            print(form.info.data, " ",form.room_type.data, " ", form.room_number.data)
+            print(form.price.data, " ", form.chung_chu.data, " ", form.nong_lanh.data, " ", form. dieu_hoa.data, " ", form.ban_cong.data)
+            print(form.phong_tam.data, " ", form.phong_bep.data)
+            print(form.gia_dien.data, " ", form.gia_nuoc.data)
+            print(form.pending.data)
+        return render_template("posts/create_room.html", title="New Room", form=form)
+    else :
+        abort(403)
+    
 
 # @posts.route("/post/<int:post_id>/accept", methods=["GET", "POST"])
 # @login_required

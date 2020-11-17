@@ -64,7 +64,7 @@ from easyaccomod.admin.utils import *
 # db.session.add(user)
 # db.session.flush()
 # owner1 = Owner(username="testowner", password=hashed_password, fullname="testfullname", identity_number="123456789", phone_number="0987654321", email="owner.test@gmail.com")
-# us_id = addUserByAdmin(owner1.username, owner1.password, owner1.email)
+# us_id = addUserByAdmin(owner1.username, password, owner1.email)
 # owner1.user_id = us_id
 # db.session.add(owner1)
 # db.session.flush()
@@ -73,7 +73,7 @@ from easyaccomod.admin.utils import *
 
 # owner2 = Owner(username="testowner3", password=hashed_password, fullname="owner2 fullname", identity_number=11111111, phone_number=19008198, email="owner3.test@gmail.com")
 
-# us_id = addUserByOwner(owner2.username, owner2.password, owner2.email)
+# us_id = addUserByOwner(owner2.username, password, owner2.email)
 
 # owner2.user_id = us_id
 # db.session.add(owner2)

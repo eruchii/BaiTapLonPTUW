@@ -1,0 +1,191 @@
+{% extends "admin_home.html" %}
+{% block info %}
+    <h1>Create Room</h1>
+    <div class="content-section">
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <div class="form-group">
+                    <!-- .col-form-label -->
+                    {{ form.city.label(class="col-form-label") }}
+                    {% if form.city.errors %}
+                        {{ form.city(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.city.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.city(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.district.label(class="col-form-label") }}
+                    {% if form.district.errors %}
+                        {{ form.district(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.district.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.district(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.ward.label(class="col-form-label") }}
+                    {% if form.ward.errors %}
+                        {{ form.ward(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.ward.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.ward(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.info.label(class="col-form-label") }}
+                    {% if form.info.errors %}
+                        {{ form.info(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.info.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.info(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.room_type.label(class="form-control-label") }}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                        </div>
+                        <select class="custom-select form-control-lg" id="inputGroupSelect01" name="room_type">
+                            {% for key, value in form.room_type.choices %}
+                                <option value={{key}}>{{ value }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    {{ form.room_number.label(class="col-form-label") }}
+                    {% if form.room_number.errors %}
+                        {{ form.room_number(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.room_number.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.room_number(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.price.label(class="col-form-label") }}
+                    {% if form.price.errors %}
+                        {{ form.price(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.price.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.price(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-check-label">
+                    {{ form.chung_chu(class="form-check-inline ") }}
+                    {{ form.chung_chu.label(class="form-check-label mr-3") }}
+                    {{ form.nong_lanh(class="form-check-inline mrgleft-2") }}
+                    {{ form.nong_lanh.label(class="form-check-label mr-3") }} 
+                    {{ form.dieu_hoa(class="form-check-inline mrgleft-2") }}
+                    {{ form.dieu_hoa.label(class="form-check-label mr-3") }} 
+                    {{ form.ban_cong(class="form-check-inline mrgleft-2 ") }}
+                    {{ form.ban_cong.label(class="form-check-label mr-3") }} 
+                </div>
+
+                <div class="form-group">
+                    {{ form.phong_tam.label(class="col-form-label") }}
+                    {% if form.phong_tam.errors %}
+                        {{ form.phong_tam(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.phong_tam.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.phong_tam(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.phong_bep.label(class="col-form-label") }}
+                    {% if form.phong_bep.errors %}
+                        {{ form.phong_bep(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.phong_bep.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.phong_bep(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.gia_dien.label(class="col-form-label") }}
+                    {% if form.gia_dien.errors %}
+                        {{ form.gia_dien(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.gia_dien.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.gia_dien(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.gia_nuoc.label(class="col-form-label") }}
+                    {% if form.gia_nuoc.errors %}
+                        {{ form.gia_nuoc(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.gia_nuoc.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.gia_nuoc(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.image.label() }}
+                    {{ form.image(class="form-control-file") }}
+                    {% if form.image.errors %}
+                        {% for error in form.image.errors %}
+                            <span class="text-danger">{{ error }}</span> <br>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+
+                <div class="form-check-inline">
+                    {{ form.pending(class="form-check-inline") }}
+                    {{ form.pending.label(class="form-check-label mr-1") }}
+                </div>
+
+            </fieldset>
+             <div class="form-group">
+                {{ form.submit(class="btn-outline-info") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}
