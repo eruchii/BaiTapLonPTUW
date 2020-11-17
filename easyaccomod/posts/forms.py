@@ -2,9 +2,9 @@
 from flask_wtf.form import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.fields.core import BooleanField, DateField, IntegerField, SelectField
-from flask_wtf.file import FileField, FileAllowed
-from wtforms.fields.simple import MultipleFileField
-from wtforms.validators import DataRequired, Length
+from flask_wtf.file import FileAllowed
+from wtforms import MultipleFileField
+from wtforms.validators import DataRequired, Length, ValidationError
 from easyaccomod.owner_models import *
 
 class PostForm(FlaskForm):
@@ -52,6 +52,10 @@ class RoomForm(FlaskForm):
     gia_dien = IntegerField("Gia Dien", validators=[DataRequired()])
     gia_nuoc = IntegerField("Gia Nuoc", validators=[DataRequired()])
     tien_ich_khac = TextAreaField("Tien ich khac")
-    image = MultipleFileField("Image", validators=[FileAllowed(['jpg', 'png'])])
+    image = MultipleFileField("Image", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
     pending = BooleanField("Pending")
     submit = SubmitField("Post Room")
+
+    def validate_image(self, image):
+        if len(image.data) < 3:
+            raise ValidationError('min 3 files')

@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify
 from flask import render_template, url_for, flash, redirect, request, abort
 from flask_login import current_user, login_required
+from werkzeug.utils import secure_filename
 from easyaccomod import db
 from easyaccomod.models import Post
 from easyaccomod.posts.forms import PostForm, RoomForm, UpdatePostForm
@@ -148,6 +149,9 @@ def new_room():
             print(form.phong_tam.data, " ", form.phong_bep.data)
             print(form.gia_dien.data, " ", form.gia_nuoc.data)
             print(form.pending.data)
+            print("===============")
+            for file in form.image.data:
+                print(file)
         return render_template("posts/create_room.html", title="New Room", form=form)
     else :
         abort(403)
