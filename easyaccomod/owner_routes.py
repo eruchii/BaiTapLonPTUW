@@ -47,7 +47,7 @@ def api_register():
 
 @owner_bp.route("/register")
 def register():
-	return "cac"
+	return render_template("owner/register.html")
 
 @owner_bp.route("/api/login", methods=["POST"])
 def api_login():
@@ -70,7 +70,11 @@ def api_login():
 		res["msg"] = resp
 	
 	return jsonify(res)
-	
+
+@owner_bp.route("/login")
+def login():
+	return render_template("owner/login.html")
+
 @owner_bp.route("/fakelogin/<id>")
 def fakelogin(id):
 	user = Owner.query.all()[int(id)]
