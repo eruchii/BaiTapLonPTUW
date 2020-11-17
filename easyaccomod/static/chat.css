@@ -59,6 +59,9 @@ img{ max-width:100%;}
 .inbox_chat { height: 550px; overflow-y: scroll;}
 
 .active_chat{ background:#ebebeb;}
+.incoming_msg{
+  margin: 10px 0px 10px;
+}
 
 .incoming_msg_img {
   display: inline-block;
@@ -100,7 +103,7 @@ img{ max-width:100%;}
   padding: 5px 10px 5px 12px;
   width:100%;
 }
-.outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
+.outgoing_msg{ overflow:hidden; margin:10px 0 10px;}
 .sent_msg {
   float: right;
   width: 46%;
@@ -132,4 +135,8 @@ img{ max-width:100%;}
 .msg_history {
   height: 516px;
   overflow-y: auto;
+}
+
+#search-box::-webkit-calendar-picker-indicator {
+  display: none;
 }
