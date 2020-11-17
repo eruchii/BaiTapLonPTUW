@@ -45,7 +45,8 @@
     </header>
     <div class="container-fluid">
         <div class="row">
-        <div class="col-sm-2">
+        <div class="col-sm-2" style="overflow: auto; max-height: 500px;">
+            
             <div class="form-group">
                 <label for="sel1"></label>
                     {{ form.city.label(class="form-control-label")}}
@@ -62,6 +63,54 @@
                     {{form.street.label(class="form-control-label")}}
                     {{form.street(class="form-control street")}}
                 </label>
+            </div>
+            <div class="form-group">
+                {{form.near.label(class="form-control-label")}}
+                {{form.near(class="form-control near")}}
+            </div>
+            <div class="form-group">
+                {{form.price.label(class="form-control-label")}}
+                {{form.price(class="form-control price")}}
+            </div>
+            <div class="form-group">
+                {{form.roomType.label(class="form-control-label")}}
+                {{form.roomType(class="form-control roomType")}}
+            </div>
+            <div class="form-group">
+                {{form.area.label(class="form-control-label")}}
+                {{form.area(class="form-control area")}}
+            </div>
+            <div class="form-group">
+                {{form.phong_tam.label(class="form-control-label")}}
+                {{form.phong_tam(class="form-control phong_tam")}}
+            </div>
+            <div class="form-group">
+                {{form.nong_lanh.label(class="form-control-label")}}
+                {{form.nong_lanh(class="form-control nong_lanh")}}
+            </div>
+            <div class="form-group">
+                {{form.dieu_hoa.label(class="form-control-label")}}
+                {{form.dieu_hoa(class="form-control dieu_hoa")}}
+            </div>
+            <div class="form-group">
+                {{form.ban_cong.label(class="form-control-label")}}
+                {{form.ban_cong(class="form-control ban_cong")}}
+            </div>
+            <div class="form-group">
+                {{form.chung_chu.label(class="form-control-label")}}
+                {{form.chung_chu(class="form-control chung_chu")}}
+            </div>
+            <div class="form-group">
+                {{form.gia_dien.label(class="form-control-label")}}
+                {{form.gia_dien(class="form-control gia_dien")}}
+            </div>
+            <div class="form-group">
+                {{form.gia_nuoc.label(class="form-control-label")}}
+                {{form.gia_nuoc(class="form-control gia_nuoc")}}
+            </div>
+            <div class="form-group">
+                {{form.tien_ich_khac.label(class="form-control-label")}}
+                {{form.tien_ich_khac(class="form-control tien_ich_khac")}}
             </div>
             <div class="form-group">
                 {{ form.submit(class="btn-outline-info success") }}

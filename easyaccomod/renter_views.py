@@ -3,6 +3,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from easyaccomod.owner_models import City,District,Ward
 from easyaccomod import app
 from easyaccomod.forms import SearchForm
+from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getResult
 
 
 
@@ -14,24 +15,18 @@ def search():
     print(request)
     if (request.method == "POST"):
         req = request.get_json()
-
+  
+        # request handler
         if (req[0] == 'city'):
-          cityCode = City.query.filter_by(name = req[1]).first().code
-          
-          district = District.query.filter_by(city_code = cityCode).all()
-          ret =['']
-          for _obj in district:
-            ret.append(_obj.name)
-          res = make_response(jsonify(ret),200)       
-          return res
-        
+          return getDistrict(req[1])
         elif (req[0] == 'district'):
-          districtCode = District.query.filter_by(name=req[1]).first().id
-          streetList = Ward.query.filter_by(district_id = districtCode).all()
-          ret = ['']
-          for _obj in streetList:
-            ret.append(_obj.name)
-          res = make_response(jsonify(ret),200)
+          return getStreet(req[1])
+        elif (req[0] == 'submit'):
+          return getResult(req[1])
+        else:
+          res = make_response(jsonify("loirequest"),200)
           return res
-    
     return render_template("searchRoom.html",form = form)
+
+
+
