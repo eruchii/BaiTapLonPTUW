@@ -28,11 +28,9 @@ from easyaccomod.main.routes import main
 from easyaccomod.admin.routes import admin
 from easyaccomod.posts.routes import posts
 from easyaccomod import renter_views
-from easyaccomod.chat import chat_bp
 
 # register Blueprint
 app.register_blueprint(owner_bp, url_prefix = '/owner')
 app.register_blueprint(main)
 app.register_blueprint(admin)
 app.register_blueprint(posts)
-app.register_blueprint(chat_bp, url_prefix="/chat")
