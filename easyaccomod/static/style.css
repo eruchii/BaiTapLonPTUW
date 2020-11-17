@@ -17,15 +17,15 @@ h6 {
     background-color: #5f788a;
 }
 
-.site-header .navbar .nav-link {
+.site-header .navbar-nav .nav-link {
     color: #cbd5db;
 }
 
-.site-header .navbar .nav-link:hover {
+.site-header .navbar-nav .nav-link:hover {
     color: #ffffff;
 }
 
-.site-header .navbar.nav-link.active {
+.site-header .navbar-nav .nav-link.active {
     font-weight: 500;
 }
 

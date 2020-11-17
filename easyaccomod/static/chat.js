@@ -161,8 +161,3 @@ function switchChatWindow(){
     Load();
 }
 
-document.getElementById("search-box").onchange = search;
-function search(){
-    socket.emit("search user", {search:this.value});
-}
-
