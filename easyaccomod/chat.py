@@ -1,3 +1,6 @@
+from gevent import monkey
+monkey.patch_all()
+
 from flask_socketio import SocketIO, emit, disconnect, send
 from flask import *
 from easyaccomod import app, db
@@ -6,6 +9,7 @@ from functools import wraps
 from easyaccomod.models import Message, User
 from sqlalchemy import or_, and_
 from datetime import datetime
+
 
 chat_bp = Blueprint("chat", __name__)
 socketio = SocketIO(app)

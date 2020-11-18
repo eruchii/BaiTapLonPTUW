@@ -1,55 +1,70 @@
-{% extends "layout.html" %}
+{% extends "owner/layout.html" %}
 {% block content %}
 <div class="content-section">
+	<div id="msg">
+	</div>
 	<h1>Sign Up</h1>
-	<form>
-		<div class="form-group">
-			<label>Username</label>
-			<input type="text" class="form-control" id="username">
+	<form id="register">
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label>Username</label>
+				<input type="text" class="form-control" id="username" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Fullname</label>
+				<input type="text" class="form-control" id="fullname" required>
+			</div>
 		</div>
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password" class="form-control" id="password">
-		</div>
-		<div class="form-group">
-			<label>Re-password</label>
-			<input type="password" class="form-control" id="check_password">
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label>Password</label>
+				<input type="password" class="form-control" id="password" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Re-password</label>
+				<input type="password" class="form-control" id="check_password" required>
+			</div>
 		</div>
 		<div class="form-group">
 			<label>Email</label>
-			<input type="text" class="form-control" id="email">
+			<input type="text" class="form-control" id="email" required>
 		</div>
-		<div class="form-group">
-			<label>Fullname</label>
-			<input type="text" class="form-control" id="fullname">
+		<div class="form-row">
+			<div class="form-group col-md-6">
+				<label>Identity number</label>
+				<input type="text" class="form-control" id="identity_number" required>
+			</div>
+			<div class="form-group col-md-6">
+				<label>Phone number</label>
+				<input type="text" class="form-control" id="phone_number" required>
+			</div>
 		</div>
-		<div class="form-group">
-			<label>Identity number</label>
-			<input type="text" class="form-control" id="identity_number">
+		<div class="form-row">
+			<div class="form-group col-md-4">
+				<label>City</label>
+				<select class="form-control" id="city"></select>
+			</div>
+			<div class="form-group col-md-4">
+				<label>District</label>
+				<select class="form-control" id="district"></select>
+			</div>		
+			<div class="form-group col-md-4">
+				<label>Ward</label>
+				<select class="form-control" id="ward"></select>
+			</div>
 		</div>
-		<div class="form-group">
-			<label>Phone number</label>
-			<input type="text" class="form-control" id="phone_number">
-		</div>
-		<div class="form-group">
-			<label>City</label>
-			<select class="form-control" id="city"></select>
-		</div>
-		<div class="form-group">
-			<label>District</label>
-			<select class="form-control" id="district"></select>
-		</div>		
-		<div class="form-group">
-			<label>Ward</label>
-			<select class="form-control" id="ward"></select>
-		</div>
-	
+		<div class="form-row align-items-center">
+			<div class="col-md-3">
+				<button type="button" class="btn btn-primary btn-block" onclick="Register()">Submit</button>
+			</div>
+			<div class="col-md-9">
+				<span class="text-muted">
+					Have An Account? <a href="{{ url_for('owner.login') }}">Sign In</a>
+				</span>
+			</div>
+		</div>	
 	</form>
 </div>
-<div class="border-top pt-3">
-	<small class="text-muted">
-		Have An Account? <a href="{{ url_for('owner.login') }}" class="ml-2">Sign In</a>
-	</small>
-</div>
 <script src="/static/search.js"></script>
+<script src="/static/owner.js"></script>
 {% endblock content %}
