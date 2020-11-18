@@ -1,0 +1,49 @@
+{% extends "admin_home.html" %}
+{% block navigation %}
+<div class="card text-center mb-2">
+    <div class="card-header">
+        <ul id="navigation" class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a id="post" class="nav-link" href="{{ url_for('posts.post') }}">Post</a>
+            </li>
+            <li class="nav-item">
+                <a id="room" class="nav-link active" href="{{ url_for('posts.room') }}">Room</a>
+            </li>
+            <li class="nav-item">
+                <a id="user" class="nav-link" href="{{ url_for('admin.manage_user') }}">User</a>
+            </li>
+            <li class="nav-item">
+                <a id="statistics" class="nav-link" href="#">Statistics</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+
+
+{% block info %}
+    <h1>Manage Post</h1>
+    {% for room in rooms %}
+        <article class="media content-section max-height-content-section">
+            <img class="rounded-circle article-img" src="#" alt="image of author">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ room.owner_id }}</a>
+                    <small id="room" class="text-muted mr-1">{{ room.pending }}</small>
+                    <a id="details" class="btn btn-info btn-sm my-1" href="">Details</a>
+                </div>
+                <h2><a class="article-title" href=>{{ room.owner_id }}</a></h2>
+                <span>{{room.id}}</span>
+                <p class="article-content">{{ room.city_code }} {{ room.district_id }} {{ room.ward_id }}</p>
+                <p class="article-content"> {{ room.info }}</p>
+                <p class="article-content"> room:type {{ room.room_type_id }} room:number {{ room.room_number }}</p>
+                <p class="article-content">{{ room.gia_dien }} {{ room.gia_nuoc }}</p>
+                <img src="#" alt="{{ room.image }}">
+                <p>tien ich khac {{ room.tien_ich_khac }}</p>
+                <p>bla bla ...</p>
+                <span><em>pending: {{ room.pending }}</em></span>
+            </div>
+        </article>
+    {% endfor %}
+{% endblock info %}

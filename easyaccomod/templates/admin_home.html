@@ -21,7 +21,7 @@
                     <a id="post" class="nav-link" href="{{ url_for('posts.post') }}">Post</a>
                 </li>
                 <li class="nav-item">
-                    <a id="room" class="nav-link" href="{{ url_for('posts.new_room') }}">Room</a>
+                    <a id="room" class="nav-link" href="{{ url_for('posts.room') }}">Room</a>
                 </li>
                 <li class="nav-item">
                     <a id="user" class="nav-link" href="{{ url_for('admin.manage_user') }}">User</a>
@@ -47,13 +47,13 @@
         <h3>Our Sidebar</h3>
         <p class='text-muted'>You can put any information here you'd like.
             <ul class="list-group">
-                <li class="list-group-item list-group-item-light">Latest Posts</li>
+                <li class="list-group-item list-group-item-light"><a class="article-title" href="{{ url_for('posts.new_room') }}">Create New Room</a></li>
                 <li class="list-group-item list-group-item-light">Announcements</li>
                 <li class="list-group-item list-group-item-light">Calendars</li>
                 <li class="list-group-item list-group-item-light">etc</li>
             </ul>
         </p>
-    </div>
+    </div>   
 {% endblock %}
 
 {% block script %}

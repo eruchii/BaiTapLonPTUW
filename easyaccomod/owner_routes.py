@@ -1,9 +1,9 @@
 from flask import *
 from easyaccomod import app
 from flask_login import login_user, current_user
-from easyaccomod.owner_models import Owner
+from easyaccomod.owner_models import Owner, User
 from functools import wraps
-from easyaccomod.owner_db import check_user, add_user
+from easyaccomod.owner_db import check_user, add_user, change_password
 
 owner_bp = Blueprint("owner", __name__, template_folder='templates/owner')
 
@@ -74,6 +74,32 @@ def api_login():
 @owner_bp.route("/login")
 def login():
 	return render_template("owner/login.html")
+
+@owner_bp.route("/changepassword")
+def changepassword():
+	return render_template("owner/changepassword.html")
+
+@owner_bp.route("/api/changepassword", methods=["POST"])
+@is_owner
+def api_change_password():
+	res = {}
+	res["status"] = "error"
+	res["status"] = "doi mat khau khong thanh cong"
+	data = request.get_json()
+	try:
+		password = data["password"]
+		newpassword = data["newpassword"]
+		renewpassword = data["renewpassword"]
+	except:
+		return jsonify(res)
+	status, resp = change_password(current_user.username, password, newpassword, renewpassword)
+	if status:
+		res["status"] = "success"
+		res["msg"] = "Doi mat khau thanh cong"
+	else:
+		res["msg"] = resp
+	
+	return jsonify(res)
 
 @owner_bp.route("/fakelogin/<id>")
 def fakelogin(id):

@@ -80,6 +80,21 @@ def check_user(username, password):
 	else:
 		return (False, None)
 
+
+def change_password(username, password, newpassword, renewpassword):
+	if(len(newpassword) < 6):
+		return (False, "Mat khau qua ngan")
+	if(newpassword != renewpassword):
+		return (False, "Mat khau nhap lai khong trung khop")
+	user = User.query.filter_by(username = username).first()
+	if(not bcrypt.check_password_hash(user.password, password)):
+		return (False, "Mat khau hien tai khong dung")
+	if(bcrypt.check_password_hash(user.password, newpassword)):
+		return (False, "Mat khau moi phai khac mat khau hien tai")
+	user.password = encrypt_string(newpassword)
+	db.session.commit()
+	return (True, "Doi mat khau thanh cong")
+
 def add_city(code, name, commit=True):
 	new_city = City(code=code, name=name)
 	db.session.add(new_city)
@@ -97,21 +112,3 @@ def add_ward(city_code, district_id, id, name, commit=True):
 	db.session.add(new_ward)
 	if commit:
 		db.session.commit()
-	
-def add_room(owner_id, city_code, district_id, ward_id, info, room_type_id, room_number, 
-			price, chung_chu, phong_tam, nong_lanh, phong_bep, dieu_hoa, ban_cong, gia_dien, 
-			gia_nuoc, tien_ich_khac, image, commit=True):
-	check_address = db.session.query(Ward).filter_by(city_code = city_code, district_id = district_id, id = ward_id).first()
-	if not check_address:
-		return (False, 'Địa chỉ không hợp lệ')
-
-	try:
-		new_room = Room(owner_id, city_code, district_id, ward_id, info, room_type_id, room_number, 
-						int(price), int(chung_chu), int(phong_tam), int(nong_lanh), int(phong_bep), int(dieu_hoa), int(ban_cong), 
-						int(gia_dien), int(gia_nuoc), tien_ich_khac, image, pending=0)
-		db.session.add(new_room)
-		if commit:
-			db.session.commit()
-		return (True, new_room.id)
-	except:
-		return (False, 'Có lỗi xảy ra, vui lòng kiểm tra lại thông tin')

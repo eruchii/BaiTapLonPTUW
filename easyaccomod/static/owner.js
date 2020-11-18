@@ -40,9 +40,51 @@ function Register(){
     postData("/owner/api/register", data)
         .then(json => {
             msg = document.getElementById("msg");
+            msg.innerHTML = "";
             if(json.status === "success"){
                 createAlert(msg, "alert-success", json["msg"]);
                 document.getElementById("register").reset();    
+            }
+            else {
+                createAlert(msg, "alert-danger", json["msg"]);
+            };
+        });
+
+}
+
+function Login(){
+    var data = {
+        username:document.getElementById("username").value,
+        password:document.getElementById("password").value,
+    }
+    postData("/owner/api/login", data)
+        .then(json => {
+            msg = document.getElementById("msg");
+            msg.innerHTML = "";
+            if(json.status === "success"){
+                createAlert(msg, "alert-success", json["msg"]);
+                document.getElementById("login").reset();    
+            }
+            else {
+                createAlert(msg, "alert-danger", json["msg"]);
+            };
+        });
+
+}
+
+function ChangePassword(){
+    var data = {
+        password:document.getElementById("password").value,
+        newpassword:document.getElementById("newpassword").value,
+        renewpassword:document.getElementById("renewpassword").value,
+    }
+    postData("/owner/api/changepassword", data)
+        .then(json => {
+            msg = document.getElementById("msg");
+            msg.innerHTML = "";
+            if(json.status === "success"){
+                createAlert(msg, "alert-success", json["msg"]);
+                document.getElementById("change-password").reset();    
             }
             else {
                 createAlert(msg, "alert-danger", json["msg"]);

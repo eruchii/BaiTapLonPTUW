@@ -13,8 +13,6 @@ class Owner(db.Model, UserMixin):
 	district_id = db.Column(db.String(10), db.ForeignKey('district.id'))
 	ward_id = db.Column(db.String(10), db.ForeignKey('ward.id'))
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # add fk to user_id
-
-	rooms = db.relationship("Room", backref="owner")
 	def __repr__(self):
 		return "<Owner(username='%s', password='%s', fullname='%s', identity_number='%s', phone_number='%s', status='%s'>" % (
 			self.username, self.password, self.fullname, self.identity_number, self.phone_number, self.status
@@ -22,7 +20,7 @@ class Owner(db.Model, UserMixin):
 
 class Room(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	owner_id = db.Column(db.Integer, db.ForeignKey('owner.id')) #lien ket owner
+	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) #lien ket user
 	city_code = db.Column(db.String(5), db.ForeignKey('city.code')) #lien ket voi bang city
 	district_id = db.Column(db.String(10), db.ForeignKey('district.id')) #lien ket voi district
 	ward_id = db.Column(db.String(10), db.ForeignKey('ward.id')) #lien ket voi ward

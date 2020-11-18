@@ -16,7 +16,7 @@
                             {% endfor %}
                         </div>
                     {% else %} 
-                        {{ form.city(class="form-control form-control-lg") }}
+                        {{ form.city(class="form-control form-control-lg", id="city") }}
                     {% endif %}
                 </div>
                 <div class="form-group">
@@ -29,7 +29,7 @@
                             {% endfor %}
                         </div>
                     {% else %} 
-                        {{ form.district(class="form-control form-control-lg") }}
+                        {{ form.district(class="form-control form-control-lg", id="district") }}
                     {% endif %}
                 </div>
                 <div class="form-group">
@@ -42,7 +42,7 @@
                             {% endfor %}
                         </div>
                     {% else %} 
-                        {{ form.ward(class="form-control form-control-lg") }}
+                        {{ form.ward(class="form-control form-control-lg", id="ward") }}
                     {% endif %}
                 </div>
                 <div class="form-group">
@@ -188,4 +188,5 @@
             </div>
         </form>
     </div>
+    <script src="/static/search.js"></script>
 {% endblock %}

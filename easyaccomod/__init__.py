@@ -1,19 +1,23 @@
+from gevent import monkey
+monkey.patch_all()
 from flask import Flask
 from flask_login import login_manager
 from flask_login import LoginManager
 from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
+from flask_socketio import SocketIO
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = '80e63eb7f7af4b8bb32edc7839994cb2'
 # mysql+pymysql://root:''@localhost/easyaccomod
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
-# app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:''@localhost/easyaccomod'
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:''@localhost/easyaccomod'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
+socketio = SocketIO(app)
 
 # login_view :: The name of the view to redirect to when the user needs to log in.
 # 'login' is function of route

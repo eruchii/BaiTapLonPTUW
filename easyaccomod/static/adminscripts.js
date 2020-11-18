@@ -60,6 +60,7 @@ function Accept(myself, id){
         container.empty();
         // child = document.createElement("div")
         // child.classList.add("alert");
+        container.classList.remove("nodisplay");
         if (data["status"] == "error") {
             container.classList.add("alert-danger");
         }
@@ -86,6 +87,7 @@ function Reject(myself, id){
       container = document.getElementById("msg");
       container.innerHTML = "";
       container.empty();
+      container.classList.remove("nodisplay");
       if(data["status"] == "error") {
           container.classList.add("alert-danger");
       }
@@ -119,6 +121,7 @@ function acceptOwner(myself, id) {
         container = document.getElementById("msg");
         container.innerHTML = "";
         container.empty();
+        container.classList.remove("nodisplay");
         if (data["status"] == "error") {
             container.classList.add("alert-danger");
         } else {
@@ -137,6 +140,7 @@ function rejectOwner(myself, id) {
         container = document.getElementById("msg");
         container.innerHTML = "";
         container.empty();
+        container.classList.remove("nodisplay");
         if (data["status"] == "error") {
             container.classList.add("alert-danger");
         } else {

@@ -4,6 +4,7 @@ from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 from easyaccomod import db
 from easyaccomod.models import Post
+from easyaccomod.owner_models import *
 from easyaccomod.posts.forms import PostForm, RoomForm, UpdatePostForm
 
 from easyaccomod.admin.utils import checkRoomExist, createPostByAdmin
@@ -83,17 +84,6 @@ def post():
     else:
         abort(403)
 
-# @posts.route("/post")
-# @login_required
-# def post():
-#     ans = []
-#     if current_user.role_id == 1:
-#         posts = Post.query.all()
-#         for post in posts:
-#             res = {"id":post.id, "title":post.title, "content":post.content, "room_id":post.room_id, "pending":post.pending, "date_created":post.date_created, "date_posted":post.date_posted, "date_out":post.date_out, "user_id":post.user_id}
-#             ans.append(res)
-#         return jsonify({"posts":ans})
-
 @posts.route("/post/delete/<int:post_id>", methods=["POST"])
 @login_required
 def delete_post(post_id):
@@ -152,10 +142,41 @@ def new_room():
             print("===============")
             for file in form.image.data:
                 print(file)
+            room = Room(user_id=current_user.id, 
+                        city_code=form.city.data, 
+                        district_id=form.district.data, 
+                        ward_id=form.ward.data, 
+                        info=form.info.data, 
+                        room_type_id=form.room_type.data, 
+                        room_number=form.room_number.data, 
+                        price=form.price.data, 
+                        chung_chu=form.chung_chu.data, 
+                        phong_tam=form.phong_tam.data, 
+                        nong_lanh=form.nong_lanh.data, 
+                        phong_bep=form.phong_bep.data, 
+                        dieu_hoa=form.dieu_hoa.data, 
+                        ban_cong=form.ban_cong.data, 
+                        gia_dien=form.gia_dien.data, 
+                        gia_nuoc=form.gia_nuoc.data, 
+                        tien_ich_khac=form.tien_ich_khac.data, 
+                        pending=form.pending.data)
+            db.session.add(room)
+            db.session.commit()
+            flash(f"add room ok with room_id = {room.id}")
+            return redirect(url_for('posts.room'))
         return render_template("posts/create_room.html", title="New Room", form=form)
     else :
         abort(403)
     
+@posts.route("/room", methods=["GET"])
+@login_required
+def room():
+    if current_user.role_id == 1 and current_user.status_confirm == 1:
+        rooms = Room.query.all()
+        return render_template("posts/room.html", title = "Room", rooms=rooms)
+    else :
+        abort(403)
+
 
 # @posts.route("/post/<int:post_id>/accept", methods=["GET", "POST"])
 # @login_required
@@ -180,3 +201,14 @@ def new_room():
 #         return redirect(url_for("posts.post"))
 #     else :
 #         abort(403)
+
+# @posts.route("/post")
+# @login_required
+# def post():
+#     ans = []
+#     if current_user.role_id == 1:
+#         posts = Post.query.all()
+#         for post in posts:
+#             res = {"id":post.id, "title":post.title, "content":post.content, "room_id":post.room_id, "pending":post.pending, "date_created":post.date_created, "date_posted":post.date_posted, "date_out":post.date_out, "user_id":post.user_id}
+#             ans.append(res)
+#         return jsonify({"posts":ans})
