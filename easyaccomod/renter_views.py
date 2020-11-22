@@ -3,7 +3,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from easyaccomod.owner_models import City,District,Ward
 from easyaccomod import app
 from easyaccomod.forms import SearchForm
-from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getResult
+from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getRoom
 
 
 
@@ -22,7 +22,7 @@ def search():
         elif (req[0] == 'district'):
           return getStreet(req[1])
         elif (req[0] == 'submit'):
-          return getResult(req[1])
+          return getRoom(req[1])
         else:
           res = make_response(jsonify("loirequest"),200)
           return res

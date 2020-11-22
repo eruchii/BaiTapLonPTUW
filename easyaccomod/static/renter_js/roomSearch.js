@@ -45,6 +45,7 @@ btn.onclick = async function(e){
             response.json().then( function(data)
             {   
                 document.querySelector(".test").removeAttribute("style")
+                console.log(data)
             })
         })
         .catch(function (error) {

@@ -9,10 +9,10 @@ from easyaccomod.owner_models import City
 
 class SearchForm(FlaskForm):
     qry = City.query.all()
-    citiest =[]
+    cities =[]
     for city in qry:
-        citiest.append(city.name)
-    city = SelectField("Choose your City",choices=citiest)
+        cities.append(city.name)
+    city = SelectField("Choose your City",choices=cities)
     district = SelectField("Choose your District",choices=None)
     street = SelectField("Choose your Street",choices=None)
     near = StringField("Near which University")
