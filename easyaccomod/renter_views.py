@@ -5,15 +5,15 @@ from easyaccomod.room_models import Like,Comment
 from easyaccomod import app
 from easyaccomod.forms import SearchForm
 from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getRoom
-from easyaccomod.renter_db import addLike
-renter = Blueprint("renter", __name__, template_folder='templates/renter')
+from easyaccomod.renter_db import addLike,removeLike
 
-@renter.route("/renter/search",methods = ['POST','GET'])
+renter_bp = Blueprint("renter",__name__,template_folder='templates/renter')
+
+@renter_bp.route("/search",methods = ['POST','GET'])
 @login_required
 def search():
     cities = City.query.all()
     form = SearchForm(cities) 
-    print(request)
     if (request.method == "POST"):
         req = request.get_json()
   
@@ -29,11 +29,12 @@ def search():
           return res
     return render_template("searchRoom.html",form = form)
 
-@renter.route("/renter/api/addLike",method=["POST"])
+@renter_bp.route("/api/addlike",methods=["POST","GET"])
 @login_required
-def addLike():
+def add_Like():
     data = request.get_json()
     res = {}
+    print(f"hi+{data}")
     res["status"] = "Error"
     res["msg"] = "Can't like this room"
     try:
@@ -47,9 +48,9 @@ def addLike():
     except:
       return jsonify(res)
 
-@renter.route("/renter/api/removeLike",method=["POST"])
+@renter_bp.route("/api/removeLike",method=["POST"])
 @login_required
-def removeLike():
+def remove_Like():
     data = request.get_json()
     res = {}
     res["status"] = "Error"
@@ -68,12 +69,12 @@ def removeLike():
     except:
       return jsonify(res)
 
-# @renter.route("/renter/api/Comment")
-# @login_required
-# def addComment():
-#   data = request.get_json()
-#     res = {}
-#     res["status"] = "Error"
-#     res["msg"] = "Can't like this room"
+@renter_bp.route("/api/Comment")
+@login_required
+def addComment():
+  data = request.get_json()
+  res = {}
+  res["status"] = "Error"
+  res["msg"] = "Can't like this room"
 
 

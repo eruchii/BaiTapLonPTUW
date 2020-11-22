@@ -27,7 +27,7 @@
                         <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
                         <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
                         {% if current_user.is_authenticated%}
-                        <a class="nav-item nav-link" href="{{ url_for('search') }}">Search</a>
+                        <a class="nav-item nav-link" href="{{ url_for('renter.search') }}">Search</a>
                         {% endif %}
                     </div>
                     <!-- Navbar Right Side -->
@@ -118,7 +118,7 @@
         </div>
         <div class="col-sm-8 test" style="display:none">
             <p>
-                post
+                <button class="like">Like</button>
             </p>
         </div>
     </div>

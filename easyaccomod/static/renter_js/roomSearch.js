@@ -1,5 +1,8 @@
+
+// Search button event handle
+
 var btn = document.querySelector(".btn-outline-info")
-// xu ly submit
+
 btn.onclick = async function(e){
     e.preventDefault()
     //let payload = [{'city': 'Hồ Chí Minh'}, {'district': 'Quận 4'}, {'street': '12'}, {'near': 'Hanoi'}, {'price': '2315'}, {'roomType': '545'}, {'area': '454654'}, {'phong_tam': '4'}, {'nong_lanh': 'False'}, {'dieu_hoa': 'False'}, {'ban_cong': 'False'}, {'chung_chu': 'False'}, {'gia_dien': '454564564'}, {'gia_nuoc': '454564564'}, {'tien_ich_khac': 'Koh'}]
@@ -72,7 +75,7 @@ function addToStreetDOM(data){
     street.appendChild(op)
 }
 
-document.querySelector(".city").onchange = function(){
+document.querySelector(".city").onchange = async function(){
         fetch(window.origin+"/renter/search",
         {
             method : 'POST',
@@ -103,7 +106,7 @@ document.querySelector(".city").onchange = function(){
         });
     }
 
-    document.querySelector(".district").onchange = function(){
+    document.querySelector(".district").onchange = async function(){
         fetch(window.origin+"/renter/search",
         {
             method : 'POST',
@@ -133,5 +136,7 @@ document.querySelector(".city").onchange = function(){
         });
     }
 
+// Like button handle
 
-// Search button event handle
+
+

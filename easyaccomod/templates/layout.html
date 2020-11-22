@@ -33,7 +33,7 @@
                         {% endif %}
                         <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
                         {% if current_user.is_authenticated and current_user.role_id == 2%}
-                        <a class="nav-item nav-link" href="{{ url_for('search') }}">Search</a>
+                        <a class="nav-item nav-link" href="{{ url_for('renter.search') }}">Search</a>
                         {% endif %}
                     </div>
                     <!-- Navbar Right Side -->
