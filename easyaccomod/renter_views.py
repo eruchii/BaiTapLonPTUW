@@ -48,7 +48,7 @@ def add_Like():
     except:
       return jsonify(res)
 
-@renter_bp.route("/api/removeLike",method=["POST"])
+@renter_bp.route("/api/removeLike",methods=["POST"])
 @login_required
 def remove_Like():
     data = request.get_json()
@@ -69,7 +69,7 @@ def remove_Like():
     except:
       return jsonify(res)
 
-@renter_bp.route("/api/Comment")
+@renter_bp.route("/api/Comment", methods = ["POST"])
 @login_required
 def addComment():
   data = request.get_json()
