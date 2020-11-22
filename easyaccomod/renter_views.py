@@ -1,13 +1,14 @@
-from flask import render_template, redirect, url_for, flash, request, abort,jsonify, make_response
+from flask import *
 from flask_login import login_user, current_user, logout_user, login_required
 from easyaccomod.owner_models import City,District,Ward
+from easyaccomod.room_models import Like,Comment
 from easyaccomod import app
 from easyaccomod.forms import SearchForm
 from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getRoom
+from easyaccomod.renter_db import addLike
+renter = Blueprint("renter", __name__, template_folder='templates/renter')
 
-
-
-@app.route("/renter/search",methods = ['POST','GET'])
+@renter.route("/renter/search",methods = ['POST','GET'])
 @login_required
 def search():
     cities = City.query.all()
@@ -28,5 +29,51 @@ def search():
           return res
     return render_template("searchRoom.html",form = form)
 
+@renter.route("/renter/api/addLike",method=["POST"])
+@login_required
+def addLike():
+    data = request.get_json()
+    res = {}
+    res["status"] = "Error"
+    res["msg"] = "Can't like this room"
+    try:
+      status,msg = addLike(data["user_id"],data["room_id"])
+      if status:
+          res["status"] = "Success"
+      else :
+          res["status"] = "Fail"
+      res["msg"] = msg
+      return jsonify(res)
+    except:
+      return jsonify(res)
+
+@renter.route("/renter/api/removeLike",method=["POST"])
+@login_required
+def removeLike():
+    data = request.get_json()
+    res = {}
+    res["status"] = "Error"
+    res["msg"] = "Can't like this room"
+    try:
+      status,msg = removeLike(data["user_id"],data["room_id"])
+      
+      if status:
+        res["status"] = "Success"
+      else :
+        res["status"] = "Fail"
+      res["msg"] = msg
+      
+      return jsonify(res)
+    
+    except:
+      return jsonify(res)
+
+# @renter.route("/renter/api/Comment")
+# @login_required
+# def addComment():
+#   data = request.get_json()
+#     res = {}
+#     res["status"] = "Error"
+#     res["msg"] = "Can't like this room"
 
 
