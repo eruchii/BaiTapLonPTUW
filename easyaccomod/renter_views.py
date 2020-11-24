@@ -69,12 +69,21 @@ def remove_Like():
     except:
       return jsonify(res)
 
-@renter_bp.route("/api/Comment", methods = ["POST"])
+@renter_bp.route("/api/Comment", methods = ["POST","GET"])
 @login_required
 def addComment():
   data = request.get_json()
   res = {}
   res["status"] = "Error"
-  res["msg"] = "Can't like this room"
-
+  res["msg"] = "Can't Comment"
+  try:
+    status,msg = addComment(data["user_id"],data["room_id"],data["content"])
+    if (status):
+      res["status"] = "Succesfully Added"
+    else:
+      res["status"] = "Fail"
+    res["msg"] = msg
+    return jsonify(res)
+  except:
+    return jsonify(res)
 
