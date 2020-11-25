@@ -33,7 +33,9 @@
                     <a id="details" class="btn btn-info btn-sm my-1" href="{{ url_for('posts.view_room', room_id=room.id) }}">Details</a>
                 </div>
                 <h2><a class="article-title" href=>{{ room.user.email }}</a></h2>
-                <span>SDT owner: {{ room.user.owner[0].phone_number }}</span> <br>
+                {% if room.user.owner %}
+                    <span>SDT owner: {{ room.user.owner[0].phone_number }}</span> <br>
+                {% endif %}
                 <span>Ma phong: {{room.id}}</span> 
                 <p class="article-content"> Thành phố {{ room.city.name }} -- Quan {{ room.district.name }} --  Khu vuc {{ room.ward.name }}</p>
                 <p class="article-content">Thong tin phong: {{ room.info }}</p>

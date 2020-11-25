@@ -147,3 +147,17 @@ def save_user_picture(user_prefix, form_picture):
     i.thumbnail(output_size)
     i.save(picture_path)
     return picture_fn
+
+def save_room_picture(room_id, room_picture):
+    random_hex = secrets.token_hex(8)
+    f_name, f_ext = os.path.splitext(room_picture.filename)
+    picture_fn = "room" + room_id + "_" + random_hex + f_ext
+    picture_path = os.path.join(
+        current_app.root_path, "static/room_pics", picture_fn
+    )
+    output_size = (280, 280)
+    i = Image.open(form_picture)
+    i.thumbnail(output_size)
+    i.save(picture_path)
+    return picture_fn
+

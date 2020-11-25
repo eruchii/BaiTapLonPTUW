@@ -145,27 +145,33 @@ def new_room():
             list_img = []
             for file in form.image.data:
                 list_img.append(file.filename)
-            # room = Room(user_id=current_user.id, 
-            #             city_code=form.city.data, 
-            #             district_id=form.district.data, 
-            #             ward_id=form.ward.data, 
-            #             info=form.info.data, 
-            #             room_type_id=form.room_type.data, 
-            #             room_number=form.room_number.data, 
-            #             price=form.price.data, 
-            #             chung_chu=form.chung_chu.data, 
-            #             phong_tam=form.phong_tam.data, 
-            #             nong_lanh=form.nong_lanh.data, 
-            #             phong_bep=form.phong_bep.data, 
-            #             dieu_hoa=form.dieu_hoa.data, 
-            #             ban_cong=form.ban_cong.data, 
-            #             gia_dien=form.gia_dien.data, 
-            #             gia_nuoc=form.gia_nuoc.data, 
-            #             tien_ich_khac=form.tien_ich_khac.data, 
-            #             pending=form.pending.data)
-            # db.session.add(room)
-            # db.session.commit()
-            flash(f"add room ok with room_id = {room.id}")
+            print(list_img)
+            print(type(list_img))
+            print(str(list_img))
+            print(type(str(list_img)))
+            room_image = str(list_img)
+            room = Room(user_id=current_user.id, 
+                        city_code=form.city.data, 
+                        district_id=form.district.data, 
+                        ward_id=form.ward.data, 
+                        info=form.info.data, 
+                        room_type_id=form.room_type.data, 
+                        room_number=form.room_number.data, 
+                        price=form.price.data, 
+                        chung_chu=form.chung_chu.data, 
+                        phong_tam=form.phong_tam.data, 
+                        nong_lanh=form.nong_lanh.data, 
+                        phong_bep=form.phong_bep.data, 
+                        dieu_hoa=form.dieu_hoa.data, 
+                        ban_cong=form.ban_cong.data, 
+                        gia_dien=form.gia_dien.data, 
+                        gia_nuoc=form.gia_nuoc.data, 
+                        tien_ich_khac=form.tien_ich_khac.data,
+                        image=room_image,
+                        pending=form.pending.data)
+            db.session.add(room)
+            db.session.commit()
+            flash(f"add room ok with room_id = {room.id}", "success")
             return redirect(url_for('posts.room'))
         return render_template("posts/create_room.html", title="New Room", form=form)
     else :
