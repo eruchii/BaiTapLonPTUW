@@ -1,6 +1,6 @@
 from flask import *
 from easyaccomod import app
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user
 from easyaccomod.owner_models import Owner, User
 from functools import wraps
 from easyaccomod.owner_db import check_user, add_user, change_password
@@ -11,11 +11,10 @@ def is_owner(f):
 	@wraps(f)
 	def decorated_func(*args, **kwargs):
 		if(current_user.is_anonymous):
-			abort(403)
-			return
-		if(current_user.role_id == 2):
-			abort(403)
-			return
+			return redirect(url_for("owner.login"))
+		if(current_user.role_id != 3):
+			logout_user()
+			return redirect(url_for("owner.login"))
 		return f(*args, **kwargs)
 	return decorated_func
 
@@ -73,9 +72,12 @@ def api_login():
 
 @owner_bp.route("/login")
 def login():
+	if(current_user.is_authenticated):
+		return redirect(url_for("main.home"))
 	return render_template("owner/login.html")
 
 @owner_bp.route("/changepassword")
+@is_owner
 def changepassword():
 	return render_template("owner/changepassword.html")
 
@@ -106,3 +108,8 @@ def fakelogin(id):
 	user = Owner.query.all()[int(id)]
 	login_user(user, remember=True)
 	return jsonify({"status":"ok"})
+
+@owner_bp.route("/")
+@is_owner
+def home():
+	return jsonify({"msg":"hello"})

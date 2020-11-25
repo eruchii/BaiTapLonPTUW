@@ -3,13 +3,13 @@
 	<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" type="text/css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha512-59oxERSDGj1eMzmFW3acSaBHEMNi2GaeQC7nQYcTqM0vgcnavi4BpUhLkcJQE2G6fdtn8JVj7brt0EZuBV0ogQ==" crossorigin="anonymous"></script>
-	<script src="{{ url_for('static', filename='chat.js') }}"></script>
   <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='chat.css')}}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style_owner.css') }}">
   <title>{{ current_user.username }}</title>
 </head>
 <body>
+	{% include 'owner/navbar.html' %}
 <div class="container">
-<h3 class=" text-center">Messaging</h3>
 <div class="messaging">
       <div class="inbox_msg">
         <div class="inbox_people">
@@ -19,7 +19,7 @@
             </div>
             <div class="srch_bar">
               <div class="stylish-input-group">
-                <input type="text" class="search-bar"  placeholder="Search" >
+                <input list="users" class="search-bar" placeholder="Search" id="search-box">
                 <span class="input-group-addon">
                 <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
                 </span> </div>
@@ -40,8 +40,8 @@
           </div>
         </div>
       </div>
-      
-      
+
     </div></div>
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
   </body>
 </html>

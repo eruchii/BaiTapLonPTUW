@@ -112,6 +112,17 @@ def load_latest_msg(sender, recv):
 		((Message.sender == recv) & (Message.receiver == sender)) |  
 		((Message.sender == sender) & (Message.receiver == recv))
 	)
+	if(msgs.count() == 0):
+		resp = {}
+		resp["id"] = -1
+		resp["username"] = recv
+		resp["sender"] = ""
+		resp["receiver"] = ""
+		resp["msg"] = ""
+		resp["img"] = "https://ptetutorials.com/images/user-profile.png"
+		resp["date"] = ""
+		resp["new_msg"] = 0
+		return resp
 	latest_msg = msgs[-1]
 	resp = {}
 	resp["id"] = latest_msg.id
@@ -142,3 +153,18 @@ def load_list_people():
 @can_send_msg
 def index():
 	return render_template("chat.html", async_mode=socketio.async_mode)
+
+@socketio.on("search user")
+def search_user(data):
+	search = data["search"]
+	search_query = "{}%".format(search)
+	users = User.query.filter(User.username.like(search_query))
+	if(users.count == 0):
+		return
+	res = []
+	for user in users:
+		r = load_latest_msg(current_user.username, user.username)
+		res.append(r)
+	res.sort(key= lambda x: (x["id"]*-1, x["username"]))
+	socketio.emit("loaded list people", res, room = clients[current_user.username])
+

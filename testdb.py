@@ -1,16 +1,16 @@
-from easyaccomod import db, bcrypt
 from easyaccomod.models import *
 from easyaccomod.owner_models import *
 from easyaccomod.owner_db import *
+import random
 
 def Fake_user():
-	username = "nct1"
+	username = "eruru{}".format(random.randint(1, 100))
 	password = "123456"
 	check_password = "123456"
 	fullname = "a b c"
-	identity_number = "12"
-	phone_number = "12"
-	email = "assd@ajfasf.com"
+	identity_number = str(random.randint(1000, 100000))
+	phone_number = str(random.randint(1000, 100000))
+	email = "{}@ajfasf.com".format(str(random.randint(1000, 100000)))
 	city_code = "HN"
 	district_id = "1"
 	ward_id = "43"
