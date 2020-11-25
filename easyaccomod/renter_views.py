@@ -5,7 +5,7 @@ from easyaccomod.room_models import Like,Comment
 from easyaccomod import app
 from easyaccomod.forms import SearchForm
 from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getRoom
-from easyaccomod.renter_db import addLike,removeLike
+from easyaccomod.renter_db import addLike,removeLike,addComment
 
 renter_bp = Blueprint("renter",__name__,template_folder='templates/renter')
 
@@ -71,7 +71,7 @@ def remove_Like():
 
 @renter_bp.route("/api/Comment", methods = ["POST","GET"])
 @login_required
-def addComment():
+def add_Comment():
   data = request.get_json()
   res = {}
   res["status"] = "Error"
