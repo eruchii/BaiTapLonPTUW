@@ -1,7 +1,7 @@
 from flask.json import jsonify
 from easyaccomod.admin.utils import *
 from flask import Blueprint
-from easyaccomod.admin.forms import LoginForm, RegistrationForm
+from easyaccomod.admin.forms import LoginForm, RegistrationForm, UpdateAccountForm
 from easyaccomod import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request, abort
 from flask_login import login_user, current_user, logout_user, login_required
@@ -52,13 +52,27 @@ def login():
             flash (f"Login successful! Welcome admin! {user.username}", "success") 
             return redirect(url_for("admin.admin_home"))
         else:
-            flash("Login Unsucccessful. Please check for email and password", "danger")
+            flash("Login Unsucccessful. Please check email and password!", "danger")
     return render_template("login.html", title="Login", form=form)
 
-@admin.route("/account")
+@admin.route("/account", methods=["GET", "POST"])
 @login_required
 def account():
-    return f"User {current_user.username} role_id {current_user.role_id}"
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        if form.picture.data:
+            picture_file = save_user_picture(current_user.username, form.picture.data)
+            current_user.image_file = picture_file
+        if form.new_password.data == form.confirm_new_password.data:
+            hash_password = bcrypt.generate_password_hash(form.new_password.data).decode('utf-8')
+            current_user.password = hash_password
+        db.session.commit()
+        flash("Your Account has been updated!", "success")
+        return redirect(url_for('admin.account'))
+    elif request.method == "GET":
+        flash("You must type password to update account!", "info")
+    image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
+    return render_template("admin/account.html", title="Account", image_file=image_file, form=form)   
 
 @admin.route("/logout")
 @login_required

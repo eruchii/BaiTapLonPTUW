@@ -8,7 +8,7 @@
                 <a id="post" class="nav-link" href="{{ url_for('posts.post') }}" >Post</a>
             </li>
             <li class="nav-item">
-                <a id="room" class="nav-link" href="#" >Room</a>
+                <a id="room" class="nav-link" href="{{ url_for('posts.room') }}" >Room</a>
             </li>
             <li class="nav-item">
                 <a id="user" class="nav-link active" href="{{ url_for('admin.manage_user') }}">User</a>
@@ -44,7 +44,7 @@
         
     {% for user in users %}
         <article class="media content-section">
-            <img class="rounded-circle article-img" src="#" alt="image of author">
+            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}" alt="image of author">
             <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">{{ user.username}}</a>
@@ -64,3 +64,7 @@
     {% endfor %}
 
 {% endblock info %}
+
+{% block task %}
+    <br>
+{% endblock task %}

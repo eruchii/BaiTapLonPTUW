@@ -41,7 +41,6 @@
                         {% if current_user.is_authenticated %}
                         {% block admin_header %}
                         {% endblock %}
-                            <a class="nav-item nav-link" href="{{ url_for('admin.account') }}">Account</a>
                             <a class="nav-item nav-link" href="{{ url_for('admin.logout') }}">Logout</a>
                         {% else %}
                             <a class="nav-item nav-link" href="{{ url_for('admin.login') }}">Login</a>

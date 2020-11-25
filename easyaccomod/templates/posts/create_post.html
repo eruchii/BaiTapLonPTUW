@@ -1,6 +1,6 @@
 {% extends "admin_home.html" %}
 {% block info %}
-    <h1>Create Post</h1>
+    <h1>{{ form_title }}</h1>
     <div class="content-section">
         <form action="" method="post">
             {{ form.hidden_tag() }}
@@ -47,3 +47,7 @@
         </form>
     </div>
 {% endblock info %}
+
+{% block task %}
+    <br>
+{% endblock task %}

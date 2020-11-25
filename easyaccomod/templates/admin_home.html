@@ -9,6 +9,7 @@
             <button type="button" class="btn btn-info mr-3">Notifications <span class="badge badge-secondary">4</span></button>
         </a>
         <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
+        <a class="nav-item nav-link" href="{{ url_for('admin.account') }}">Account</a>
     {% endif %}
 {% endblock %}
 {% block content %}
@@ -39,8 +40,12 @@
         {% endblock %}
     </div>
     
-    
+    {% block task %}
+        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ad labore numquam quaerat, molestias vero eos vel nobis nisi deleniti dicta optio placeat aspernatur fugiat harum nihil dolorum quis quam!</div>
+    {% endblock task %}
 {% endblock content %}
+
+
 
 {% block sidebar %}
     <div class="content-section">

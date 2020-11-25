@@ -1,5 +1,8 @@
+from easyaccomod import bcrypt
 from easyaccomod.models import User
 from flask_wtf import FlaskForm
+from flask_wtf.file import FileField, FileAllowed
+from flask_login import current_user
 from wtforms import StringField
 from wtforms.fields.core import BooleanField, SelectField
 from wtforms.fields.simple import PasswordField, SubmitField
@@ -31,3 +34,13 @@ class LoginForm(FlaskForm):
     # SubmitField ~ submit button
     submit = SubmitField("Login")
 
+class UpdateAccountForm(FlaskForm):
+    password = PasswordField("Password", validators=[DataRequired()])
+    new_password = PasswordField("New Password", validators=[DataRequired()])
+    confirm_new_password = PasswordField("Confirm New Password", validators=[DataRequired(), EqualTo("new_password", "Confirm New Password must be same with New Password")])
+    picture = FileField("Update Profile Picture", validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField("Update")
+
+    def validate_password(self, password):
+        if not bcrypt.check_password_hash(current_user.password, password.data):
+            raise ValidationError("Password is incorect!")

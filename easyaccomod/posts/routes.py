@@ -26,7 +26,7 @@ def new_accept_post():
             post.pending = True # True -> accept post
             db.session.commit()
             resp["status"] = "success"
-            resp["msg"] = "xac nhan thanh cong post_id = {}".format(data["post_id"])
+            resp["msg"] = "Accepted post - post_id = {}".format(data["post_id"])
             resp["post_pending"] = "True"
         return jsonify(resp)
     except :
@@ -47,7 +47,7 @@ def new_reject_post():
             post.pending = False
             db.session.commit()
             resp["status"] = "success"
-            resp["msg"] = f"reject thanh cong, post_id = {data['post_id']}"
+            resp["msg"] = f"Rejected Post - post_id = {data['post_id']}"
             resp["post_pending"] = "False"
         return jsonify(resp)
     except:
@@ -57,6 +57,7 @@ def new_reject_post():
 @login_required
 def new_post():
     if current_user.role_id == 1:
+        form_title = "Create Post"
         form = PostForm(pending=True)
         if form.validate_on_submit():
             title = form.title.data
@@ -70,7 +71,7 @@ def new_post():
             else :
                 flash(f"Room does not exist!", "danger")
                 return redirect(url_for('posts.new_post'))
-        return render_template("posts/create_post.html", title="New Post", form=form)
+        return render_template("posts/create_post.html", title="New Post", form_title=form_title, form=form)
     else :
         abort(403)
     
@@ -107,6 +108,7 @@ def view_post(post_id):
 @login_required
 def update_post(post_id):
     post = Post.query.get_or_404(post_id)
+    form_title = "Update Post"
     if current_user.role_id != 1 :
         abort(403)
     form = UpdatePostForm()
@@ -125,7 +127,7 @@ def update_post(post_id):
         form.room_id.data = post.room_id
         form.date_posted.data = post.date_posted
         form.pending.data = post.pending
-    return render_template("posts/update_post.html", title="Update Post", form=form)
+    return render_template("posts/update_post.html", title="Update Post", form_title=form_title, form=form)
 
 @posts.route("/room/new", methods=["GET", "POST"])
 @login_required
@@ -140,28 +142,29 @@ def new_room():
             print(form.gia_dien.data, " ", form.gia_nuoc.data)
             print(form.pending.data)
             print("===============")
+            list_img = []
             for file in form.image.data:
-                print(file)
-            room = Room(user_id=current_user.id, 
-                        city_code=form.city.data, 
-                        district_id=form.district.data, 
-                        ward_id=form.ward.data, 
-                        info=form.info.data, 
-                        room_type_id=form.room_type.data, 
-                        room_number=form.room_number.data, 
-                        price=form.price.data, 
-                        chung_chu=form.chung_chu.data, 
-                        phong_tam=form.phong_tam.data, 
-                        nong_lanh=form.nong_lanh.data, 
-                        phong_bep=form.phong_bep.data, 
-                        dieu_hoa=form.dieu_hoa.data, 
-                        ban_cong=form.ban_cong.data, 
-                        gia_dien=form.gia_dien.data, 
-                        gia_nuoc=form.gia_nuoc.data, 
-                        tien_ich_khac=form.tien_ich_khac.data, 
-                        pending=form.pending.data)
-            db.session.add(room)
-            db.session.commit()
+                list_img.append(file.filename)
+            # room = Room(user_id=current_user.id, 
+            #             city_code=form.city.data, 
+            #             district_id=form.district.data, 
+            #             ward_id=form.ward.data, 
+            #             info=form.info.data, 
+            #             room_type_id=form.room_type.data, 
+            #             room_number=form.room_number.data, 
+            #             price=form.price.data, 
+            #             chung_chu=form.chung_chu.data, 
+            #             phong_tam=form.phong_tam.data, 
+            #             nong_lanh=form.nong_lanh.data, 
+            #             phong_bep=form.phong_bep.data, 
+            #             dieu_hoa=form.dieu_hoa.data, 
+            #             ban_cong=form.ban_cong.data, 
+            #             gia_dien=form.gia_dien.data, 
+            #             gia_nuoc=form.gia_nuoc.data, 
+            #             tien_ich_khac=form.tien_ich_khac.data, 
+            #             pending=form.pending.data)
+            # db.session.add(room)
+            # db.session.commit()
             flash(f"add room ok with room_id = {room.id}")
             return redirect(url_for('posts.room'))
         return render_template("posts/create_room.html", title="New Room", form=form)
@@ -177,6 +180,12 @@ def room():
     else :
         abort(403)
 
+@posts.route("/room/details/<int:room_id>", methods=["GET", "POST"])
+@login_required
+def view_room(room_id):
+    if current_user.role_id == 1 and current_user.status_confirm == 1:
+        room = Room.query.get_or_404(room_id)
+        return render_template("posts/view_room.html", title="View Room", room=room)
 
 # @posts.route("/post/<int:post_id>/accept", methods=["GET", "POST"])
 # @login_required

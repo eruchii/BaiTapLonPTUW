@@ -7,7 +7,7 @@
                 <a id="post" class="nav-link active" href="{{ url_for('posts.post') }}">Post</a>
             </li>
             <li class="nav-item">
-                <a id="room" class="nav-link" href="#">Room</a>
+                <a id="room" class="nav-link" href="{{ url_for('posts.room') }}">Room</a>
             </li>
             <li class="nav-item">
                 <a id="user" class="nav-link" href="{{ url_for('admin.manage_user') }}">User</a>
@@ -20,13 +20,11 @@
 </div>
 {% endblock %}
 
-
-
 {% block info %}
     <h1>Manage Post</h1>
     {% for post in posts %}
         <article class="media content-section max-height-content-section">
-            <img class="rounded-circle article-img" src="#" alt="image of author">
+            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="image of author">
             <div class="media-body">
                 <div class="article-metadata">
                     <a class="mr-2" href="#">{{ post.author.username }}</a>
@@ -39,7 +37,8 @@
                     <a id="details" class="btn btn-info btn-sm my-1" href="{{ url_for('posts.view_post', post_id=post.id) }}">Details</a>
                 </div>
                 <h2><a class="article-title" href="{{ url_for('posts.update_post', post_id=post.id) }}">{{ post.title }}</a></h2>
-                <span>{{post.id}}</span>
+                <span>Post_id: {{ post.id }}</span> <br> <span>Room_Of_Post: {{ post.room.id }}</span> 
+                <a style="text-decoration: none;color:#66CDAA" href="{{ url_for('posts.view_room', room_id=post.room.id) }}">Information about Room</a>
                 <p class="article-content">{{ post.content }}</p>
                 <p class="article-content"> <u>Date created</u> : {{ post.date_created }} and <u>Date posted</u> : {{ post.date_posted }}</p>
                 <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out }}</p>
@@ -49,3 +48,7 @@
         </article>
     {% endfor %}
 {% endblock info %}
+
+{% block task %}
+    <br>
+{% endblock task %}

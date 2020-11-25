@@ -44,7 +44,7 @@ class Room(db.Model):
 	post = db.relationship("Post", backref="room", lazy=True)
 
 	def __repr__(self):
-		return "<Room(id='{}', owner_id='{}'>".format(self.id, self.owner_id)
+		return "<Room(id='{}', user_id='{}'>".format(self.id, self.user_id)
 
 class City(db.Model):
 	code = db.Column(db.String(5), primary_key=True)

@@ -21,29 +21,35 @@
 {% endblock %}
 
 
-
 {% block info %}
-    <h1>Manage Post</h1>
+    <h1>Manage Room</h1>
     {% for room in rooms %}
         <article class="media content-section max-height-content-section">
-            <img class="rounded-circle article-img" src="#" alt="image of author">
+            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + room.user.image_file) }}" alt="image of author">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ room.owner_id }}</a>
+                    <a class="mr-2" href="#">{{ room.user.username }}</a>
                     <small id="room" class="text-muted mr-1">{{ room.pending }}</small>
-                    <a id="details" class="btn btn-info btn-sm my-1" href="">Details</a>
+                    <a id="details" class="btn btn-info btn-sm my-1" href="{{ url_for('posts.view_room', room_id=room.id) }}">Details</a>
                 </div>
-                <h2><a class="article-title" href=>{{ room.owner_id }}</a></h2>
-                <span>{{room.id}}</span>
-                <p class="article-content">{{ room.city_code }} {{ room.district_id }} {{ room.ward_id }}</p>
-                <p class="article-content"> {{ room.info }}</p>
-                <p class="article-content"> room:type {{ room.room_type_id }} room:number {{ room.room_number }}</p>
-                <p class="article-content">{{ room.gia_dien }} {{ room.gia_nuoc }}</p>
+                <h2><a class="article-title" href=>{{ room.user.email }}</a></h2>
+                <span>SDT owner: {{ room.user.owner[0].phone_number }}</span> <br>
+                <span>Ma phong: {{room.id}}</span> 
+                <p class="article-content"> Thành phố {{ room.city.name }} -- Quan {{ room.district.name }} --  Khu vuc {{ room.ward.name }}</p>
+                <p class="article-content">Thong tin phong: {{ room.info }}</p>
+                <p class="article-content"> Kieu phong: {{ room.roomtype.name }} -- So phong: {{ room.room_number }}</p>
+                <p class="article-content"> Gia dien:{{ room.gia_dien }} -- Gia nuoc: {{ room.gia_nuoc }}</p>
                 <img src="#" alt="{{ room.image }}">
-                <p>tien ich khac {{ room.tien_ich_khac }}</p>
+                {% if room.tien_ich_khac %}
+                    <p>tien ich khac: {{ room.tien_ich_khac }}</p>
+                {% endif %}
                 <p>bla bla ...</p>
-                <span><em>pending: {{ room.pending }}</em></span>
+                <span><em>Status: {{ room.pending }}</em></span>
             </div>
         </article>
     {% endfor %}
 {% endblock info %}
+
+{% block task %}
+    <br>
+{% endblock task %}

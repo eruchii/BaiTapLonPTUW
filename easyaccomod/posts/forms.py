@@ -52,8 +52,8 @@ class RoomForm(FlaskForm):
     phong_bep = IntegerField("Phong Bep", validators=[DataRequired()])
     dieu_hoa = BooleanField("Dieu Hoa")
     ban_cong = BooleanField("Ban Cong")
-    gia_dien = IntegerField("Gia Dien", validators=[DataRequired()])
-    gia_nuoc = IntegerField("Gia Nuoc", validators=[DataRequired()])
+    gia_dien = IntegerField("Gia Dien", validators=[DataRequired("This Field is required and be integer!")])
+    gia_nuoc = IntegerField("Gia Nuoc", validators=[DataRequired("This Field is required and be integer!")]) # !need fix int to str
     tien_ich_khac = TextAreaField("Tien ich khac")
     image = MultipleFileField("Image", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
     pending = BooleanField("Pending")
