@@ -8,16 +8,18 @@
                 <small id="room" class="text-muted mr-1">{{ room.pending }}</small>
                 <!-- button better/ modal -->
                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
-                    Delete
+                    Update
                 </button>
             </div>
             <h2><a class="article-title" href=>{{ room.user.email }}</a></h2>
+            <span id="room_id" style="display: none;">{{ room.id }}</span>
             <span>Ma phong: {{room.id}}</span>
             <p class="article-content">Thong tin phong: {{ room.info }}</p>
             <p class="article-content"> Thành phố {{ room.city.name }} -- Quan {{ room.district.name }} --  Khu vuc {{ room.ward.name }}</p>
             <p class="article-content"> Kieu phong: {{ room.roomtype.name }} -- So phong: {{ room.room_number }}</p>
             <p class="article-content"> Gia dien:{{ room.gia_dien }} -- Gia nuoc: {{ room.gia_nuoc }}</p>
-            <img src="#" alt="{{ room.image }}">
+            <span id="room_image" style="display: none;" >{{ room.image }}</span> 
+            <div id="image"></div>
             {% if room.tien_ich_khac %}
                 <p>tien ich khac: {{ room.tien_ich_khac }}</p>
             {% endif %}

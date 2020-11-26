@@ -32,16 +32,20 @@
                     <small id="room" class="text-muted mr-1">{{ room.pending }}</small>
                     <a id="details" class="btn btn-info btn-sm my-1" href="{{ url_for('posts.view_room', room_id=room.id) }}">Details</a>
                 </div>
-                <h2><a class="article-title" href=>{{ room.user.email }}</a></h2>
+                <h2><a class="article-title" href="#">{{ room.user.email }}</a></h2>
                 {% if room.user.owner %}
                     <span>SDT owner: {{ room.user.owner[0].phone_number }}</span> <br>
                 {% endif %}
+                <span id="room_id" style="display: none;">{{ room.id }}</span>
                 <span>Ma phong: {{room.id}}</span> 
                 <p class="article-content"> Thành phố {{ room.city.name }} -- Quan {{ room.district.name }} --  Khu vuc {{ room.ward.name }}</p>
                 <p class="article-content">Thong tin phong: {{ room.info }}</p>
                 <p class="article-content"> Kieu phong: {{ room.roomtype.name }} -- So phong: {{ room.room_number }}</p>
                 <p class="article-content"> Gia dien:{{ room.gia_dien }} -- Gia nuoc: {{ room.gia_nuoc }}</p>
-                <img src="#" alt="{{ room.image }}">
+                <span id="room_image" style="display: none;" >{{ room.image }}</span>
+                <div id="image">
+                    
+                </div>
                 {% if room.tien_ich_khac %}
                     <p>tien ich khac: {{ room.tien_ich_khac }}</p>
                 {% endif %}

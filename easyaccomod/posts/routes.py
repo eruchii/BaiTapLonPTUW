@@ -7,7 +7,7 @@ from easyaccomod.models import Post
 from easyaccomod.owner_models import *
 from easyaccomod.posts.forms import PostForm, RoomForm, UpdatePostForm
 
-from easyaccomod.admin.utils import checkRoomExist, createPostByAdmin
+from easyaccomod.admin.utils import checkRoomExist, createPostByAdmin, save_room_picture
 
 posts = Blueprint('posts', __name__)
 
@@ -135,21 +135,6 @@ def new_room():
     if current_user.role_id == 1:
         form = RoomForm()
         if form.validate_on_submit():
-            print(form.city.data," ", form.district.data, " ", form.ward.data)
-            print(form.info.data, " ",form.room_type.data, " ", form.room_number.data)
-            print(form.price.data, " ", form.chung_chu.data, " ", form.nong_lanh.data, " ", form. dieu_hoa.data, " ", form.ban_cong.data)
-            print(form.phong_tam.data, " ", form.phong_bep.data)
-            print(form.gia_dien.data, " ", form.gia_nuoc.data)
-            print(form.pending.data)
-            print("===============")
-            list_img = []
-            for file in form.image.data:
-                list_img.append(file.filename)
-            print(list_img)
-            print(type(list_img))
-            print(str(list_img))
-            print(type(str(list_img)))
-            room_image = str(list_img)
             room = Room(user_id=current_user.id, 
                         city_code=form.city.data, 
                         district_id=form.district.data, 
@@ -167,9 +152,16 @@ def new_room():
                         gia_dien=form.gia_dien.data, 
                         gia_nuoc=form.gia_nuoc.data, 
                         tien_ich_khac=form.tien_ich_khac.data,
-                        image=room_image,
                         pending=form.pending.data)
             db.session.add(room)
+            db.session.flush()
+            list_img = []
+            for file in form.image.data:
+                file_name = save_room_picture(str(room.id), file)
+                list_img.append(file_name)
+            room_image = str(list_img)
+            print(room_image)
+            room.image = room_image
             db.session.commit()
             flash(f"add room ok with room_id = {room.id}", "success")
             return redirect(url_for('posts.room'))
@@ -192,6 +184,16 @@ def view_room(room_id):
     if current_user.role_id == 1 and current_user.status_confirm == 1:
         room = Room.query.get_or_404(room_id)
         return render_template("posts/view_room.html", title="View Room", room=room)
+
+@posts.route("/manage-my-room", methods=["GET"])
+@login_required
+def manage_my_room():
+    if current_user.status_confirm != 1 or current_user.role_id == 2:
+        abort(403)
+    else :
+        user = User.query.get_or_404(current_user.id)
+        rooms = user.rooms
+        return render_template("posts/room.html", title="Manage Room", rooms=rooms)
 
 # @posts.route("/post/<int:post_id>/accept", methods=["GET", "POST"])
 # @login_required

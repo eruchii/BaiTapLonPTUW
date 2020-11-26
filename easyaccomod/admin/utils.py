@@ -142,8 +142,17 @@ def save_user_picture(user_prefix, form_picture):
     picture_path = os.path.join(
         current_app.root_path, "static/profile_pics", picture_fn
     )
-    output_size = (160, 160)
     i = Image.open(form_picture)
+    width, height = i.size
+    output_size = (width, height)
+    if width > 160 or height > 160:
+        if width > height :
+            width = 160
+            height = height/width * 160
+        else :
+            height = 160
+            width = width/height * 160
+        output_size = (width, height)
     i.thumbnail(output_size)
     i.save(picture_path)
     return picture_fn
@@ -155,8 +164,17 @@ def save_room_picture(room_id, room_picture):
     picture_path = os.path.join(
         current_app.root_path, "static/room_pics", picture_fn
     )
-    output_size = (280, 280)
-    i = Image.open(form_picture)
+    i = Image.open(room_picture)
+    width, height = i.size
+    output_size = (width, height)
+    if width > 500 or height > 500:
+        if width > height :
+            width = 500
+            height = height/width * 500
+        else :
+            height = 500
+            width = width/height * 500
+        output_size = (width, height)
     i.thumbnail(output_size)
     i.save(picture_path)
     return picture_fn

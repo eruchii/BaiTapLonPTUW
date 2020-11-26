@@ -100,7 +100,7 @@ def manage_user():
             users = User.query.filter_by(role_id=3).all()
         elif rolename == "admin":
             users = User.query.filter_by(role_id=1).all()
-        return render_template("admin/manage_user.html", users=users, rolename=rolename)
+        return render_template("admin/manage_user.html", title="Manage User", users=users, rolename=rolename)
     else:
         abort(403)    
     

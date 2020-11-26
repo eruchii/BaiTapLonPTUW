@@ -37,3 +37,24 @@ div.card-header > ul#navigation li.nav-item span {
 .mrgleft-2 {
     margin-left: -2px;
 }
+
+/*--------------------- img room -------------------------*/
+.room-image {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    transition: all .3s;
+}
+
+.room-image:hover {
+    z-index: 1;
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.room-image:active {
+    transform: scale(2.5);
+    cursor: pointer;
+    z-index: 1;
+}
