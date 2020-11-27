@@ -36,9 +36,9 @@
     </ul>
 
     <nav class="navbar-collapse navbar-light bg-light mb-3">
-        <form class="form-inline">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search/ username" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+        <form action="/find/user" class="form-inline">
+            <input id="searchname" class="form-control mr-sm-2" name="searchname" type="search" placeholder="Search/ username" aria-label="Search" onchange="validateInput(event)">
+            <input id="search-user-name" class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search" onclick="validateInput(event)">
         </form>
     </nav>    
         

@@ -3,7 +3,7 @@ from easyaccomod.admin.utils import *
 from flask import Blueprint
 from easyaccomod.admin.forms import LoginForm, RegistrationForm, UpdateAccountForm
 from easyaccomod import app, db, bcrypt
-from flask import render_template, redirect, url_for, flash, request, abort
+from flask import render_template, redirect, url_for, flash, request, abort, Response
 from flask_login import login_user, current_user, logout_user, login_required
 ## import models
 from easyaccomod.models import User
@@ -143,6 +143,16 @@ def new_reject_owner():
     except:
         return jsonify(resp)
 
+@admin.route("/find/user", methods=["GET", "POST"])
+@login_required
+def find_user():
+    strr = request.args.get('searchname', type=str)
+    if strr:
+        users = findUser(strr)
+        print(users)
+        return render_template("admin/manage_user.html", users=users)
+    else :
+        abort(Response('Hello World'))
 # @admin.route("/manage-user/<int:user_id>/accept", methods=["GET","POST"])
 # @login_required
 # def accept_owner(user_id):

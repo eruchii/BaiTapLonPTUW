@@ -59,3 +59,8 @@
 {% block task %}
     <br>
 {% endblock task %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='adminscripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_loadimage.js') }}"></script>
+{% endblock %}

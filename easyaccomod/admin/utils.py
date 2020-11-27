@@ -134,6 +134,11 @@ def rejectUser(user_id):
     else:
         return -1
 
+def findUser(user_name):
+    req_str = "%" + user_name + "%"
+    print(req_str)
+    user = User.query.filter(User.username.like(req_str)).all()
+    return user
 
 def save_user_picture(user_prefix, form_picture):
     random_hex = secrets.token_hex(8)
