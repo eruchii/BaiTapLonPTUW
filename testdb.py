@@ -1,6 +1,7 @@
 from easyaccomod.models import *
 from easyaccomod.owner_models import *
 from easyaccomod.owner_db import *
+from easyaccomod import db
 import random
 
 def Fake_user():
@@ -20,4 +21,4 @@ def Fake_user():
 	
 
 if __name__ == "__main__":
-	Fake_user()
+	db.create_all()

@@ -13,8 +13,7 @@ def is_owner(f):
 		if(current_user.is_anonymous):
 			return redirect(url_for("owner.login"))
 		if(current_user.role_id != 3):
-			logout_user()
-			return redirect(url_for("owner.login"))
+			abort(403)
 		return f(*args, **kwargs)
 	return decorated_func
 
@@ -112,4 +111,9 @@ def fakelogin(id):
 @owner_bp.route("/")
 @is_owner
 def home():
-	return jsonify({"msg":"hello"})
+	return render_template("owner/home.html")
+
+@owner_bp.route("/notification")
+@is_owner
+def notification():
+	return render_template("owner/notification.html")

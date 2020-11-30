@@ -3,7 +3,7 @@ from flask import *
 from easyaccomod import app, db, socketio
 from flask_login import current_user
 from functools import wraps
-from easyaccomod.models import Message, User
+from easyaccomod.models import Message, User, Notification
 from sqlalchemy import or_, and_
 from datetime import datetime
 
@@ -168,3 +168,20 @@ def search_user(data):
 	res.sort(key= lambda x: (x["id"]*-1, x["username"]))
 	socketio.emit("loaded list people", res, room = clients[current_user.username])
 
+
+# @socketio.on("send new notification")
+def send_new_notification(data):
+	id = data["id"]
+	noti = Notification.query.filter_by(id=id).first()
+	if(noti == None):
+		return False
+	try:
+		recv = clients[noti.receiver]
+	except:
+		return False
+	res = {}
+	res["title"] = noti.shortdescription
+	res["msg"] = noti.msg
+	res["created_at"] = noti.date_created
+	socketio.emit("new notification", res, room = recv)
+	return True
