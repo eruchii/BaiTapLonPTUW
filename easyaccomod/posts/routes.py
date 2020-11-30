@@ -7,7 +7,7 @@ from easyaccomod.models import Post
 from easyaccomod.owner_models import *
 from easyaccomod.posts.forms import PostForm, RoomForm, UpdatePostForm
 
-from easyaccomod.admin.utils import checkRoomExist, createPostByAdmin, save_room_picture
+from easyaccomod.admin.utils import checkRoomExist, createPostByAdmin, save_room_picture, sendNotification
 
 posts = Blueprint('posts', __name__)
 
@@ -24,9 +24,10 @@ def new_accept_post():
         if current_user.role_id == 1 and current_user.status_confirm == 1:
             post = Post.query.get_or_404(data["post_id"])
             post.pending = True # True -> accept post
+            sendNotification(receiver=post.author.id, shortdescription="Accept Post", msg=f"The post with id {post.id} and author : {post.author.username} has been accepted by {current_user.username}")
             db.session.commit()
             resp["status"] = "success"
-            resp["msg"] = "Accepted post - post_id = {}".format(data["post_id"])
+            resp["msg"] = "Accepted Post - post_id = {}".format(data["post_id"])
             resp["post_pending"] = "True"
         return jsonify(resp)
     except :
@@ -45,6 +46,7 @@ def new_reject_post():
         if current_user.role_id == 1 and current_user.status_confirm == 1:
             post = Post.query.get_or_404(data["post_id"])
             post.pending = False
+            sendNotification(receiver=post.author.id, shortdescription="Reject Post", msg=f"The post with id {post.id} and author : {post.author.username} has been REJECTED by {current_user.username}")
             db.session.commit()
             resp["status"] = "success"
             resp["msg"] = f"Rejected Post - post_id = {data['post_id']}"

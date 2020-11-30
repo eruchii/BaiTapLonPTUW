@@ -69,10 +69,9 @@ class Post(db.Model):
 class Notification(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     receiver = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # receiver
-    shortdescription = db.Column(db.String(150), nullable=False)
+    shortdescription = db.Column(db.String(150))
     msg = db.Column(db.Text, nullable=False)
-    count_notification = db.Column(db.Integer, nullable=False, default=0)
-    seen_notification = db.Column(db.Boolean, nullable=False, default=True)  # True -> da xem, False -> chua xem
+    seen_notification = db.Column(db.Boolean, nullable=False, default=False)  # True -> da xem, False -> chua xem
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
     def __repr__(self):

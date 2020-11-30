@@ -4,7 +4,7 @@ from flask import url_for, current_app
 from easyaccomod.owner_models import Room
 from datetime import datetime
 from easyaccomod import bcrypt, db
-from easyaccomod.models import User, Post
+from easyaccomod.models import Notification, Post, User
 
 
 def addUserByAdmin(username, password, email):
@@ -139,6 +139,12 @@ def findUser(user_name):
     print(req_str)
     user = User.query.filter(User.username.like(req_str)).all()
     return user
+
+def sendNotification(receiver, shortdescription, msg):
+    notification = Notification(receiver=receiver, shortdescription=shortdescription, msg=msg)
+    db.session.add(notification)
+    db.session.commit()
+    print(notification)
 
 def save_user_picture(user_prefix, form_picture):
     random_hex = secrets.token_hex(8)

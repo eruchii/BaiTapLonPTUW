@@ -30,9 +30,9 @@ from easyaccomod.admin.utils import *
 ###
 
 # # Address tables
-# cities = json.load(open("cities.json","r",encoding="utf-8"))
-# districts = json.load(open("districts.json","r", encoding="utf-8"))
-# wards = json.load(open("wards.json","r", encoding="utf-8"))
+cities = json.load(open("cities.json","r",encoding="utf-8"))
+districts = json.load(open("districts.json","r", encoding="utf-8"))
+wards = json.load(open("wards.json","r", encoding="utf-8"))
 # print("create 'city'")
 # for city in cities:
 #     add_city(code=city["code"], name=city["name"], commit=False)
@@ -65,6 +65,7 @@ from easyaccomod.admin.utils import *
 # db.session.flush()
 # owner1 = Owner(username="testowner", password=hashed_password, fullname="testfullname", identity_number="123456789", phone_number="0987654321", email="owner.test@gmail.com")
 # us_id = addUserByAdmin(owner1.username, password, owner1.email)
+# print(us_id)
 # owner1.user_id = us_id
 # db.session.add(owner1)
 # db.session.flush()
