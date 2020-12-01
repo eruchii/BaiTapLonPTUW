@@ -1,7 +1,7 @@
 from easyaccomod import db, app, login_manager
 from easyaccomod.models import *
 
-class Owner(db.Model, UserMixin):
+class Owner(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	username = db.Column(db.String(120), unique = True)
 	password = db.Column(db.String(120))
@@ -39,7 +39,7 @@ class Room(db.Model):
 	gia_nuoc = db.Column(db.Integer)
 	tien_ich_khac = db.Column(db.Text)
 	image = db.Column(db.Text)
-	pending = db.Column(db.Boolean)
+	status = db.Column(db.Boolean) # status = True -> da duoc cho thue, False -> chua duoc cho thue
 
 	post = db.relationship("Post", backref="room", lazy=True)
 

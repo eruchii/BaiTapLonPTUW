@@ -11,6 +11,7 @@ class PostForm(FlaskForm):
     title = StringField("Title", validators=[DataRequired(), Length(min=10, max= 99)])
     content = TextAreaField("Content", validators=[DataRequired()])
     room_id = IntegerField("Room ID", validators=[DataRequired()])
+    date_out = DateField("Date Out", validators=[DataRequired()], render_kw={"placeholder": "YYYY-mm-dd"})
     pending = BooleanField("Pending")
     submit = SubmitField("Post")
 
@@ -19,6 +20,7 @@ class UpdatePostForm(FlaskForm):
     content = TextAreaField("Content", validators=[DataRequired()])
     room_id = IntegerField("Room ID", validators=[DataRequired()])
     date_posted = DateField("Date Posted", validators=[DataRequired()], render_kw={"placeholder": "YYYY-mm-dd"})
+    date_out = DateField("Date Out", validators=[DataRequired()], render_kw={"placeholder": "YYYY-mm-dd"})
     pending = BooleanField("Pending")
     submit = SubmitField("Update")
 
@@ -52,11 +54,11 @@ class RoomForm(FlaskForm):
     phong_bep = IntegerField("Phong Bep", validators=[DataRequired()])
     dieu_hoa = BooleanField("Dieu Hoa")
     ban_cong = BooleanField("Ban Cong")
-    gia_dien = IntegerField("Gia Dien", validators=[DataRequired("This Field is required and be integer!")])
-    gia_nuoc = IntegerField("Gia Nuoc", validators=[DataRequired("This Field is required and be integer!")]) # !need fix int to str
+    gia_dien = IntegerField("Gia Dien", validators=[DataRequired("This Field is required and be integer!")], render_kw={"placeholder": "VND/số"})
+    gia_nuoc = IntegerField("Gia Nuoc", validators=[DataRequired("This Field is required and be integer!")], render_kw={"placeholder": "VND/khối"}) # !need fix int to str
     tien_ich_khac = TextAreaField("Tien ich khac")
     image = MultipleFileField("Image", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
-    pending = BooleanField("Pending")
+    status = BooleanField("status")
     submit = SubmitField("Post Room")
 
     def validate_image(self, image):

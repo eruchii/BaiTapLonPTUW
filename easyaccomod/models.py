@@ -45,6 +45,7 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(120), nullable=False)
     role_id = db.Column(db.Integer, db.ForeignKey("role.id"), nullable=False)
     status_confirm = db.Column(db.Integer, db.ForeignKey("confirm.id"), nullable=False)
+    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     posts = db.relationship('Post', backref='author', lazy=True)
     owner = db.relationship('Owner', backref='users', lazy=True)
     rooms = db.relationship("Room", backref="user")
@@ -69,14 +70,24 @@ class Post(db.Model):
 class Notification(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     receiver = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # receiver
-    shortdescription = db.Column(db.String(150))
+    title = db.Column(db.String(150))
     msg = db.Column(db.Text, nullable=False)
-    seen_notification = db.Column(db.Boolean, nullable=False, default=False)  # True -> da xem, False -> chua xem
-    date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+    seen = db.Column(db.Boolean, nullable=False, default=False)  # True -> da xem, False -> chua xem
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
 
     def __repr__(self):
         return f"Notification('{self.id}', '{self.receiver}', '{self.msg}')"
 
+class AdminNotification(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sender = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # sender
+    title = db.Column(db.String(150))
+    msg = db.Column(db.Text, nullable=False)
+    seen = db.Column(db.Boolean, nullable=False, default=False)  # True -> da xem, False -> chua xem
+    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+
+    def __repr__(self):
+        return f"Notification('{self.id}', '{self.sender}', '{self.msg}')"
 
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)

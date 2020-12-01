@@ -44,7 +44,7 @@ div.card-header > ul#navigation li.nav-item span {
     background-color: #fff;
     border: 1px solid #dee2e6;
     border-radius: .25rem;
-    transition: all .3s;
+    transition: all .4s;
 }
 
 .room-image:hover {

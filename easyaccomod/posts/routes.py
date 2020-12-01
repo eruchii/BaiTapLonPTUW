@@ -1,9 +1,10 @@
+from datetime import timedelta, datetime, date
 from flask import Blueprint, jsonify
 from flask import render_template, url_for, flash, redirect, request, abort
 from flask_login import current_user, login_required
 from werkzeug.utils import secure_filename
 from easyaccomod import db
-from easyaccomod.models import Post
+from easyaccomod.models import *
 from easyaccomod.owner_models import *
 from easyaccomod.posts.forms import PostForm, RoomForm, UpdatePostForm
 
@@ -24,7 +25,7 @@ def new_accept_post():
         if current_user.role_id == 1 and current_user.status_confirm == 1:
             post = Post.query.get_or_404(data["post_id"])
             post.pending = True # True -> accept post
-            sendNotification(receiver=post.author.id, shortdescription="Accept Post", msg=f"The post with id {post.id} and author : {post.author.username} has been accepted by {current_user.username}")
+            sendNotification(receiver=post.author.id, title="Accept Post", msg=f"The post with id {post.id} and author : {post.author.username} has been accepted by {current_user.username}")
             db.session.commit()
             resp["status"] = "success"
             resp["msg"] = "Accepted Post - post_id = {}".format(data["post_id"])
@@ -46,7 +47,7 @@ def new_reject_post():
         if current_user.role_id == 1 and current_user.status_confirm == 1:
             post = Post.query.get_or_404(data["post_id"])
             post.pending = False
-            sendNotification(receiver=post.author.id, shortdescription="Reject Post", msg=f"The post with id {post.id} and author : {post.author.username} has been REJECTED by {current_user.username}")
+            sendNotification(receiver=post.author.id, title="Reject Post", msg=f"The post with id {post.id} and author : {post.author.username} has been REJECTED by {current_user.username}")
             db.session.commit()
             resp["status"] = "success"
             resp["msg"] = f"Rejected Post - post_id = {data['post_id']}"
@@ -65,14 +66,20 @@ def new_post():
             title = form.title.data
             content = form.content.data
             room_id = form.room_id.data
+            date_out = form.date_out.data
             pending = form.pending.data
             if checkRoomExist(room_id=room_id):
-                createPostByAdmin(title=title, content=content, room_id=room_id, admin_id=current_user.id)
+                createPostByAdmin(title=title, content=content, room_id=room_id, date_out=date_out, admin_id=current_user.id)
                 flash(f"Post has been created by { current_user.username }" , "success")
                 return redirect(url_for('posts.post'))
             else :
                 flash(f"Room does not exist!", "danger")
                 return redirect(url_for('posts.new_post'))
+        elif request.method == "GET":
+            time_delta = timedelta(days=30)
+            today = datetime.utcnow().date()
+            req = today + time_delta
+            form.date_out.data = req
         return render_template("posts/create_post.html", title="New Post", form_title=form_title, form=form)
     else :
         abort(403)
@@ -119,6 +126,7 @@ def update_post(post_id):
         post.content = form.content.data
         post.room_id = form.room_id.data
         post.date_posted = form.date_posted.data
+        post.date_out = form.date_out.data
         post.pending = form.pending.data
         db.session.commit()
         flash("Your post has been updated!", "success")
@@ -128,8 +136,19 @@ def update_post(post_id):
         form.content.data = post.content
         form.room_id.data = post.room_id
         form.date_posted.data = post.date_posted
+        form.date_out.data = post.date_out
         form.pending.data = post.pending
     return render_template("posts/update_post.html", title="Update Post", form_title=form_title, form=form)
+
+@posts.route("/manage-my-post")
+@login_required
+def manage_my_post():
+    if current_user.status_confirm != 1 or current_user.role_id == 2:
+        abort(403)
+    else :
+        user = User.query.get_or_404(current_user.id)
+        posts = user.posts
+        return render_template("posts/post.html", title="Manage My Post", posts=posts)
 
 @posts.route("/room/new", methods=["GET", "POST"])
 @login_required
@@ -154,7 +173,7 @@ def new_room():
                         gia_dien=form.gia_dien.data, 
                         gia_nuoc=form.gia_nuoc.data, 
                         tien_ich_khac=form.tien_ich_khac.data,
-                        pending=form.pending.data)
+                        status=form.status.data)
             db.session.add(room)
             db.session.flush()
             list_img = []
@@ -221,13 +240,11 @@ def manage_my_room():
 #     else :
 #         abort(403)
 
-# @posts.route("/post")
-# @login_required
-# def post():
-#     ans = []
-#     if current_user.role_id == 1:
-#         posts = Post.query.all()
-#         for post in posts:
-#             res = {"id":post.id, "title":post.title, "content":post.content, "room_id":post.room_id, "pending":post.pending, "date_created":post.date_created, "date_posted":post.date_posted, "date_out":post.date_out, "user_id":post.user_id}
-#             ans.append(res)
-#         return jsonify({"posts":ans})
+@posts.route("/post/api")
+def posttt():
+    ans = []
+    posts = Post.query.all()
+    for post in posts:
+        res = {"id":post.id, "title":post.title, "content":post.content, "room_id":post.room_id, "pending":post.pending, "date_created":post.date_created, "date_posted":post.date_posted, "date_out":post.date_out, "user_id":post.user_id}
+        ans.append(res)
+    return jsonify(ans)    

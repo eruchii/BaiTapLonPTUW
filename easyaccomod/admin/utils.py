@@ -1,3 +1,4 @@
+from operator import pos
 import os, secrets
 from PIL import Image
 from flask import url_for, current_app
@@ -58,14 +59,14 @@ def addUserByOwner(username, password, email):
         return owner.id
 
 
-def createPostByAdmin(title, content, room_id, admin_id):
+def createPostByAdmin(title, content, room_id, date_out, admin_id):
     """
     function should be used by admin. pls check role_id before use it
     post created by admin// auto pending = True : da dc xu ly xong r
     para :: admin_id => call by admin and get 'current_id' of admin
     """
     post = Post(
-        title=title, content=content, room_id=room_id, pending=True, user_id=admin_id
+        title=title, content=content, room_id=room_id, pending=True, date_out=date_out, user_id=admin_id
     )  # pending = True -> xly xong r
     post.date_posted = datetime.utcnow()
     db.session.add(post)
@@ -140,8 +141,8 @@ def findUser(user_name):
     user = User.query.filter(User.username.like(req_str)).all()
     return user
 
-def sendNotification(receiver, shortdescription, msg):
-    notification = Notification(receiver=receiver, shortdescription=shortdescription, msg=msg)
+def sendNotification(receiver, title, msg):
+    notification = Notification(receiver=receiver, title=title, msg=msg)
     db.session.add(notification)
     db.session.commit()
     print(notification)
@@ -178,15 +179,38 @@ def save_room_picture(room_id, room_picture):
     i = Image.open(room_picture)
     width, height = i.size
     output_size = (width, height)
-    if width > 500 or height > 500:
+    if width > 800 or height > 800:
         if width > height :
-            width = 500
-            height = height/width * 500
+            width = 800
+            height = height/width * 800
         else :
-            height = 500
-            width = width/height * 500
+            height = 800
+            width = width/height * 800
         output_size = (width, height)
     i.thumbnail(output_size)
     i.save(picture_path)
     return picture_fn
 
+def get_data_post_in_a_year(year):
+    year = int(year)
+    ans = []
+    posts = Post.query.filter(Post.date_created >= datetime(year=year,month=1,day=1), Post.date_created < datetime(year=year+1,month=1,day=1)).all()
+    for i in range(1,13):
+        count = 0
+        for post in posts:
+            if post.date_created.month == i:
+                count += 1
+        ans.append(count)
+    return ans
+
+def get_data_user_register_in_a_year(year):
+    year = int(year)
+    ans = []
+    users = User.query.filter(User.date_created >= datetime(year=year,month=1,day=1), User.date_created < datetime(year=year+1,month=1,day=1)).all()
+    for i in range(1,13):
+        count = 0
+        for user in users:
+            if user.date_created.month == i:
+                count += 1
+        ans.append(count)
+    return ans

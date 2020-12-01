@@ -126,8 +126,8 @@ function rejectOwner(myself, id) {
         } else {
             container.classList.add("alert-success");
             var reject_pr = myself.parentNode;
-            reject_pr.querySelector("#acceptuser").style.display = "inline-block";
             reject_pr.querySelector("small.text-muted").innerHTML = "Status: " + data["owner_status_confirm"];
+            reject_pr.querySelector("#acceptuser").style.display = "inline-block";
         }
         msg = document.createTextNode(data["msg"]);
         container.appendChild(msg);
@@ -139,5 +139,18 @@ function validateInput(event) {
     if (value.length <= 0) {
         event.preventDefault();
         console.log("empty input search!!");
+    }
+}
+
+function sendYearStatistic(event) {
+    event.preventDefault();
+    var data = document.getElementById("year").value;
+    console.log(data)
+    if (isNaN(data) || data == "") {
+        alert("please check the input!");
+    } else {
+        // postData("/statistics", {
+        //     year = data
+        // })
     }
 }

@@ -5,7 +5,7 @@
         <div class="media-body">
             <div class="article-metadata">
                 <a class="mr-2" href="#">{{ room.user.username }}</a>
-                <small id="room" class="text-muted mr-1">{{ room.pending }}</small>
+                <small id="room" class="text-muted mr-1">{{ room.status }}</small>
                 <!-- button better/ modal -->
                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
                     Update
@@ -24,7 +24,7 @@
                 <p>tien ich khac: {{ room.tien_ich_khac }}</p>
             {% endif %}
             <p>bla bla ...</p>
-            <span><em>Status: {{ room.pending }}</em></span>
+            <span><em>Status: {{ room.status }}</em></span>
         </div>
     </article>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

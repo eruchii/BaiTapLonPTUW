@@ -1,0 +1,92 @@
+{% extends "admin_home.html" %}
+
+{% block navigation %}
+<div class="card text-center mb-2">
+    <div class="card-header">
+        <ul id="navigation" class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a id="post" class="nav-link" href="{{ url_for('posts.post') }}">Post</a>
+            </li>
+            <li class="nav-item">
+                <a id="room" class="nav-link" href="{{ url_for('posts.room') }}">Room</a>
+            </li>
+            <li class="nav-item">
+                <a id="user" class="nav-link" href="{{ url_for('admin.manage_user') }}">User</a>
+            </li>
+            <li class="nav-item">
+                <a id="statistics" class="nav-link active" href="{{ url_for('admin.statistics') }}">Statistics</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block info %}
+    <h1>Statistics</h1>
+    <input type="hidden" name="hidden-data-post" id="hidden-data-post" value="{{ ans.data_post }}">
+    <input type="hidden" name="hidden-data-user" id="hidden-data-user" value="{{ ans.data_user }}">
+    <ul class="droplinemenu">
+        <li>
+            <a href="{{ url_for('admin.statistics_user') }}">User</a>
+        </li>
+        <li>
+            <a href="{{ url_for('admin.statistics_post') }}">Post</a>
+        </li>
+    </ul>
+    {% block statisticschart %}
+        
+        <canvas id="myChart"></canvas> 
+      
+        <script>
+            var ctx = document.getElementById('myChart').getContext('2d');
+            // Global Options
+            // Chart.defaults.global.defaultFontFamily = 'Lato';
+            Chart.defaults.global.defaultFontSize = 18;
+            var datahidden = document.getElementById("hidden-data-post").value;
+            datahidden = datahidden.slice(1,datahidden.length-1).split(",")
+            var dataHiddenUser = document.getElementById("hidden-data-user").value;
+            dataHiddenUser = dataHiddenUser.slice(1,dataHiddenUser.length-1).split(",");
+            console.log(dataHiddenUser);
+            var chart = new Chart(ctx, {
+                // The type of chart we want to create
+                type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+
+                // The data for our dataset
+                data: {
+                    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                    datasets: [{
+                        label: 'Statistic post in this year',
+                        
+                        // backgroundColor: 'rgb(255, 99, 132)',
+                        borderWidth: 3,
+                        borderColor: 'rgb(0,99,132)',
+                        hoverBorderWidth: 5,
+                        hoverBorderColor: '#000',
+                        data: datahidden
+                    },{
+                        label: 'Statistic user register in 2020',
+                        
+                        // backgroundColor: 'rgb(255, 99, 132)',
+                        borderWidth: 3,
+                        borderColor: 'rgb(255, 99, 132)',
+                        hoverBorderWidth: 5,
+                        hoverBorderColor: '#000',
+                        data: dataHiddenUser
+                    }]
+                },
+
+                // Configuration options go here
+                options: {}
+            });
+        </script>
+    {% endblock statisticschart%}
+{% endblock info %}
+
+{% block task %}
+    <br>
+{% endblock task %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='adminscripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_statistic.js') }}"></script>
+{% endblock %}

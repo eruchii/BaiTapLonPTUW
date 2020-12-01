@@ -40,8 +40,8 @@ def getStreet(districtName):
     ret = ['']
     for _obj in streetList:
         ret.append(_obj.name)
-        res = make_response(jsonify(ret),200)
-    return res
+        
+    return make_response(jsonify(ret),200)
 
 def getRoom(payload):
 
@@ -75,7 +75,7 @@ def getRoom(payload):
     #print(giaNuoc)
     tienIchKhac = payload[14]['tien_ich_khac']
     #print(tienIchKhac)
-
+    res = []
     ## Query time 
     if city_code != None:
         res = Room.query.filter_by(city_code=city_code).all()

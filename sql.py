@@ -7,6 +7,7 @@ from easyaccomod import db, bcrypt
 from easyaccomod.models import *
 from easyaccomod.owner_models import *
 from easyaccomod.admin.utils import *
+from easyaccomod.room_models import *
 
 # db.drop_all()
 # db.create_all()
@@ -69,7 +70,7 @@ wards = json.load(open("wards.json","r", encoding="utf-8"))
 # owner1.user_id = us_id
 # db.session.add(owner1)
 # db.session.flush()
-# room1 = Room(user_id=owner1.user_id, city_code="HN", district_id="1", ward_id="44", info="thue nha",room_type_id=1, room_number=3, price=10000, chung_chu=True, phong_tam=2, nong_lanh=True, phong_bep=1, dieu_hoa=True, ban_cong=False, gia_dien=4000,gia_nuoc=20000, tien_ich_khac="None", image="df.jpg", pending=False)
+# room1 = Room(user_id=2, city_code="HN", district_id="1", ward_id="44", info="thue nha",room_type_id=1, room_number=3, price=10000, chung_chu=True, phong_tam=2, nong_lanh=True, phong_bep=1, dieu_hoa=True, ban_cong=False, gia_dien=4000,gia_nuoc=20000, tien_ich_khac="None", image="df.jpg", status=False)
 # db.session.add(room1)
 
 # owner2 = Owner(username="testowner3", password=hashed_password, fullname="owner2 fullname", identity_number=11111111, phone_number=19008198, email="owner3.test@gmail.com")

@@ -6,7 +6,7 @@ from easyaccomod import app, db, bcrypt
 from flask import render_template, redirect, url_for, flash, request, abort, Response
 from flask_login import login_user, current_user, logout_user, login_required
 ## import models
-from easyaccomod.models import User
+from easyaccomod.models import *
 from easyaccomod.owner_models import *
 
 admin = Blueprint('admin', __name__)
@@ -119,7 +119,7 @@ def new_accept_owner():
             own = User.query.filter_by(id=data["user_id"]).first()
             if own :
                 acceptOwner(data["user_id"])
-                sendNotification(receiver=own.id, shortdescription="Accept Owner", msg=f"Account with username {own.username} has been accepted by {current_user.username}!")
+                sendNotification(receiver=own.id, title="Accept Owner", msg=f"Account with username {own.username} has been accepted by {current_user.username}!")
                 resp["status"] = "success"
                 resp["msg"] = f"Accept owner with username: {own.username}, status: {own.confirms.name}"
                 resp["owner_status_confirm"] = own.confirms.name
@@ -143,7 +143,7 @@ def new_reject_owner():
             own_id = rejectUser(data["user_id"])
             if own_id != -1:
                 own = User.query.filter_by(id=own_id).first()
-                sendNotification(receiver=own.id, shortdescription="Reject Owner", msg=f"Account with username {own.username} has been REJECTED by {current_user.username}!")
+                sendNotification(receiver=own.id, title="Reject Owner", msg=f"Account with username {own.username} has been REJECTED by {current_user.username}!")
                 resp["status"] = "success"
                 resp["msg"] = f"Reject owner with username: {own.username}, status: {own.confirms.name}"
                 resp["owner_status_confirm"] = own.confirms.name
@@ -161,6 +161,35 @@ def find_user():
         return render_template("admin/manage_user.html", users=users)
     else :
         abort(Response('Hello World'))
+
+@admin.route("/statistics", methods=["GET", "POST"])
+@login_required
+def statistics():
+    if current_user.role_id == 1 and current_user.status_confirm == 1:
+        yearnow = datetime.utcnow().year
+        ans = {}
+        ans["data_post"] = get_data_post_in_a_year(year=yearnow)
+        ans["data_user"] = get_data_user_register_in_a_year(year=yearnow)
+        return render_template("admin/statistic.html", title="Statistic", ans=ans)
+    else:
+        abort(403)
+
+@admin.route("/statistics/user", methods=["GET", "POST"])
+@login_required
+def statistics_user():
+    if current_user.role_id == 1 and current_user.status_confirm == 1:
+        return render_template("admin/statistic_user.html", title="Statistic User")
+    else:
+        abort(403)
+
+@admin.route("/statistic/post", methods=["GET", "POST"])
+@login_required
+def statistics_post():
+    if current_user.role_id == 1 and current_user.status_confirm == 1:
+        return render_template("admin/statistic_post.html", title="Statistic Post")
+    else:
+        abort(403)
+
 # @admin.route("/manage-user/<int:user_id>/accept", methods=["GET","POST"])
 # @login_required
 # def accept_owner(user_id):
