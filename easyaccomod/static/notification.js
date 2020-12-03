@@ -1,14 +1,22 @@
-namespace = '';
-var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
-socket.on('connect', function(){
-    socket.emit("connected");
+// namespace = '';
+// var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
+// socket.on('connect', function(){
+//     socket.emit("connected");
+// });
+
+socket.on("new notification", function(data){
+    createNotification(data);
+    console.log(data);
 });
 
-sample = {
-    "title":"test title",
-    "msg":"test msg",
-    "created_at":"Nov 30 2020"
-}
+socket.on("list notifications", function(notis){
+    createListNoti(notis);
+})
+
+socket.on("update new noti count", function(data){
+    console.log(data);
+    document.getElementById("new_noti").firstChild.nodeValue = data["new_noti_count"]
+})
 
 function createNotification(data){
     container = document.createElement("div");
@@ -40,4 +48,8 @@ function createNotification(data){
 
     n = document.getElementById("noti");
     n.insertBefore(container, n.childNodes[0]);
+};
+
+function createListNoti(notis){
+    for(let i = 0 ; i < notis.length ; i++) createNotification(notis[i]);
 }

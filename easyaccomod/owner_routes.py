@@ -117,3 +117,9 @@ def home():
 @is_owner
 def notification():
 	return render_template("owner/notification.html")
+
+@owner_bp.route("/logout")
+@is_owner
+def logout():
+	logout_user()
+	return redirect(url_for("owner.login"))

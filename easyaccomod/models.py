@@ -49,6 +49,7 @@ class User(db.Model, UserMixin):
     posts = db.relationship('Post', backref='author', lazy=True)
     owner = db.relationship('Owner', backref='users', lazy=True)
     rooms = db.relationship("Room", backref="user")
+    notification = db.relationship("Notification", backref="user")
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}, '{self.image_file}')"

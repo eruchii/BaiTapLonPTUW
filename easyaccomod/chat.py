@@ -1,5 +1,6 @@
 from flask_socketio import SocketIO, emit, disconnect, send
 from flask import *
+from sqlalchemy import exc
 from easyaccomod import app, db, socketio
 from flask_login import current_user
 from functools import wraps
@@ -12,6 +13,15 @@ chat_bp = Blueprint("chat", __name__)
 clients = {}
 
 def can_send_msg(f):
+	@wraps(f)
+	def decorated_func(*args, **kwargs):
+		if(current_user.is_anonymous):
+			abort(403)
+			return
+		return f(*args, **kwargs)
+	return decorated_func
+
+def can_recv_noti(f):
 	@wraps(f)
 	def decorated_func(*args, **kwargs):
 		if(current_user.is_anonymous):
@@ -45,6 +55,7 @@ def add_msg(recv, msg):
 		new_msg = Message(sender=current_user.username, receiver=recv, content=msg)
 		db.session.add(new_msg)
 		db.session.commit()
+		update_new_msg(recv_user)
 		return (True, "Thanh cong")
 	except:
 		return (False, "Khong thanh cong")
@@ -170,18 +181,79 @@ def search_user(data):
 
 
 # @socketio.on("send new notification")
+@can_recv_noti
 def send_new_notification(data):
 	id = data["id"]
 	noti = Notification.query.filter_by(id=id).first()
 	if(noti == None):
 		return False
 	try:
-		recv = clients[noti.receiver]
+		recv = clients[noti.user.username]
 	except:
 		return False
 	res = {}
-	res["title"] = noti.shortdescription
+	res["title"] = noti.title
 	res["msg"] = noti.msg
-	res["created_at"] = noti.date_created
+	res["created_at"] = noti.created_at.strftime("%m/%d/%Y, %H:%M:%S")
 	socketio.emit("new notification", res, room = recv)
+	update_new_noti(noti.user)
 	return True
+
+def create_new_notification():
+	a = Notification(receiver = 2, title = "test title", msg = "test msg")
+	db.session.add(a)
+	db.session.commit()
+	return a
+
+@can_recv_noti
+def update_new_noti(user):
+	x = Notification.query.filter_by(seen = False,receiver=user.id)
+	data = {"new_noti_count":x.count()}
+	try:
+		socketio.emit("update new noti count", data, room = clients[user.username])
+	except:
+		pass
+
+@can_recv_noti
+def update_new_msg(user):
+	new_msgs = Message.query.filter((Message.receiver == user.username) & (Message.seen == False))
+	data = {}
+	data["new_msg_count"] = new_msgs.count()
+	try:	
+		socketio.emit("update new msg count", data, room = clients[user.username])
+	except:
+		pass
+
+@socketio.on("get new noti")
+@can_recv_noti
+def gnn():
+	update_new_noti(current_user)
+
+@socketio.on("get new msg")
+@can_recv_noti
+def gnm():
+	update_new_msg(current_user)
+
+@socketio.on("load list notifications")
+@can_recv_noti
+def load_list_notifications():
+	id = current_user.id
+	notis = Notification.query.filter_by(receiver = id)
+	data = []
+	for noti in notis:
+		n = {}
+		n["title"] = noti.title
+		n["msg"] = noti.msg
+		n["created_at"] = noti.created_at.strftime("%m/%d/%Y, %H:%M:%S")
+		noti.seen = True
+		data.append(n)
+	db.session.commit()
+	socketio.emit("list notifications", data, room = clients[current_user.username])
+
+@chat_bp.route("/fakenoti")
+@can_recv_noti
+def send_fake_noti():
+	noti = create_new_notification()
+	data = {"id": noti.id}
+	send_new_notification(data)
+	return jsonify(data)

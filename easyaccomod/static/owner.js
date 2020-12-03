@@ -63,10 +63,13 @@ function Login(){
             msg.innerHTML = "";
             if(json.status === "success"){
                 createAlert(msg, "alert-success", json["msg"]);
-                document.getElementById("login").reset();    
+                document.getElementById("username").value = "";
+                document.getElementById("password").value = "";
+                document.location = "/owner"    
             }
             else {
                 createAlert(msg, "alert-danger", json["msg"]);
+                document.getElementById("password").value = "";
             };
         });
 
