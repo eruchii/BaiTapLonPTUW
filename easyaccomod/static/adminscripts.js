@@ -106,7 +106,7 @@ function acceptOwner(myself, id) {
             container.classList.add("alert-success");
             var accept_pr = myself.parentNode;
             accept_pr.querySelector("small.text-muted").innerHTML = "Status: " + data["owner_status_confirm"];
-            accept_pr.querySelector("#acceptuser").style.display = "none";
+            accept_pr.querySelector("#acceptuser").classList.add("nodisplay");
         }
         msg = document.createTextNode(data["msg"]);
         container.appendChild(msg);
@@ -127,7 +127,7 @@ function rejectOwner(myself, id) {
             container.classList.add("alert-success");
             var reject_pr = myself.parentNode;
             reject_pr.querySelector("small.text-muted").innerHTML = "Status: " + data["owner_status_confirm"];
-            reject_pr.querySelector("#acceptuser").style.display = "inline-block";
+            reject_pr.querySelector("#acceptuser").classList.remove("nodisplay");
         }
         msg = document.createTextNode(data["msg"]);
         container.appendChild(msg);

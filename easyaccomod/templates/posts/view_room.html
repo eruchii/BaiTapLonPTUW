@@ -13,18 +13,24 @@
             </div>
             <h2><a class="article-title" href=>{{ room.user.email }}</a></h2>
             <span id="room_id" style="display: none;">{{ room.id }}</span>
-            <span>Ma phong: {{room.id}}</span>
-            <p class="article-content">Thong tin phong: {{ room.info }}</p>
-            <p class="article-content"> Thành phố {{ room.city.name }} -- Quan {{ room.district.name }} --  Khu vuc {{ room.ward.name }}</p>
-            <p class="article-content"> Kieu phong: {{ room.roomtype.name }} -- So phong: {{ room.room_number }}</p>
-            <p class="article-content"> Gia dien:{{ room.gia_dien }} -- Gia nuoc: {{ room.gia_nuoc }}</p>
+            <span>Mã phòng: {{room.id}}</span>
+            <p class="article-content"> Thành phố {{ room.city.name }} -- Quận {{ room.district.name }} --  Khu vực {{ room.ward.name }}</p>
+            <p class="article-content">Thông tin phòng: {{ room.info }} -- Giá: {{ room.price }} (VNĐ)</p>
+            <p class="article-content">Kiểu phòng: {{ room.roomtype.name }} -- Số phòng: {{ room.room_number }} (phòng)</p>
+            <p class="article-content">Số phòng tắm: {{ room.phong_tam }} (phòng) -- Số phòng bếp: {{ room.phong_bep }} (phòng)</p>
+            <p class="article-content"> Giá điện: {{ room.gia_dien }} VNĐ/số -- Giá nước: {{ room.gia_nuoc }} VNĐ/khối</p>
             <span id="room_image" style="display: none;" >{{ room.image }}</span> 
             <div id="image"></div>
             {% if room.tien_ich_khac %}
-                <p>tien ich khac: {{ room.tien_ich_khac }}</p>
+                <p>Tiện ích khác: {{ room.tien_ich_khac }}</p>
             {% endif %}
-            <p>bla bla ...</p>
-            <span><em>Status: {{ room.status }}</em></span>
+            <div>
+                <span class="mr-2"> Chung chủ: {% if room.chung_chu %} Có {% else %} Không {% endif %} </span>
+                <span class="mr-2"> Nóng lạnh: {% if room.nong_lanh %} Có {% else %} Không {% endif %} </span> 
+                <span class="mr-2"> Điều hòa: {% if room.dieu_hoa %} Có {% else %} Không {% endif %} </span>
+                <span> Ban công: {% if room.ban_cong %} Có {% else %} Không {% endif %} </span>
+            </div>
+            <span><em>Status: {{ room.status }}</em> {% if room.status %} <u>(Room đã được thuê)</u> {% else %} <u>(Room chưa được thuê)</u> {% endif %} </span>
         </div>
     </article>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

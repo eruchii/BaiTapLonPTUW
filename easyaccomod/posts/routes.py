@@ -111,6 +111,9 @@ def delete_post(post_id):
 def view_post(post_id):
     if current_user.role_id == 1 and current_user.status_confirm == 1:
         post = Post.query.get_or_404(post_id)
+        if post:
+            post.count_view += 1
+            db.session.commit()
         return render_template("posts/view_post.html", title="View Post", post=post)
 
 @posts.route("/post/update/<int:post_id>", methods=["GET", "POST"])

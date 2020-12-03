@@ -16,6 +16,9 @@
             <li class="nav-item">
                 <a id="statistics" class="nav-link" href="{{ url_for('admin.statistics') }}">Statistics</a>
             </li>
+            <li class="nav-item">
+                <a id="comment" class="nav-link" href="#">Confirm Comment</a>
+            </li>
         </ul>
     </div>
 </div>
@@ -50,10 +53,12 @@
                     <a class="mr-2" href="#">{{ user.username}}</a>
                     <small class="text-muted"> Status: {{ user.confirms.name }}</small>
                     {% if user.status_confirm != 1 %}
-                    <a id="acceptuser" class="btn btn-success btn-sm mt-1 mb-1 ml-1" onclick="acceptOwner(this, '{{ user.id }}')">Accept</a>
+                        <a id="acceptuser" class="btn btn-success btn-sm mt-1 mb-1 ml-1" onclick="acceptOwner(this, '{{ user.id }}')">Accept</a>
+                    {% else %}
+                        <a id="acceptuser" class="btn btn-success btn-sm mt-1 mb-1 ml-1 nodisplay" onclick="acceptOwner(this, '{{ user.id }}')">Accept</a>
                     {% endif %}
                     {% if user.role_id != 1 %}
-                    <a id="rejectuser" class="btn btn-danger btn-sm mt-1 mb-1 ml-1" onclick="rejectOwner(this, '{{ user.id }}')">REJECT/BAN</a>
+                        <a id="rejectuser" class="btn btn-danger btn-sm mt-1 mb-1 ml-1" onclick="rejectOwner(this, '{{ user.id }}')">REJECT/BAN</a>
                     {% endif %}
                 </div>
                 <h2><a class="article-title" href="#">{{ user.email }}</a></h2>

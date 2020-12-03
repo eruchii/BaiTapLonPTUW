@@ -1,5 +1,6 @@
 # db for admin
 
+from six import python_2_unicode_compatible
 from easyaccomod.owner_db import *
 import json
 from flask import jsonify
@@ -81,3 +82,7 @@ wards = json.load(open("wards.json","r", encoding="utf-8"))
 # db.session.add(owner2)
 
 # db.session.commit()
+
+# fake_add_user()
+# fake_add_renter()
+# fake_add_comment()

@@ -8,6 +8,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 ## import models
 from easyaccomod.models import *
 from easyaccomod.owner_models import *
+from easyaccomod.room_models import *
 
 admin = Blueprint('admin', __name__)
 
@@ -189,6 +190,33 @@ def statistics_post():
         return render_template("admin/statistic_post.html", title="Statistic Post")
     else:
         abort(403)
+
+@admin.route("/statistic/room", methods=["GET", "POST"])
+@login_required
+def statistics_room():
+    if current_user.role_id == 1 and current_user.status_confirm == 1:
+        ans = {}
+        ans["xLabel"] = "Khoảng giá (triệu đồng)"
+        ans["yLabel"] = "Số lượng (căn)"
+        req = statistic_cost_room()
+        ans["data_cost_room"] = req
+        ans["xLength"] = len(req)
+        ans["xLabel1"] = "Tỉnh"
+        ans["yLabel1"] = "Số lượng"
+        req1 = most_city_room(5)
+        ans["data_x_1"] = req1[0]
+        ans["data_y_1"] = req1[1]
+        return render_template("admin/statistic_room.html", title="Statistic Room", ans=ans)
+    else:
+        abort(403)
+
+@admin.route("/confirm-comment")
+@login_required
+def confirm_comment():
+    if current_user.role_id != 1 or current_user.status_confirm != 1:
+        abort(403)
+    else :
+        comment = Comment.query.all()
 
 # @admin.route("/manage-user/<int:user_id>/accept", methods=["GET","POST"])
 # @login_required

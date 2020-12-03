@@ -7,14 +7,14 @@ class Like(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False,unique = False,primary_key=True)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     def __repr__(self):
-        return (f"Like for '{self.room_id}' from '{self.user_id}'")
+        return (f"Like for '{self.post_id}' from '{self.user_id}'")
         
 class Comment(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    room_id = db.Column(db.Integer, db.ForeignKey('room.id'),nullable = False)
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'),nullable = False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False)
     comment_content = db.Column(db.Text, nullable = False)
     status = db.Column(db.Boolean,nullable = False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     def __repr__(self):
-        return (f"Comment : '{self.comment_content}' for '{self.room_id}' by user '{self.user_id}''")
+        return (f"Comment : '{self.comment_content}' for '{self.post_id}' by user '{self.user_id}''")

@@ -60,6 +60,7 @@ class Post(db.Model):
     content = db.Column(db.Text, nullable=False)
     room_id = db.Column(db.Integer, db.ForeignKey("room.id"), nullable=False)
     pending = db.Column(db.Boolean, nullable=False)
+    count_view = db.Column(db.Integer, nullable=False, default=0)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
     date_posted = db.Column(db.DateTime, nullable=False, default=(datetime.utcnow() + time_delay))
     date_out = db.Column(db.DateTime, nullable=False, default=(datetime.utcnow() + time_out))

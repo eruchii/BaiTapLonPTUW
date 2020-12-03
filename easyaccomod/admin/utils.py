@@ -1,3 +1,6 @@
+from easyaccomod.room_models import Comment
+import itertools
+import random
 from operator import pos
 import os, secrets
 from PIL import Image
@@ -6,6 +9,7 @@ from easyaccomod.owner_models import Room
 from datetime import datetime
 from easyaccomod import bcrypt, db
 from easyaccomod.models import Notification, Post, User
+from easyaccomod.owner_models import *
 
 
 def addUserByAdmin(username, password, email):
@@ -214,3 +218,93 @@ def get_data_user_register_in_a_year(year):
                 count += 1
         ans.append(count)
     return ans
+
+def statistic_cost_room():
+    """
+    return: 1 list chua so luong cac phong trong he thong theo thang gia 1 trieu dong
+    """
+    ans = []
+    rooms = Room.query.all()
+    max_room_cost = 0
+    for room in rooms:
+        if room.price > max_room_cost:
+            max_room_cost = room.price
+    # sdung thang do 1 trieu dong =()=
+    length = int(max_room_cost / 1000000)
+    for i in range(0, length+1):
+        ans.append(0)
+    for room in rooms:
+        req = int(room.price / 1000000)
+        ans[req] += 1
+    return ans
+
+def most_city_room(limit: int):
+    """
+    return: 2 list cac tinh co nhieu room nhat trong he thong va so luong room cua moi tinh do
+    """
+    limit = int(limit)
+    ans = []
+    city = City.query.all()
+    rooms = Room.query.all()
+    req = {}
+    for c in city:
+        req[c.name] = 0
+    for room in rooms:
+        req[room.city.name] += 1
+    req = dict(sorted(req.items(), key=lambda item: item[1], reverse=True))
+    req = dict(itertools.islice(req.items(), limit))
+    ans.append(list(req.keys()))
+    ans.append(list(req.values()))
+    return ans
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+################ FAKE UTILS ##################
+def fake_add_user():
+    for i in range(1,100):
+        usn = "fakeuser" + str(i)
+        email = "fakeuser" + str(i) + ".fake@gmail.com"
+        pw = "123456"
+        addUserByAdmin(usn,pw,email)
+
+def fake_add_renter():
+    for i in range(1,50):
+        usn = "fakerenter" + str(i)
+        email = "fakerenter" + str(i) + ".fake@gmail.com"
+        pw = "123456"
+        tmpUser = User.query.filter_by(username=usn).first()
+        tmpUser2 = User.query.filter_by(email=email).first()
+        if tmpUser or tmpUser2:
+            print("Exist User")
+            return False
+        else:
+            hashed_password = bcrypt.generate_password_hash(pw).decode("utf-8")
+            renter = User(
+                username=usn,
+                email=email,
+                password=hashed_password,
+                role_id=2,
+                status_confirm=1,
+            )
+            db.session.add(renter)
+            db.session.commit()
+
+def fake_add_comment():
+    for i in range(1,50):
+        comment = Comment(post_id=random.randint(1,4), user_id=(i+60), comment_content=f"comment content {i}", status=False)
+        db.session.add(comment)
+    db.session.commit()

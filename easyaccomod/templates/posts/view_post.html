@@ -18,6 +18,7 @@
             <h2><a class="article-title" href="{{ url_for('posts.update_post', post_id=post.id) }}">{{ post.title }}</a></h2>
             <span>Post_id: {{post.id}}</span> <br> <span>Room_Of_Post: {{post.room.id}}</span> 
             <a style="text-decoration: none; color:#66CDAA" href="{{ url_for('posts.view_room', room_id=post.room.id) }}">Information about Room</a>
+            <p class="article-content">Số lượt xem: {{ post.count_view }}</p>
             <p class="article-content">{{ post.content }}</p>
             <p class="article-content"> <u>Date created</u> : {{ post.date_created }} and <u>Date posted</u> : {{ post.date_posted }}</p>
             <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out }}</p>

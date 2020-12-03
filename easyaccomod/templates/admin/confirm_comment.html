@@ -1,0 +1,29 @@
+{% extends "admin_home.html" %}
+
+{% block navigation %}
+<div class="card text-center mb-2">
+    <div class="card-header">
+        <ul id="navigation" class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a id="post" class="nav-link" href="{{ url_for('posts.post') }}">Post</a>
+            </li>
+            <li class="nav-item">
+                <a id="room" class="nav-link" href="{{ url_for('posts.room') }}">Room</a>
+            </li>
+            <li class="nav-item">
+                <a id="user" class="nav-link" href="{{ url_for('admin.manage_user') }}">User</a>
+            </li>
+            <li class="nav-item">
+                <a id="statistics" class="nav-link" href="{{ url_for('admin.statistics') }}">Statistics</a>
+            </li>
+            <li class="nav-item">
+                <a id="comment" class="nav-link active" href="#">Confirm Comment</a>
+            </li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
+
+{% block info %}
+    <h1>Confirm Comment</h1>
+{% endblock }

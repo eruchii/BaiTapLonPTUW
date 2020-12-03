@@ -16,6 +16,9 @@
             <li class="nav-item">
                 <a id="statistics" class="nav-link active" href="{{ url_for('admin.statistics') }}">Statistics</a>
             </li>
+            <li class="nav-item">
+                <a id="comment" class="nav-link" href="#">Confirm Comment</a>
+            </li>
         </ul>
     </div>
 </div>
@@ -23,8 +26,7 @@
 
 {% block info %}
     <h1>Statistics</h1>
-    <input type="hidden" name="hidden-data-post" id="hidden-data-post" value="{{ ans.data_post }}">
-    <input type="hidden" name="hidden-data-user" id="hidden-data-user" value="{{ ans.data_user }}">
+    
     <ul class="droplinemenu">
         <li>
             <a href="{{ url_for('admin.statistics_user') }}">User</a>
@@ -32,9 +34,13 @@
         <li>
             <a href="{{ url_for('admin.statistics_post') }}">Post</a>
         </li>
+        <li>
+            <a href="{{ url_for('admin.statistics_room') }}">Room</a>
+        </li>
     </ul>
     {% block statisticschart %}
-        
+        <input type="hidden" name="hidden-data-post" id="hidden-data-post" value="{{ ans.data_post }}">
+        <input type="hidden" name="hidden-data-user" id="hidden-data-user" value="{{ ans.data_user }}">
         <canvas id="myChart"></canvas> 
       
         <script>
@@ -64,7 +70,7 @@
                         hoverBorderColor: '#000',
                         data: datahidden
                     },{
-                        label: 'Statistic user register in 2020',
+                        label: 'Statistic user register in this year',
                         
                         // backgroundColor: 'rgb(255, 99, 132)',
                         borderWidth: 3,
@@ -76,7 +82,33 @@
                 },
 
                 // Configuration options go here
-                options: {}
+                options: {
+                    responsive: true,
+                    tooltips: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                    hover: {
+                        mode: 'nearest',
+                        intersect: true
+                    },
+                    scales: {
+                        xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Month'
+                            }
+                        }],
+                        yAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Value'
+                            }
+                        }]
+                    }
+                }
             });
         </script>
     {% endblock statisticschart%}

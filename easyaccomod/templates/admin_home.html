@@ -5,9 +5,7 @@
 
 {% block admin_header %}
     {% if current_user.role_id == 1 %}
-        <a class="nav-item nav-link" href="#">
-            <button type="button" class="btn btn-info mr-3">Notifications <span class="badge badge-secondary">4</span></button>
-        </a>
+        <a href="#"><button type="button" class="btn btn-info mr-3">Notifications <span class="badge badge-secondary">4</span></button></a>
         <a class="nav-item nav-link" href="/chat">Chat</a>
         <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
         <a class="nav-item nav-link" href="{{ url_for('admin.account') }}">Account</a>
@@ -31,6 +29,9 @@
                 <li class="nav-item">
                     <a id="statistics" class="nav-link" href="{{ url_for('admin.statistics') }}">Statistics</a>
                 </li>
+                <li class="nav-item">
+                    <a id="comment" class="nav-link" href="#">Confirm Comment</a>
+                </li>
             </ul>
         </div>
     </div>
@@ -43,6 +44,7 @@
     
     {% block task %}
         <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ad labore numquam quaerat, molestias vero eos vel nobis nisi deleniti dicta optio placeat aspernatur fugiat harum nihil dolorum quis quam!</div>
+        <p>các bài đăng nhiều view nhất</p>
     {% endblock task %}
 {% endblock content %}
 

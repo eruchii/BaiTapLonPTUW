@@ -15,6 +15,9 @@
             <li class="nav-item">
                 <a id="statistics" class="nav-link" href="{{ url_for('admin.statistics') }}">Statistics</a>
             </li>
+            <li class="nav-item">
+                <a id="comment" class="nav-link" href="#">Confirm Comment</a>
+            </li>
         </ul>
     </div>
 </div>
@@ -34,13 +37,14 @@
                     {% endif %}
                     <a id="reject" class="btn btn-warning btn-sm mt-1 mb-1" onclick="Reject(this, '{{post.id}}')">Reject</a>
                     <!-- button better/ modal -->
-                    <a id="details" class="btn btn-info btn-sm my-1" href="{{ url_for('posts.view_post', post_id=post.id) }}">Details</a>
+                    <a id="details" class="btn btn-info btn-sm my-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
                 </div>
-                <h2><a class="article-title" href="{{ url_for('posts.update_post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                <h2><a class="article-title" href="{{ url_for('posts.view_post', post_id=post.id) }}">{{ post.title }}</a></h2>
                 <span>Post_id: {{ post.id }}</span> <br> <span>Room_Of_Post: {{ post.room.id }}</span> 
                 <a style="text-decoration: none;color:#66CDAA" href="{{ url_for('posts.view_room', room_id=post.room.id) }}">Information about Room</a>
-                <p class="article-content">{{ post.content }}</p>
+                <p class="article-content">Số lượt xem: {{ post.count_view }}</p>
                 <p class="article-content">"Post . Room info" -- {{ post.room.info }}</p>
+                <p class="article-content">{{ post.content }}</p>
                 <p class="article-content"> <u>Date created</u> : {{ post.date_created }} and <u>Date posted</u> : {{ post.date_posted }}</p>
                 <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out }}</p>
                 <p class="article-content">{{ post.author.email }}</p>
