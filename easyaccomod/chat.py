@@ -4,19 +4,30 @@ from sqlalchemy import exc
 from easyaccomod import app, db, socketio
 from flask_login import current_user
 from functools import wraps
-from easyaccomod.models import Message, User, Notification
+from easyaccomod.models import Message, User, Notification, AdminNotification
 from sqlalchemy import or_, and_
 from datetime import datetime
 
 
 chat_bp = Blueprint("chat", __name__)
 clients = {}
+admin = set()
 
 def can_send_msg(f):
 	@wraps(f)
 	def decorated_func(*args, **kwargs):
 		if(current_user.is_anonymous):
 			abort(403)
+			return
+		return f(*args, **kwargs)
+	return decorated_func
+
+def is_admin(f):
+	@wraps(f)
+	def decorated_func(*args, **kwargs):
+		if(current_user.is_anonymous):
+			return
+		if(current_user.role_id != 1):
 			return
 		return f(*args, **kwargs)
 	return decorated_func
@@ -106,6 +117,8 @@ def seen_msg(target):
 @can_send_msg
 def connected():
 	clients[current_user.username] = request.sid
+	if(current_user.role_id == 1):
+		admin.add(current_user.username)
 
 def load_people(sender):
 	ppl = Message.query.filter(or_(Message.receiver==sender,Message.sender==sender))
@@ -199,12 +212,6 @@ def send_new_notification(data):
 	update_new_noti(noti.user)
 	return True
 
-def create_new_notification():
-	a = Notification(receiver = 2, title = "test title", msg = "test msg")
-	db.session.add(a)
-	db.session.commit()
-	return a
-
 @can_recv_noti
 def update_new_noti(user):
 	x = Notification.query.filter_by(seen = False,receiver=user.id)
@@ -250,10 +257,49 @@ def load_list_notifications():
 	db.session.commit()
 	socketio.emit("list notifications", data, room = clients[current_user.username])
 
+
+def create_new_admin_notification():
+	a = AdminNotification(sender = current_user.id, title = "test title", msg = "test msg")
+	db.session.add(a)
+	db.session.commit()
+	return a
+
 @chat_bp.route("/fakenoti")
 @can_recv_noti
 def send_fake_noti():
-	noti = create_new_notification()
+	noti = create_new_admin_notification()
 	data = {"id": noti.id}
-	send_new_notification(data)
+	send_new_admin_notification(data)
 	return jsonify(data)
+
+def send_new_admin_notification(data):
+	id = data["id"]
+	noti = AdminNotification.query.filter_by(id=id).first()
+	if(noti == None):
+		return False
+	if(len(admin) == 0):
+		return False
+	res = {}
+	res["title"] = noti.title
+	res["msg"] = noti.msg
+	res["created_at"] = noti.created_at.strftime("%m/%d/%Y, %H:%M:%S")
+	for x in admin:
+		try:
+			socketio.emit("new admin notification", res, room = clients[x])
+			update_new_admin_noti()
+		except:
+			pass
+
+@socketio.on("get new admin noti")
+@is_admin
+def do_getnewadminnoti():
+	update_new_admin_noti()
+
+def update_new_admin_noti():
+	x = AdminNotification.query.filter_by(seen = False)
+	data = {"new_noti_count":x.count()}
+	try:
+		for x in admin:
+			socketio.emit("update new noti count", data, room = clients[x])
+	except:
+		pass

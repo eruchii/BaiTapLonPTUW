@@ -1,9 +1,3 @@
-namespace = '';
-var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
-socket.on('connect', function(){
-    socket.emit("connected");
-    socket.emit("load list people");
-});
 socket.on('new msg', function(data) {
     if(document.getElementById("receiver").value == data.sender){
         if(data.type == 1) createIncomingMsg(data);

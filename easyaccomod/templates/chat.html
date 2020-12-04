@@ -48,6 +48,15 @@
       </div>
 
     </div></div>
+    <script src="{{ url_for('static', filename='counter.js')}}"></script>
+    <script src="{{ url_for('static', filename='notification.js') }}"></script>
     <script src="{{ url_for('static', filename='chat.js') }}"></script>
+    <script>socket.emit("load list people");</script>
+    {% if current_user.role_id == 1 %}
+    <script>socket.emit("get new admin noti");</script>
+    {% endif %}
+    {% if current_user.role_id == 3 %}
+    <script>socket.emit("get new noti");</script>
+    {% endif %}
   </body>
 </html>
