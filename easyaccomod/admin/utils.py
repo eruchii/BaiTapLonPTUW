@@ -1,3 +1,4 @@
+from easyaccomod.chat import send_new_notification
 from easyaccomod.room_models import Comment
 import itertools
 import random
@@ -149,6 +150,8 @@ def sendNotification(receiver, title, msg):
     notification = Notification(receiver=receiver, title=title, msg=msg)
     db.session.add(notification)
     db.session.commit()
+    data = {"id":notification.id}
+    send_new_notification(data)
     print(notification)
 
 def save_user_picture(user_prefix, form_picture):
