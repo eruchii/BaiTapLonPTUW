@@ -53,7 +53,7 @@ def login():
             flash (f"Login successful! Welcome admin! {user.username}", "success") 
             return redirect(url_for("admin.admin_home"))
         elif user and bcrypt.check_password_hash(user.password, form.password.data) and (user.status_confirm == 1) and (user.role_id == 3) :
-            abort(Response('Hello World'))
+            return redirect(url_for('owner.login'))
         else:
             flash("Login Unsucccessful. Please check email and password!", "danger")
     return render_template("login.html", title="Login", form=form)
@@ -88,21 +88,21 @@ def logout():
 def admin_home():
     if current_user.role_id != 1 or current_user.status_confirm != 1:
         abort(403)
-    rooms = Room.query.all()
-    return render_template("admin_home.html", rooms=rooms)
+    return render_template("admin_home.html")
 
 @admin.route("/manage-user", methods=["GET", "POST"])
 @login_required
 def manage_user():
     if current_user.role_id == 1 and current_user.status_confirm == 1:
         rolename = request.args.get('rolename', 'user', type=str)
+        page = request.args.get('page', 1, type=int)
         users = []
         if rolename == "user":
-            users = User.query.all()
+            users = User.query.order_by(User.id.asc()).paginate(page=page, per_page=15)
         elif rolename == "owner":
-            users = User.query.filter_by(role_id=3).all()
+            users = User.query.filter_by(role_id=3).order_by(User.id.asc()).paginate(page=page, per_page=15)
         elif rolename == "admin":
-            users = User.query.filter_by(role_id=1).all()
+            users = User.query.filter_by(role_id=1).order_by(User.id.asc()).paginate(page=page, per_page=15)
         return render_template("admin/manage_user.html", title="Manage User", users=users, rolename=rolename)
     else:
         abort(403)    
@@ -155,11 +155,13 @@ def new_reject_owner():
 @admin.route("/find/user", methods=["GET", "POST"])
 @login_required
 def find_user():
-    strr = request.args.get('searchname', type=str)
-    if strr:
-        users = findUser(strr)
+    searchname = request.args.get('searchname', type=str)
+    page = request.args.get('page', 1, type=int)
+    per_page = 15
+    if searchname:
+        users = findUser(user_name=searchname, page=page, per_page=per_page)
         print(users)
-        return render_template("admin/manage_user.html", users=users)
+        return render_template("admin/find_user.html", users=users, searchname=searchname)
     else :
         abort(Response('Hello World'))
 

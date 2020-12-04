@@ -69,12 +69,12 @@
     {% endfor %}
     
     {% for page_num in users.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=3 ) %}
-        {% if rolename %}
+        {% if searchname %}
             {% if page_num %}
                 {% if users.page == page_num %}
-                    <a class="btn btn-info mb-4" href="{{ url_for('admin.manage_user',rolename=rolename, page=page_num) }}">{{ page_num }}</a>
+                    <a class="btn btn-info mb-4" href="{{ url_for('admin.find_user', searchname=searchname, page=page_num) }}">{{ page_num }}</a>
                 {% else %}
-                    <a class="btn btn-outline-info mb-4" href="{{ url_for('admin.manage_user',rolename=rolename, page=page_num) }}">{{ page_num }}</a>
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('admin.find_user', searchname=searchname, page=page_num) }}">{{ page_num }}</a>
                 {% endif %}    
             {% else %}
                 ...

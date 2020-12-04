@@ -140,10 +140,10 @@ def rejectUser(user_id):
     else:
         return -1
 
-def findUser(user_name):
+def findUser(user_name, page, per_page):
     req_str = "%" + user_name + "%"
     print(req_str)
-    user = User.query.filter(User.username.like(req_str)).all()
+    user = User.query.filter(User.username.like(req_str)).order_by(User.id.asc()).paginate(page=page, per_page=per_page)
     return user
 
 def sendNotification(receiver, title, msg):
