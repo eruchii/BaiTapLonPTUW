@@ -1,7 +1,7 @@
 from easyaccomod.owner_models import Owner, Room, City, District, Ward
 from easyaccomod import db, bcrypt
 from easyaccomod.models import User
-from easyaccomod.room_models import Like,Comment
+from easyaccomod.room_models import *
 
 def addLike(user_id,room_id,commit=True):
     existCheck = db.session.query(Like).\
@@ -41,3 +41,8 @@ def addComment(user_id,room_id,content,commit = True):
     if (commit):
         db.session.commit()
     return (True,"Comment Succesfully Created!")
+
+def addPriceLog(price):
+    priceRange = PriceLog(price)
+    db.session.add(priceRange)
+    db.session.commint()

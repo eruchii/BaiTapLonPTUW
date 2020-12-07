@@ -18,3 +18,9 @@ class Comment(db.Model):
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     def __repr__(self):
         return (f"Comment : '{self.comment_content}' for '{self.post_id}' by user '{self.user_id}''")
+
+class PriceLog(db.Model):
+    id = db.Column(db.Integer,primary_key=True)
+    priceRange = db.Column(db.String(30))
+    def __repr__(self):
+        return (f"Price Range : '{self.priceRange}'")

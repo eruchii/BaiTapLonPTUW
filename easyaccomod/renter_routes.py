@@ -2,6 +2,7 @@ from flask import *
 from easyaccomod.owner_models import City,District,Ward,Room,RoomType
 from easyaccomod import app
 from easyaccomod.forms import SearchForm
+from easyaccomod.renter_db import addPriceLog
 
 
 # Dinh viet ham de reuse nhung bi bug
@@ -52,7 +53,13 @@ def getRoom(payload):
     
     nearBy = payload[3]['near']
     #print(nearBy)
-    price = int(payload[4]['price'])
+    price = payload[4]['price']
+    addPriceLog(price)
+
+    price = price.split("-")
+
+    lowerPrice = int(price[0])
+    upperPrice = int(price[1])
     #print(price)
     roomTypeId = RoomType.query.filter_by(name = payload[5]['roomType']).first()
     if roomTypeId != None:
@@ -98,6 +105,7 @@ def getRoom(payload):
             x+=1
     
     #gia tien
+    upperPrice
     if  price != None and res != None:
         x = 0
         while x < len(res) :

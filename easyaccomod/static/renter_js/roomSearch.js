@@ -137,6 +137,3 @@ document.querySelector(".city").onchange = async function(){
     }
 
 // Like button handle
-
-
-
