@@ -41,11 +41,16 @@ class RoomForm(FlaskForm):
     # city = SelectField("City", choices=cities, validators=[DataRequired()])
     # district = SelectField("District", choices=districts, validators=[DataRequired()])
     # ward = SelectField("Ward", choices=wards, validators=[DataRequired()])
+    room_type_query = RoomType.query.all()
+    room_types = []
+    for rt in room_type_query:
+        room_types.append((rt.id, rt.name))
+
     city = SelectField("City", validate_choice=False ,validators=[DataRequired()])
     district = SelectField("District",validate_choice=False ,validators=[DataRequired()])
     ward = SelectField("Ward", validate_choice=False,validators=[DataRequired()])
     info = StringField("Info", validators=[DataRequired(), Length(min=10, max=120)])
-    room_type = SelectField("Room Type", validate_choice=True, choices=[('1', 'Phòng trọ'), ('2', 'Chung cư mini'), ('3', 'Nhà nguyên căn'), ('4', 'Chung cư nguyên căn')], validators=[DataRequired()])
+    room_type = SelectField("Room Type", validate_choice=True, choices=room_types, validators=[DataRequired()])
     room_number = IntegerField("Room Number", validators=[DataRequired()])
     price = IntegerField("Price", validators=[DataRequired()])
     chung_chu = BooleanField("Chung Chu")

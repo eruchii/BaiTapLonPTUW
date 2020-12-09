@@ -16,7 +16,7 @@
                 <a id="statistics" class="nav-link" href="{{ url_for('admin.statistics') }}">Statistics</a>
             </li>
             <li class="nav-item">
-                <a id="comment" class="nav-link" href="#">Confirm Comment</a>
+                <a id="comment" class="nav-link" href="{{ url_for('admin.confirm_comment') }}">Confirm Comment</a>
             </li>
         </ul>
     </div>
@@ -25,7 +25,7 @@
 
 {% block info %}
     <h1>Manage Post</h1>
-    {% for post in posts %}
+    {% for post in posts.items %}
         <article class="media content-section max-height-content-section">
             <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="image of author">
             <div class="media-body">
@@ -52,6 +52,27 @@
             </div>
         </article>
     {% endfor %}
+
+    {% for page_num in posts.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=3 ) %}
+        {% if page_num %}
+            {% if posts.page == page_num %}
+                {% if title == "Manage Post" %}
+                    <a class="btn btn-info mb-4" href="{{ url_for('posts.post', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-info mb-4" href="{{ url_for('posts.manage_my_post', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                {% if title == "Manage Post" %}
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('posts.post', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('posts.manage_my_post', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% endif %}    
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+
 {% endblock info %}
 
 {% block task %}

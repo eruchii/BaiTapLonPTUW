@@ -53,6 +53,7 @@ def login():
             flash (f"Login successful! Welcome admin! {user.username}", "success") 
             return redirect(url_for("admin.admin_home"))
         elif user and bcrypt.check_password_hash(user.password, form.password.data) and (user.status_confirm == 1) and (user.role_id == 3) :
+            flash(f"You are owner, please login in owner site!", "info")
             return redirect(url_for('owner.login'))
         else:
             flash("Login Unsucccessful. Please check email and password!", "danger")
@@ -160,7 +161,6 @@ def find_user():
     per_page = 15
     if searchname:
         users = findUser(user_name=searchname, page=page, per_page=per_page)
-        print(users)
         return render_template("admin/find_user.html", users=users, searchname=searchname)
     else :
         abort(Response('Hello World'))
@@ -218,7 +218,58 @@ def confirm_comment():
     if current_user.role_id != 1 or current_user.status_confirm != 1:
         abort(403)
     else :
-        comment = Comment.query.all()
+        page = request.args.get('page', 1, type=int)
+        per_page = 20
+        comments = Comment.query.order_by(Comment.date_created.desc()).paginate(page=page, per_page=per_page)
+        return render_template("admin/confirm_comment.html", comments=comments)
+
+@admin.route("/comment/accept", methods=["GET", "POST"])
+@login_required
+def acceptComment():
+    data = request.get_json()
+    print(data["comment_id"])
+    resp = {}
+    resp["status"] = "error"
+    resp["msg"] = "co loi xay ra"
+    try:
+        if current_user.role_id == 1 and current_user.status_confirm == 1:
+            cmt_id = accept_comment(data["comment_id"])
+            if cmt_id!= -1:
+                comment = Comment.query.filter_by(id=cmt_id).first()
+                resp["status"] = "success"
+                resp["msg"] = f"Accept comment of user: {comment.user.username} with post_id: {comment.post.id}, status comment: {comment.status}"
+                if comment.status == True:
+                    resp["comment_status"] = "True"
+                else:
+                    resp["comment_status"] = "False"
+            return jsonify(resp)
+    except Exception as e:
+        print(e)
+        return jsonify(resp)
+
+@admin.route("/comment/reject", methods=["GET", "POST"])
+@login_required
+def rejectComment():
+    data = request.get_json()
+    print(data["comment_id"])
+    resp = {}
+    resp["status"] = "error"
+    resp["msg"] = "co loi xay ra"
+    try:
+        if current_user.role_id == 1 and current_user.status_confirm == 1:
+            cmt_id = reject_comment(data["comment_id"])
+            if cmt_id!= -1:
+                comment = Comment.query.filter_by(id=cmt_id).first()
+                resp["status"] = "success"
+                resp["msg"] = f"Reject comment of user: {comment.user.username} with post_id: {comment.post.id}, status comment: {comment.status}"
+                if comment.status == True:
+                    resp["comment_status"] = "True"
+                else:
+                    resp["comment_status"] = "False"
+            return jsonify(resp)
+    except Exception as e:
+        print(e)
+        return jsonify(resp)
 
 # @admin.route("/manage-user/<int:user_id>/accept", methods=["GET","POST"])
 # @login_required

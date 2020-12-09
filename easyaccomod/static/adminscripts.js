@@ -134,6 +134,48 @@ function rejectOwner(myself, id) {
     })
 }
 
+function acceptComment(myself, id) {
+    postData("/comment/accept", {
+        comment_id: id
+    }).then(data => {
+        container = document.getElementById("msg");
+        container.innerHTML = "";
+        container.empty();
+        container.classList.remove("nodisplay");
+        if (data["status"] == "error") {
+            container.classList.add("alert-danger");
+        } else {
+            container.classList.add("alert-success");
+            var accept_pr = myself.parentNode;
+            accept_pr.querySelector("small.text-muted").innerHTML = "Status: " + data["comment_status"];
+            accept_pr.querySelector("#acceptcomment").classList.add("nodisplay");
+        }
+        msg = document.createTextNode(data["msg"]);
+        container.appendChild(msg);
+    })
+}
+
+function rejectComment(myself, id) {
+    postData("/comment/reject", {
+        comment_id:id
+    }).then(data => {
+        container = document.getElementById("msg");
+        container.innerHTML = "";
+        container.empty();
+        container.classList.remove("nodisplay");
+        if (data["status"] == "error") {
+            container.classList.add("alert-danger");
+        } else {
+            container.classList.add("alert-success");
+            var reject_pr = myself.parentNode;
+            reject_pr.querySelector("small.text-muted").innerHTML = "Status: " + data["comment_status"];
+            reject_pr.querySelector("#acceptcomment").classList.remove("nodisplay");
+        }
+        msg = document.createTextNode(data["msg"]);
+        container.appendChild(msg);
+    })
+}
+
 function validateInput(event) {
     var value = document.getElementById("searchname").value;
     if (value.length <= 0) {

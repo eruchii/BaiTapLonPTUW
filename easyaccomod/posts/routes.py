@@ -89,7 +89,8 @@ def new_post():
 @login_required
 def post():
     if current_user.role_id == 1:
-        posts = Post.query.all()
+        page = request.args.get('page', 1, type=int)
+        posts = Post.query.order_by(Post.id.asc()).paginate(page=page, per_page=5)
         return render_template("posts/post.html", title="Manage Post", posts=posts)
     else:
         abort(403)
@@ -150,7 +151,8 @@ def manage_my_post():
         abort(403)
     else :
         user = User.query.get_or_404(current_user.id)
-        posts = user.posts
+        page = request.args.get('page', 1, type=int)
+        posts = Post.query.filter_by(author=user).order_by(Post.date_created.desc()).paginate(page=page, per_page=5)
         return render_template("posts/post.html", title="Manage My Post", posts=posts)
 
 @posts.route("/room/new", methods=["GET", "POST"])
@@ -193,11 +195,65 @@ def new_room():
     else :
         abort(403)
     
+@posts.route("/room/update/<int:room_id>", methods=["GET", "POST"])
+@login_required
+def update_room(room_id):
+    room = Room.query.get_or_404(room_id)
+    if current_user.role_id == 2 or current_user.status_confirm != 1 or current_user != room.user:
+        abort(403)
+    else :
+        form = RoomForm()
+        if form.validate_on_submit():
+            room.city_code=form.city.data
+            room.district_id=form.district.data
+            room.ward_id=form.ward.data
+            room.info=form.info.data
+            room.room_type_id=form.room_type.data
+            room.room_number=form.room_number.data 
+            room.price=form.price.data
+            room.chung_chu=form.chung_chu.data
+            room.phong_tam=form.phong_tam.data 
+            room.nong_lanh=form.nong_lanh.data 
+            room.phong_bep=form.phong_bep.data 
+            room.dieu_hoa=form.dieu_hoa.data
+            room.ban_cong=form.ban_cong.data 
+            room.gia_dien=form.gia_dien.data 
+            room.gia_nuoc=form.gia_nuoc.data 
+            room.tien_ich_khac=form.tien_ich_khac.data
+            room.status=form.status.data  
+            list_img = []
+            for file in form.image.data:
+                file_name = save_room_picture(str(room.id), file)
+                list_img.append(file_name)
+            room_image = str(list_img)
+            room.image = room_image
+            db.session.commit()
+            flash(f"Your room has been updated with room_id = {room.id}!", "success")
+            return redirect(url_for('posts.view_room', room_id=room.id))
+        elif request.method == "GET":
+            form.city.choices = [(room.city.code, room.city.name)]
+            form.info.data = room.info
+            #form.room_type.data = (room.roomtype.id if room.roomtype else 0)
+            form.room_number.data = room.room_number
+            form.price.data = room.price
+            form.chung_chu.data = room.chung_chu
+            form.phong_tam.data = room.phong_tam
+            form.nong_lanh.data = room.nong_lanh
+            form.phong_bep.data = room.phong_bep
+            form.dieu_hoa.data = room.dieu_hoa
+            form.ban_cong.data = room.ban_cong
+            form.gia_dien.data = room.gia_dien
+            form.gia_nuoc.data = room.gia_nuoc
+            form.tien_ich_khac.data = room.tien_ich_khac
+            form.status.data = room.status
+        return render_template('posts/update_room.html', form=form)
+
 @posts.route("/room", methods=["GET"])
 @login_required
 def room():
     if current_user.role_id == 1 and current_user.status_confirm == 1:
-        rooms = Room.query.all()
+        page = request.args.get('page', 1, int)
+        rooms = Room.query.order_by(Room.id.desc()).paginate(page=page, per_page=5)
         return render_template("posts/room.html", title = "Room", rooms=rooms)
     else :
         abort(403)
@@ -215,8 +271,9 @@ def manage_my_room():
     if current_user.status_confirm != 1 or current_user.role_id == 2:
         abort(403)
     else :
-        user = User.query.get_or_404(current_user.id)
-        rooms = user.rooms
+        us = User.query.get_or_404(current_user.id)
+        page = request.args.get('page', 1, int)
+        rooms = Room.query.filter_by(user=us).order_by(Room.id.desc()).paginate(page=page, per_page=5)
         return render_template("posts/room.html", title="Manage Room", rooms=rooms)
 
 # @posts.route("/post/<int:post_id>/accept", methods=["GET", "POST"])

@@ -16,7 +16,7 @@
                 <a id="statistics" class="nav-link" href="{{ url_for('admin.statistics') }}">Statistics</a>
             </li>
             <li class="nav-item">
-                <a id="comment" class="nav-link" href="#">Confirm Comment</a>
+                <a id="comment" class="nav-link" href="{{ url_for('admin.confirm_comment') }}">Confirm Comment</a>
             </li>
         </ul>
     </div>
@@ -26,7 +26,7 @@
 
 {% block info %}
     <h1>Manage Room</h1>
-    {% for room in rooms %}
+    {% for room in rooms.items %}
         <article class="media content-section max-height-content-section">
             <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + room.user.image_file) }}" alt="image of author">
             <div class="media-body">
@@ -63,6 +63,28 @@
             </div>
         </article>
     {% endfor %}
+
+    {% for page_num in rooms.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=3 ) %}
+        {% if page_num %}
+            {% if rooms.page == page_num %}
+                {% if title == "Room" %}
+                    <a class="btn btn-info mb-4" href="{{ url_for('posts.room', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+                {% if title == "Manage Room" %}
+                    <a class="btn btn-info mb-4" href="{{ url_for('posts.manage_my_room', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% else %}
+                {% if title == "Room" %}
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('posts.room', page=page_num) }}">{{ page_num }}</a>
+                {% else %}
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('posts.manage_my_room', page=page_num) }}">{{ page_num }}</a>
+                {% endif %}
+            {% endif %}    
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+
 {% endblock info %}
 
 {% block task %}

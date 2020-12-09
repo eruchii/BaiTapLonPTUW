@@ -1,6 +1,7 @@
+from datetime import datetime, timedelta
 from easyaccomod import db, app, login_manager
 from easyaccomod.models import *
-from easyaccomod.owner_models import Room
+# from easyaccomod.owner_models import Room
 
 class Like(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'),nullable = False,unique= False,primary_key=True)

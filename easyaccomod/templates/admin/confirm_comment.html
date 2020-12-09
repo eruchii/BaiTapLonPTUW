@@ -17,7 +17,7 @@
                 <a id="statistics" class="nav-link" href="{{ url_for('admin.statistics') }}">Statistics</a>
             </li>
             <li class="nav-item">
-                <a id="comment" class="nav-link active" href="#">Confirm Comment</a>
+                <a id="comment" class="nav-link active" href="{{ url_for('admin.confirm_comment') }}">Confirm Comment</a>
             </li>
         </ul>
     </div>
@@ -26,4 +26,45 @@
 
 {% block info %}
     <h1>Confirm Comment</h1>
-{% endblock }
+    {% for comment in comments.items %}
+        <article class="media content-section">
+            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + comment.user.image_file) }}" alt="image of author">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="#">{{ comment.user.username}}</a>
+                    <small class="text-muted"> Status: {{ comment.status }}</small>
+                    {% if comment.status != 1 %}
+                        <a id="acceptcomment" class="btn btn-success btn-sm mt-1 mb-1 ml-1" onclick="acceptComment(this, '{{ comment.id }}')">Accept</a>
+                    {% else %}
+                        <a id="acceptcomment" class="btn btn-success btn-sm mt-1 mb-1 ml-1 nodisplay" onclick="acceptComment(this, '{{ comment.id }}')">Accept</a>
+                    {% endif %}
+                    
+                    <a id="rejectcomment" class="btn btn-danger btn-sm mt-1 mb-1 ml-1" onclick="rejectComment(this, '{{ comment.id }}')">Reject</a>
+                    
+                </div>
+                <h4><a class="article-title" href="">ID User: {{ comment.user.id }} -- Username: {{ comment.user.username }}</a></h4>
+                <h4><a class="article-title" href="">ID Post: {{ comment.post.id }} -- Post Title: {{ comment.post.title }}</a></h4>
+                <h4>Content: {{ comment.comment_content }}</h4>
+                <p>Created at: {{ comment.date_created.strftime('%Y-%m-%d') }}</p>
+                <p class="article-content"> Role: {{ comment.user.roles.name }}</p>
+            </div>
+        </article>
+    {% endfor %}
+
+    {% for page_num in comments.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=3 ) %}
+        {% if page_num %}
+            {% if comments.page == page_num %}
+                <a class="btn btn-info mb-4" href="{{ url_for('admin.confirm_comment', page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+                <a class="btn btn-outline-info mb-4" href="{{ url_for('admin.confirm_comment', page=page_num) }}">{{ page_num }}</a>
+            {% endif %}    
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+
+{% endblock %}
+
+{% block task %}
+    <br>
+{% endblock task %}

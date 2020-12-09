@@ -3,6 +3,7 @@ from easyaccomod import db, app, login_manager
 from datetime import datetime, timedelta
 from flask_login import UserMixin
 from easyaccomod.owner_models import *
+from easyaccomod.room_models import *
 
 # callback -> This callback is used to reload the user object from the user ID stored in the session
 # It should take the unicode ID of a user, and return the corresponding user object.
@@ -50,6 +51,8 @@ class User(db.Model, UserMixin):
     owner = db.relationship('Owner', backref='users', lazy=True)
     rooms = db.relationship("Room", backref="user")
     notification = db.relationship("Notification", backref="user")
+    likes = db.relationship("Like", backref="user", lazy=True)
+    comments = db.relationship("Comment", backref="user", lazy=True)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}, '{self.image_file}')"
@@ -65,6 +68,8 @@ class Post(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False, default=(datetime.utcnow() + time_delay))
     date_out = db.Column(db.DateTime, nullable=False, default=(datetime.utcnow() + time_out))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)  # fix:: author !important
+    likes = db.relationship("Like", backref="post", lazy=True)
+    comments = db.relationship("Comment", backref="post", lazy=True)
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"

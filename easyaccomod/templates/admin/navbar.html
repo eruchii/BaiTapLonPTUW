@@ -19,7 +19,7 @@
                 <!-- Navbar Right Side -->
                 <div class="navbar-nav">
                     {% if current_user.is_authenticated %}
-                        <a class="nav-item nav-link" href="#">
+                        <a href="#">
                             <button type="button" class="btn btn-info mr-3">Notifications <span class="badge badge-secondary" id="new_noti">0</span></button>
                         </a>
                         <a class="nav-item nav-link" href="/chat">Chat</a>
@@ -35,3 +35,4 @@
         </div>
     </nav>
 </header>
+

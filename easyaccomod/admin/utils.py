@@ -140,9 +140,32 @@ def rejectUser(user_id):
     else:
         return -1
 
+def accept_comment(comment_id):
+    """
+    param: comment_id : id of comment to accept
+    """
+    comment_accept = Comment.query.get(comment_id)
+    if comment_accept:
+        comment_accept.status = True
+        db.session.commit()
+        return comment_accept.id
+    else :
+        return -1
+
+def reject_comment(comment_id):
+    """
+    param: comment_id : id of comment to accept
+    """
+    comment_accept = Comment.query.get(comment_id)
+    if comment_accept:
+        comment_accept.status = False
+        db.session.commit()
+        return comment_accept.id
+    else :
+        return -1
+
 def findUser(user_name, page, per_page):
     req_str = "%" + user_name + "%"
-    print(req_str)
     user = User.query.filter(User.username.like(req_str)).order_by(User.id.asc()).paginate(page=page, per_page=per_page)
     return user
 
