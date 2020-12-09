@@ -123,3 +123,40 @@ def notification():
 def logout():
 	logout_user()
 	return redirect(url_for("owner.login"))
+
+@owner_bp.route("/room/create")
+@is_owner
+def create_new_room():
+	return render_template("owner/createroom.html")
+
+@owner_bp.route("/api/room/create", methods=["POST"])
+@is_owner
+def api_create_new_room():
+	res = {}
+	res["status"] = "error"
+	res["msg"] = ""
+	data_form = request.form
+	img = request.files.getlist("image")
+	print(len(img))
+	print(data_form)
+	print(img)
+	form_attrs = ["city", "district", "ward", "info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc"]
+	for attr in form_attrs:
+		try:
+			x = data_form[attr]
+			if(x == ""):
+				res["msg"] = "Thieu truong can thiet"
+				print(attr)
+				return jsonify(res)
+		except:
+			print(attr)
+			res["msg"] = "Thieu truong can thiet"
+			return jsonify(res)
+	
+	print(len(img))
+	if(len(img) < 3):
+		res["msg"] = "Toi thieu 3 anh"
+		return jsonify(res)
+	res["status"] = "success"
+	res["msg"] = "ok"
+	return jsonify(res)

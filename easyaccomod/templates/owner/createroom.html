@@ -1,0 +1,102 @@
+{% extends "owner/layout.html" %}
+{% block content %}
+<div class="content-section">
+    <div id="msg"></div>
+    <h1>Create Room</h1>
+    <form id="room_form">
+        <div class="form-group">
+            <!-- .col-form-label -->
+            <label class="col-form-label" for="city">Tỉnh/Thành phố</label>
+            <select class="form-control form-control-lg" id="city" name="city" required></select>
+        </div>
+        <div class="form-group">
+            <label class="col-form-label" for="district">Quận/Huyện</label>
+            <select class="form-control form-control-lg" id="district" name="district" required></select>
+            
+        </div>
+        <div class="form-group">
+            <label class="col-form-label" for="ward">Phường/Xã</label>
+            <select class="form-control form-control-lg" id="ward" name="ward" required></select>
+            
+        </div>
+        <div class="form-group">
+            <label class="col-form-label" for="info">Mô tả phòng trọ</label>
+            <input class="form-control form-control-lg" id="info" name="info" required type="text" value="">
+            
+        </div>
+        
+        <div class="form-group">
+            <label class="form-control-label" for="room_type">Loại phòng</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                </div>
+                <select class="custom-select form-control-lg" id="inputGroupSelect01" name="room_type_id" id="room_type_id">
+                    
+                        <option value=1>Phòng trọ</option>
+                    
+                        <option value=2>Chung cư mini</option>
+                    
+                        <option value=3>Nhà nguyên căn</option>
+                    
+                        <option value=4>Chung cư nguyên căn</option>
+                    
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-form-label" for="room_number">Số phòng</label>
+            <input class="form-control form-control-lg" id="room_number" name="room_number" required type="text" value="">
+        </div>
+        
+        <div class="form-group">
+            <label class="col-form-label" for="price">Giá thuê</label>
+            <input class="form-control form-control-lg" id="price" name="price" required type="text" value="">
+            
+        </div>
+
+        <div class="form-check-label">
+            <input class="form-check-inline " id="chung_chu" name="chung_chu" type="checkbox">
+            <label class="form-check-label mr-2" for="chung_chu">Chung chủ</label>
+            <input class="form-check-inline" id="nong_lanh" name="nong_lanh" type="checkbox">
+            <label class="form-check-label mr-2" for="nong_lanh">Có bình nóng lạnh</label> 
+            <input class="form-check-inline" id="dieu_hoa" name="dieu_hoa" type="checkbox">
+            <label class="form-check-label mr-2" for="dieu_hoa">Có điều hòa</label> 
+            <input class="form-check-inline " id="ban_cong" name="ban_cong" type="checkbox">
+            <label class="form-check-label mr-2" for="ban_cong">Có ban công</label> 
+        </div>
+
+        <div class="form-group">
+            <label class="col-form-label" for="phong_tam">Số phòng tắm</label>
+            <input class="form-control form-control-lg" id="phong_tam" name="phong_tam" required type="text" value="">
+            
+        </div>
+
+        <div class="form-group">
+            <label class="col-form-label" for="phong_bep">Số phòng bếp</label>
+            <input class="form-control form-control-lg" id="phong_bep" name="phong_bep" required type="text" value="">
+            
+        </div>
+
+        <div class="form-group">
+            <label class="col-form-label" for="gia_dien">Giá điện</label>
+            <input class="form-control form-control-lg" id="gia_dien" name="gia_dien" placeholder="VND/số" required type="text" value="">
+            
+        </div>
+        <div class="form-group">
+            <label class="col-form-label" for="gia_nuoc">Giá nước</label>
+            <input class="form-control form-control-lg" id="gia_nuoc" name="gia_nuoc" placeholder="VND/khối" required type="text" value="">
+            
+        </div>
+        
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input class="form-control-file" id="image" multiple name="image" required type="file">
+        </div>
+        <button type="button" class="btn btn-primary btn-block" onclick="create_new_room()">Submit</button>
+    </form>
+</div>
+<script src="/static/search.js"></script>
+<script src="/static/room.js"></script>
+{% endblock content %}

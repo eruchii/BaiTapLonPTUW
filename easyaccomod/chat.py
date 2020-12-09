@@ -17,7 +17,6 @@ def can_send_msg(f):
 	@wraps(f)
 	def decorated_func(*args, **kwargs):
 		if(current_user.is_anonymous):
-			abort(403)
 			return
 		return f(*args, **kwargs)
 	return decorated_func
@@ -36,7 +35,6 @@ def can_recv_noti(f):
 	@wraps(f)
 	def decorated_func(*args, **kwargs):
 		if(current_user.is_anonymous):
-			abort(403)
 			return
 		return f(*args, **kwargs)
 	return decorated_func

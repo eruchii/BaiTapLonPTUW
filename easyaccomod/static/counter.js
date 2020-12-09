@@ -5,9 +5,12 @@ socket.on('connect', function(){
 });
 
 socket.on("update new noti count", function(data){
-    document.getElementById("new_noti").firstChild.nodeValue = data["new_noti_count"]
+    a = document.getElementById("new_noti");
+    if(a != null)
+        a.firstChild.nodeValue = data["new_noti_count"];
 });
 
 socket.on("update new msg count", function(data){
-    document.getElementById("new_msg").firstChild.nodeValue = data["new_msg_count"]
+    a = document.getElementById("new_noti");
+    if(a != null) a.firstChild.nodeValue = data["new_msg_count"];
 });
