@@ -1,23 +1,10 @@
-// namespace = '';
-// var socket = io.connect(location.protocol + '//' + document.domain + ':' + location.port + namespace);
-// socket.on('connect', function(){
-//     socket.emit("connected");
-// });
-
 socket.on("new notification", function(data){
     createNotification(data);
-    console.log(data);
 });
 
 socket.on("list notifications", function(notis){
     createListNoti(notis);
 })
-
-socket.on("update new noti count", function(data){
-    console.log(data);
-    document.getElementById("new_noti").firstChild.nodeValue = data["new_noti_count"]
-})
-
 function createNotification(data){
     container = document.createElement("div");
     container.classList.add("card");

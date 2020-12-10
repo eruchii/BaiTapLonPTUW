@@ -137,9 +137,6 @@ def api_create_new_room():
 	res["msg"] = ""
 	data_form = request.form
 	img = request.files.getlist("image")
-	print(len(img))
-	print(data_form)
-	print(img)
 	room_data = {}
 	form_attrs = ["city", "district", "ward", "info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "tien_ich_khac"]
 	int_fields = ["room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc"]
