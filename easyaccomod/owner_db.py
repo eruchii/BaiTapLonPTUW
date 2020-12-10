@@ -4,6 +4,7 @@ from easyaccomod import db, bcrypt
 import hashlib
 import re
 from easyaccomod.models import User
+from easyaccomod.admin.utils import save_room_picture
 
 def encrypt_string(hash_string):
 	bcrypt_hash = bcrypt.generate_password_hash(hash_string).decode('utf-8')
@@ -112,3 +113,28 @@ def add_ward(city_code, district_id, id, name, commit=True):
 	db.session.add(new_ward)
 	if commit:
 		db.session.commit()
+
+def add_room(user_id, room, image, commit = True):
+	room_attrs = ["info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong"]
+	new_room = Room()
+	setattr(new_room, "user_id", user_id)
+	setattr(new_room, "city_code", room["city"])
+	setattr(new_room, "district_id", room["district"])
+	setattr(new_room, "ward_id", room["ward"])
+	for attr in room_attrs:
+		print(attr)
+		setattr(new_room, attr, room[attr])
+	try:
+		db.session.add(new_room)
+		db.session.flush()
+	except:
+		return ("error", "co loi xay ra, vui long thu lai")
+	img = []
+	for i in image:
+		filename = save_room_picture(str(new_room.id), i)
+		img.append(filename)
+	new_room.image = str(img)
+	db.session.flush()
+	if commit:
+		db.session.commit()
+	return ("success", f"them thanh cong id={new_room.id}")

@@ -3,7 +3,7 @@ from easyaccomod import app
 from flask_login import login_user, current_user, logout_user
 from easyaccomod.owner_models import Owner, User
 from functools import wraps
-from easyaccomod.owner_db import check_user, add_user, change_password
+from easyaccomod.owner_db import check_user, add_user, change_password, add_room
 
 owner_bp = Blueprint("owner", __name__, template_folder='templates/owner')
 
@@ -140,23 +140,39 @@ def api_create_new_room():
 	print(len(img))
 	print(data_form)
 	print(img)
-	form_attrs = ["city", "district", "ward", "info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc"]
+	room_data = {}
+	form_attrs = ["city", "district", "ward", "info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "tien_ich_khac"]
+	int_fields = ["room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc"]
+	form_checkbox = ["chung_chu", "nong_lanh", "dieu_hoa", "ban_cong"]
 	for attr in form_attrs:
 		try:
-			x = data_form[attr]
-			if(x == ""):
+			room_data[attr] = data_form[attr]
+			if(room_data[attr] == ""):
 				res["msg"] = "Thieu truong can thiet"
-				print(attr)
 				return jsonify(res)
 		except:
-			print(attr)
 			res["msg"] = "Thieu truong can thiet"
 			return jsonify(res)
-	
-	print(len(img))
+	for f in int_fields:
+		try:
+			room_data[f] = int(room_data[f])
+		except:
+			res["msg"] = "Thong tin khong hop le"
+			return jsonify(res)
+
+	for attr in form_checkbox:
+		try:
+			x = data_form[attr]
+			if(x == "on"):
+				room_data[attr] = True
+			else:
+				room_data[attr] = False
+		except:
+			room_data[attr] = False
 	if(len(img) < 3):
 		res["msg"] = "Toi thieu 3 anh"
 		return jsonify(res)
-	res["status"] = "success"
-	res["msg"] = "ok"
+	status, msg = add_room(current_user.id, room_data, img)
+	res["status"] = status
+	res["msg"] = msg
 	return jsonify(res)
