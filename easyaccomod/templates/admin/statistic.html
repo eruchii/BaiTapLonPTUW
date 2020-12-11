@@ -41,7 +41,11 @@
     {% block statisticschart %}
         <input type="hidden" name="hidden-data-post" id="hidden-data-post" value="{{ ans.data_post }}">
         <input type="hidden" name="hidden-data-user" id="hidden-data-user" value="{{ ans.data_user }}">
-        <canvas id="myChart"></canvas> 
+        <input type="hidden" name="hidden-label-post" id="hidden-label-post" value="{{ ans.label_post }}">
+        <input type="hidden" name="hidden-label-user" id="hidden-label-user" value="{{ ans.label_user }}">
+        <input class="btn-sm" type="number" name="statistic-year" id="statistic-year" placeholder="YYYY">
+        <input class="btn btn-sm btn-info ml-2" type="button" value="Submit" onclick="updateChart(event)">
+        <canvas class="mt-2" id="myChart"></canvas> 
       
         <script>
             var ctx = document.getElementById('myChart').getContext('2d');
@@ -52,7 +56,10 @@
             datahidden = datahidden.slice(1,datahidden.length-1).split(",")
             var dataHiddenUser = document.getElementById("hidden-data-user").value;
             dataHiddenUser = dataHiddenUser.slice(1,dataHiddenUser.length-1).split(",");
+            var label_post = document.getElementById("hidden-label-post").value;
+            var label_user = document.getElementById("hidden-label-user").value;
             console.log(dataHiddenUser);
+
             var chart = new Chart(ctx, {
                 // The type of chart we want to create
                 type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -61,7 +68,7 @@
                 data: {
                     labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
                     datasets: [{
-                        label: 'Statistic post in this year',
+                        label: label_post,
                         
                         // backgroundColor: 'rgb(255, 99, 132)',
                         borderWidth: 3,
@@ -70,7 +77,7 @@
                         hoverBorderColor: '#000',
                         data: datahidden
                     },{
-                        label: 'Statistic user register in this year',
+                        label: label_user,
                         
                         // backgroundColor: 'rgb(255, 99, 132)',
                         borderWidth: 3,
@@ -105,11 +112,36 @@
                             scaleLabel: {
                                 display: true,
                                 labelString: 'Value'
+                            },
+                            ticks: {
+                                min: 0
                             }
                         }]
                     }
                 }
             });
+
+            function updateChart(event) {
+                event.preventDefault();
+                var val = document.getElementById("statistic-year").value;
+                console.log(val)
+                if (isNaN(val) || val == "") {
+                    alert("please check the input!");
+                } else {
+                    postData("/statistics", {
+                        year: val
+                    }).then(data => {
+                        console.log(data);
+                        document.getElementById("hidden-data-post").value = data["data_post"];
+                        document.getElementById("hidden-data-user").value = data["data_user"];
+                        chart.data.datasets[0].data = data["data_post"];
+                        chart.data.datasets[1].data = data["data_user"];
+                        chart.data.datasets[0].label = data["label_post"];
+                        chart.data.datasets[1].label = data["label_user"];
+                        chart.update();
+                    })
+                }
+            }
         </script>
     {% endblock statisticschart%}
 {% endblock info %}

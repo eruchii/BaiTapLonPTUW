@@ -34,6 +34,7 @@
                     <a class="mr-2" href="#">{{ room.user.username }}</a>
                     <small id="room" class="text-muted mr-1">{{ room.status }}</small>
                     <a id="details" class="btn btn-info btn-sm my-1" href="{{ url_for('posts.view_room', room_id=room.id) }}">Details</a>
+                    <a id="create-post" class="btn btn-success btn-sm my-1 ml-1" href="{{ url_for('posts.new_post', room=room.id) }}">Create Post</a>
                 </div>
                 <h2><a class="article-title" href="#">{{ room.user.email }}</a></h2>
                 {% if room.user.owner %}

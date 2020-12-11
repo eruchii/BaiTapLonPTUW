@@ -76,6 +76,9 @@ def new_post():
                 flash(f"Room does not exist!", "danger")
                 return redirect(url_for('posts.new_post'))
         elif request.method == "GET":
+            room_id = request.args.get("room", type=int)
+            if room_id:
+                form.room_id.data = room_id
             time_delta = timedelta(days=30)
             today = datetime.utcnow().date()
             req = today + time_delta

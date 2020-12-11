@@ -1,5 +1,73 @@
 {% extends "admin/statistic.html" %}
 {% block statisticschart %}
-    hello 111
+    <a href="{{ url_for('admin.statistics_user', view='chart') }}"><button class="btn btn-outline-info my-2 my-sm-0" title="View Chart">Chart</button></a>
+    <a href="{{ url_for('admin.statistics_user', view='table') }}"><button class="btn btn-outline-success my-2 my-sm-0" title="View Table">Table</button></a>
+    <input type="hidden" id="hidden-data-label" value="{{ ans.data[0] }}">
+    <input type="hidden" id="hidden-data-value" value="{{ ans.data[1] }}">
+    <canvas id="myChart"></canvas>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        // Global Options
+        // Chart.defaults.global.defaultFontFamily = 'Lato';
+        Chart.defaults.global.defaultFontSize = 18;
+        var hidden_data_label = document.getElementById("hidden-data-label").value;
+        var hidden_data = document.getElementById("hidden-data-value").value;
+        hidden_data_label = hidden_data_label.slice(1, hidden_data_label.length-1).split(", ");
+        hidden_data = hidden_data.slice(1, hidden_data.length-1).split(", ")
+        for (let i = 0; i < hidden_data_label.length; i++) {
+            hidden_data_label[i] = hidden_data_label[i].slice(1, hidden_data_label[i].length-1);
+        }
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+
+            // The data for our dataset
+            data: {
+                labels: hidden_data_label,
+                datasets: [{
+                    label: 'Khoảng giá mà người dùng tìm kiếm',
+                    
+                    // backgroundColor: 'rgb(255, 99, 132)',
+                    borderWidth: 3,
+                    borderColor: 'rgb(0,99,132)',
+                    hoverBorderWidth: 5,
+                    hoverBorderColor: '#000',
+                    data: hidden_data
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                responsive: true,
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Khoảng giá'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Số lượt tìm kiếm'
+                        },
+                        ticks: {
+                            min: 0
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
     <br>
 {% endblock %}

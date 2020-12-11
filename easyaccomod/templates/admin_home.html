@@ -5,7 +5,7 @@
 
 {% block admin_header %}
     {% if current_user.role_id == 1 %}
-        <a href="#"><button type="button" class="btn btn-info mr-3">Notifications <span class="badge badge-secondary" id="new_noti">0</span></button></a>
+        <a href="{{ url_for('admin.admin_notifications') }}"><button type="button" class="btn btn-info mr-3">Notifications <span class="badge badge-secondary" id="new_noti">0</span></button></a>
         <a class="nav-item nav-link" href="/chat">Chat</a>
         <a class="nav-item nav-link" href="{{ url_for('posts.new_post') }}">New Post</a>
         <a class="nav-item nav-link" href="{{ url_for('admin.account') }}">Account</a>

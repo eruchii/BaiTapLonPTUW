@@ -5,7 +5,7 @@
 <input type="hidden" name="hidden-data" id="hidden-data" value="{{ ans.data_cost_room }}">
 <input type="hidden" name="hidden-x-length" id="hidden-x-length" value="{{ ans.xLength }}">
 <canvas id="myChart"></canvas> 
-
+<br>
 <input type="hidden" name="hidden-x1-label" id="hidden-x1-label" value="{{ ans.xLabel1 }}">
 <input type="hidden" name="hidden-y1-label" id="hidden-y1-label" value="{{ ans.yLabel1 }}">
 <input type="hidden" name="hidden-data-x1" id="hidden-data-x1" value="{{ ans.data_x_1 }}">
@@ -71,6 +71,9 @@
                     scaleLabel: {
                         display: true,
                         labelString: ylabel
+                    },
+                    ticks: {
+                        min: 0
                     }
                 }]
             }
@@ -86,7 +89,9 @@
     for (let i = 0; i < data_x_1.length; i++) {
         data_x_1[i] = data_x_1[i].slice(1, data_x_1[i].length-1);
     }
-    // console.log(data_x_1);
+    for (let j = 0; j < data_y_1.length; j++) {
+        data_y_1[j] = parseInt(data_y_1[j])
+    }
     var chart1 = new Chart(ctx1, {
         // The type of chart we want to create
         type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -102,6 +107,7 @@
                 borderColor: 'rgb(0,99,132)',
                 hoverBorderWidth: 5,
                 hoverBorderColor: '#000',
+                minBarLength: 2,
                 data: data_y_1
             }]
         },
@@ -130,6 +136,9 @@
                     scaleLabel: {
                         display: true,
                         labelString: ylabel1
+                    },
+                    ticks: {
+                        min: 0
                     }
                 }]
             }

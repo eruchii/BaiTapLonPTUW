@@ -185,14 +185,5 @@ function validateInput(event) {
 }
 
 function sendYearStatistic(event) {
-    event.preventDefault();
-    var data = document.getElementById("year").value;
-    console.log(data)
-    if (isNaN(data) || data == "") {
-        alert("please check the input!");
-    } else {
-        // postData("/statistics", {
-        //     year = data
-        // })
-    }
+    
 }

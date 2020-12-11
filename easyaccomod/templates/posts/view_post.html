@@ -23,6 +23,19 @@
             <p class="article-content"> <u>Date created</u> : {{ post.date_created }} and <u>Date posted</u> : {{ post.date_posted }}</p>
             <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out }}</p>
             <p class="article-content">{{ post.author.email }}</p>
+            <hr>
+            {% for comment in post.comments %}
+                <article class="media content-section">
+                    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + comment.user.image_file) }}" alt="image of author">
+                    <div class="media-body">
+                        <div class="article-metadata">
+                            <a class="mr-2" href="#">{{ comment.user.username}}</a>
+                            <small class="text-muted">{{ comment.date_created.strftime('%Y-%m-%d') }}</small>
+                        </div>
+                        <p>{{ comment.comment_content }}</p>
+                    </div>
+                </article>   
+            {% endfor %}
         </div>
     </article>
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

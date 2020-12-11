@@ -169,11 +169,22 @@ def find_user():
 @login_required
 def statistics():
     if current_user.role_id == 1 and current_user.status_confirm == 1:
-        yearnow = datetime.utcnow().year
-        ans = {}
-        ans["data_post"] = get_data_post_in_a_year(year=yearnow)
-        ans["data_user"] = get_data_user_register_in_a_year(year=yearnow)
-        return render_template("admin/statistic.html", title="Statistic", ans=ans)
+        if request.method == "GET":
+            yearnow = datetime.utcnow().year
+            ans = {}
+            ans["data_post"] = get_data_post_in_a_year(year=yearnow)
+            ans["data_user"] = get_data_user_register_in_a_year(year=yearnow)
+            ans["label_post"] = f"Statistic post in {yearnow}"
+            ans["label_user"] = f"Statistic user in {yearnow}"
+            return render_template("admin/statistic.html", title="Statistic", ans=ans)
+        elif request.method == "POST":
+            data = request.get_json()
+            ans = {}
+            ans["data_post"] = get_data_post_in_a_year(year=data["year"])
+            ans["data_user"] = get_data_user_register_in_a_year(year=data["year"])
+            ans["label_post"] = f'Statistic post in {data["year"]}'
+            ans["label_user"] = f'Statistic user in {data["year"]}'
+            return jsonify(ans)
     else:
         abort(403)
 
@@ -181,9 +192,17 @@ def statistics():
 @login_required
 def statistics_user():
     if current_user.role_id == 1 and current_user.status_confirm == 1:
-        return render_template("admin/statistic_user.html", title="Statistic User")
+        view = request.args.get("view", "chart", type=str)
+        ans = {}
+        req = statistic_price_log()
+        ans["data"] = req
+        if view == "chart":
+            return render_template("admin/statistic_user.html", title="Statistic User", ans=ans)
+        else :
+            abort(Response("View Table"))
     else:
         abort(403)
+
 
 @admin.route("/statistic/post", methods=["GET", "POST"])
 @login_required
@@ -208,6 +227,7 @@ def statistics_room():
         req1 = most_city_room(5)
         ans["data_x_1"] = req1[0]
         ans["data_y_1"] = req1[1]
+        print(ans["data_x_1"], " ", ans["data_y_1"])
         return render_template("admin/statistic_room.html", title="Statistic Room", ans=ans)
     else:
         abort(403)
@@ -270,6 +290,19 @@ def rejectComment():
     except Exception as e:
         print(e)
         return jsonify(resp)
+
+@admin.route("/admin-notifications")
+@login_required
+def admin_notifications():
+    if current_user.role_id == 1 and current_user.status_confirm == 1:
+        notifications = AdminNotification.query.all()
+        if notifications:
+            for notification in notifications:
+                notification.seen = True
+            db.session.commit()
+        return render_template("admin/admin_notification.html", notifications=notifications)
+    else :
+        abort(403)
 
 # @admin.route("/manage-user/<int:user_id>/accept", methods=["GET","POST"])
 # @login_required

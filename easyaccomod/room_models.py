@@ -20,8 +20,9 @@ class Comment(db.Model):
     def __repr__(self):
         return (f"Comment : '{self.comment_content}' for '{self.post_id}' by user '{self.user_id}''")
 
-class PriceLog(db.Model):
+class PriceLog(db.Model):   
     id = db.Column(db.Integer,primary_key=True)
     priceRange = db.Column(db.String(30))
+    count = db.Column(db.Integer, nullable=False, default=0)
     def __repr__(self):
-        return (f"Price Range : '{self.priceRange}'")
+        return (f"Price Range : '{self.id}' - '{self.priceRange}'")

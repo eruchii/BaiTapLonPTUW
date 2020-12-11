@@ -51,6 +51,7 @@ class User(db.Model, UserMixin):
     owner = db.relationship('Owner', backref='users', lazy=True)
     rooms = db.relationship("Room", backref="user")
     notification = db.relationship("Notification", backref="user")
+    admin_notification = db.relationship("AdminNotification", backref="user", lazy=True)
     likes = db.relationship("Like", backref="user", lazy=True)
     comments = db.relationship("Comment", backref="user", lazy=True)
 

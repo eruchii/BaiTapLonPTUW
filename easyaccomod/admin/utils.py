@@ -1,8 +1,7 @@
 from easyaccomod.chat import send_new_notification
-from easyaccomod.room_models import Comment
+from easyaccomod.room_models import *
 import itertools
 import random
-from operator import pos
 import os, secrets
 from PIL import Image
 from flask import url_for, current_app
@@ -264,6 +263,22 @@ def statistic_cost_room():
         ans[req] += 1
     return ans
 
+def statistic_price_log():
+    ans = []
+    price_logs = PriceLog.query.all()
+    ans_name = []
+    ans_count = []
+    ans_data = {}
+    for price_log in price_logs:
+        ans_name.append(price_log.priceRange)
+        ans_count.append(price_log.count)
+        ans_data[price_log.priceRange] = price_log.count
+    ans.append(ans_name)
+    ans.append(ans_count)
+    ans.append(ans_data)
+    return ans
+
+
 def most_city_room(limit: int):
     """
     return: 2 list cac tinh co nhieu room nhat trong he thong va so luong room cua moi tinh do
@@ -334,3 +349,28 @@ def fake_add_comment():
         comment = Comment(post_id=random.randint(1,4), user_id=(i+60), comment_content=f"comment content {i}", status=False)
         db.session.add(comment)
     db.session.commit()
+
+def add_price_log():
+    for i in range(1,11):
+        price_log = PriceLog(priceRange=str(i-1) + " triệu - " + str(i) + " triệu")
+        print(price_log)
+        print(type(price_log.priceRange))
+        db.session.add(price_log)
+    price_log = PriceLog(priceRange="Trên 10 triệu")
+    db.session.commit()
+
+def add_dummy_room():
+    wards = Ward.query.all()
+    owners = Owner.query.all()
+    for i in range(1,9):
+        random_ward = random.randint(0, len(wards)-1)
+        random_owner = random.randint(0, len(owners)-1)
+        random_roomtype = random.randint(1,4)
+        random_price = random.randint(10,99) * 100000
+        room_dummy = Room(user_id=owners[random_owner].user_id, city_code=wards[random_ward].city_code, 
+            district_id=wards[random_ward].district_id, ward_id=wards[random_ward].id, info=f"create room info {i}",
+            room_type_id=random_roomtype, room_number=random.randint(2,6), price=random_price, chung_chu=random.randint(0,1), phong_tam=random.randint(1,3),
+            nong_lanh=random.randint(0,1), phong_bep=random.randint(1,2), dieu_hoa=random.randint(0,1), ban_cong=random.randint(0,1), gia_dien=random.randint(2000,4500), gia_nuoc=random.randint(7000,25000),
+            image=f"['bancong{i}.jpeg', 'bedroom{i}.jpeg', 'kitchen{i}.jpeg', 'livingroom{i}.jpeg']", status=0)
+        db.session.add(room_dummy)
+        db.session.commit()
