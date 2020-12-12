@@ -68,4 +68,4 @@ class RoomForm(FlaskForm):
 
     def validate_image(self, image):
         if len(image.data) < 3:
-            raise ValidationError('min 3 files')
+            raise ValidationError('Min 3 files')

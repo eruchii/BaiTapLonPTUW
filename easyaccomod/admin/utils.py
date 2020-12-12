@@ -298,12 +298,51 @@ def most_city_room(limit: int):
     ans.append(list(req.values()))
     return ans
 
+def cac_tinh_duoc_xem_nhieu_nhat(limit: int):
+    """
+    return list cac tinh co tong luot xem post nhieu nhat va so luong tuong ung
+    """
+    ans = []
+    city = City.query.all()
+    posts = Post.query.all()
+    req = {}
+    for c in city:
+        req[c.name] = 0
+    for post in posts:
+        req[post.room.city.name] += post.count_view
+    req = dict(sorted(req.items(), key=lambda item: item[1], reverse=True))
+    req = dict(itertools.islice(req.items(), limit))
+    ans.append(list(req.keys()))
+    ans.append(list(req.values()))
+    return ans
 
-
-
-
-
-
+def cac_quan_duoc_xem_nhieu_nhat(tinh: str, limit: int):
+    """
+    :return: list cac quan thuoc 1 tinh::arg co nhieu view nhat
+    :param tinh: str - name of province
+    :param limit: int - number of records you want
+    """
+    ans = []
+    temp = []
+    req = {}
+    city = City.query.filter_by(name=tinh).first()
+    if not city:
+        ans.append("False")
+        return ans
+    districts = District.query.filter(District.city_code==city.code).all()
+    posts = Post.query.all()
+    for post in posts:
+        if post.room.city.name == tinh:
+            temp.append(post)
+    for d in districts:
+        req[d.name] = 0
+    for t in temp:
+        req[t.room.district.name] += t.count_view
+    req = dict(sorted(req.items(), key=lambda item: item[1], reverse=True))
+    req = dict(itertools.islice(req.items(), limit))
+    ans.append(list(req.keys()))
+    ans.append(list(req.values()))
+    return ans
 
 
 
@@ -359,6 +398,13 @@ def add_price_log():
     price_log = PriceLog(priceRange="Trên 10 triệu")
     db.session.commit()
 
+def fake_add_data_price_log():
+    price_logs = PriceLog.query.all()
+    for i in range(1,1000):
+        j = random.randint(0,10)
+        price_logs[j].count += 1
+    db.session.commit()
+
 def add_dummy_room():
     wards = Ward.query.all()
     owners = Owner.query.all()
@@ -368,7 +414,7 @@ def add_dummy_room():
         random_roomtype = random.randint(1,4)
         random_price = random.randint(10,99) * 100000
         room_dummy = Room(user_id=owners[random_owner].user_id, city_code=wards[random_ward].city_code, 
-            district_id=wards[random_ward].district_id, ward_id=wards[random_ward].id, info=f"create room info {i}",
+            district_id=wards[random_ward].district_id, ward_id=wards[random_ward].id, info=f"Create room info",
             room_type_id=random_roomtype, room_number=random.randint(2,6), price=random_price, chung_chu=random.randint(0,1), phong_tam=random.randint(1,3),
             nong_lanh=random.randint(0,1), phong_bep=random.randint(1,2), dieu_hoa=random.randint(0,1), ban_cong=random.randint(0,1), gia_dien=random.randint(2000,4500), gia_nuoc=random.randint(7000,25000),
             image=f"['bancong{i}.jpeg', 'bedroom{i}.jpeg', 'kitchen{i}.jpeg', 'livingroom{i}.jpeg']", status=0)

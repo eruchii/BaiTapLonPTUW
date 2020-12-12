@@ -7,10 +7,13 @@
                 <a class="mr-2" href="#">{{ room.user.username }}</a>
                 <small id="room" class="text-muted mr-1">{{ room.status }}</small>
                 <!-- button better/ modal -->
-                <a href="{{ url_for('posts.update_room', room_id=room.id) }}">
-                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#exampleModal">
-                    Update
-                </button> </a>
+                {% if room.user == current_user %}
+                    <a href="{{ url_for('posts.update_room', room_id=room.id) }}">
+                        <button type="button" class="btn btn-outline-secondary btn-sm" data-toggle="modal" data-target="#exampleModal">
+                            Update
+                        </button>
+                    </a>
+                {% endif %}
             </div>
             <h2><a class="article-title" href=>{{ room.user.email }}</a></h2>
             <span id="room_id" style="display: none;">{{ room.id }}</span>
@@ -25,7 +28,7 @@
             {% if room.tien_ich_khac %}
                 <p>Tiện ích khác: {{ room.tien_ich_khac }}</p>
             {% endif %}
-            <div>
+            <div class="pt-2">
                 <span class="mr-2"> Chung chủ: {% if room.chung_chu %} Có {% else %} Không {% endif %} </span>
                 <span class="mr-2"> Nóng lạnh: {% if room.nong_lanh %} Có {% else %} Không {% endif %} </span> 
                 <span class="mr-2"> Điều hòa: {% if room.dieu_hoa %} Có {% else %} Không {% endif %} </span>

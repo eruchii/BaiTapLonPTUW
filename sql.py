@@ -88,5 +88,4 @@ wards = json.load(open("wards.json","r", encoding="utf-8"))
 # fake_add_comment()
 # add_price_log()
 # add_dummy_room()
-
-print(most_city_room(5))
+# fake_add_data_price_log()

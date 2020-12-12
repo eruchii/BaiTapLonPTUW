@@ -93,7 +93,7 @@ def new_post():
 def post():
     if current_user.role_id == 1:
         page = request.args.get('page', 1, type=int)
-        posts = Post.query.order_by(Post.id.asc()).paginate(page=page, per_page=5)
+        posts = Post.query.order_by(Post.date_created.desc()).paginate(page=page, per_page=5)
         return render_template("posts/post.html", title="Manage Post", posts=posts)
     else:
         abort(403)
@@ -158,7 +158,7 @@ def manage_my_post():
         posts = Post.query.filter_by(author=user).order_by(Post.date_created.desc()).paginate(page=page, per_page=5)
         return render_template("posts/post.html", title="Manage My Post", posts=posts)
 
-@posts.route("/room/new", methods=["GET", "POST"])
+@posts.route("/room/new", methods=["GET", "POST"])  
 @login_required
 def new_room():
     if current_user.role_id == 1:

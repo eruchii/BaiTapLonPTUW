@@ -89,7 +89,9 @@ def logout():
 def admin_home():
     if current_user.role_id != 1 or current_user.status_confirm != 1:
         abort(403)
-    return render_template("admin_home.html")
+    else :
+        posts = Post.query.order_by(Post.count_view.desc()).limit(15).all()
+        return render_template("admin_home.html", posts=posts)
 
 @admin.route("/manage-user", methods=["GET", "POST"])
 @login_required
@@ -121,9 +123,9 @@ def new_accept_owner():
             own = User.query.filter_by(id=data["user_id"]).first()
             if own :
                 acceptOwner(data["user_id"])
-                sendNotification(receiver=own.id, title="Accept Owner", msg=f"Account with username {own.username} has been accepted by {current_user.username}!")
+                sendNotification(receiver=own.id, title="Accept User", msg=f"Account with username {own.username} has been accepted by {current_user.username}!")
                 resp["status"] = "success"
-                resp["msg"] = f"Accept owner with username: {own.username}, status: {own.confirms.name}"
+                resp["msg"] = f"Accept user with username: {own.username}, status: {own.confirms.name}"
                 resp["owner_status_confirm"] = own.confirms.name
                 return jsonify(resp)
             else :
@@ -145,9 +147,9 @@ def new_reject_owner():
             own_id = rejectUser(data["user_id"])
             if own_id != -1:
                 own = User.query.filter_by(id=own_id).first()
-                sendNotification(receiver=own.id, title="Reject Owner", msg=f"Account with username {own.username} has been REJECTED by {current_user.username}!")
+                sendNotification(receiver=own.id, title="Reject User", msg=f"Account with username {own.username} has been REJECTED by {current_user.username}!")
                 resp["status"] = "success"
-                resp["msg"] = f"Reject owner with username: {own.username}, status: {own.confirms.name}"
+                resp["msg"] = f"Reject user with username: {own.username}, status: {own.confirms.name}"
                 resp["owner_status_confirm"] = own.confirms.name
             return jsonify(resp)
     except:
@@ -208,9 +210,40 @@ def statistics_user():
 @login_required
 def statistics_post():
     if current_user.role_id == 1 and current_user.status_confirm == 1:
-        return render_template("admin/statistic_post.html", title="Statistic Post")
+        ans = {}
+        cities = City.query.all()
+        ls = []
+        for city in cities:
+            ls.append(city.name)
+        ans["city"] = ls
+        req = cac_tinh_duoc_xem_nhieu_nhat(5)
+        ans["data"] = req
+        return render_template("admin/statistic_post.html", title="Statistic Post", ans=ans)
     else:
         abort(403)
+
+@admin.route("/api/statistic/province", methods=["POST"])
+@login_required
+def statistic_province():
+    ans = {}
+    ans["status"] = "error"
+    ans["msg"] = "Co loi xay ra"
+    try:
+        if current_user.role_id == 1 and current_user.status_confirm == 1:
+            data = request.get_json()
+            req = cac_quan_duoc_xem_nhieu_nhat(data["province"], 5)
+            if req[0] == "False":
+                ans["status"] = "error"
+                ans["msg"] = "Không tìm thấy tỉnh này!"
+                return jsonify(ans)
+            else:
+                ans["status"] = "success"
+                ans["msg"] = "Danh sách các quận trong trường data"
+                ans["data"] = req
+            return jsonify(ans)
+    except:
+        return jsonify(ans)
+    
 
 @admin.route("/statistic/room", methods=["GET", "POST"])
 @login_required

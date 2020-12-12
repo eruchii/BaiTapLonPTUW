@@ -1,8 +1,269 @@
 {% extends "admin/statistic.html" %}
 {% block statisticschart %}
-    hello
-    cac tinh co nhieu bai dang nhat
-    tinh dc xem nhieu nhat
-    input -> nhap tinh -> chart: so post cua tung quan, 
+    <input type="hidden" name="namecities" id="namecities" value='{{ ans["city"] }}'>
+    <input type="hidden" name="hidden-label" id="hidden-label" value="{{ ans['data'][0] }}">
+    <input type="hidden" name="hidden-data" id="hidden-data" value="{{ ans['data'][1] }}">
+    <div class="autocomplete">
+        <input class=" input" type="text" name="city" id="city" placeholder="Hà Nội">
+    </div>
+    <input class="btn btn-info ml-2" type="button" value="Submit" onclick="updateChart(event)">
     <br>
+    <canvas class="mt-2" id="myChart"></canvas> 
+    <canvas class="mt-2" id="chart2"></canvas>
+    <script>
+        var cities = document.getElementById("namecities").value;
+        cities = cities.slice(1, cities.length-1).split(", ");
+        for (let i = 0; i < cities.length; i++) {
+            cities[i] = cities[i].slice(1, cities[i].length-1);
+        }
+        function autocomplete(inp, arr) {
+            /*the autocomplete function takes two arguments,
+            the text field element and an array of possible autocompleted values:*/
+            var currentFocus;
+            /*execute a function when someone writes in the text field:*/
+            inp.addEventListener("input", function(e) {
+                var a, b, i, val = this.value;
+                /*close any already open lists of autocompleted values*/
+                closeAllLists();
+                if (!val) { return false;}
+                currentFocus = -1;
+                /*create a DIV element that will contain the items (values):*/
+                a = document.createElement("DIV");
+                a.setAttribute("id", this.id + "autocomplete-list");
+                a.setAttribute("class", "autocomplete-items");
+                /*append the DIV element as a child of the autocomplete container:*/
+                this.parentNode.appendChild(a);
+                /*for each item in the array...*/
+                for (i = 0; i < arr.length; i++) {
+                  /*check if the item starts with the same letters as the text field value:*/
+                  if (arr[i].substr(0, val.length).toUpperCase() == val.toUpperCase()) {
+                    /*create a DIV element for each matching element:*/
+                    b = document.createElement("DIV");
+                    /*make the matching letters bold:*/
+                    b.innerHTML = "<strong>" + arr[i].substr(0, val.length) + "</strong>";
+                    b.innerHTML += arr[i].substr(val.length);
+                    /*insert a input field that will hold the current array item's value:*/
+                    b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
+                    /*execute a function when someone clicks on the item value (DIV element):*/
+                    b.addEventListener("click", function(e) {
+                        /*insert the value for the autocomplete text field:*/
+                        inp.value = this.getElementsByTagName("input")[0].value;
+                        /*close the list of autocompleted values,
+                        (or any other open lists of autocompleted values:*/
+                        closeAllLists();
+                    });
+                    a.appendChild(b);
+                  }
+                }
+            });
+            /*execute a function presses a key on the keyboard:*/
+            inp.addEventListener("keydown", function(e) {
+                var x = document.getElementById(this.id + "autocomplete-list");
+                if (x) x = x.getElementsByTagName("div");
+                if (e.keyCode == 40) {
+                  /*If the arrow DOWN key is pressed,
+                  increase the currentFocus variable:*/
+                  currentFocus++;
+                  /*and and make the current item more visible:*/
+                  addActive(x);
+                } else if (e.keyCode == 38) { //up
+                  /*If the arrow UP key is pressed,
+                  decrease the currentFocus variable:*/
+                  currentFocus--;
+                  /*and and make the current item more visible:*/
+                  addActive(x);
+                } else if (e.keyCode == 13) {
+                  /*If the ENTER key is pressed, prevent the form from being submitted,*/
+                  e.preventDefault();
+                  if (currentFocus > -1) {
+                    /*and simulate a click on the "active" item:*/
+                    if (x) x[currentFocus].click();
+                  }
+                }
+            });
+            function addActive(x) {
+              /*a function to classify an item as "active":*/
+              if (!x) return false;
+              /*start by removing the "active" class on all items:*/
+              removeActive(x);
+              if (currentFocus >= x.length) currentFocus = 0;
+              if (currentFocus < 0) currentFocus = (x.length - 1);
+              /*add class "autocomplete-active":*/
+              x[currentFocus].classList.add("autocomplete-active");
+            }
+            function removeActive(x) {
+              /*a function to remove the "active" class from all autocomplete items:*/
+              for (var i = 0; i < x.length; i++) {
+                x[i].classList.remove("autocomplete-active");
+              }
+            }
+            function closeAllLists(elmnt) {
+              /*close all autocomplete lists in the document,
+              except the one passed as an argument:*/
+              var x = document.getElementsByClassName("autocomplete-items");
+              for (var i = 0; i < x.length; i++) {
+                if (elmnt != x[i] && elmnt != inp) {
+                  x[i].parentNode.removeChild(x[i]);
+                }
+              }
+            }
+            /*execute a function when someone clicks in the document:*/
+            document.addEventListener("click", function (e) {
+                closeAllLists(e.target);
+            });
+        }
+          
+        autocomplete(document.getElementById("city"), cities);
+            
+        var ctx = document.getElementById('myChart').getContext('2d');
+        Chart.defaults.global.defaultFontSize = 18;
+        var hidden_label = document.getElementById("hidden-label").value;
+        hidden_label = hidden_label.slice(1, hidden_label.length-1).split(", ");
+        for (let i = 0; i < hidden_label.length; i++) {
+            hidden_label[i] = hidden_label[i].slice(1, hidden_label[i].length-1);
+        }
+        var hidden_data = document.getElementById("hidden-data").value;
+        hidden_data = hidden_data.slice(1, hidden_data.length-1).split(", ");
+        
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+
+            // The data for our dataset
+            data: {
+                labels: hidden_label,
+                datasets: [{
+                    label: 'Các tỉnh có số lượt xem bài viết nhiều nhất',
+                    
+                    backgroundColor: '#BC8D00',
+                    borderWidth: 3,
+                    borderColor: 'rgb(0,99,132)',
+                    hoverBorderWidth: 5,
+                    hoverBorderColor: '#000',
+                    data: hidden_data
+                }]
+            },
+
+            // Configuration options go here
+            options: {
+                responsive: true,
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Tỉnh'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Số lượt xem'
+                        },
+                        ticks: {
+                            min: 0
+                        }
+                    }]
+                }
+            }
+        });
+
+        var ctx2 = document.getElementById('chart2').getContext('2d');
+        Chart.defaults.global.defaultFontSize = 18;
+
+        var chart2 = new Chart(ctx2, {
+          // The type of chart we want to create
+          type: 'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+
+          // The data for our dataset
+          data: {
+              labels: [],
+              datasets: [{
+                  label: 'Các quận có số lượt xem bài viết nhiều nhất',
+                  
+                  backgroundColor: '#FFBF00',
+                  borderWidth: 3,
+                  borderColor: 'rgb(0,99,132)',
+                  hoverBorderWidth: 5,
+                  hoverBorderColor: '#000',
+                  data: []
+              }]
+          },
+
+          // Configuration options go here
+          options: {
+              responsive: true,
+              tooltips: {
+                  mode: 'index',
+                  intersect: false,
+              },
+              hover: {
+                  mode: 'nearest',
+                  intersect: true
+              },
+              scales: {
+                  xAxes: [{
+                      display: true,
+                      scaleLabel: {
+                          display: true,
+                          labelString: 'Quận'
+                      }
+                  }],
+                  yAxes: [{
+                      display: true,
+                      scaleLabel: {
+                          display: true,
+                          labelString: 'Số lượt xem'
+                      },
+                      ticks: {
+                          min: 0
+                      }
+                  }]
+              }
+          }
+      });
+
+      function updateChart(event) {
+        event.preventDefault();
+        var val = document.getElementById("city").value;
+        console.log(val)
+        if (val == "") {
+            alert("Please check the input!");
+        } else {
+            postData("/api/statistic/province", {
+                province: val
+            }).then(data => {
+                if (data["status"] == "success"){
+                    console.log(data);
+                    container = document.getElementById("msg");
+                    container.innerHTML = "";
+                    container.empty();
+                    container.classList.add("nodisplay");
+                    chart2.data.labels = data["data"][0];
+                    chart2.data.datasets[0].data = data["data"][1];
+                    chart2.update();
+                } else {
+                    console.log(data);
+                    container = document.getElementById("msg");
+                    container.innerHTML = "";
+                    container.empty();
+                    container.classList.remove("nodisplay");
+                    container.classList.add("alert-danger");
+                    msg = document.createTextNode(data["msg"]);
+                    container.appendChild(msg);
+                }
+                
+            })
+        }
+      }
+    </script>
 {% endblock %}

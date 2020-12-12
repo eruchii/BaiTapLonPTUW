@@ -43,8 +43,30 @@
     </div>
     
     {% block task %}
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ad labore numquam quaerat, molestias vero eos vel nobis nisi deleniti dicta optio placeat aspernatur fugiat harum nihil dolorum quis quam!</div>
-        <p>các bài đăng nhiều view nhất</p>
+        <legend>Các bài đăng nhiều view nhất</legend>
+        {% for post in posts %}
+            <article class="media content-section max-height-content-section">
+                <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="image of author">
+                <div class="media-body">
+                    <div class="article-metadata">
+                        <a class="mr-2" href="#">{{ post.author.username }}</a>
+                        <small id="post" class="text-muted mr-1">{{ post.pending }}</small>
+                        <!-- button better/ modal -->
+                        <a id="details" class="btn btn-info btn-sm my-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
+                    </div>
+                    <h2><a class="article-title" href="{{ url_for('posts.view_post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                    <span>Post_id: {{ post.id }}</span> <br> <span>Room_Of_Post: {{ post.room.id }}</span> 
+                    <a style="text-decoration: none;color:#66CDAA" href="{{ url_for('posts.view_room', room_id=post.room.id) }}">Information about Room</a>
+                    <p class="article-content">Số lượt xem: {{ post.count_view }}</p>
+                    <p class="article-content">"Post . Room info" -- {{ post.room.info }}</p>
+                    <p class="article-content">{{ post.content }}</p>
+                    <p class="article-content"> <u>Date created</u> : {{ post.date_created }} and <u>Date posted</u> : {{ post.date_posted }}</p>
+                    <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out }}</p>
+                    <p class="article-content">{{ post.author.email }}</p>
+                    
+                </div>
+            </article>
+        {% endfor %}
     {% endblock task %}
 {% endblock content %}
 
