@@ -3,6 +3,8 @@ from easyaccomod.models import *
 from easyaccomod.owner_models import *
 import json
 from easyaccomod.owner_db import *
+from easyaccomod.room_models import *
+from easyaccomod.renter_db import *
 
 db.drop_all()
 db.create_all()

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/page/searchPage.css">
+    {% if title %}
+    <title>Accommodation - {{ title }}</title>
+    {% else %}
+    <title>Accommodation</title>
+    {% endif %}
+    <script src="https://use.fontawesome.com/bcbea6a6d6.js"></script>
+</head>
+<body>
+    <section id='nav-bar'>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#"><img src="../resource/image/1054_1343847082_103.png"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars" onclick="openNav()"></i>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="search-container">
+                    <div>
+                        <label style="display: block;">City</label>
+                        <input type="text">
+                    </div>
+                    
+                    <div>
+                        <label style="display: block;">District</label>
+                        <input>
+                    </div>
+                    <div>
+                        <label style="display: block;">Ward</label>
+                        <input>
+                    </div>
+                    
+                </div>                  
+              <ul class="navbar-nav  ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Become Host?</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">User</a>
+                  </li>
+                </ul>
+                <img src="../resource/image/pexels-photo-4786270.jpeg" id = "avatar"
+                style="width: 60px; height: 60px;">
+              </div>
+            </div>
+          </nav>
+    </section>
+    <section id='banner'>
+        <div container></div>
+    </section>
+</body>
+<script src="{{ url_for('static', filename='renter_js/roomSearch.js') }}"></script>
+</html>
+

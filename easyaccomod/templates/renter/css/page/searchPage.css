@@ -1,0 +1,55 @@
+.{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    font-family: sans-serif;
+}
+
+#nav-bar{
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}
+
+.navbar{
+    background-image: linear-gradient(to right,white, rgb(122, 145, 107));
+    padding:0 !important;
+}
+
+.navbar-brand img{
+    height: 60px;
+    padding-left: 20px;
+
+}
+
+
+.navbar-nav li{
+    padding-left: 0 10px;
+}
+
+.navbar-nav a{
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.fa-bars{
+    color:#fff !important;
+    font-size: 30px !important;
+
+}
+
+.navbar-toggler{
+    outline: none !important;
+}
+
+img #avatar{
+    height: 60px;
+}
+
+div .search-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

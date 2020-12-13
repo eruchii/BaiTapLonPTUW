@@ -1,0 +1,25 @@
+.card{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+}
+
+
+.card-img-holder{
+    justify-content: center;
+    margin: 10px;
+    flex-basis: 100px;
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.card-img{
+    width: 64px;
+    max-width: 64px;
+    height:64px;
+    max-height: 64px;
+    background-image: url();
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
