@@ -1,12 +1,23 @@
-.{
+@import url('/easyaccomod/templates/renter/css/component/input.css');
+
+*{
     padding: 0px;
     margin: 0px;
 }
+
 
 body{
     font-family: sans-serif;
 }
 
+a{
+    text-decoration: none;
+    color:inherit;
+}
+
+a:hover{
+    color:rgb(156, 186, 67);
+}
 #nav-bar{
     position: sticky;
     top: 0px;
@@ -44,12 +55,186 @@ body{
     outline: none !important;
 }
 
-img #avatar{
+#avatar{
+    width: 60px; 
     height: 60px;
 }
 
-div .search-container{
+
+#banner{
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    padding: 40px;
+    background-image: url("../../resource/image/pexels-photo-5845704.jpeg   ")
+}
+.container{
+    margin : 0px;
+    padding: 0px; 
+    width: 100%;
+    height: 100%;
+    align-items: center;
+}
+.img-fluid{ 
+    margin-top: 70px;
+    margin-right: 40px;
+    margin-left: 40px;
+}
+.promo-title{
+    color: #fff;
+    font-size: 4.8rem;
+    font-weight: 600;
+    margin-top:10px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+.search-section{
+    margin-top:40px;
+}
+
+/* vi du ve scale */
+#avatar:hover{
+    transform: scale(1.5);
+}
+
+.input-group-text{
+    outline:0px;
+}
+
+
+.form-control{
+    outline: 0px;
+}
+
+.fa-search{
+    font-size: 1.65rem;
+    margin-left: 0.5rem;
+    opacity: 0.5;
+    color:#fff;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    
+}
+
+.btn{
+    color:#fff;
+    font-size : 1.3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: .5rem 3.5rem;
+    border: none;
+    border-radius: 10rem;
     display: flex;
     align-items: center;
+}
+
+.btn-gradient{
+    background-image: linear-gradient(to right, var(--yellow-solid), var(--purple-light));
+}
+
+.btn-gradient:hover{
+    background-image: linear-gradient(to right, var(--purple-light), var(--yellow-solid));
+}
+button.search-button{
+    padding: 0px;
+    margin:0px;
+    border-radius: 0.25rem;
+    border : 0px;
+    display: flex;
+    align-items: center;
+    background-image: linear-gradient(to right,rgb(173, 181, 156), rgb(141, 161, 178));
+}
+
+button.search-button:hover{
+    background-image: linear-gradient(to left,rgb(173, 181, 156), rgb(141, 161, 178));
+}
+
+/* Big City Style */
+.section-head{
+    margin-top:5rem;
+    text-align: center;
+    margin-bottom: 5rem;
+}
+.heading{
+    display: block;
+    font-size: 4rem;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+.sub-heading{
+    font-size: 1.7rem;
+    font-weight: 300;
+    color: #a5a5a5
+}
+
+.containers{
+    width: 100%;
+    max-width: 120rem;
+    padding: 0 1.5rem;
+    margin: 0 auto;
+    
+}
+
+.grids{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(15rem,1fr));
+    grid-gap: 2.5rem;
+    justify-items: center;
+}
+
+.grids-item{
+    padding-left: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
+}
+.grids-item:hover{
+    transform: scale(1.1);
+}
+.featured-city{
+    height: 35rem;
+    width :20rem;
+    padding: 1rem;
+    color: #fff;
+    position: relative;
+    z-index:0;
+}
+
+.featured-city::before{
+    content : "";
+    position:absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color:  rgba(114, 100, 125, 0.5);
+    z-index:-1;
+}
+
+.city-img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: -2;
+}
+
+.city-name{
+    font-size:2.6rem;
+}
+
+/* Featured Host */
+.host-heading{
+    display: block;
+    font-size: 4rem;
+    font-weight: 400;   
 }
