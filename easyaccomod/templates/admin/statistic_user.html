@@ -1,7 +1,7 @@
 {% extends "admin/statistic.html" %}
 {% block statisticschart %}
-    <a href="{{ url_for('admin.statistics_user', view='chart') }}"><button class="btn btn-outline-info my-2 my-sm-0" title="View Chart">Chart</button></a>
-    <a href="{{ url_for('admin.statistics_user', view='table') }}"><button class="btn btn-outline-success my-2 my-sm-0" title="View Table">Table</button></a>
+    <a href="{{ url_for('admin.statistics_user', view='chart') }}"><button class="btn btn-outline-info my-2 my-sm-0 ml-3" title="View Chart">Chart</button></a>
+    <a href="{{ url_for('admin.statistics_user', view='table') }}"><button class="btn btn-outline-success my-2 my-sm-0 nodisplay" title="View Table">Table</button></a>
     <input type="hidden" id="hidden-data-label" value="{{ ans.data[0] }}">
     <input type="hidden" id="hidden-data-value" value="{{ ans.data[1] }}">
     <canvas id="myChart"></canvas>

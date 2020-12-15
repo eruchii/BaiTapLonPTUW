@@ -384,8 +384,10 @@ def fake_add_renter():
             db.session.commit()
 
 def fake_add_comment():
+    posts = Post.query.all()
+    l = len(posts)
     for i in range(1,50):
-        comment = Comment(post_id=random.randint(1,4), user_id=(i+60), comment_content=f"comment content {i}", status=False)
+        comment = Comment(post_id=random.randint(1,l), user_id=(i+60), comment_content=f"comment content {i}", status=False)
         db.session.add(comment)
     db.session.commit()
 

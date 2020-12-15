@@ -1,0 +1,43 @@
+{% extends "posts/post.html" %}
+{% block info %}
+    <h1 class="mb-3">Posts by {{ user.username }} ({{ posts.total }})</h1>
+    {% for post in posts.items %}       <!-- do thang posts luc nay la pagination object -->
+        <article class="media content-section max-height-content-section">
+            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="image of author">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="{{ url_for('admin.user_posts', username=user.username) }}">{{ post.author.username }}</a>
+                    <small id="post" class="text-muted mr-1">{{ post.pending }}</small>
+                    {% if post.pending == False %}
+                    <a id="accept" class="btn btn-success btn-sm mt-1 mb-1" onclick="Accept(this, '{{post.id}}')">Accept</a>
+                    {% endif %}
+                    <a id="reject" class="btn btn-warning btn-sm mt-1 mb-1" onclick="Reject(this, '{{post.id}}')">Reject</a>
+                    <!-- button better/ modal -->
+                    <a id="details" class="btn btn-info btn-sm my-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
+                </div>
+                <h2><a class="article-title" href="{{ url_for('posts.view_post', post_id=post.id) }}">{{ post.title }}</a></h2>
+                <span>Post_id: {{ post.id }}</span> <br> <span>Room_Of_Post: {{ post.room.id }}</span> 
+                <a style="text-decoration: none;color:#66CDAA" href="{{ url_for('posts.view_room', room_id=post.room.id) }}">Information about Room</a>
+                <p class="article-content">Số lượt xem: {{ post.count_view }}</p>
+                <p class="article-content">"Post . Room info" -- {{ post.room.info }}</p>
+                <p class="article-content">{{ post.content }}</p>
+                <p class="article-content"> <u>Date created</u> : {{ post.date_created.strftime('%Y-%m-%d') }} and <u>Date posted</u> : {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+                <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out.strftime('%Y-%m-%d') }}</p>
+                <p class="article-content">{{ post.author.email }}</p>
+                
+            </div>
+        </article>
+    {% endfor %}
+
+    {% for page_num in posts.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2 ) %}
+        {% if page_num %}
+            {% if posts.page == page_num %}
+                <a class="btn btn-info mb-4" href="{{ url_for('admin.user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+            {% else %}
+                <a class="btn btn-outline-info mb-4" href="{{ url_for('admin.user_posts', username=user.username, page=page_num) }}">{{ page_num }}</a>
+            {% endif %}    
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+{% endblock info %}

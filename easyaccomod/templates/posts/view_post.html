@@ -20,21 +20,23 @@
             <a style="text-decoration: none; color:#66CDAA" href="{{ url_for('posts.view_room', room_id=post.room.id) }}">Information about Room</a>
             <p class="article-content">Số lượt xem: {{ post.count_view }}</p>
             <p class="article-content">{{ post.content }}</p>
-            <p class="article-content"> <u>Date created</u> : {{ post.date_created }} and <u>Date posted</u> : {{ post.date_posted }}</p>
-            <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out }}</p>
+            <p class="article-content"> <u>Date created</u> : {{ post.date_created.strftime('%Y-%m-%d') }} and <u>Date posted</u> : {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+            <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out.strftime('%Y-%m-%d') }}</p>
             <p class="article-content">{{ post.author.email }}</p>
             <hr>
             {% for comment in post.comments %}
-                <article class="media content-section">
-                    <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + comment.user.image_file) }}" alt="image of author">
-                    <div class="media-body">
-                        <div class="article-metadata">
-                            <a class="mr-2" href="#">{{ comment.user.username}}</a>
-                            <small class="text-muted">{{ comment.date_created.strftime('%Y-%m-%d') }}</small>
+                {% if comment.status == true %}
+                    <article class="media content-section">
+                        <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + comment.user.image_file) }}" alt="image of author">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                                <a class="mr-2" href="#">{{ comment.user.username}}</a>
+                                <small class="text-muted">{{ comment.date_created.strftime('%Y-%m-%d') }}</small>
+                            </div>
+                            <p>{{ comment.comment_content }}</p>
                         </div>
-                        <p>{{ comment.comment_content }}</p>
-                    </div>
-                </article>   
+                    </article>
+                {% endif %} 
             {% endfor %}
         </div>
     </article>

@@ -30,7 +30,7 @@
             <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="image of author">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ post.author.username }}</a>
+                    <a class="mr-2" href="{{ url_for('admin.user_posts', username=post.author.username) }}">{{ post.author.username }}</a>
                     <small id="post" class="text-muted mr-1">{{ post.pending }}</small>
                     {% if post.pending == False %}
                     <a id="accept" class="btn btn-success btn-sm mt-1 mb-1" onclick="Accept(this, '{{post.id}}')">Accept</a>
@@ -40,13 +40,13 @@
                     <a id="details" class="btn btn-info btn-sm my-1" href="{{ url_for('posts.update_post', post_id=post.id) }}">Update</a>
                 </div>
                 <h2><a class="article-title" href="{{ url_for('posts.view_post', post_id=post.id) }}">{{ post.title }}</a></h2>
-                <span>Post_id: {{ post.id }}</span> <br> <span>Room_Of_Post: {{ post.room.id }}</span> 
-                <a style="text-decoration: none;color:#66CDAA" href="{{ url_for('posts.view_room', room_id=post.room.id) }}">Information about Room</a>
+                <span>Post_id: {{ post.id }}</span> <br> 
+                <a style="text-decoration: none;color:#66CDAA" href="{{ url_for('posts.view_room', room_id=post.room.id) }}"> <span>Room_Of_Post: {{ post.room.id }}</span> Information about Room</a>
                 <p class="article-content">Số lượt xem: {{ post.count_view }}</p>
                 <p class="article-content">"Post . Room info" -- {{ post.room.info }}</p>
                 <p class="article-content">{{ post.content }}</p>
-                <p class="article-content"> <u>Date created</u> : {{ post.date_created }} and <u>Date posted</u> : {{ post.date_posted }}</p>
-                <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out }}</p>
+                <p class="article-content"> <u>Date created</u> : {{ post.date_created.strftime('%Y-%m-%d') }} and <u>Date posted</u> : {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+                <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out.strftime('%Y-%m-%d') }}</p>
                 <p class="article-content">{{ post.author.email }}</p>
                 
             </div>
