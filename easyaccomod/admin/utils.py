@@ -7,9 +7,10 @@ from PIL import Image
 from flask import url_for, current_app
 from easyaccomod.owner_models import Room
 from datetime import datetime
-from easyaccomod import bcrypt, db
+from easyaccomod import bcrypt, db, celery
 from easyaccomod.models import Notification, Post, User
 from easyaccomod.owner_models import *
+from easyaccomod import mail, Message
 
 
 def addUserByAdmin(username, password, email):
@@ -344,6 +345,20 @@ def cac_quan_duoc_xem_nhieu_nhat(tinh: str, limit: int):
     ans.append(list(req.values()))
     return ans
 
+
+
+
+
+
+
+
+@celery.task
+def send_reset_email(data):
+    msg = Message('Password Reset Request',
+                  sender='noreply@demo.com',
+                  recipients=[data['user_email']])
+    msg.body = data['body']
+    mail.send(msg)
 
 
 
