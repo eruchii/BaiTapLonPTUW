@@ -238,3 +238,7 @@ button.search-button:hover{
     font-size: 4rem;
     font-weight: 400;   
 }
+
+.form-control:focus{
+    outline:none;
+}

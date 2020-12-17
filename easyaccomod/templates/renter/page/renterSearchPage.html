@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="../css/page/searchDetail.css">
+    {% if title %}
+    <title>Accommodation - {{ title }}</title>
+    {% else %}
+    <title>Accommodation</title>
+    {% endif %}
+  
+</head>
+<body>
+    <section id='nav-bar'>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#"><img src="../resource/image/1054_1343847082_103.png"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars" onclick="openNav()"></i>
+              </button>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                 <button class="search-button"> 
+                   <i class="fas fa-search">Go!</i>
+                 </button>
+                </div>
+                <input type="text" aria-label="City" class="form-control" placeholder="City" id="city">
+                <input type="text" aria-label="District" class="form-control" placeholder="District">
+                <input type="text" aria-label="Street" class="form-control" placeholder="Street">
+              </div>
+              <div class="collapse navbar-collapse" id="navbarNav">               
+              <ul class="navbar-nav  ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Become Host?</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">User</a>
+                  </li>
+                </ul>
+                <img src="../resource/image/pexels-photo-4786270.jpeg" id = "avatar">
+              </div>
+            </div>
+          </nav>
+    </section>
+    <section class="search-detail">
+        <div class="basic-search">
+          <div class="search-filter">
+            <span>So ket qua</span>
+            <h3>Cho o tai Hanoi</h3>
+            <form>
+              Filter Form
+            </form>
+          </div>
+          <div class="result-page">
+            <div class="room-card">
+              <div class="slideshow-container">
+                <!-- Full-width images with number and caption text -->
+                <div class="mySlides fade">
+                  <div class="numbertext">1 / 3</div>
+                  <img src="../resource/image/DN_City.png" style="width:100%">s
+                </div>
+              
+                <div class="mySlides fade">
+                  <div class="numbertext">2 / 3</div>
+                  <img src="../resource/image/Hanoi_City.jpeg" style="width:100%">
+                </div>
+              
+                <div class="mySlides fade">
+                  <div class="numbertext">3 / 3</div>
+                  <img src="../resource/image/HCM_city.jpeg" style="width:100%">
+                </div>
+              
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                <br>
+                <div style="text-align:center">
+                  <span class="dot" onclick="currentSlide(1)"></span>
+                  <span class="dot" onclick="currentSlide(2)"></span>
+                  <span class="dot" onclick="currentSlide(3)"></span>
+                </div> 
+              </div>
+
+              
+              <!-- The dots/circles -->
+              
+              <div class="room-info">
+                <h1 class="room-title">Phong tro vip pro</h1>
+                <p class="room-detail">Description about phong tro
+                  Description about phong tro
+                  Description about phong tro
+
+                  Description about phong troDescription about phong tro
+                  Description about phong tro
+                </p>
+              </div>
+            </div>
+            <div class="room-card">
+              <div class="slideshow-container">
+                <!-- Full-width images with number and caption text -->
+                <div class="mySlides fade" style="display: block;">
+                  <div class="numbertext">1 / 3</div>
+                  <img src="../resource/image/DN_City.png" style="width:100%">s
+                </div>
+              
+                <div class="mySlides fade">
+                  <div class="numbertext">2 / 3</div>
+                  <img src="../resource/image/Hanoi_City.jpeg" style="width:100%">
+                </div>
+              
+                <div class="mySlides fade">
+                  <div class="numbertext">3 / 3</div>
+                  <img src="../resource/image/HCM_city.jpeg" style="width:100%">
+                </div>
+              
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                <br>
+                <div style="text-align:center">
+                  <span class="dot" onclick="currentSlide(1)"></span>
+                  <span class="dot" onclick="currentSlide(2)"></span>
+                  <span class="dot" onclick="currentSlide(3)"></span>
+                </div> 
+              </div>
+
+              
+              <!-- The dots/circles -->
+              
+              <div class="room-info">
+                <h1 class="room-title">Phong tro vip pro</h1>
+                <p class="room-detail">Description about phong tro
+                  Description about phong tro
+                  Description about phong tro
+
+                  Description about phong troDescription about phong tro
+                  Description about phong tro
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="detail-search">
+        </div>
+    </section>
+</body>
+<scrip src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></scrip>
+<script src="{{ url_for('static', filename='renter_js/roomSearch.js') }}"></script>
+<script src="../js/searchResult.js"></script>
+</html>
+

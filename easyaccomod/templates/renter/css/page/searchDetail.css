@@ -1,0 +1,227 @@
+*{
+    margin:0px;
+    padding: 0px;
+}
+#nav-bar{
+    position: sticky;
+    top: 0px;
+    z-index: 10;
+}
+
+.navbar{
+    background-image: linear-gradient(to right,white, rgb(122, 145, 107));
+    padding:0 !important;
+}
+.navbar-collapse{
+    flex-grow: 0;
+}
+.navbar-brand img{
+    height: 60px;
+    padding-left: 20px;
+
+}
+
+
+.navbar-nav li{
+    padding-left: 0 10px;
+}
+
+.navbar-nav a{
+    color: #fff !important;
+    font-weight: 600;
+}
+
+.fa-bars{
+    color:#fff !important;
+    font-size: 30px !important;
+
+}
+
+.navbar-toggler{
+    outline: none !important;
+}
+
+#avatar{
+    width: 60px; 
+    height: 60px;
+}
+
+section.search{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+/* Style the defualt page nav bar */
+
+.input-group{
+    width: 45rem;
+}
+
+.search-button{
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+
+/* Style the Detailed bar */
+
+.search-detail{
+    width: 100%;
+    height: calc( 100vh - 64px);
+    display: flex;
+}
+
+/* Style the filter search div */
+.basic-search{
+    width: 50%;
+    height: 100%;
+}
+
+.search-filter{
+    width: 100%;
+    height: 12rem;
+    padding-left: 20px;
+}
+
+.detail-search{
+    width: 50%;
+    height: 100%;
+    background-color: aquamarine;
+}
+/* Style the Room result page */
+
+.result-page{
+    height: auto;
+}
+
+.room-card{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    background-color: red;
+    box-shadow: 0 1.4rem 8rem rbga(0,0,0,0.2);
+    margin: 1rem 0rem;
+}
+.room-card::after{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 98rem;
+    padding: 5rem;
+    border-radius: 0.8rem;
+}
+
+.room-info{
+    margin-left: 1rem;
+}
+
+
+
+/* test */
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 15rem;
+  min-width: 15rem;
+  max-height: 15rem;
+  position: relative;
+  margin-left: 1rem;
+}
+
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+.mySlides img{
+    height: 15rem;
+    min-width: 15rem;
+    max-width: 15rem;
+    object-fit: cover;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+  transform: translateY(-5rem);
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
