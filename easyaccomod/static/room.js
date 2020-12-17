@@ -24,7 +24,73 @@ function create_new_room(){
         else {
             createAlert(msg, "alert-danger", json["msg"]);
         };
-    });
+    }).catch(error => console.log(error) );
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+function update_post(post_id){
+    form = document.getElementById("room_form");
+    formData = new FormData(form);
+    fetch("/owner/api/post/update/"+post_id, {
+        method: 'POST', 
+        body: formData
+    }).then(response => response.json())
+    .then(json => {
+        msg = document.getElementById("msg");
+        msg.innerHTML = "";
+        console.log(json)
+        if(json.status === "success"){
+            createAlert(msg, "alert-success", json["msg"]);    
+        }
+        else {
+            createAlert(msg, "alert-danger", json["msg"]);
+        };
+    }).catch(error => console.log(error) );
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+function delete_post(post_id){
+    form = document.getElementById("room_form");
+    formData = new FormData(form);
+    fetch("/owner/api/post/delete/"+post_id, {
+        method: 'POST', 
+        body: formData
+    }).then(response => response.json())
+    .then(json => {
+        msg = document.getElementById("msg");
+        msg.innerHTML = "";
+        console.log(json)
+        if(json.status === "success"){
+            createAlert(msg, "alert-success", json["msg"]);    
+        }
+        else {
+            createAlert(msg, "alert-danger", json["msg"]);
+        };
+    }).catch(error => console.log(error) )
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}
+
+function update_status(element, post_id){
+    fetch("/owner/api/post/changestatus/"+post_id, {
+        method: 'GET'
+    }).then(response => response.json())
+    .then(json => {
+        msg = document.getElementById("msg");
+        msg.innerHTML = "";
+        console.log(json)
+        if(json.status === "success"){
+            createAlert(msg, "alert-success", json["msg"]);   
+            new_text_node = document.createTextNode(json["textNodeValue"]); 
+            element.removeChild(element.childNodes[0]);
+            element.appendChild(new_text_node);
+        }
+        else {
+            createAlert(msg, "alert-danger", json["msg"]);
+        };
+    }).catch(error => console.log(error));
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
 }

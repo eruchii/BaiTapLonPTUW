@@ -1,0 +1,54 @@
+{% extends "owner/layout.html" %}
+{% block content %}
+<h2>Hồ sơ</h2>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex flex-column align-items-center text-center">
+                    <img src="{{ url_for('static', filename='profile_pics/' + owner.user.image_file) }}" class="img-fluid">
+                    <div class="mt-3">
+                        <h3>{{owner.username}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4"><h6>Họ và tên</h6></div>
+                    <div class="col-sm-8">{{owner.fullname}}</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4"><h6>Email</h6></div>
+                    <div class="col-sm-8">{{owner.email}}</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4"><h6>Địa chỉ</h6></div>
+                    <div class="col-sm-8">{{owner.ward.name}}, {{ owner.district.name }}, {{ owner.city.name }}</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4"><h6>Số điện thoại</h6></div>
+                    <div class="col-sm-8">{{owner.phone_number}}</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-4"><h6>Số CMND/CCCC</h6></div>
+                    <div class="col-sm-8">{{owner.identity_number}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}

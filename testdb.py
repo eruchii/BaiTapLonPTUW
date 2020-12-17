@@ -21,4 +21,4 @@ def Fake_user():
 	
 
 if __name__ == "__main__":
-	Fake_user()
+	db.create_all()

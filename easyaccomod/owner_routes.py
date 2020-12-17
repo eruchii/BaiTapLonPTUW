@@ -1,9 +1,9 @@
 from flask import *
 from easyaccomod import app
 from flask_login import login_user, current_user, logout_user
-from easyaccomod.owner_models import Owner, User
+from easyaccomod.owner_models import Owner, Room, User
 from functools import wraps
-from easyaccomod.owner_db import check_user, add_user, change_password, add_room
+from easyaccomod.owner_db import *
 
 owner_bp = Blueprint("owner", __name__, template_folder='templates/owner')
 
@@ -104,27 +104,27 @@ def api_change_password():
 
 @owner_bp.route("/fakelogin/<id>")
 def fakelogin(id):
-	user = Owner.query.all()[int(id)]
+	user = User.query.filter_by(id=id).first()
 	login_user(user, remember=True)
 	return jsonify({"status":"ok"})
 
 @owner_bp.route("/")
 @is_owner
 def home():
-	return render_template("owner/home.html")
+	return redirect(url_for("owner.route_list_room"))
 
-@owner_bp.route("/notification")
+@owner_bp.route("/notification/")
 @is_owner
 def notification():
 	return render_template("owner/notification.html")
 
-@owner_bp.route("/logout")
+@owner_bp.route("/logout/")
 @is_owner
 def logout():
 	logout_user()
 	return redirect(url_for("owner.login"))
 
-@owner_bp.route("/room/create")
+@owner_bp.route("/room/create/")
 @is_owner
 def create_new_room():
 	return render_template("owner/createroom.html")
@@ -138,7 +138,7 @@ def api_create_new_room():
 	data_form = request.form
 	img = request.files.getlist("image")
 	room_data = {}
-	form_attrs = ["city", "district", "ward", "info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "tien_ich_khac"]
+	form_attrs = ["title", "city", "district", "ward", "info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "tien_ich_khac"]
 	int_fields = ["room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc"]
 	form_checkbox = ["chung_chu", "nong_lanh", "dieu_hoa", "ban_cong"]
 	for attr in form_attrs:
@@ -173,3 +173,122 @@ def api_create_new_room():
 	res["status"] = status
 	res["msg"] = msg
 	return jsonify(res)
+
+@owner_bp.route("/api/room/get/<int:id>")
+@is_owner
+def api_get_room(id):
+	res = {}
+	res["status"] = "error"
+	res["msg"] = "co loi xay ra"
+	res["data"] = {}
+	status, resp = get_room(id, current_user.id)
+	if(status == "error"):
+		res["status"] = status
+		res["msg"] = resp
+		return jsonify(res)
+	attrs = ["info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
+	res["data"]["city"] = resp.city_code
+	res["data"]["district"] = resp.ward_id
+	res["data"]["ward"] = resp.ward_id
+	for attr in attrs:
+		res["data"][attr] = getattr(resp, attr)
+	res["status"] = "success"
+	res["msg"] = "thanh cong"
+	return jsonify(res)
+
+@owner_bp.route("/api/post/update/<int:id>", methods=["POST"])
+@is_owner
+def api_update_post(id):
+	res = {}
+	res["status"] = "error"
+	res["msg"] = "co loi xay ra"
+	status, resp = get_post(id, current_user.id)
+	if(status == "error"):
+		res["status"] = status
+		res["msg"] = resp
+		return jsonify(res)
+	data_form = request.form
+	room_data = {}
+	form_attrs = ["title", "info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "tien_ich_khac"]
+	int_fields = ["room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc"]
+	form_checkbox = ["chung_chu", "nong_lanh", "dieu_hoa", "ban_cong"]
+	for attr in form_attrs:
+		try:
+			room_data[attr] = data_form[attr]
+			if(room_data[attr] == ""):
+				res["msg"] = "Thieu truong can thiet"
+				return jsonify(res)
+		except:
+			res["msg"] = "Thieu truong can thiet"
+			return jsonify(res)
+	for f in int_fields:
+		try:
+			room_data[f] = int(room_data[f])
+		except:
+			res["msg"] = "Thong tin khong hop le"
+			return jsonify(res)
+
+	for attr in form_checkbox:
+		try:
+			x = data_form[attr]
+			if(x == "on"):
+				room_data[attr] = True
+			else:
+				room_data[attr] = False
+		except:
+			room_data[attr] = False
+	status, msg = update_post(resp, room_data)
+	res["status"] = status
+	res["msg"] = msg
+	return jsonify(res)
+
+@owner_bp.route("/post/update/<int:id>")
+@is_owner
+def route_update_post(id):
+	status, resp = get_post(id, current_user.id)
+	if(status != "success"):
+		abort(403)
+	if(resp.pending == True):
+		abort(403)
+	return render_template("owner/updatepost.html", post = resp)
+
+@owner_bp.route("/api/post/delete/<int:id>")
+@is_owner
+def api_delete_post(id):
+	res = {}
+	res["status"] = "error"
+	res["msg"] = "co loi xay ra"
+	status, msg = delete_post(id, current_user.id)
+	res["status"] = status
+	res["msg"] = msg
+	return jsonify(res)
+
+@owner_bp.route("/post/")
+@is_owner
+def route_list_room():
+	posts = get_posts(current_user.id)
+	return render_template("owner/room.html",posts = posts)
+
+@owner_bp.route("/api/post/changestatus/<int:id>")
+@is_owner
+def api_change_status(id):
+	res = {}
+	res["status"] = "error"
+	res["textNodeValue"] = ""
+	res["msg"] = "co loi xay ra"
+	status, msg, textValue = update_status(id, current_user.id)
+	res["status"] = status
+	res["msg"] = msg
+	res["textNodeValue"] = textValue
+	return jsonify(res)
+
+@owner_bp.route("/profile")
+@owner_bp.route("/profile/<username>")
+@is_owner
+def profile(username=None):
+	if(username == None):
+		username = current_user.username
+	msg, owner = get_owner_by_username(username)
+	if(msg == "error"):
+		abort(404)
+	return render_template("owner/profile.html", owner = owner)

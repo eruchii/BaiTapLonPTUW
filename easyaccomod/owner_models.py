@@ -13,6 +13,7 @@ class Owner(db.Model):
 	district_id = db.Column(db.String(10), db.ForeignKey('district.id'))
 	ward_id = db.Column(db.String(10), db.ForeignKey('ward.id'))
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) # add fk to user_id
+	
 	def __repr__(self):
 		return "<Owner(username='%s', password='%s', fullname='%s', identity_number='%s', phone_number='%s', status='%s'>" % (
 			self.username, self.password, self.fullname, self.identity_number, self.phone_number, self.status

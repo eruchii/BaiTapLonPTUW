@@ -50,7 +50,7 @@ class User(db.Model, UserMixin):
     status_confirm = db.Column(db.Integer, db.ForeignKey("confirm.id"), nullable=False)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     posts = db.relationship('Post', backref='author', lazy=True)
-    owner = db.relationship('Owner', backref='users', lazy=True)
+    owner = db.relationship('Owner', backref='user', lazy=True)
     rooms = db.relationship("Room", backref="user")
     notification = db.relationship("Notification", backref="user")
     admin_notification = db.relationship("AdminNotification", backref="user", lazy=True)

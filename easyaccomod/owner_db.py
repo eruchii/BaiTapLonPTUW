@@ -3,7 +3,7 @@ from easyaccomod.owner_models import Owner, Room, City, District, Ward
 from easyaccomod import db, bcrypt
 import hashlib
 import re
-from easyaccomod.models import User
+from easyaccomod.models import User, Post
 from easyaccomod.admin.utils import save_room_picture
 
 def encrypt_string(hash_string):
@@ -115,14 +115,14 @@ def add_ward(city_code, district_id, id, name, commit=True):
 		db.session.commit()
 
 def add_room(user_id, room, image, commit = True):
-	room_attrs = ["info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong"]
+	room_attrs = ["info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
 	new_room = Room()
+	new_room.status = False
 	setattr(new_room, "user_id", user_id)
 	setattr(new_room, "city_code", room["city"])
 	setattr(new_room, "district_id", room["district"])
 	setattr(new_room, "ward_id", room["ward"])
 	for attr in room_attrs:
-		print(attr)
 		setattr(new_room, attr, room[attr])
 	try:
 		db.session.add(new_room)
@@ -134,7 +134,109 @@ def add_room(user_id, room, image, commit = True):
 		filename = save_room_picture(str(new_room.id), i)
 		img.append(filename)
 	new_room.image = str(img)
+	new_post = Post()
+	setattr(new_post, "title", room["title"])
+	setattr(new_post, "content", room["info"])
+	setattr(new_post, "room_id", new_room.id)
+	setattr(new_post, "user_id", user_id)
+	setattr(new_post, "pending", False)
+	db.session.add(new_post)
 	db.session.flush()
 	if commit:
 		db.session.commit()
-	return ("success", f"them thanh cong id={new_room.id}")
+	return ("success", f"them thanh cong room_id={new_room.id}, post_id={new_post.id}")
+
+def get_room(id, user_id):
+	try:
+		room = Room.query.filter_by(id=id).first()
+		if(room == None):
+			return ("error", "khong ton tai phong")
+		if(room.user_id != user_id):
+			return ("error", "Permission Denied")
+		return ("success", room)
+	except:
+		return ("error", "co loi xay ra")
+
+def update_room(room, form):
+	room_attrs = ["info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
+	new_room = room
+	for attr in room_attrs:
+		setattr(new_room, attr, form[attr])
+	try:
+		db.session.add(new_room)
+		db.session.flush()
+	except:
+		return ("error", "co loi xay ra, vui long thu lai")
+	db.session.commit()
+	return ("success", f"sua thanh cong id={new_room.id}")
+
+def get_rooms(user_id):
+	rooms = Room.query.filter_by(user_id=user_id)
+	return rooms
+
+def get_posts(user_id):
+	posts = Post.query.filter_by(user_id=user_id)
+	return posts
+
+
+def get_post(id, user_id):
+	try:
+		post = Post.query.filter_by(id=id).first()
+		if(post == None):
+			return ("error", "khong ton tai bai dang")
+		if(post.user_id != user_id):
+			return ("error", "Permission Denied")
+		return ("success", post)
+	except:
+		return ("error", "co loi xay ra")
+
+def update_post(post, form):
+	room_attrs = ["info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
+	new_post = post
+	post.title = form["title"]
+	post.content = form["info"]
+	new_room = post.room
+	for attr in room_attrs:
+		setattr(new_room, attr, form[attr])
+	try:
+		db.session.add(new_room)
+		db.session.add(new_post)
+		db.session.flush()
+	except:
+		return ("error", "co loi xay ra, vui long thu lai")
+	db.session.commit()
+	return ("success", f"sua thanh cong id={new_post.id}")
+
+def delete_post(post_id, user_id):
+	# try:
+	post = Post.query.filter_by(id=post_id).first()
+	if(post == None):
+		return ("error", "khong ton tai bai dang")
+	if(post.user_id != user_id):
+		return ("error", "Permission Denied")
+	db.session.delete(post)
+	db.session.commit()
+	return ("success", f"xoa thanh cong bai post_id={post.id}")
+	# except:
+	# 	return ("error", "co loi xay ra")
+
+def update_status(post_id, user_id):
+	post = Post.query.filter_by(id=post_id).first()
+	if(post == None):
+		return ("error", "khong ton tai bai dang", "")
+	if(post.user_id != user_id):
+		return ("error", "Permission Denied", "")
+	if(post.room.status == False):
+		post.room.status = True
+		db.session.commit()
+		return ("success", "thanh cong", 'Chuyển trạng thái thành "Chưa cho thuê"')
+	else:
+		post.room.status = False
+		db.session.commit()
+		return ("success", "thanh cong", 'Chuyển trạng thái thành "Đã cho thuê"')
+
+def get_owner_by_username(username):
+	owner = Owner.query.filter_by(username=username).first()
+	if(owner == None):
+		return ("error", "Khong ton tai")
+	return ("success", owner)

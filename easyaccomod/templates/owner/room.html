@@ -1,0 +1,35 @@
+{% extends "owner/layout.html" %}
+{% block content %}
+    <div id="msg">
+    </div>
+    <h2>Danh sách bài đăng</h2>
+    {% for post in posts %}
+        <article class="media content-section max-height-content-section">
+            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="image of author">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <a class="mr-2" href="{{ url_for('owner.profile', username=post.author.username) }}">{{ post.author.username }}</a>
+                    {% if post.pending == True %}
+                        {% if post.room.status == False %}
+                        <a id="room_status" class="btn btn-success btn-sm mt-1 mb-1" onclick="update_status(this, '{{post.room.id}}')">Chuyển trạng thái thành "Đã cho thuê"</a>
+                        {% else %}
+                        <a id="room_status" class="btn btn-success btn-sm mt-1 mb-1" onclick="update_status(this, '{{post.room.id}}')">Chuyển trạng thái thành "Chưa cho thuê"</a>
+                        {% endif %}
+                    {% else %}
+                        <a id="edit" class="btn btn-warning btn-sm mt-1 mb-1" href="{{ url_for('owner.route_update_post', id= post.id) }}">Update</a>
+                    {% endif %}
+                    <!-- button better/ modal -->
+                </div>
+                <!-- <h2><a class="article-title" href="{{ url_for('posts.view_post', post_id=post.id) }}">{{ post.title }}</a></h2> -->
+                <span>Post_id: {{ post.id }}</span>
+                <span>Mã phòng: {{ post.room.id }} </span>
+                <p class="article-content">Số lượt xem: {{ post.count_view }}</p>
+                <p class="article-content"><b>{{ post.title }}</b></p>
+                <p class="article-content">{{ post.content }}</p>
+                <p class="article-content"> Ngày tạo : {{ post.date_created.strftime('%Y-%m-%d') }}</p>
+                
+            </div>
+        </article>
+    <script src="{{url_for('static', filename='room.js')}}"></script>
+    {% endfor %}
+{% endblock content %}
