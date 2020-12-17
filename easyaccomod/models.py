@@ -1,9 +1,11 @@
+from flask.globals import current_app
 from sqlalchemy.orm import backref
 from easyaccomod import db, app, login_manager
 from datetime import datetime, timedelta
 from flask_login import UserMixin
 from easyaccomod.owner_models import *
 from easyaccomod.room_models import *
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 
 # callback -> This callback is used to reload the user object from the user ID stored in the session
 # It should take the unicode ID of a user, and return the corresponding user object.
@@ -54,6 +56,19 @@ class User(db.Model, UserMixin):
     admin_notification = db.relationship("AdminNotification", backref="user", lazy=True)
     likes = db.relationship("Like", backref="user", lazy=True)
     comments = db.relationship("Comment", backref="user", lazy=True)
+
+    def get_reset_token(self, expires_sec=1800):
+        s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
+        return s.dumps({'user_id': self.id}).decode('utf-8')
+    
+    @staticmethod
+    def verify_reset_token(token):
+        s = Serializer(current_app.config['SECRET_KEY'])
+        try :
+            user_id = s.loads(token)['user_id']
+        except :
+            return None
+        return User.query.get(user_id)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}, '{self.image_file}')"
