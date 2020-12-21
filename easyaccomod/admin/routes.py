@@ -53,8 +53,9 @@ def login():
             flash (f"Login successful! Welcome admin! {user.username}", "success") 
             return redirect(url_for("admin.admin_home"))
         elif user and bcrypt.check_password_hash(user.password, form.password.data) and (user.status_confirm == 1) and (user.role_id == 3) :
-            flash(f"You are owner, please login in owner site!", "info")
-            return redirect(url_for('owner.login'))
+            login_user(user, remember=form.remember.data)
+            flash(f"Đăng nhập thành công!", "success")
+            return redirect(url_for('owner.home'))
         else:
             flash("Login Unsucccessful. Please check email and password!", "danger")
     return render_template("login.html", title="Login", form=form)
