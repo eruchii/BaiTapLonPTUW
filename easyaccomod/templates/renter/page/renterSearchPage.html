@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="../css/page/searchDetail.css">
+    <link rel="stylesheet" href="../css/component/jquery.ui.min.css">
     {% if title %}
     <title>Accommodation - {{ title }}</title>
     {% else %}
@@ -48,44 +49,78 @@
     <section class="search-detail">
         <div class="basic-search">
           <div class="search-filter">
-            <span>So ket qua</span>
-            <h3>Cho o tai Hanoi</h3>
-            <form>
-              Filter Form
-            </form>
+            <span id="numberOfRooms">So ket qua</span>
+            <h3>Cho o tai</h3><h3>A</h3>
+            <div class="filter-container">
+              <div>
+                <span style="display: block;">Gia</span>
+                <select name="" id="">
+                  <option value="">0-1 trieu</option>
+                  <option value="">1-3 trieu</option>
+                  <option value="">3-5 trieu</option>
+                  <option value="">Hon 5 trieu</option>
+                </select>
+              </div>
+              <div>
+                <span style="display: block;">Dien tich</span>
+                <input type="text" placeholder="Dien tich(m2)">
+              </div>
+              <div>
+                <span style="display: block;">Loai phong</span>
+                <select name="" id="">
+                  <option value="">0-1 trieu</option>
+                  <option value="">1-3 trieu</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <button class="expand" id="btnAdd">
+              <span>More filter?</span>
+            </button>
           </div>
           <div class="result-page">
             <div class="room-card">
-              <div class="slideshow-container">
-                <!-- Full-width images with number and caption text -->
-                <div class="mySlides fade">
-                  <div class="numbertext">1 / 3</div>
-                  <img src="../resource/image/DN_City.png" style="width:100%">s
+              <div class="room-card-img">
+                <div class="mySlides1" id="mySlides">
+                  <img src="../resource/image/Hanoi_City.jpeg" alt="" id="mySlides1">
                 </div>
-              
-                <div class="mySlides fade">
-                  <div class="numbertext">2 / 3</div>
-                  <img src="../resource/image/Hanoi_City.jpeg" style="width:100%">
+                <div id="mySlides" class="mySlides1">
+                  <img src="../resource/image/HCM_city.jpeg" alt="" id="mySlides1">
                 </div>
-              
-                <div class="mySlides fade">
-                  <div class="numbertext">3 / 3</div>
-                  <img src="../resource/image/HCM_city.jpeg" style="width:100%">
+                <div  id='mySlides' class="mySlides1">
+                  <img src="../resource/image/DN_City.png" alt="" id="mySlides1">
                 </div>
-              
-                <!-- Next and previous buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                <br>
-                <div style="text-align:center">
-                  <span class="dot" onclick="currentSlide(1)"></span>
-                  <span class="dot" onclick="currentSlide(2)"></span>
-                  <span class="dot" onclick="currentSlide(3)"></span>
-                </div> 
+                <a class="prev" onclick="plusSlides(-1,0)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1,0)">&#10095;</a>
               </div>
-
               
-              <!-- The dots/circles -->
+              <div class="room-info">
+                <h1 class="room-title">Phong tro vip pro</h1>
+                <p class="room-detail">Description about phong tro
+                  Description about phong tro
+                  Description about phong tro
+
+                  Description about phong troDescription about phong tro
+                  Description about phong tro
+                </p>
+              </div>
+            </div>
+
+            <div class="room-card">
+              <div class="room-card-img">
+                <div class="mySlides2" id="mySlides"> 
+                  <img src="../resource/image/Hanoi_City.jpeg" alt="" class="slider">
+                </div>
+                <div class="mySlides2" id="mySlides">
+                  <img src="../resource/image/HCM_city.jpeg" alt="" class="slider">
+                </div>
+                <div class="mySlides2" id="mySlides">
+                  <img src="../resource/image/DN_City.png" alt="" class="slider">
+                </div>
+                <a class="prev" onclick="plusSlides(-1,1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1,1)">&#10095;</a>
+              </div>
+            
               
               <div class="room-info">
                 <h1 class="room-title">Phong tro vip pro</h1>
@@ -99,36 +134,9 @@
               </div>
             </div>
             <div class="room-card">
-              <div class="slideshow-container">
-                <!-- Full-width images with number and caption text -->
-                <div class="mySlides fade" style="display: block;">
-                  <div class="numbertext">1 / 3</div>
-                  <img src="../resource/image/DN_City.png" style="width:100%">s
-                </div>
-              
-                <div class="mySlides fade">
-                  <div class="numbertext">2 / 3</div>
-                  <img src="../resource/image/Hanoi_City.jpeg" style="width:100%">
-                </div>
-              
-                <div class="mySlides fade">
-                  <div class="numbertext">3 / 3</div>
-                  <img src="../resource/image/HCM_city.jpeg" style="width:100%">
-                </div>
-              
-                <!-- Next and previous buttons -->
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
-                <br>
-                <div style="text-align:center">
-                  <span class="dot" onclick="currentSlide(1)"></span>
-                  <span class="dot" onclick="currentSlide(2)"></span>
-                  <span class="dot" onclick="currentSlide(3)"></span>
-                </div> 
+              <div class="room-card-img">
+               
               </div>
-
-              
-              <!-- The dots/circles -->
               
               <div class="room-info">
                 <h1 class="room-title">Phong tro vip pro</h1>
@@ -144,11 +152,74 @@
           </div>
         </div>
         <div class="detail-search">
+          <h1>Phòng trọ title</h1>
+          <h3>Địa chỉ phòng trọ</h3>
+          <h3>Thông tin liên hệ: 0964313607</h3>
+          <h5>3 phòng ngủ - 2 phòng tắm - Có ban công - Chung chủ</h5>
+          <div class="room-card">
+            <div class="room-card-img detail">
+              <div class="mySlides3" id="mySlides">
+                <img src="../resource/image/Hanoi_City.jpeg" alt="" id="mySlides1">
+              </div>
+              <div id="mySlides" class="mySlides3">
+                <img src="../resource/image/HCM_city.jpeg" alt="" id="mySlides1">
+              </div>
+              <div  id='mySlides' class="mySlides3">
+                <img src="../resource/image/DN_City.png" alt="" id="mySlides1">
+              </div>
+              <a class="prev" onclick="plusSlides(-1,2)">&#10094;</a>
+<a class="next" onclick="plusSlides(1,2)">&#10095;</a>
+            </div>
+          </div>
+          <div class="comment">
+            <p style="margin:0px;">Rate this room?</p>
+            <div class='rating-stars text-center'>
+              <ul id='stars'>
+                <li class='star' title='Poor' data-value='1'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='Fair' data-value='2'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='Good' data-value='3'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='Excellent' data-value='4'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='WOW!!!' data-value='5'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+              </ul>
+            </div>
+            <input type="text" placeholder="Leave your comment">
+          </div>
         </div>
     </section>
+    <div class="m-dialog dialog-detail" title="Thông tin khách hàng" style="display: none">
+      <!--<div class="dialog-modal"></div>-->
+      <div class="dialog-content">
+          <div class="dialog-body">
+              <div class="m-row m-flex">
+                  <div class="m-col el-avatar-customer m-flex-1">
+                      <div class="el-avatar"></div>
+                      <div class="el-avatar-note text-align-center">
+                          Vui lòng chọn ảnh có định dạng <br><b>.jpg, .jpeg, .png, .gif. </b>
+                      </div>
+                  </div>
+                  <div class="dialog-footer">
+                      <button id="btnCancel" class="m-btn m-btn-default m-btn-cancel">Hủy</button>
+                      <button id="btnSave" class="m-btn m-btn-default"><i class="far fa-save"></i><span class="btn-text">Lưu</span></button>
+                  </div>
+             </div>
+          </div>
+        </div>
+    </div>
 </body>
+
 <scrip src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></scrip>
-<script src="{{ url_for('static', filename='renter_js/roomSearch.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <script src="../js/searchResult.js"></script>
 </html>
 
