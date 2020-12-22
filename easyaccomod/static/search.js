@@ -7,17 +7,19 @@ function create_option(ele, text, value){
 }
 
 function getSearchData(){
-	url = "/static/search.json";
-	fetch(url).then(
-		response =>{
-			if (!response.ok) {
-				throw new Error("HTTP error " + response.status);
-			}
-			return response.json();
-	}).then(json =>{
-		localStorage.setItem("search",JSON.stringify(json));
-		findCity();
-	});
+	if(localStorage.getItem("search") === null){
+		url = "/static/search.json";
+		fetch(url).then(
+			response =>{
+				if (!response.ok) {
+					throw new Error("HTTP error " + response.status);
+				}
+				return response.json();
+		}).then(json =>{
+			localStorage.setItem("search",JSON.stringify(json));
+		});
+	}
+	findCity();
 }
 
 getSearchData();

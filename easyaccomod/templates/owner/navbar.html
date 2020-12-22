@@ -11,6 +11,17 @@
 		<!-- Navbar Right Side -->
 		<div class="navbar-nav">
 			{% if current_user.is_authenticated %}
+				{% if current_user.role_id == 3 %}
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						{{ current_user.username }}
+					</a>
+					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+						<a class="dropdown-item" href="{{url_for('owner.profile')}}">Hồ sơ</a>
+						<a class="dropdown-item" href="{{url_for('owner.changepassword')}}">Đổi mật khẩu</a>
+					</div>
+				</li>
+				{% endif %}
 				<a class="nav-item nav-link" href="{{ url_for('owner.logout') }}">Logout</a>
 			{% else %}
 				<a class="nav-item nav-link" href="{{ url_for('owner.login') }}">Login</a>

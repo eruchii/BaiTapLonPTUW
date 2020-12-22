@@ -1,11 +1,8 @@
-{% if current_user.is_authenticated %}
+{% if current_user.role_id == 3 %}
 <div class="content-section">
     <h3>Menu</h3>
     <p class='text-muted'>
         <ul class="list-group">
-            <li class="list-group-item list-group-item-light">
-                <a href="{{ url_for('owner.profile') }}">Hồ sơ người dùng</span></a>
-            </li>
             <li class="list-group-item list-group-item-light">
                 <a href="{{ url_for('owner.route_list_room') }}">Danh sách bài đăng</a>
              </li>
@@ -18,9 +15,6 @@
                 
             <li class="list-group-item list-group-item-light">
                 <a href="{{ url_for('chat.index') }}">Nhắn tin <span class="badge badge-primary" id="new_msg">0</span></a>
-            </li>
-            <li class="list-group-item list-group-item-light">
-                <a href="{{ url_for('owner.changepassword') }}">Đổi mật khẩu</span></a>
             </li>
         </ul>
     </p>

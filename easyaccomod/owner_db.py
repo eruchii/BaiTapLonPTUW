@@ -71,7 +71,7 @@ def check_user(username, password):
 	user = db.session.query(User).filter_by(username=username).first()
 
 	if not user:
-		return (False, None)
+		return (False, "Không tồn tại tài khoản.")
 	if user.status_confirm == 2:
 		return (False, "Tài khoản chưa được xác thực, vui lòng đợi.")
 	if user.status_confirm == 3:
@@ -79,7 +79,7 @@ def check_user(username, password):
 	if bcrypt.check_password_hash(user.password, password):
 		return (True, user)
 	else:
-		return (False, None)
+		return (False, "Thông tin đăng nhập không chính xác.")
 
 
 def change_password(username, password, newpassword, renewpassword):
