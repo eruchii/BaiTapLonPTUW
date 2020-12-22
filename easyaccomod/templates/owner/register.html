@@ -3,25 +3,25 @@
 <div class="content-section">
 	<div id="msg">
 	</div>
-	<h1>Sign Up</h1>
+	<h1>Đăng ký dành cho chủ nhà</h1>
 	<form id="register">
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label>Username</label>
+				<label>Tên đăng nhập</label>
 				<input type="text" class="form-control" id="username" required>
 			</div>
 			<div class="form-group col-md-6">
-				<label>Fullname</label>
+				<label>Họ tên</label>
 				<input type="text" class="form-control" id="fullname" required>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label>Password</label>
+				<label>Mật khẩu</label>
 				<input type="password" class="form-control" id="password" required>
 			</div>
 			<div class="form-group col-md-6">
-				<label>Re-password</label>
+				<label>Nhập lại mật khẩu</label>
 				<input type="password" class="form-control" id="check_password" required>
 			</div>
 		</div>
@@ -31,35 +31,35 @@
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-6">
-				<label>Identity number</label>
+				<label>Số CMND/CCCC</label>
 				<input type="text" class="form-control" id="identity_number" required>
 			</div>
 			<div class="form-group col-md-6">
-				<label>Phone number</label>
+				<label>Số điện thoại</label>
 				<input type="text" class="form-control" id="phone_number" required>
 			</div>
 		</div>
 		<div class="form-row">
 			<div class="form-group col-md-4">
-				<label>City</label>
+				<label>Tỉnh/Thành phố</label>
 				<select class="form-control" id="city"></select>
 			</div>
 			<div class="form-group col-md-4">
-				<label>District</label>
+				<label>Quận/Huyện</label>
 				<select class="form-control" id="district"></select>
 			</div>		
 			<div class="form-group col-md-4">
-				<label>Ward</label>
+				<label>Phường/Xã</label>
 				<select class="form-control" id="ward"></select>
 			</div>
 		</div>
 		<div class="form-row align-items-center">
 			<div class="col-md-3">
-				<button type="button" class="btn btn-primary btn-block" onclick="Register()">Submit</button>
+				<button type="button" class="btn btn-primary btn-block" onclick="Register()">Đăng ký</button>
 			</div>
 			<div class="col-md-9">
 				<span class="text-muted">
-					Have An Account? <a href="{{ url_for('owner.login') }}">Sign In</a>
+					Đã có tài khoản? <a href="{{ url_for('owner.login') }}">Đăng nhập</a>
 				</span>
 			</div>
 		</div>	

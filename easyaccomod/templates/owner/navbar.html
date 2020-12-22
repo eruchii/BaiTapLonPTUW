@@ -22,10 +22,10 @@
 					</div>
 				</li>
 				{% endif %}
-				<a class="nav-item nav-link" href="{{ url_for('owner.logout') }}">Logout</a>
+				<a class="nav-item nav-link" href="{{ url_for('owner.logout') }}">Đăng xuất</a>
 			{% else %}
-				<a class="nav-item nav-link" href="{{ url_for('owner.login') }}">Login</a>
-				<a class="nav-item nav-link" href="{{ url_for('owner.register') }}">Register</a>
+				<a class="nav-item nav-link" href="{{ url_for('owner.login') }}">Đăng nhập</a>
+				<a class="nav-item nav-link" href="{{ url_for('owner.register') }}">Đăng ký</a>
 			{% endif %}
 		</div>
 	</div>
