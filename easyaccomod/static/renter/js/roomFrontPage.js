@@ -1,36 +1,34 @@
 $(document).ready(function()
 {
-    // Load District
+    // Load District   
+    loadDistrisct()
+})
+
+function loadDistrisct(){
     data = new Object()
     data.city = document.querySelector("#city").value
     console.log(data)
     postData("/renter/api/getDistrict",data).
+    then( data =>
+    {   
+        console.log(data)
+        clearOldElement('#district')
+        clearOldElement('#street')
+        data.slice(1).forEach(addToDistrictDOM)
+    }).then(loadStreet)
+}
+// Search button event handle
+function loadStreet(){
+    data = new Object()
+    data.district = document.querySelector("#district").value
+    data.city = document.querySelector("#city").value
+    postData("/renter/api/getStreet",data).
     then( function(data)
         {   
-            console.log(data)
-            clearOldElement('#district')
             clearOldElement('#street')
-            data.slice(1).forEach(addToDistrictDOM)
-        }).
-        then(function()
-        {
-            data = new Object()
-            data.district = document.querySelector("#district").value
-            data.city = document.querySelector("#city").value
-            postData("/renter/api/getStreet",data).
-            then( function(data)
-                {   
-                    clearOldElement('#street')
-                    data.slice(1).forEach(addToStreetDOM)
-                })
-            })
-            .catch(function (error) {
-            console.log("Fetch error: " + error);
-            });
-})
-
-// Search button event handle
-
+            data.slice(1).forEach(addToStreetDOM)
+        })
+}
 var btn = document.querySelector(".search-button")
 
 
@@ -53,53 +51,12 @@ function addToStreetDOM(data){
 }
 
 document.querySelector("#city").onchange = async function(){
-        let payload = new Object;
-        payload.city = document.querySelector("#city").value
-        fetch(window.origin+"/renter/api/getDistrict",
-        {
-            method : 'POST',
-            credentials : "include",
-            body : JSON.stringify(payload),
-            caches: 'no-cache',
-            headers : new Headers(
-            {
-                "content-type":"application/json"
-            })
-        })
-        .then( function(response)
-        {
-        if (response.status != 200)
-            {
-                console.log("Error" + response.status)
-                return ;
-            }
-            response.json().then( function(data)
-            {   
-                clearOldElement('#district')
-                clearOldElement('#street')
-                data.slice(1).forEach(addToDistrictDOM)
-            })
-        })
-        .catch(function (error) {
-        console.log("Fetch error: " + error);
-        });
+        loadDistrisct()
     }
 
 document.querySelector("#district").onchange = async function()
 {
-    let payload = new Object;
-    payload.district = document.querySelector("#district").value
-    payload.city = document.querySelector("#city").value
-    postData("/renter/api/getStreet",payload)
-        .then( function(data)
-            {   
-                console.log(data)
-                clearOldElement('#street')
-                data.slice(1).forEach(addToStreetDOM)
-            })
-        .catch(function (error) {
-        console.log("Fetch error: " + error);
-        })
+    loadStreet()
 }
 
 // Like button handle
