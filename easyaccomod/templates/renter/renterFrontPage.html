@@ -23,6 +23,9 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNav">               
               <ul class="navbar-nav  ml-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="{{url_for('owner.home')}}">Become Host?</a>
+                </li>
                 {% if not current_user.is_authenticated %}
                 <li class="nav-item">
                   <a class="nav-link" href="{{url_for('admin.login')}}" >Login</a>
@@ -31,15 +34,14 @@
                 <li class="nav-item">
                   <a class="nav-link" href="{{url_for('admin.logout')}}" >Logout</a>
                 </li>
-                {%endif%}
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{url_for('owner.home')}}">Become Host?</a>
-                  </li>
                   <li class="nav-item">
                     <a class="nav-link" href="">{{current_user.username}}</a>
                   </li>
+                  {%endif%}
                 </ul>
+                {%if current_user.is_authenticated%}
                 <img src="{{ url_for('static', filename='./renter/resource/image/pexels-photo-4786270.jpeg') }}" id = "avatar">
+                {%endif%}
               </div>
             </div>
           </nav>

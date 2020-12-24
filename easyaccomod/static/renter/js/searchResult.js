@@ -46,19 +46,22 @@ $(document).ready(function(){
   });
   
   initEvens();
+
+  initImages();
   showSlides(1,0);
   showSlides(1,1);
   showSlides(1,2);
   showSlides(1,3);
   showSlides(1,4);
   showSlides(1,5);
+  showSlides(1,6);
 });
 
 
 
 
-var slideIndex = [1,1,1,1,1];
-var slideId = ["mySlides1", "mySlides2","mySlides3","mySlides4","mySlides5"]
+var slideIndex = [1,1,1,1,1,1];
+var slideId = ["mySlides1", "mySlides2","mySlides3","mySlides4","mySlides5","mySlides6"]
 
 
 function plusSlides(n, no) {
@@ -103,6 +106,8 @@ function initImages(){
   for (let i = 0; i < slideHolder.length;i++)
   {
     let imageList = convertStrToList(slideHolder[i].firstElementChild.id)
+    console.log(imageList + slideHolder[i].id)
+
     // id cua Tung Room Card Image, se la Id cua div chua anh slideshow
     for (let j = 0; j < imageList.length;j++)
     {
@@ -112,7 +117,7 @@ function initImages(){
       img.setAttribute("src", src);
  
       var div = document.createElement("div");
-      div.setAttribute("class","mySlides"+slideHolder[i].id)
+      div.setAttribute("class","mySlides"+ slideHolder[i].id)
       div.setAttribute("id","mySlides")
 
       div.appendChild(img)
@@ -127,7 +132,7 @@ function initImages(){
     }
   }
 }
-initImages();
+
 function convertStrToList(str) {
   var ans = [];
   var temp = [];
@@ -147,20 +152,20 @@ function convertStrToList(str) {
   return(ans)
 }
 
-aElement = document.querySelectorAll(".pagi")
-for (let i = 0; i < aElement.length;i++){
-  if (aElement[i].href.includes('page') == false){
-  hrefLink = window.location.href + "&page="+aElement[i].id
-  aElement[i].setAttribute('href',hrefLink)
-  }
-  else{
-    hrefLink = window.location.href;
-    index = hrefLink.indexOf('page')
-    hrefLink = hrefLink.slice(0,index-1)
-    hrefLink = hrefLink +"&page=" + aElement[i].id
-    aElement[i].setAttribute('href',hrefLink)
-  }
-}
+// aElement = document.querySelectorAll(".pagi")
+// for (let i = 0; i < aElement.length;i++){
+//   if (aElement[i].href.includes('page') == false){
+//   hrefLink = window.location.href + "&page="+aElement[i].id
+//   aElement[i].setAttribute('href',hrefLink)
+//   }
+//   else{
+//     hrefLink = window.location.href;
+//     index = hrefLink.indexOf('page')
+//     hrefLink = hrefLink.slice(0,index-1)
+//     hrefLink = hrefLink +"&page=" + aElement[i].id
+//     aElement[i].setAttribute('href',hrefLink)
+//   }
+// }
 
 // roomCard = document.querySelectorAll(".room-card")
 // for (let i =0 ; i < roomCard.length;i++)

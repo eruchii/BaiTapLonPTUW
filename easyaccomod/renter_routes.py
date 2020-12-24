@@ -47,14 +47,6 @@ def getStreet(districtName,cityName):
         
     return make_response(jsonify(ret),200)
 
-def getRoomByCity(city):
-
-    # Query with the parameter
-    res = Room.query.filter_by(city_code = city).filter(Room.post.any())
-
-    # if res.count() == 0:
-    #     return make_response(jsonify("Can't find your perfect home"),200)
-    return res
 
 def getUserFavoritePost(username):
     user_id =  User.query.filter_by(username=username).first().id

@@ -4,7 +4,7 @@ from easyaccomod.owner_models import City,District,Ward
 from easyaccomod.room_models import Like,Comment
 from easyaccomod import app
 from easyaccomod.forms import SearchForm
-from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getUserFavoritePost,getRoomByLocation,getRoomByCity
+from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getUserFavoritePost,getRoomByLocation
 from easyaccomod.renter_db import addLike,removeLike,addComment
 import datetime
 

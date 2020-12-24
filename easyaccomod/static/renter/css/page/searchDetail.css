@@ -94,6 +94,7 @@ section.search{
   align-items: flex-start;
   right: 0px;
   padding : 1rem 1rem;
+  top:70px;
 }
 
 .filter-container{
