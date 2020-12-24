@@ -1,4 +1,4 @@
-@import url('/easyaccomod/templates/renter/css/component/input.css');
+@import url('../component/input.css');
 
 *{
     padding: 0px;

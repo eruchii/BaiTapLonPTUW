@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='./renter/css/page/searchDetail.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='./renter/css/component/jquery.ui.min.css')}}">
+    {% if title %}
+    <title>Accommodation - {{ title }}</title>
+    {% else %}
+    <title>Accommodation</title>
+    {% endif %}
+  
+</head>
+<body>
+    <section id='nav-bar'>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='./renter/resource/image/1054_1343847082_103.png') }}"></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars" onclick="openNav()"></i>
+              </button>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                 <button class="search-button"> 
+                   <i class="fas fa-search">Go!</i>
+                 </button>
+                </div>
+                <input type="text" aria-label="City" class="form-control" placeholder="City" id="city">
+                <input type="text" aria-label="District" class="form-control" placeholder="District">
+                <input type="text" aria-label="Street" class="form-control" placeholder="Street">
+              </div>
+              <div class="collapse navbar-collapse" id="navbarNav">               
+              <ul class="navbar-nav  ml-auto">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Become Host?</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">User</a>
+                  </li>
+                </ul>
+                <img src="{{ url_for('static', filename='./renter/resource/image/pexels-photo-4786270.jpeg') }}" id = "avatar">
+              </div>
+            </div>
+          </nav>
+    </section>
+    <section class="search-detail">
+        <div class="basic-search">
+          <div class="search-filter">
+            <span id="numberOfRooms"style="margin-top:5px">Số kết quả: {{rooms.query.count()}}</span>
+            {% if rooms.query.count() == 0%}
+            <h2>Không tìm được phòng còn khả dụng!</h2>
+            {%endif%}
+            <h3>Chỗ ở đẹp tại  {%if street%}{{street.name}},{%endif%} {%if district%}{{district.name}}{%endif%}, {{city.name}}</h3>
+            <br>
+            <div class="filter-container">
+              <div>
+                <span style="display: block;">Gia</span>
+                <select name="" id="">
+                  <option value="">0-1 trieu</option>
+                  <option value="">1-3 trieu</option>
+                  <option value="">3-5 trieu</option>
+                  <option value="">Hon 5 trieu</option>
+                </select>
+              </div>
+              <div>
+                <span style="display: block;">Dien tich</span>
+                <input type="text" placeholder="Dien tich(m2)">
+              </div>
+              <div>
+                <span style="display: block;">Loai phong</span>
+                <select name="" id="">
+                  <option value="">0-1 trieu</option>
+                  <option value="">1-3 trieu</option>
+                </select>
+              </div>
+            </div>
+            <br>
+            <button class="expand" id="btnAdd">
+              <span>More filter?</span>
+            </button>
+          </div>
+          <div class="result-page">
+            {% for room in rooms.items%}
+              {%include 'roomCard.html'%}
+            {%endfor%}
+          </div>
+          {%for page_num in rooms.iter_pages()%}
+            {%if page_num%}
+              {%if page_num == 1%}
+              <a href="" class="btn btn-outline-info mb4" style="margin-left: 20px;">{{page_num}}</a>
+              {%else%}
+              <a href="" class="btn btn-outline-info mb4">{{page_num}}</a>
+              {%endif%}
+            {%else%}
+            ...
+            {%endif%}
+          {%endfor%} 
+        </div>
+        <div class="detail-search">
+          <h1>Phòng trọ title</h1>
+          <h3>Địa chỉ phòng trọ</h3>
+          <h3>Thông tin liên hệ: 0964313607</h3>
+          <h5>3 phòng ngủ - 2 phòng tắm - Có ban công - Chung chủ</h5>
+          <div class="room-card">
+            <div class="room-card-img detail">
+              <div class="mySlides4" id="mySlides">
+                <img src="{{ url_for('static',filename='/renter/resource/image/Hanoi_City.jpeg')}}"id="mySlides1">
+              </div>
+              <div id="mySlides" class="mySlides4">
+                <img src="{{ url_for('static',filename='/renter/resource/image/HCM_city.jpeg')}}" alt="" id="mySlides1">
+              </div>
+              <div  id='mySlides' class="mySlides4">
+                <img src="{{ url_for('static',filename='/renter/resource/image/DN_City.png')}}" alt="" id="mySlides1">
+              </div>
+              <a class="prev" onclick="plusSlides(-1,3)">&#10094;</a>
+<a class="next" onclick="plusSlides(1,3)">&#10095;</a>
+            </div>
+          </div>
+          <div class="comment">
+            <p style="margin:0px;">Rate this room?</p>
+            <div class='rating-stars text-center'>
+              <ul id='stars'>
+                <li class='star' title='Poor' data-value='1'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='Fair' data-value='2'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='Good' data-value='3'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='Excellent' data-value='4'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+                <li class='star' title='WOW!!!' data-value='5'>
+                  <i class='fa fa-star fa-fw'></i>
+                </li>
+              </ul>
+            </div>
+            <input type="text" placeholder="Leave your comment">
+          </div>
+        </div>
+    </section>
+    <div class="m-dialog dialog-detail" title="Thông tin khách hàng" style="display: none">
+      <!--<div class="dialog-modal"></div>-->
+      <div class="dialog-content">
+          <div class="dialog-body">
+              <div class="m-row m-flex">
+                  <div class="m-col el-avatar-customer m-flex-1">
+                      <div class="room_and_bed">
+                        <h5>Room and Bed</h5>
+                        <div class="bedroom" style="position: relative;">
+                          <p>Phong Ngu</p>
+                          <button class="bonus" style="position: absolute; top:0px;right: 10px;"></button>
+                        </div>
+                        <div class="bathroom" style="position: relative;">
+                          <p>Phong Tam</p>
+                          <button class="bonus" style="position: absolute; top:0px;right: 10px;"></button>
+                        </div>
+                      </div>
+                      <div class="Facilities">
+                        <h5>Facilities</h5>
+                        <div class="dieu_hoa">
+                          <p style="display:absolute;float:left;top: 0px;">Dieu hoa</p>
+                          <input type="checkbox">
+                        </div>
+                        <div class="kitchen">
+                          <p style="display:absolute;float:left;top: 0px;">Kitchen</p>
+                          <input type="checkbox">
+                        </div>
+                        <div class="nonglanh">
+                          <p style="display:absolute;float:left;top: 0px;">Nong lanh</p>
+                          <input type="checkbox">
+                        </div>
+                        <div class="host">
+                          <p style="display:absolute;float:left;top: 0px;">Chung Chu</p>
+                          <input type="checkbox">
+                        </div>
+                      </div>
+                  </div>
+                  <div class="dialog-footer">
+                      <button id="btnCancel" class="m-btn m-btn-default m-btn-cancel">Hủy</button>
+                      <button id="btnSave" class="m-btn m-btn-default"><i class="far fa-save"></i><span class="btn-text">Lưu</span></button>
+                  </div>
+             </div>
+          </div>
+        </div>
+    </div>
+</body>
+
+<scrip src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></scrip>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="{{url_for('static', filename='./renter/js/searchResult.js')}}"></script>
+</html>
+

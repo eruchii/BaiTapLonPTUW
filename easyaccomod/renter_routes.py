@@ -3,6 +3,8 @@ from easyaccomod.owner_models import City,District,Ward,Room,RoomType
 from easyaccomod import app
 from easyaccomod.forms import SearchForm
 from easyaccomod.renter_db import addPriceLog
+from easyaccomod.room_models import Like,Comment
+from easyaccomod.models import User
 
 
 # Dinh viet ham de reuse nhung bi bug
@@ -23,190 +25,58 @@ def getCity():
     return city
 
 def getDistrict(cityName):
-          cityCode = City.query.filter_by(name = cityName).first().code
-          
-          district = District.query.filter_by(city_code = cityCode).all()
-         
-          ret =['']
-          for _obj in district:
-            ret.append(_obj.name)
-          
-          res = make_response(jsonify(ret),200)       
-          
-          return res
 
-def getStreet(districtName):
-    districtCode = District.query.filter_by(name=districtName).first().id
-    streetList = Ward.query.filter_by(district_id = districtCode).all()
+    cityCode = City.query.filter_by(name = cityName).first_or_404().code
+    district = District.query.filter_by(city_code = cityCode).all()
+    
+    ret =['']
+    for _obj in district:
+        ret.append(_obj.name)
+
+    return make_response(jsonify(ret),200)
+
+def getStreet(districtName,cityName):
+    cityCode = City.query.filter_by(name=cityName).first_or_404().code
+    district_id = District.query.filter_by(city_code=cityCode)\
+        .filter_by(name=districtName).first_or_404().id
+    streetList = Ward.query.filter_by(district_id = district_id).all()
+    
     ret = ['']
     for _obj in streetList:
         ret.append(_obj.name)
         
     return make_response(jsonify(ret),200)
 
-def getRoom(payload):
+def getRoomByCity(city):
 
-    # prepare filter
-    city_code = City.query.filter_by(name = payload[0]["city"]).first().code
-    district_id = District.query.filter_by(name = payload[1]["district"]).first().id
-    street_id = Ward.query.filter_by(name = payload[2]["street"]).first().id
-    
-    nearBy = payload[3]['near']
-    #print(nearBy)
-    price = payload[4]['price']
-    addPriceLog(price)
+    # Query with the parameter
+    res = Room.query.filter_by(city_code = city).filter(Room.post.any())
 
-    price = price.split("-")
+    # if res.count() == 0:
+    #     return make_response(jsonify("Can't find your perfect home"),200)
+    return res
 
-    lowerPrice = int(price[0])
-    upperPrice = int(price[1])
-    #print(price)
-    roomTypeId = RoomType.query.filter_by(name = payload[5]['roomType']).first()
-    if roomTypeId != None:
-        roomTypeId = roomTypeId.id
-    area = int(payload[6]['area'])
-    #print(area)
-    phongTam = int (payload[7]['phong_tam'])
-    #print(phongTam)
-    nong_lanh = payload[8]['nong_lanh']
-    #print(nong_lanh)
-    dieu_hoa = payload[9]['dieu_hoa']
-    #print(dieu_hoa)
-    ban_cong = payload[10]['ban_cong']
-    #print(ban_cong)
-    chung_chu = payload[11]['chung_chu']
-    #print(chung_chu )
-    giaDien = int(payload[12]['gia_dien'])
-    #print(giaDien)
-    giaNuoc = int(payload[13]['gia_nuoc'])
-    #print(giaNuoc)
-    tienIchKhac = payload[14]['tien_ich_khac']
-    #print(tienIchKhac)
-    res = []
-    ## Query time 
-    if city_code != None:
-        res = Room.query.filter_by(city_code=city_code).all()
-    # quan
-    if district_id != None and res != None:
-        x = 0
-        while x < len(res) :
-            if res[x].district_id != district_id:
-                del(res[x])
-                x-=1
-            x+=1
-    
-    # pho
-    if street_id != None and res != None:
-        x = 0
-        while x < len(res) :
-            if res[x].ward_id != street_id:
-                del(res[x])
-                x-=1
-            x+=1
-    
-    #gia tien
-    upperPrice
-    if  price != None and res != None:
-        x = 0
-        while x < len(res) :
-            if res[x].price != price:
-                del(res[x])
-                x-=1
-            x+=1
-    
-    # loai phong
-    if roomTypeId != None and res != None:
-        x = 0
-        while x < len(res) :
-            if res[x].room_type_id != roomTypeId:
-                del(res[x])
-                x-=1
-            x+=1
+def getUserFavoritePost(username):
+    user_id =  User.query.filter_by(username=username).first().id
+    userFavoritePost = Like.query.filter_by(user_id = user_id)
+    # tra ve Query tim kiem tat ca cac bai viet dc thich cua nguoi dung, phuc vu phan trang
+    return userFavoritePost
 
-    # so phong tam        
-    if phongTam != None and res != None:
-        x = 0
-        while x < len(res) :
-            if res[x].phong_tam != phongTam:
-                del(res[x])
-                x-=1
-            x+=1
+def getRoomByLocation(city,district,street):
+    res = Room.query.filter_by(city_code = city)\
+        .filter_by(district_id = district)\
+            .filter_by(ward_id=street).filter(Room.post.any())
+    # GET POST OF ROOMS, AND ELIMINATE ROOM WHICH HAS NO POST
+    return res
 
-    # binh nong lanh        
-    if nong_lanh != None and res != None:
-        x = 0
-        while x < len(res) :
-            if res[x].nong_lanh != nong_lanh:
-                del(res[x])
-                x-=1
-            x+=1
-
-    # dieu hoa
-    if dieu_hoa != None and res != None:
-        x = 0
-        while x < len(res) :
-            if res[x].dieu_hoa != dieu_hoa:
-                del(res[x])
-                x-=1
-            x+=1
-
-    # ban cong        
-    if ban_cong != None and res != None:
-        x = 0
-        while x < len(res) :
-            if res[x].ban_cong != ban_cong:
-                del(res[x])
-                x-=1
-            x+=1
-
-    # chung chu        
-    if chung_chu != None and res != None:
-        x = 0
-        while x < len(res) :
-            if res[x].chung_chu != chung_chu:
-                del(res[x])
-                x-=1
-            x+=1
-
-    # gia dien        
-    if giaDien != None and res != None: 
-        x = 0
-        while x < len(res) :
-            if res[x].gia_dien != giaDien:
-                del(res[x])
-                x-=1
-            x+=1
-
-    # gia nuoc           
-    if giaNuoc != None and res != None: 
-        x = 0
-        while x < len(res) :
-            if res[x].gia_nuoc != giaNuoc:
-                del(res[x])
-                x-=1
-            x+=1
-
-    # tien ich khac           
-    if tienIchKhac != None and res != None:
-        x = 0
-        while x < len(res) :
-            if res[x].info.find(tienIchKhac) == -1:
-                del(res[x])
-                x-=1
-            x+=1
-    # print(res == [])
-    # res = District.query.filter_by(city_code = city_code).all()
-    # print(res)
-    # print('--------------------------------------------------------------')
-    # for districts in res:
-    #     print(districts.name)
-
-    if res == []:
-        return make_response(jsonify("Can't find your perfect home"),200)
-    else:
-        ret = []
-        for _obj in res:
-            ret.append(res)
-        return make_response(jsonify(ret),200)
+# def getRoomDetail(obj):
+#     result = Room.query.filter_by(city_code = obj["city_code"])\
+#         .filter_by(Room.post is not []).all()
+#     for i in attrs:
+#         print(obj.get(i))
+#     return jsonify("succesfull")
 
 
+# attrs = ["info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep",
+#  "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", 
+#  "tien_ich_khac"]

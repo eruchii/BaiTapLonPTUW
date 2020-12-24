@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="../css/page/searchDetail.css">
-    <link rel="stylesheet" href="../css/component/jquery.ui.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='./renter/css/page/searchDetail.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='./renter/css/component/jquery.ui.min.css')}}">
     {% if title %}
     <title>Accommodation - {{ title }}</title>
     {% else %}
@@ -18,7 +18,7 @@
     <section id='nav-bar'>
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#"><img src="../resource/image/1054_1343847082_103.png"></a>
+              <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='./renter/resource/image/1054_1343847082_103.png') }}"></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars" onclick="openNav()"></i>
               </button>
@@ -41,7 +41,7 @@
                     <a class="nav-link" href="#">User</a>
                   </li>
                 </ul>
-                <img src="../resource/image/pexels-photo-4786270.jpeg" id = "avatar">
+                <img src="{{ url_for('static', filename='./renter/resource/image/pexels-photo-4786270.jpeg') }}" id = "avatar">
               </div>
             </div>
           </nav>
@@ -79,77 +79,17 @@
             </button>
           </div>
           <div class="result-page">
-            <div class="room-card">
-              <div class="room-card-img">
-                <div class="mySlides1" id="mySlides">
-                  <img src="../resource/image/Hanoi_City.jpeg" alt="" id="mySlides1">
-                </div>
-                <div id="mySlides" class="mySlides1">
-                  <img src="../resource/image/HCM_city.jpeg" alt="" id="mySlides1">
-                </div>
-                <div  id='mySlides' class="mySlides1">
-                  <img src="../resource/image/DN_City.png" alt="" id="mySlides1">
-                </div>
-                <a class="prev" onclick="plusSlides(-1,0)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1,0)">&#10095;</a>
-              </div>
-              
-              <div class="room-info">
-                <h1 class="room-title">Phong tro vip pro</h1>
-                <p class="room-detail">Description about phong tro
-                  Description about phong tro
-                  Description about phong tro
-
-                  Description about phong troDescription about phong tro
-                  Description about phong tro
-                </p>
-              </div>
-            </div>
-
-            <div class="room-card">
-              <div class="room-card-img">
-                <div class="mySlides2" id="mySlides"> 
-                  <img src="../resource/image/Hanoi_City.jpeg" alt="" class="slider">
-                </div>
-                <div class="mySlides2" id="mySlides">
-                  <img src="../resource/image/HCM_city.jpeg" alt="" class="slider">
-                </div>
-                <div class="mySlides2" id="mySlides">
-                  <img src="../resource/image/DN_City.png" alt="" class="slider">
-                </div>
-                <a class="prev" onclick="plusSlides(-1,1)">&#10094;</a>
-  <a class="next" onclick="plusSlides(1,1)">&#10095;</a>
-              </div>
-            
-              
-              <div class="room-info">
-                <h1 class="room-title">Phong tro vip pro</h1>
-                <p class="room-detail">Description about phong tro
-                  Description about phong tro
-                  Description about phong tro
-
-                  Description about phong troDescription about phong tro
-                  Description about phong tro
-                </p>
-              </div>
-            </div>
-            <div class="room-card">
-              <div class="room-card-img">
-               
-              </div>
-              
-              <div class="room-info">
-                <h1 class="room-title">Phong tro vip pro</h1>
-                <p class="room-detail">Description about phong tro
-                  Description about phong tro
-                  Description about phong tro
-
-                  Description about phong troDescription about phong tro
-                  Description about phong tro
-                </p>
-              </div>
-            </div>
+            {% for room in rooms.items%}
+              {%include 'roomCard.html'%}
+            {%endfor%}
           </div>
+          {%for page_num in rooms.iter_pages()%}
+            {%if page_num%}
+            <a id="{{page_num}}" href="" class="btn btn-outline-info mb-4 pagi">{{page_num}}</a>
+            {%else%}
+            ...
+            {%endif%}
+          {%endfor%}
         </div>
         <div class="detail-search">
           <h1>Phòng trọ title</h1>
@@ -158,17 +98,17 @@
           <h5>3 phòng ngủ - 2 phòng tắm - Có ban công - Chung chủ</h5>
           <div class="room-card">
             <div class="room-card-img detail">
-              <div class="mySlides3" id="mySlides">
-                <img src="../resource/image/Hanoi_City.jpeg" alt="" id="mySlides1">
+              <div class="mySlides4" id="mySlides">
+                <img src="{{ url_for('static',filename='/renter/resource/image/Hanoi_City.jpeg')}}"id="mySlides1">
               </div>
-              <div id="mySlides" class="mySlides3">
+              <div id="mySlides" class="mySlides4">
                 <img src="../resource/image/HCM_city.jpeg" alt="" id="mySlides1">
               </div>
-              <div  id='mySlides' class="mySlides3">
+              <div  id='mySlides' class="mySlides4">
                 <img src="../resource/image/DN_City.png" alt="" id="mySlides1">
               </div>
-              <a class="prev" onclick="plusSlides(-1,2)">&#10094;</a>
-<a class="next" onclick="plusSlides(1,2)">&#10095;</a>
+              <a class="prev" onclick="plusSlides(-1,3)">&#10094;</a>
+<a class="next" onclick="plusSlides(1,3)">&#10095;</a>
             </div>
           </div>
           <div class="comment">
@@ -202,9 +142,35 @@
           <div class="dialog-body">
               <div class="m-row m-flex">
                   <div class="m-col el-avatar-customer m-flex-1">
-                      <div class="el-avatar"></div>
-                      <div class="el-avatar-note text-align-center">
-                          Vui lòng chọn ảnh có định dạng <br><b>.jpg, .jpeg, .png, .gif. </b>
+                      <div class="room_and_bed">
+                        <h5>Room and Bed</h5>
+                        <div class="bedroom" style="position: relative;">
+                          <p>Phong Ngu</p>
+                          <button class="bonus" style="position: absolute; top:0px;right: 10px;"></button>
+                        </div>
+                        <div class="bathroom" style="position: relative;">
+                          <p>Phong Tam</p>
+                          <button class="bonus" style="position: absolute; top:0px;right: 10px;"></button>
+                        </div>
+                      </div>
+                      <div class="Facilities">
+                        <h5>Facilities</h5>
+                        <div class="dieu_hoa">
+                          <p style="display:absolute;float:left;top: 0px;">Dieu hoa</p>
+                          <input type="checkbox">
+                        </div>
+                        <div class="kitchen">
+                          <p style="display:absolute;float:left;top: 0px;">Kitchen</p>
+                          <input type="checkbox">
+                        </div>
+                        <div class="nonglanh">
+                          <p style="display:absolute;float:left;top: 0px;">Nong lanh</p>
+                          <input type="checkbox">
+                        </div>
+                        <div class="host">
+                          <p style="display:absolute;float:left;top: 0px;">Chung Chu</p>
+                          <input type="checkbox">
+                        </div>
                       </div>
                   </div>
                   <div class="dialog-footer">
@@ -220,6 +186,6 @@
 <scrip src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></scrip>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
-<script src="../js/searchResult.js"></script>
+<script src="{{url_for('static', filename='./renter/js/searchResult.js')}}"></script>
 </html>
 

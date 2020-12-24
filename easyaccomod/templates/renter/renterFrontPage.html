@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="../css/page/searchPage.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='./renter/css/page/searchPage.css')}}">
     {% if title %}
     <title>Accommodation - {{ title }}</title>
     {% else %}
@@ -17,7 +17,7 @@
     <section id='nav-bar'>
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container-fluid">
-              <a class="navbar-brand" href="#"><img src="../resource/image/1054_1343847082_103.png"></a>
+              <a target="blank" class="navbar-brand" href="#"><img src="{{ url_for('static', filename='./renter/resource/image/1054_1343847082_103.png') }}"></a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fa fa-bars" onclick="openNav()"></i>
               </button>
@@ -27,11 +27,10 @@
                     <a class="nav-link" href="#">Become Host?</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">User</a>
+                    <a class="nav-link" href="">User</a>
                   </li>
                 </ul>
-                <img src="../resource/image/pexels-photo-4786270.jpeg" id = "avatar"
-                style="">
+                <img src="{{ url_for('static', filename='./renter/resource/image/pexels-photo-4786270.jpeg') }}" id = "avatar">
               </div>
             </div>
           </nav>
@@ -43,16 +42,17 @@
               <p class="promo-title">Find your sweet Home</p>
             </div>
             <div class="col-md-12">
-              <div class="input-group">
+              <form class="input-group" action="" method="POST">
                 <div class="input-group-prepend">
-                 <button class="search-button"> 
-                   <i class="fas fa-search">Go!</i>
-                 </button>
+                  <button class="search-button">
+                   <i class="fas fa-search"></i>
+                  </button>
+                   {{form.submit(class="btn-outline-info text-center")}}
                 </div>
-                <input type="text" aria-label="City" class="form-control" placeholder="City" id="city">
-                <input type="text" aria-label="District" class="form-control" placeholder="District">
-                <input type="text" aria-label="Street" class="form-control" placeholder="Street">
-              </div>
+                  {{ form.city(class="form-control city", id="city")}}
+                  {{ form.district(class="form-control district", id="district")}}
+                  {{ form.street(class="form-control street",  id="street")}}
+              </form>
             </div>
           </div>
         </div>
@@ -69,21 +69,21 @@
         </h5>
         <div class="grids">
           <div class="grids-item featured-city">
-            <img src="../resource/image/Hanoi_City.jpeg" alt="Hanoi City" class="city-img">
+            <img src="{{ url_for('static', filename='./renter/resource/image/Hanoi_City.jpeg') }}"alt="Hanoi City" class="city-img">
             <h5 class="city-name">Hanoi</h5>
-            <a href="" class="btn btn-gradient">Find now!
+            <a href="{{url_for('renter.searchByCity', city='HN')}}" class="btn btn-gradient">Find now!
             <span class="search-button"><i class="fas fa-search"></i></span></a>
          </div>
           <div class="grids-item featured-city">
-            <img src="../resource/image/HCM_city.jpeg" alt="Hanoi City" class="city-img">
+            <img src="{{ url_for('static', filename='./renter/resource/image/HCM_city.jpeg') }}" alt="HCM City" class="city-img">
             <h5 class="city-name">Ho Chi Minh</h5>
-            <a href="" class="btn btn-gradient">Find now!
+            <a href="{{url_for('renter.searchByCity', city='SG')}}" class="btn btn-gradient">Find now!
             <span class="search-button"><i class="fas fa-search"></i></span></a>
          </div>
           <div class="grids-item featured-city">
-            <img src="../resource/image/DN_City.png" alt="Hanoi City" class="city-img">
+            <img src="{{ url_for('static', filename='./renter/resource/image/DN_City.png') }}" alt="DN City" class="city-img">
             <h5 class="city-name">Da Nang</h5>
-            <a href="" class="btn btn-gradient">Find now!
+            <a href="{{url_for('renter.searchByCity', city= 'DDN')}}" class="btn btn-gradient">Find now!
             <span class="search-button"><i class="fas fa-search"></i></span></a>
         </div>
       </div>
@@ -100,6 +100,7 @@
     <section class="footer"></section>
 </body>
 <scrip src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></scrip>
-<script src="{{ url_for('static', filename='renter_js/roomSearch.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='renter/js/roomFrontPage.js') }}"></script>
 </html>
 

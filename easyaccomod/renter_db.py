@@ -45,4 +45,18 @@ def addComment(user_id,room_id,content,commit = True):
 def addPriceLog(price):
     priceRange = PriceLog(price)
     db.session.add(priceRange)
-    db.session.commint()
+    db.session.commit()
+
+
+def defaultSearch(city,district,street):
+    city_code = db.session.query(City).filter_by(name = city).first().code
+    district_code = db.session.query(District).filter_by(name=district).first().id
+    street_code = db.session.query(Ward).filter_by(name=street).first().id
+    res = []
+    res = db.session.query(Room).\
+        filter_by(city_code = city_code).\
+            filter_by(district_code = district_code).\
+                filter_by(ward_id= street_code)
+    if res == []:
+        return "Can't Find Your Perfect Home"
+    return res
