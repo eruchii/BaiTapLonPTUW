@@ -144,14 +144,12 @@ def add_Comment():
 
 
 @renter_bp.route("/api/getDistrict",methods=["POST"])
-@login_required
 def getDistrictAPI():
   req = request.get_json()
   # request handler
   return getDistrict(req.get('city'))
 
 @renter_bp.route("/api/getStreet",methods=["POST"])
-@login_required
 def getStreetAPI():
   req = request.get_json()
   # request handler
