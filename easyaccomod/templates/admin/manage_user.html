@@ -50,7 +50,7 @@
             <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + user.image_file) }}" alt="image of author">
             <div class="media-body">
                 <div class="article-metadata">
-                    <a class="mr-2" href="#">{{ user.username}}</a>
+                    <a class="mr-2" href="{{ url_for('admin.user_posts', username=user.username) }}">{{ user.username}}</a>
                     <small class="text-muted"> Status: {{ user.confirms.name }}</small>
                     {% if user.status_confirm != 1 %}
                         <a id="acceptuser" class="btn btn-success btn-sm mt-1 mb-1 ml-1" onclick="acceptOwner(this, '{{ user.id }}')">Accept</a>
