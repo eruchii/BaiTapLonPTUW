@@ -53,6 +53,7 @@ from easyaccomod.admin.routes import admin
 from easyaccomod.posts.routes import posts
 from easyaccomod import renter_views
 from easyaccomod.renter_views import renter_bp
+from easyaccomod.errors.handlers import errors
 
 # register Blueprint
 app.register_blueprint(owner_bp, url_prefix = '/owner')
@@ -61,3 +62,4 @@ app.register_blueprint(main)
 app.register_blueprint(admin)
 app.register_blueprint(posts)
 app.register_blueprint(renter_bp,url_prefix= "/renter")
+app.register_blueprint(errors)

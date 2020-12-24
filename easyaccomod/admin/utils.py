@@ -412,7 +412,8 @@ def add_price_log():
         print(price_log)
         print(type(price_log.priceRange))
         db.session.add(price_log)
-    price_log = PriceLog(priceRange="Trên 10 triệu")
+    price_log1 = PriceLog(priceRange="Trên 10 triệu")
+    db.session.add(price_log1)
     db.session.commit()
 
 def fake_add_data_price_log():
