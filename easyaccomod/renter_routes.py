@@ -62,10 +62,18 @@ def getUserFavoritePost(username):
     # tra ve Query tim kiem tat ca cac bai viet dc thich cua nguoi dung, phuc vu phan trang
     return userFavoritePost
 
-def getRoomByLocation(city,district,street):
-    res = Room.query.filter_by(city_code = city)\
-        .filter_by(district_id = district)\
-            .filter_by(ward_id=street).filter(Room.post.any())
+def getRoomByLocation(city,district=None,street=None):
+    if(district != None):
+        if(street != None):
+            res = Room.query.filter_by(city_code = city)\
+                .filter_by(district_id = district)\
+                    .filter_by(ward_id=street).filter(Room.post.any())
+        else:
+            res = Room.query.filter_by(city_code = city)\
+                .filter_by(district_id = district).filter(Room.post.any())
+
+    else:
+        res = Room.query.filter_by(city_code = city).filter(Room.post.any())
     # GET POST OF ROOMS, AND ELIMINATE ROOM WHICH HAS NO POST
     return res
 

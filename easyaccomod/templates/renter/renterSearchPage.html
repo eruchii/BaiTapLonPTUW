@@ -52,7 +52,7 @@
             {% if rooms.query.count() == 0%}
             <h2>Không tìm được phòng còn khả dụng!</h2>
             {%endif%}
-            <h3>Chỗ ở đẹp tại  {%if street%}{{street.name}},{%endif%} {%if district%}{{district.name}}{%endif%}, {{city.name}}</h3>
+            <h3>Chỗ ở đẹp tại {%if street%}{{street.name}},{%endif%} {%if district%}{{district.name}},{%endif%} {{city.name}}</h3>
             <br>
             <div class="filter-container">
               <div>
@@ -89,9 +89,9 @@
           {%for page_num in rooms.iter_pages()%}
             {%if page_num%}
               {%if page_num == 1%}
-              <a href="" class="btn btn-outline-info mb4" style="margin-left: 20px;">{{page_num}}</a>
+              <a href="{{ url_for('renter.search', city=city.code, district=district.id, street=street.id, page=page_num)}}" class="btn btn-outline-info mb4" style="margin-left: 20px;">{{page_num}}</a>
               {%else%}
-              <a href="" class="btn btn-outline-info mb4">{{page_num}}</a>
+              <a href="{{ url_for('renter.search', city=city.code, district=district.id, street=street.id, page=page_num)}} " class="btn btn-outline-info mb4">{{page_num}}</a>
               {%endif%}
             {%else%}
             ...

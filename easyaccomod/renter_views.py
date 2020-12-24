@@ -11,7 +11,6 @@ import datetime
 renter_bp = Blueprint("renter",__name__,template_folder='templates/renter')
 # Index Page
 @renter_bp.route("/",methods = ['POST','GET'])
-@login_required
 def frontPageDisplay():
     cities = City.query.all()
     form = SearchForm(cities)
@@ -30,10 +29,10 @@ def frontPageDisplay():
 
 
 # Search Page
-
-@renter_bp.route("/search/<city>/<district>/<street>",methods=['POST','GET'])
-@login_required
-def search(city,district,street):
+@renter_bp.route("/search/<city>/", methods=['POST', "GET"])
+@renter_bp.route("/search/<city>/<district>/", methods=['POST', "GET"])
+@renter_bp.route("/search/<city>/<district>/<street>/",methods=['POST','GET'])
+def search(city,district=None,street=None):
   currentDateTime = datetime.datetime.utcnow()
   
   if (request.method == "POST"):
@@ -50,7 +49,7 @@ def search(city,district,street):
   page = request.args.get('page',1,type=int)
   # GET ROOM
   rooms = getRoomByLocation(city,district,street)
-  rooms = rooms.paginate(page=page,per_page=1)
+  rooms = rooms.paginate(page=page,per_page=5)
   
   city = City.query.filter_by(code = city).first()
   district = District.query.filter_by(id = district).first()
@@ -59,25 +58,25 @@ def search(city,district,street):
   return render_template("renter/renterSearchPage.html",rooms = rooms, dateTime = currentDateTime,city = city,district=district,street=street)
 
 
-@renter_bp.route("/search/<city>",methods=['POST','GET'])
-@login_required
-def searchByCity(city):
+# @renter_bp.route("/search/<city>",methods=['POST','GET'])
+# @login_required
+# def searchByCity(city):
   
-  currentDateTime = datetime.datetime.utcnow()
+#   currentDateTime = datetime.datetime.utcnow()
 
-  # Get Room se tra ve list cac Room hop le, tu do" vut vao template
-  page = request.args.get('page',1,type=int)
+#   # Get Room se tra ve list cac Room hop le, tu do" vut vao template
+#   page = request.args.get('page',1,type=int)
   
-  # GET ROOM
-  try:
-    rooms = getRoomByCity(city)
-    rooms = rooms.paginate(page=page,per_page=1)
-  except:
-    return jsonify({"status":"Error","msg":"Problem searching by City"})
+#   # GET ROOM
+#   try:
+#     rooms = getRoomByCity(city)
+#     rooms = rooms.paginate(page=page,per_page=1)
+#   except:
+#     return jsonify({"status":"Error","msg":"Problem searching by City"})
  
-  city = City.query.filter_by(code = city).first()
+#   city = City.query.filter_by(code = city).first()
   
-  return render_template("renter/renterSearchPage.html",rooms = rooms, dateTime = currentDateTime,city = city)
+#   return render_template("renter/renterSearchPage.html",rooms = rooms, dateTime = currentDateTime,city = city)
 
 # Add Like
 @renter_bp.route("/api/addlike",methods=["POST","GET"])
