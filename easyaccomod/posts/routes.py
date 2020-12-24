@@ -93,7 +93,7 @@ def new_post():
 def post():
     if current_user.role_id == 1:
         page = request.args.get('page', 1, type=int)
-        posts = Post.query.order_by(Post.date_created.desc()).paginate(page=page, per_page=5)
+        posts = Post.query.order_by(Post.date_created.desc()).paginate(page=page, per_page=10)
         return render_template("posts/post.html", title="Manage Post", posts=posts)
     else:
         abort(403)
@@ -256,7 +256,7 @@ def update_room(room_id):
 def room():
     if current_user.role_id == 1 and current_user.status_confirm == 1:
         page = request.args.get('page', 1, int)
-        rooms = Room.query.order_by(Room.id.desc()).paginate(page=page, per_page=5)
+        rooms = Room.query.order_by(Room.id.desc()).paginate(page=page, per_page=10)
         return render_template("posts/room.html", title = "Room", rooms=rooms)
     else :
         abort(403)

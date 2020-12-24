@@ -426,15 +426,35 @@ def fake_add_data_price_log():
 def add_dummy_room():
     wards = Ward.query.all()
     owners = Owner.query.all()
-    for i in range(1,9):
-        random_ward = random.randint(0, len(wards)-1)
-        random_owner = random.randint(0, len(owners)-1)
-        random_roomtype = random.randint(1,4)
-        random_price = random.randint(10,99) * 100000
-        room_dummy = Room(user_id=owners[random_owner].user_id, city_code=wards[random_ward].city_code, 
-            district_id=wards[random_ward].district_id, ward_id=wards[random_ward].id, info=f"Create room info",
-            room_type_id=random_roomtype, room_number=random.randint(2,6), price=random_price, chung_chu=random.randint(0,1), phong_tam=random.randint(1,3),
-            nong_lanh=random.randint(0,1), phong_bep=random.randint(1,2), dieu_hoa=random.randint(0,1), ban_cong=random.randint(0,1), gia_dien=random.randint(2000,4500), gia_nuoc=random.randint(7000,25000),
-            image=f"['bancong{i}.jpeg', 'bedroom{i}.jpeg', 'kitchen{i}.jpeg', 'livingroom{i}.jpeg']", status=0)
-        db.session.add(room_dummy)
-        db.session.commit()
+    for j in range(1, 100):
+        for i in range(1,9):
+            random_ward = random.randint(0, len(wards)-1)
+            random_owner = random.randint(0, len(owners)-1)
+            random_roomtype = random.randint(1,4)
+            random_price = random.randint(10,99) * 100000
+            room_dummy = Room(user_id=owners[random_owner].user_id, city_code=wards[random_ward].city_code, 
+                district_id=wards[random_ward].district_id, ward_id=wards[random_ward].id, info=f"Create room info",
+                room_type_id=random_roomtype, room_number=random.randint(2,6), price=random_price, chung_chu=random.randint(0,1), phong_tam=random.randint(1,3),
+                nong_lanh=random.randint(0,1), phong_bep=random.randint(1,2), dieu_hoa=random.randint(0,1), ban_cong=random.randint(0,1), gia_dien=random.randint(2000,4500), gia_nuoc=random.randint(7000,25000),
+                image=f"['bancong{i}.jpeg', 'bedroom{i}.jpeg', 'kitchen{i}.jpeg', 'livingroom{i}.jpeg']", status=0)
+            db.session.add(room_dummy)
+            db.session.commit()
+
+def add_dummy_post():
+    owners = Owner.query.all()
+    rooms = Room.query.all()
+    for i in range(1,500):
+        random_room = random.randint(0, len(rooms)-1)
+        random_user = random.randint(0, len(owners)-1)
+        title = f"Đăng bài cho thuê nhà {random.randint(1,1000)}"
+        content = f"""Nhà có 8 Phòng đã cho thuê hết 7 cơ hội cho người có Duyên
+Còn duy nhất 1 phòng cho thuê nốt chỉ 2,8 tr/tháng ở Phố Hàng Mành-Hà Nội.
+Phòng Đẹp, khép kín, rộng 22m2, đầy đủ giường tủ, chăn đệm mới tinh chỉ việc dọn về ở.
+Còn phòng cuối cùng nên giảm giá cho những ai may mắn, kinh tế eo hẹp.
+Giờ giấc thoải mái , không chung chủ, An ninh đảm bảo. {random.randint(1,1000)}"""
+        room_id = rooms[random_room].id
+        pending = True
+        user_id = owners[random_user].user_id
+        post = Post(title=title, content=content, room_id=room_id, pending=pending, user_id=user_id)
+        db.session.add(post)
+    db.session.commit()
