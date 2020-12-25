@@ -4,8 +4,8 @@ from easyaccomod.owner_models import City,District,Ward
 from easyaccomod.room_models import Like,Comment
 from easyaccomod import app
 from easyaccomod.forms import SearchForm
-from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getUserFavoritePost,getRoomByLocation
-from easyaccomod.renter_db import addLike,removeLike,addComment,getRoomById,getPostByRoomID
+from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getUserFavoritePost,getRoomByLocation,getRoomByDetail
+from easyaccomod.renter_db import addLike,removeLike,addComment,getRoomById,getPostByRoomID,checkLikeByUser
 import datetime
 
 renter_bp = Blueprint("renter",__name__,template_folder='templates/renter')
@@ -38,10 +38,8 @@ def search(city,district=None,street=None):
   if (request.method == "POST"):
     try:
       # Take Data from POST from
-      city = request.form.getlist('city')
-      district = request.form.getlist('district')
-      street = request.form.getlist('street')
-      
+      data = request.get_json()
+      rooms = getRoomByDetail(data)
     except:
       return jsonify({"status":"Error","msg":"Problem searching"})
 
@@ -186,17 +184,17 @@ def getFavoritePost(username):
   return render_template("renter/renterSearchPage.html",posts = posts)
 
 
-@renter_bp.route("/api/testPaginationFetch",methods=["POST"])
-@login_required
-def testPaginationFetch():
-  page = int(request.get_json().get('page'))
-  print(page)
-  citys = testPage().paginate(page=page,per_page=5)
-  ret =[]
-  print(citys.iter_pages())
-  for city in citys.items:
-    item ={}
-    item['code']  = city.code
-    item['name'] = city.name
-    ret.append(item)
-  return jsonify(ret)
+
+@renter_bp.route("/api/checkLikeByUser",methods=["POST"])
+def check():
+  data = request.get_json()
+  print(data["user_id"])
+  print(data["post_id"])
+  res = {}
+  res["status"] = "Error"
+  try:
+    status = checkLikeByUser(data["user_id"],data["post_id"])
+    res["status"] = status
+    return jsonify(res)
+  except:
+    return jsonify(res)

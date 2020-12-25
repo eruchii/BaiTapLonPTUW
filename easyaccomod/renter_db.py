@@ -85,3 +85,13 @@ def getPostByRoomID(room_id):
             return ("success",post)
     except:
         return ('error','co loi xay ra')
+
+def checkLikeByUser(user_id,post_id):
+    try:
+        liked = Like.query.filter_by(user_id = user_id).filter_by(post_id=post_id).first()
+        if liked is None:
+            return ("False")
+        else: 
+            return ("True")
+    except:
+        return ('error','co loi xay ra')

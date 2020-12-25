@@ -1,5 +1,4 @@
 $(document).ready(function(){
-  
   /* 1. Visualizing things on Hover - See next part for action on click */
   $('#stars li').on('mouseover', function(){
     var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
@@ -29,14 +28,10 @@ $(document).ready(function(){
     
     data = {}
     data.user_id = $(".user_comment").attr('id')
-    data.room_id = "3"
-    console.log(data)
+    data.room_id = $(".post_comment").attr('id')
     if ($(stars).hasClass('selected'))
     {
-      console.log('selected')
-
       postData('/renter/api/removeLike',data).
-      then(response => console.log(response)).
       then(
         $(stars).removeClass('selected')
       )
@@ -44,7 +39,6 @@ $(document).ready(function(){
     else
     {
       postData('/renter/api/addLike',data).
-      then(response => console.log(response)).
       then( 
         $(stars).addClass('selected') 
       )
@@ -262,6 +256,9 @@ function loadComment(response){
 </div>`;
     x.append(comment)
   }
+  user_id = $(".user_comment").attr("id")
+
+  testCheckLike(user_id,response.data["id"])
 }
 
 function loadRoomDetail(data){
@@ -331,4 +328,89 @@ $("#submit_comment").click(function(){
     postData("/renter/api/Comment",data)
     window.alert("Bình luận đã được ghi nhận ! Đang chờ kiểm duyệt")
     document.querySelector('#user_comment').value = ""
+})
+
+
+function testCheckLike(user_id,post_id){
+  data = {}
+  data["user_id"] = user_id
+  data["post_id"] = post_id
+  postData("/renter/api/checkLikeByUser",data).then(
+    response => {
+      if (response.status == "True")
+      {
+        let likeIcon = document.querySelector("li.star")
+        likeIcon.classList.add("selected")
+      }
+      else
+      {
+        let likeIcon = document.querySelector("li.star")
+        likeIcon.classList.remove("selected")
+      }
+    }
+  )
+}
+
+
+document.querySelector(".bedminus").addEventListener("click",function(){
+  x = parseInt($("#bedroom").text())
+  if (x > 0 ){
+    x-=1;
+  }
+  $("#bedroom").text(x);
+})
+
+document.querySelector(".bedbonus").addEventListener("click",function(){
+  x = parseInt($("#bedroom").text())
+  x+=1;
+  $("#bedroom").text(x);
+})
+
+document.querySelector(".bathminus").addEventListener("click",function(){
+  x = parseInt($("#bathroom").text())
+  if (x > 0 ){
+    x-=1;
+  }
+  $("#bathroom").text(x);
+})
+
+document.querySelector(".bathbonus").addEventListener("click",function(){
+  x = parseInt($("#bathroom").text())
+  x+=1;
+  $("#bathroom").text(x);
+})
+
+document.querySelector(".btnSave").addEventListener("click",function(){
+  url = window.location.href;
+  data = {}
+  
+  price = "None"
+  roomType ="None"
+  if ($("select.Price").children("option:selected").val() != null)
+    price = $("select.Price").children("option:selected").val()
+
+  if ($("select.roomType").children("option:selected").val() != null)
+      roomType = $("select.roomType").children("option:selected").attr("id")
+  phong_tam = parseInt($("#bathroom").text());
+  phong_ngu = 0;
+  dieu_hoa = false;
+  if (document.querySelector(".dieu_hoa").checked){
+    dieu_hoa = true;
+  }
+  nong_lanh = false;
+  if (document.querySelector(".nong_lanh").checked){
+    nong_lanh = true;
+  }
+  chung_chu = false;
+  if (document.querySelector(".host").checked){
+    chung_chu = true;
+  }
+  data["gia"] = price;
+  data["roomType"] = roomType;
+  data["phong_tam"] = phong_tam;
+  data["phong_bep"] = phong_bep;
+  data["dieu_hoa"] = dieu_hoa;
+  data["nong_lanh"] = nong_lanh;
+  data["chung_chu"] = chung_chu;
+  postData(url,data)
 })

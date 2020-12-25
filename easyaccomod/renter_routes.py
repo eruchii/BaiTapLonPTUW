@@ -83,3 +83,39 @@ def getRoomByLocation(city,district=None,street=None):
 # attrs = ["info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep",
 #  "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", 
 #  "tien_ich_khac"]
+
+def getRoomByDetail(obj):
+    
+    filter_value = []
+    filters = ["gia","phong_tam","phong_bep","room_type_id","dieu_hoa","nong_lanh","chung_chu"]
+    # phong ngu,phong tam,gia, Dien tich, loai phong (int), dieu hoa,nonglanh,chungchu,bep(Boolean)
+    for key in obj:
+        if obj[key] is not None:
+            for filt in filters:
+                if key == filt:
+                    filter_value.append(obj[key])
+        else :
+            filter_value.append("None")
+    filter_value = tuple(filter_value)
+    # # for i, filt in enumerate(filter_value, 0):
+    # #     if filt is not None:
+    # #         d = {'Room.{}'.format(filters[i]):filt}  # filter1 = filters[1]
+    # #         print(d) 
+    # #         res = res.filter(filters[i] )
+    # x = 'Room.' + filters[1] + ' >= 2'
+    # x = "'" + x + "'"
+    res =  Room.query
+    if filter_value[0] is not None:
+        res =  res.filter(Room.phong_tam >= filter_value[0])
+    if filter_value[1] is not None:
+        res =  res.filter(Room.phong_bep >= filter_value[1])
+    if filter_value[2] is not None:
+        res = res.filter(Room.room_type_id == filter_value[2])
+    if filter_value[3] is not None:
+        res = res.filter(Room.dieu_hoa == filter_value[3])
+    if filter_value[4] is not None:
+        res = res.filter(Room.nong_lanh == filter_value[4])
+    if filter_value[5] is not None:
+        res = res.filter(Room.nong_lanh == filter_value[5])
+    print(res)
+    return res.all()
