@@ -134,7 +134,6 @@ def getStreetAPI():
 
 
 @renter_bp.route("/api/getRoomById",methods=["POST","GET"])
-@login_required
 def getRoom():
   res = {}
   res["status"] = "error"
