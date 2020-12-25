@@ -1,3 +1,4 @@
+from easyaccomod.room_models import Comment, Like
 from os import urandom
 from easyaccomod.owner_models import Owner, Room, City, District, Ward
 from easyaccomod import db, bcrypt
@@ -214,6 +215,8 @@ def delete_post(post_id, user_id):
 		return ("error", "khong ton tai bai dang")
 	if(post.user_id != user_id):
 		return ("error", "Permission Denied")
+	Comment.query.filter_by(post_id=post_id).delete()
+	Like.query.filter_by(post_id=post_id).delete()
 	db.session.delete(post)
 	db.session.commit()
 	return ("success", f"xoa thanh cong bai post_id={post.id}")
