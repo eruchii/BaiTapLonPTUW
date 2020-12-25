@@ -5,7 +5,7 @@ from easyaccomod.room_models import Like,Comment
 from easyaccomod import app
 from easyaccomod.forms import SearchForm
 from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getUserFavoritePost,getRoomByLocation
-from easyaccomod.renter_db import addLike,removeLike,addComment
+from easyaccomod.renter_db import addLike,removeLike,addComment,getRoomById,getPostByRoomID
 import datetime
 
 renter_bp = Blueprint("renter",__name__,template_folder='templates/renter')
@@ -58,34 +58,12 @@ def search(city,district=None,street=None):
   return render_template("renter/renterSearchPage.html",rooms = rooms, dateTime = currentDateTime,city = city,district=district,street=street)
 
 
-# @renter_bp.route("/search/<city>",methods=['POST','GET'])
-# @login_required
-# def searchByCity(city):
-  
-#   currentDateTime = datetime.datetime.utcnow()
-
-#   # Get Room se tra ve list cac Room hop le, tu do" vut vao template
-#   page = request.args.get('page',1,type=int)
-  
-#   # GET ROOM
-#   try:
-#     rooms = getRoomByCity(city)
-#     rooms = rooms.paginate(page=page,per_page=1)
-#   except:
-#     return jsonify({"status":"Error","msg":"Problem searching by City"})
- 
-#   city = City.query.filter_by(code = city).first()
-  
-#   return render_template("renter/renterSearchPage.html",rooms = rooms, dateTime = currentDateTime,city = city)
-
-# Add Like
-@renter_bp.route("/api/addlike",methods=["POST","GET"])
+@renter_bp.route("/api/addLike",methods=["POST","GET"])
 @login_required
 def add_Like():
 
     data = request.get_json()
     res = {}
-
     res["status"] = "Error"
     res["msg"] = "Can't like this room"
     try:
@@ -155,6 +133,59 @@ def getStreetAPI():
   return getStreet(req['district'],req['city'])
 
 
+@renter_bp.route("/api/getRoomById",methods=["POST","GET"])
+@login_required
+def getRoom():
+  res = {}
+  res["status"] = "error"
+  res["msg"] = "co loi xay ra"
+  res["data"] = {}
+  req = request.get_json()
+  status, resp = getRoomById(req["room_id"])
+  if(status == "error"):
+    res["status"] = status
+    res["msg"] = resp
+    return jsonify(res)
+  attrs = ["image","info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
+  res["data"]["city"] = resp.city_code
+  res["data"]["district"] = resp.ward_id
+  res["data"]["ward"] = resp.ward_id
+  res["data"]["location"] = resp.getLocation()
+  for attr in attrs:
+    res["data"][attr] = getattr(resp, attr)
+    res["status"] = "success"
+    res["msg"] = "thanh cong"
+  return jsonify(res)
+
+@renter_bp.route("/api/getPostByRoomID",methods=["POST"])
+def getPost():
+  data = request.get_json()
+  res = {}
+  res["status"] = "Error"
+  res["msg"] = "co loi xay ra"
+  res["data"] = {}
+  try:
+    status,resp = getPostByRoomID(data["room_id"])
+    if (status == "success"):
+      res["status"] = "Succesfully Added"
+      res["msg"] = "thanh cong"
+      res["data"]["like"] = resp.getLike()
+      res["data"]["comment"] = resp.getAllComment()
+    else:
+      res["status"] = "Fail"
+    return jsonify(res)
+  except:
+    return jsonify(res)
+
+@renter_bp.route("/<username>/favorite")
+@login_required
+def getFavoritePost(username):
+  page = request.args.get('page')
+  posts = getUserFavoritePost(username).paginate(page=page,per_page=5)
+
+  return render_template("renter/renterSearchPage.html",posts = posts)
+
+
 @renter_bp.route("/api/testPaginationFetch",methods=["POST"])
 @login_required
 def testPaginationFetch():
@@ -169,17 +200,3 @@ def testPaginationFetch():
     item['name'] = city.name
     ret.append(item)
   return jsonify(ret)
-
-@renter_bp.route("/<username>/favorite")
-@login_required
-def getFavoritePost(username):
-  page = request.args.get('page')
-  posts = getUserFavoritePost(username).paginate(page=page,per_page=5)
-
-  return render_template("renter/renterSearchPage.html",posts = posts)
-
-
-# @renter_bp.route("/test",methods = ["POST"])
-# def test():
-#   obj = request.get_json()
-#   return getRoomDetail(obj)

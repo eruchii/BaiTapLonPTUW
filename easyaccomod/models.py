@@ -87,6 +87,23 @@ class Post(db.Model):
     likes = db.relationship("Like", backref="post", lazy=True)
     comments = db.relationship("Comment", backref="post", lazy=True)
 
+    def getAllComment(self):
+        commentList = []
+        for obj in self.comments:
+            comment = {}
+            username = User.query.filter_by(id = obj.user_id).first().username
+            print(username)
+            comment['username'] = username
+            comment['content'] = obj.comment_content
+            commentList.append(comment)
+        return commentList
+
+    def getLike(self):
+        cnt = 0
+        for like in self.likes:
+            cnt+=1
+        return cnt
+
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
 
@@ -122,3 +139,4 @@ class Message(db.Model):
 
     def __repr__(self):
         return f"Message('{self.id}', '{self.sender}', '{self.receiver}','{self.content}')"
+

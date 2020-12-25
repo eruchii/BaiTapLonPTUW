@@ -66,6 +66,9 @@ def getRoomByLocation(city,district=None,street=None):
 
     else:
         res = Room.query.filter_by(city_code = city).filter(Room.post.any())
+
+    
+    
     # GET POST OF ROOMS, AND ELIMINATE ROOM WHICH HAS NO POST
     return res
 

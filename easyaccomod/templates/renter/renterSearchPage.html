@@ -87,9 +87,10 @@
               <span>More filter?</span>
             </button>
           </div>
+
           <div class="result-page">
             {% for room in rooms.items%}
-              <div class="room-card" id="card{{loop.index}}">
+              <div class="room-card" id="{{room.id}}">
                 <div class="room-card-img" id="{{loop.index}}">
                   <p style="display: none;" id="{{room.image}}"></p>
                   <a class="prev" onclick = "minusSlide(-1,{{loop.index-1}})">&#10094;</a>
@@ -111,49 +112,22 @@
             {%endif%}
           {%endfor%} 
         </div>
+      </div>
         <div class="detail-search">
-          <h1>Phòng trọ title</h1>
-          <h3>Địa chỉ phòng trọ</h3>
-          <h3>Thông tin liên hệ: 0964313607</h3>
-          <h5>3 phòng ngủ - 2 phòng tắm - Có ban công - Chung chủ</h5>
-          <div class="room-card">
-            <div class="room-card-img detail">
-              <div class="mySlides6" id="mySlides">
-                <img src="{{ url_for('static',filename='/renter/resource/image/Hanoi_City.jpeg')}}"id="mySlides1">
-              </div>
-              <div id="mySlides" class="mySlides6">
-                <img src="{{ url_for('static',filename='/renter/resource/image/HCM_city.jpeg')}}" alt="" id="mySlides1">
-              </div>
-              <div  id='mySlides' class="mySlides6">
-                <img src="{{ url_for('static',filename='/renter/resource/image/DN_City.png')}}" alt="" id="mySlides1">
-              </div>
-              <a class="prev" onclick="plusSlides(-1,5)">&#10094;</a>
-<a class="next" onclick="plusSlides(1,5)">&#10095;</a>
-            </div>
-          </div>
-          {% if current_user.is_authenciated %}
-          <div class="comment">
-            <p style="margin:0px;">Bạn yêu thích căn phòng này ?</p>
-            <div class='rating-stars text-center'>
+          
+          {%if current_user.is_authenticated%}
+          <div class="user_comment no-display" id="{{current_user.id}}">
+            <div class='rating-stars'>
+              <span>Bạn yêu thích căn phòng này ?</span>
               <ul id='stars'>
                 <li class='star' title='Poor' data-value='1'>
                   <i class="far fa-heart"></i>
                 </li>
-                <li class='star' title='Fair' data-value='2'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
-                <li class='star' title='Good' data-value='3'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
-                <li class='star' title='Excellent' data-value='4'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
-                <li class='star' title='WOW!!!' data-value='5'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
               </ul>
+              <input type="text" placeholder="Leave your comment">
             </div>
-            <input type="text" placeholder="Leave your comment">
+            <div class="post_comment">
+            </div>
           </div>
           {%else%}
           <div class="comment">

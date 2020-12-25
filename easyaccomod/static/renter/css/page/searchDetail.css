@@ -86,15 +86,17 @@ section.search{
 
 .detail-search{
   border-left: 0.5px solid black;
+  border-bottom: 0.2px solid black;
   width: 40%;
-  height: 150vh;
-  position: fixed;
+  height: auto;
+  position: relative;
+  right: 0px;
+  top:0px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  right: 0px;
   padding : 1rem 1rem;
-  top:70px;
+  overflow-y: auto;
 }
 
 .filter-container{
@@ -224,16 +226,17 @@ border-radius: 3px 0 0 3px;
 }
 
 /* Style the comment section */
-.comment{
+.user_comment{
   width: 100%;
 }
-.comment input{
+.user_comment .rating-stars input{
   width: 100%;
 }
 
 .rating-stars{
-  width: 8rem;
-  height: 2rem;
+  width: 100%;
+  height: 3rem;
+  display: inline;
 }
 
 .rating-stars ul {
@@ -255,13 +258,10 @@ border-radius: 3px 0 0 3px;
 }
 
 /* Hover state of the stars */
-.rating-stars ul > li.star.hover > i.fa {
-  color:#FFCC36;
-}
 
 /* Selected state of the stars */
-.rating-stars ul > li.star.selected > i.fa {
-  color:#FF912C;
+.rating-stars ul > li.star.selected > i.far {
+  color:#9b1338;
 }
 
 /* Style the dialog modal */
@@ -353,6 +353,12 @@ border-radius: 3px 0 0 3px;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.detail-search .room-card{
+  width: 100%;
+  height: auto;
+  flex-direction: column;
 }
 
 @media screen and (max-width: 1280px) {

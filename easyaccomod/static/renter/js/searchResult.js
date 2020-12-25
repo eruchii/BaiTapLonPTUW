@@ -27,16 +27,29 @@ $(document).ready(function(){
     var onStar = parseInt($(this).data('value'), 10); // The star currently selected
     var stars = $(this).parent().children('li.star');
     
-    for (i = 0; i < stars.length; i++) {
-      $(stars[i]).removeClass('selected');
+    data = {}
+    data.user_id = $(".user_comment").attr('id')
+    data.room_id = "3"
+    console.log(data)
+    if ($(stars).hasClass('selected'))
+    {
+      console.log('selected')
+
+      postData('/renter/api/removeLike',data).
+      then(response => console.log(response)).
+      then(
+        $(stars).removeClass('selected')
+      )
     }
-    
-    for (i = 0; i < onStar; i++) {
-      $(stars[i]).addClass('selected');
+    else
+    {
+      postData('/renter/api/addLike',data).
+      then(response => console.log(response)).
+      then( 
+        $(stars).addClass('selected') 
+      )
     }
-    cnt = document.querySelectorAll("#stars li.selected").length
-    console.log(cnt)
-  });
+});
 
   // 3. Open the dialog when the user hit more filter
   dialog = $(".m-dialog").dialog({
@@ -53,8 +66,6 @@ $(document).ready(function(){
   showSlides(1,2);
   showSlides(1,3);
   showSlides(1,4);
-  showSlides(1,5);
-  showSlides(1,6);
 });
 
 
@@ -106,8 +117,6 @@ function initImages(){
   for (let i = 0; i < slideHolder.length;i++)
   {
     let imageList = convertStrToList(slideHolder[i].firstElementChild.id)
-    console.log(imageList + slideHolder[i].id)
-
     // id cua Tung Room Card Image, se la Id cua div chua anh slideshow
     for (let j = 0; j < imageList.length;j++)
     {
@@ -152,6 +161,23 @@ function convertStrToList(str) {
   return(ans)
 }
 
+async function postData(url='',data){
+  const response = await fetch(url, {
+    method: 'POST', // *GET, POST, PUT, DELETE, etc.
+    mode: 'cors', // no-cors, *cors, same-origin
+    cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+    credentials: 'same-origin', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    redirect: 'follow', // manual, *follow, error
+    referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  });
+  return response.json(); // parses JSON response into native JavaScript objects
+}
+
 // aElement = document.querySelectorAll(".pagi")
 // for (let i = 0; i < aElement.length;i++){
 //   if (aElement[i].href.includes('page') == false){
@@ -180,3 +206,116 @@ function convertStrToList(str) {
 //   }
 //   detailSearch.appendChild(element)
 // }
+
+roomCard = document.querySelectorAll(".room-card")
+$(roomCard).on('click',function(){
+  $('.user_comment').removeClass('no-display')
+  data ={}
+  data.room_id = this.id
+  var x = $('.detail-search').firstElementChild
+  // Co het data roi, chi viec load.
+  postData('/renter/api/getRoomById',data).
+  then(response => {
+    data = response.data
+    // ban_cong: true
+    // chung_chu: false
+    // city: "HN"
+    // dieu_hoa: false
+    // district: "9658"
+    // gia_dien: 2552
+    // gia_nuoc: 9066
+    // image: "['bancong7.jpeg', 'bedroom7.jpeg', 'kitchen7.jpeg', 'livingroom7.jpeg']"
+    // info: "Create room info"
+    // nong_lanh: true
+    // phong_bep: 2
+    // phong_tam: 2
+    // price: 2900000
+    // room_number: 4
+    // room_type_id: 3
+    // tien_ich_khac: null
+    // ward: "9658"
+    loadRoomDetail(data)
+  }).then(
+    postData('/renter/api/getPostByRoomID',data).then(
+      response => loadComment(response)
+    )
+  )
+})
+
+
+function loadComment(response){
+  var x = $(".post_comment")
+  x.empty()
+  for (let i = 0; i < response.data["comment"].length;i++){
+    // var p = document.createElement("p")
+    // var content= document.createTextNode(response.data["comment"][i].content)
+    // p.append(content)
+    // content= document.createTextNode(response.data["comment"][i].user_id)
+    // p.append(content)
+    // var div = document.createElement("div")
+    // div.append(p)
+    // x.append(div)
+    var comment = `<div class="cmt" style="padding-left:10px; margin-top:10px;width: 100%;height: 5rem; border-radius:0.5rem; border:0.8px solid">
+    <p>Comment By: ${response.data["comment"][i].username}</p>
+    <p>${response.data["comment"][i].content}</p>
+</div>`;
+    x.append(comment)
+  }
+}
+
+function loadRoomDetail(data){
+
+  $('.detail-search .room-info').remove()
+  $('.detail-search .room-card').remove()
+  if (data.ban_cong)
+      data.ban_cong = "Có" 
+    else
+      data.ban_cong = "Không có"
+    if (data.chung_chu)
+      data.chung_chu = ""
+    else
+      data.chung_chu = "Không"
+    if (data.dieu_hoa)
+      data.dieu_hoa = "Có"
+    else
+      data.dieu_hoa = "Không có"
+    if (data.nong_lanh)
+      data.nong_lanh = "Có"
+    else 
+      data.nong_lanh = "Không có"
+    if (!data.tien_ich_khac)
+      data.tien_ich_khac = "Không có"
+    
+    data.image = convertStrToList(data.image)
+    imageholder=''
+    for (let j = 0; j < data.image.length;j++)
+    {
+
+      var src = window.origin + "/static/room_pics/" +data.image[j];
+
+      imageholder += `<div class="mySlides6" id="mySlides" style="display: block;"><img src=${src}></div>`
+    }
+    let roomInfo = 
+    `<div class="room-info">
+        
+          <h3>Vị trí : ${data.location}.</h3>
+          <p class="room-detail"></br>
+          Giá cả : ${data.price}VND Giá thuê - ${data.gia_dien}VND Giá / số nước - ${data.gia_nuoc}VND Giá / số điện
+          </br>       
+          Cơ sở vật chất: ${data.phong_tam} phòng tắm - ${data.phong_bep} phòng bếp
+          ${data.ban_cong} ban công - ${data.chung_chu} Chung chủ - ${data.dieu_hoa} điều hòa - ${data.nong_lanh} bình nóng lạnh
+          </br>
+          Tiện ích khác: ${data.tien_ich_khac}
+        </p>
+     </div>
+    <div class="room-card" id="6" style="display:flex; flex-direction:column;">
+      <div class="room-card-img" id="6" style="transform: translateX(0rem);">
+        ${imageholder}
+        <a class="prev" onclick = "minusSlide(-1,5)">&#10094;</a>
+        <a class="next" onclick = "plusSlides(1,5)">&#10095;</a>
+      </div>
+     </div>
+    `
+    $('.detail-search').prepend(roomInfo)
+    showSlides(1,5);
+}

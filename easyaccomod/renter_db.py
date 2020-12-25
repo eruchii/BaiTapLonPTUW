@@ -1,42 +1,46 @@
 from easyaccomod.owner_models import Owner, Room, City, District, Ward
 from easyaccomod import db, bcrypt
-from easyaccomod.models import User
+from easyaccomod.models import User,Post
 from easyaccomod.room_models import *
 
-def addLike(user_id,room_id,commit=True):
-    existCheck = db.session.query(Like).\
-        filter_by(user_id = user_id).\
-          filter_by(room_id = room_id).first()
+def addLike(user_id,post_id,commit=True):
+
+    existCheck = db.session.query(Like)\
+        .filter_by(user_id = user_id)\
+          .filter_by(post_id = post_id).first()
+
     if existCheck != None:
         return (False,"Already liked")
     else :
-        new_like = Like(user_id = user_id, room_id = room_id)
+        new_like = Like(user_id = user_id, post_id = post_id)
         db.session.add(new_like)
     if (commit):
         db.session.commit()
-    return (True,f"Successfully liked for {user_id} of room number {room_id}")
+    return (True,f"Successfully liked for {user_id} of post number {post_id}")
 
-def removeLike(user_id,room_id,commit=True):
-    existCheck = db.session.query(Like).\
-        filter_by(user_id = user_id).\
-          filter_by(room_id = room_id).first()
+def removeLike(user_id,post_id,commit=True):
+    existCheck = db.session.query(Like)\
+        .filter_by(user_id = user_id)\
+          .filter_by(post_id = post_id).first()
     if existCheck != None:
         db.session.delete(existCheck)
     else:
         return (False,"Already Unliked")
     if (commit):
         db.session.commit()
-    return (True,f"Successfully Unliked for {user_id} of room number {room_id}")
+    return (True,f"Successfully Unliked for {user_id} of post number {post_id}")
 
-def addComment(user_id,room_id,content,commit = True):
-    existCheck = db.session.query(Comment).\
-        filter_by(user_id = user_id).\
-          filter_by(room_id = room_id).\
-              filter_by(comment_content = content).first()
+def addComment(user_id,post_id,content,commit = True):
+
+    existCheck = db.session.query(Comment)\
+        .filter_by(user_id = user_id)\
+          .filter_by(post_id = post_id)\
+              .filter_by(comment_content = content).first()
+
     if existCheck != None:
         return (False,"Already Commented this comment")
     else :
-        cmt = Comment(user_id = user_id,room_id = room_id,comment_content = content,status = False)
+        cmt = Comment(user_id = user_id,post_id = post_id,comment_content = content,status = False)
         db.session.add(cmt)
     if (commit):
         db.session.commit()
@@ -60,3 +64,25 @@ def defaultSearch(city,district,street):
     if res == []:
         return "Can't Find Your Perfect Home"
     return res
+
+
+def getRoomById(room_id):
+    try:
+        room = db.session.query(Room).filter_by(id = room_id).filter(Room.post.any()).first()
+        if room == None:
+            return ("error", "khong ton tai phong")
+        else:
+            return ("success", room)
+    except:
+        return ('error','co loi xay ra')
+
+def getPostByRoomID(room_id):
+    try:
+        post = Post.query.filter_by(room_id = room_id).order_by(Post.date_out.desc()).first()
+        if post == None:
+            return ("error", "khong ton tai phong")
+        else:
+            return ("success",post)
+    except:
+        return ('error','co loi xay ra')
+

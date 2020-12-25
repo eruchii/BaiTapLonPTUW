@@ -2,14 +2,15 @@
 {%if room.post%}
   {% if room.post[0].date_out >= dateTime%}
     <div class="room-info">
-      <h1 class="room-title">{{room.post[0].title}}</h1> 
+      <h3 class="room-title">{{room.post[0].title}}</h3> 
+      
+      <h5>Số lượt thích: {{room.post[0].getLike()}}</h5>
       <p class="room-detail">
-        {{room.phong_tam}} phòng tắm - {{room.phong_bep}} phòng bếp
+        Vị trí : {{room.getLocation()}}.</br>
+        Cơ sở vật chất: {{room.phong_tam}} phòng tắm - {{room.phong_bep}} phòng bếp
         {% if room.ban_cong %}- Có ban công {%endif%}
         {%if room.chung_chu%}- Chung chủ {%endif%}
       </p>
-      <p>{{room.post[0].like}}</p>
-      <div class="comment">{{room.post[0].comment}}</div>
     </div>
     {%endif%}
   {%endif%}
