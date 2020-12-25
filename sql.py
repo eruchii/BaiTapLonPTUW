@@ -1,6 +1,5 @@
 # db for admin
 
-from six import python_2_unicode_compatible
 from easyaccomod.owner_db import *
 import json
 from flask import jsonify
@@ -57,6 +56,20 @@ wards = json.load(open("wards.json","r", encoding="utf-8"))
 # db.session.add(RT4)
 # db.session.commit()
 
+# # Bathroom Type
+# BT1 = BathroomType(name="Khép kín")
+# BT2 = BathroomType(name="Chung")
+# db.session.add(BT1)
+# db.session.add(BT2)
+# db.session.commit()
+# # Kitchen Type
+# KT1 = KitchenType(name="Khu bếp riêng")
+# KT2 = KitchenType(name="Khu bếp chung")
+# KT3 = KitchenType(name="Không nấu ăn")
+# db.session.add(KT1)
+# db.session.add(KT2)
+# db.session.add(KT3)
+# db.session.commit()
 # ###
 
 # password = "123456"

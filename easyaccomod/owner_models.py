@@ -19,6 +19,20 @@ class Owner(db.Model):
 			self.username, self.password, self.fullname, self.identity_number, self.phone_number, self.status
 			)
 
+class BathroomType(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(100), nullable=False)
+	rooms = db.relationship("Room", backref="bathroomtype", lazy=True)
+	def __repr__(self):
+		return "<BathoomType(id={}, name={})>".format(self.id, self.name)
+
+class KitchenType(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	name = db.Column(db.String(100), nullable=False)
+	rooms = db.relationship("Room", backref="kitchentype", lazy=True)
+	def __repr__(self):
+		return "<KitchenType(id={}, name={})>".format(self.id, self.name)
+
 class Room(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False) #lien ket user
@@ -30,10 +44,13 @@ class Room(db.Model):
 	room_number = db.Column(db.Integer)
 	price = db.Column(db.Integer)
 
+	dien_tich = db.Column(db.Integer, nullable=False)
 	chung_chu = db.Column(db.Boolean)
 	phong_tam = db.Column(db.Integer)
+	loai_phong_tam = db.Column(db.Integer, db.ForeignKey('bathroom_type.id'))
 	nong_lanh = db.Column(db.Boolean)
 	phong_bep = db.Column(db.Integer)
+	loai_phong_bep = db.Column(db.Integer, db.ForeignKey('kitchen_type.id'))
 	dieu_hoa = db.Column(db.Boolean)
 	ban_cong = db.Column(db.Boolean)
 	gia_dien = db.Column(db.Integer)

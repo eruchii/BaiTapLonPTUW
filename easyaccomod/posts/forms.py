@@ -62,7 +62,7 @@ class RoomForm(FlaskForm):
     gia_dien = IntegerField("Gia Dien", validators=[DataRequired("This Field is required and be integer!")], render_kw={"placeholder": "VND/số"})
     gia_nuoc = IntegerField("Gia Nuoc", validators=[DataRequired("This Field is required and be integer!")], render_kw={"placeholder": "VND/khối"}) # !need fix int to str
     tien_ich_khac = TextAreaField("Tien ich khac")
-    image = MultipleFileField("Image", validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
+    image = MultipleFileField("Image", validators=[DataRequired(), FileAllowed(['jpg', 'jpeg', 'png'])])
     status = BooleanField("Status")
     submit = SubmitField("Post Room")
 
