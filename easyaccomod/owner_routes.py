@@ -45,7 +45,9 @@ def api_register():
 
 @owner_bp.route("/register")
 def register():
-	return render_template("owner/register.html")
+	if(current_user.is_authenticated):
+		return redirect(url_for("main.home"))
+	return render_template("owner/register.html", title="Đăng ký")
 
 @owner_bp.route("/api/login", methods=["POST"])
 def api_login():
@@ -73,12 +75,12 @@ def api_login():
 def login():
 	if(current_user.is_authenticated):
 		return redirect(url_for("main.home"))
-	return render_template("owner/login.html")
+	return render_template("owner/login.html", title="Đăng nhập")
 
 @owner_bp.route("/changepassword")
 @is_owner
 def changepassword():
-	return render_template("owner/changepassword.html")
+	return render_template("owner/changepassword.html", title="Đổi mật khẩu")
 
 @owner_bp.route("/api/changepassword", methods=["POST"])
 @is_owner
@@ -116,7 +118,7 @@ def home():
 @owner_bp.route("/notification/")
 @is_owner
 def notification():
-	return render_template("owner/notification.html")
+	return render_template("owner/notification.html", title="Thông báo")
 
 @owner_bp.route("/logout/")
 @is_owner
@@ -127,7 +129,7 @@ def logout():
 @owner_bp.route("/room/create/")
 @is_owner
 def create_new_room():
-	return render_template("owner/createroom.html")
+	return render_template("owner/createroom.html", title="Tạo bài đăng mới")
 
 @owner_bp.route("/api/room/create", methods=["POST"])
 @is_owner
@@ -138,8 +140,8 @@ def api_create_new_room():
 	data_form = request.form
 	img = request.files.getlist("image")
 	room_data = {}
-	form_attrs = ["title", "city", "district", "ward", "info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "tien_ich_khac"]
-	int_fields = ["room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc"]
+	form_attrs = ["title", "city", "district", "ward", "info", "dien_tich", "room_type_id", "room_number", "price", "phong_tam", "loai_phong_tam", "phong_bep", "loai_phong_bep","gia_dien", "gia_nuoc", "tien_ich_khac"]
+	int_fields = ["room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "dien_tich", "loai_phong_tam", "loai_phong_bep"]
 	form_checkbox = ["chung_chu", "nong_lanh", "dieu_hoa", "ban_cong"]
 	for attr in form_attrs:
 		try:
@@ -209,8 +211,8 @@ def api_update_post(id):
 		return jsonify(res)
 	data_form = request.form
 	room_data = {}
-	form_attrs = ["title", "info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "tien_ich_khac"]
-	int_fields = ["room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc"]
+	form_attrs = ["title", "info", "dien_tich", "room_type_id", "room_number", "price", "phong_tam", "loai_phong_tam", "phong_bep", "loai_phong_bep","gia_dien", "gia_nuoc", "tien_ich_khac"]
+	int_fields = ["room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "dien_tich", "loai_phong_tam", "loai_phong_bep"]
 	form_checkbox = ["chung_chu", "nong_lanh", "dieu_hoa", "ban_cong"]
 	for attr in form_attrs:
 		try:
@@ -250,7 +252,7 @@ def route_update_post(id):
 		abort(403)
 	if(resp.pending == True):
 		abort(403)
-	return render_template("owner/updatepost.html", post = resp)
+	return render_template("owner/updatepost.html", post = resp, title="Sửa bài đăng")
 
 @owner_bp.route("/api/post/delete/<int:id>")
 @is_owner
@@ -267,7 +269,7 @@ def api_delete_post(id):
 @is_owner
 def route_list_room():
 	posts = get_posts(current_user.id)
-	return render_template("owner/room.html",posts = posts)
+	return render_template("owner/room.html",posts = posts, title="Danh sách bài đăng")
 
 @owner_bp.route("/api/post/changestatus/<int:id>")
 @is_owner
@@ -291,4 +293,4 @@ def profile(username=None):
 	msg, owner = get_owner_by_username(username)
 	if(msg == "error"):
 		abort(404)
-	return render_template("owner/profile.html", owner = owner)
+	return render_template("owner/profile.html", owner = owner, title="Hồ sơ người dùng")

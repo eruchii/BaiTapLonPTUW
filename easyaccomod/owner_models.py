@@ -66,7 +66,7 @@ class Room(db.Model):
 		district = db.session.query(District).filter_by(id = self.district_id).first().name
 		street = db.session.query(Ward).filter_by(id = self.ward_id).first().name
 
-		return  "{},{},{}".format(street,district,city)
+		return  "{}, {}, {}".format(street,district,city)
 
 	def __repr__(self):
 		return "<Room(id='{}', user_id='{}'>".format(self.id, self.user_id)

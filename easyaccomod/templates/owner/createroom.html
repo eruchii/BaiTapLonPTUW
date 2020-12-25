@@ -24,9 +24,13 @@
             
         </div>
         <div class="form-group">
-            <label class="col-form-label" for="info">Mô tả phòng trọ</label>
+            <label class="col-form-label" for="info">Mô tả phòng</label>
             <input class="form-control form-control-lg" id="info" name="info" required type="text" value="">
-            
+        </div>
+
+        <div class="form-group">
+            <label class="col-form-label" for="info">Diện tích</label>
+            <input class="form-control form-control-lg" id="dien_tich" name="dien_tich" required type="number" value="">
         </div>
         
         <div class="form-group">
@@ -35,16 +39,11 @@
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">Options</label>
                 </div>
-                <select class="custom-select form-control-lg" id="inputGroupSelect01" name="room_type_id" id="room_type_id">
-                    
+                <select class="custom-select form-control-lg" name="room_type_id" id="room_type_id">
                         <option value=1>Phòng trọ</option>
-                    
                         <option value=2>Chung cư mini</option>
-                    
                         <option value=3>Nhà nguyên căn</option>
-                    
                         <option value=4>Chung cư nguyên căn</option>
-                    
                 </select>
             </div>
         </div>
@@ -74,13 +73,36 @@
         <div class="form-group">
             <label class="col-form-label" for="phong_tam">Số phòng tắm</label>
             <input class="form-control form-control-lg" id="phong_tam" name="phong_tam" required type="number" value="">
-            
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="loai_phong_tam">Mô tả phòng tắm</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                </div>
+                <select class="custom-select form-control-lg" name="loai_phong_tam" id="loai_phong_tam">
+                        <option value=1>Phòng tắm khép kín</option>
+                        <option value=2>Phòng tắm chung</option>
+                </select>
+            </div>
         </div>
 
         <div class="form-group">
             <label class="col-form-label" for="phong_bep">Số phòng bếp</label>
             <input class="form-control form-control-lg" id="phong_bep" name="phong_bep" required type="number" value="">
-            
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="loai_phong_bep">Mô tả phòng bếp</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                </div>
+                <select class="custom-select form-control-lg" name="loai_phong_bep" id="loai_phong_bep">
+                        <option value=1>Khu bếp riêng</option>
+                        <option value=2>Khu bếp chung</option>
+                        <option value=3>Không nấu ăn</option>
+                </select>
+            </div>
         </div>
 
         <div class="form-group">

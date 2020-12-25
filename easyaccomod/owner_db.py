@@ -116,7 +116,8 @@ def add_ward(city_code, district_id, id, name, commit=True):
 		db.session.commit()
 
 def add_room(user_id, room, image, commit = True):
-	room_attrs = ["info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
+	print(room)
+	room_attrs = ["dien_tich", "loai_phong_tam", "loai_phong_bep", "info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
 	new_room = Room()
 	new_room.status = False
 	setattr(new_room, "user_id", user_id)
@@ -158,18 +159,6 @@ def get_room(id, user_id):
 	except:
 		return ("error", "co loi xay ra")
 
-def update_room(room, form):
-	room_attrs = ["info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
-	new_room = room
-	for attr in room_attrs:
-		setattr(new_room, attr, form[attr])
-	try:
-		db.session.add(new_room)
-		db.session.flush()
-	except:
-		return ("error", "co loi xay ra, vui long thu lai")
-	db.session.commit()
-	return ("success", f"sua thanh cong id={new_room.id}")
 
 def get_rooms(user_id):
 	rooms = Room.query.filter_by(user_id=user_id)
@@ -192,7 +181,7 @@ def get_post(id, user_id):
 		return ("error", "co loi xay ra")
 
 def update_post(post, form):
-	room_attrs = ["info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
+	room_attrs = ["info", "dien_tich" ,"room_type_id", "room_number", "price", "phong_tam", "loai_phong_tam" ,"phong_bep", "loai_phong_bep","gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
 	new_post = post
 	post.title = form["title"]
 	post.content = form["info"]

@@ -18,8 +18,7 @@ function create_new_room(){
         msg.innerHTML = "";
         console.log(json)
         if(json.status === "success"){
-            createAlert(msg, "alert-success", json["msg"]);
-            document.getElementById("room_form").reset();    
+            createAlert(msg, "alert-success", json["msg"]);  
         }
         else {
             createAlert(msg, "alert-danger", json["msg"]);
