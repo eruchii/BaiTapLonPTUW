@@ -216,7 +216,7 @@ $(roomCard).on('click',function(){
   // Co het data roi, chi viec load.
   postData('/renter/api/getRoomById',data).
   then(response => {
-    data = response.data
+    room = response.data
     // ban_cong: true
     // chung_chu: false
     // city: "HN"
@@ -234,8 +234,8 @@ $(roomCard).on('click',function(){
     // room_type_id: 3
     // tien_ich_khac: null
     // ward: "9658"
-    loadRoomDetail(data)
-  }).then(
+    loadRoomDetail(room)
+  }).then( 
     postData('/renter/api/getPostByRoomID',data).then(
       response => loadComment(response)
     )
@@ -246,6 +246,7 @@ $(roomCard).on('click',function(){
 function loadComment(response){
   var x = $(".post_comment")
   x.empty()
+  $(".post_comment").attr("id",response.data["id"])
   for (let i = 0; i < response.data["comment"].length;i++){
     // var p = document.createElement("p")
     // var content= document.createTextNode(response.data["comment"][i].content)
@@ -319,3 +320,15 @@ function loadRoomDetail(data){
     $('.detail-search').prepend(roomInfo)
     showSlides(1,5);
 }
+
+
+$("#submit_comment").click(function(){
+    data ={}
+    data["content"] = document.querySelector('#user_comment').value
+    data["user_id"] = document.querySelector('.user_comment').id
+    data["post_id"] = $(".post_comment").attr("id")
+    console.log($(".post_comment").attr("id"))
+    postData("/renter/api/Comment",data)
+    window.alert("Bình luận đã được ghi nhận ! Đang chờ kiểm duyệt")
+    document.querySelector('#user_comment').value = ""
+})

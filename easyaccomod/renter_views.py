@@ -109,7 +109,7 @@ def add_Comment():
   res["status"] = "Error"
   res["msg"] = "Can't Comment"
   try:
-    status,msg = addComment(data["user_id"],data["room_id"],data["content"])
+    status,msg = addComment(data["user_id"],data["post_id"],data["content"])
     if (status):
       res["status"] = "Succesfully Added"
     else:
@@ -171,6 +171,7 @@ def getPost():
       res["msg"] = "thanh cong"
       res["data"]["like"] = resp.getLike()
       res["data"]["comment"] = resp.getAllComment()
+      res["data"]["id"] = resp.id
     else:
       res["status"] = "Fail"
     return jsonify(res)

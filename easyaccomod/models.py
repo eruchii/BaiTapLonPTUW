@@ -92,10 +92,11 @@ class Post(db.Model):
         for obj in self.comments:
             comment = {}
             username = User.query.filter_by(id = obj.user_id).first().username
-            print(username)
-            comment['username'] = username
-            comment['content'] = obj.comment_content
-            commentList.append(comment)
+
+            if obj.status:
+                comment['username'] = username
+                comment['content'] = obj.comment_content
+                commentList.append(comment)
         return commentList
 
     def getLike(self):

@@ -85,4 +85,3 @@ def getPostByRoomID(room_id):
             return ("success",post)
     except:
         return ('error','co loi xay ra')
-
