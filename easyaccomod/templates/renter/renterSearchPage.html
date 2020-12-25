@@ -24,6 +24,9 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNav">               
           <ul class="navbar-nav  ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('owner.home')}}">Become Host?</a>
+            </li>
             {% if not current_user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('admin.login')}}" >Login</a>
@@ -32,15 +35,14 @@
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('admin.logout')}}" >Logout</a>
             </li>
-            {%endif%}
-              <li class="nav-item">
-                <a class="nav-link" href="{{url_for('owner.home')}}">Become Host?</a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="">{{current_user.username}}</a>
               </li>
+              {%endif%}
             </ul>
+            {%if current_user.is_authenticated%}
             <img src="{{ url_for('static', filename='./renter/resource/image/pexels-photo-4786270.jpeg') }}" id = "avatar">
+            {%endif%}
           </div>
         </div>
       </nav>
@@ -56,23 +58,27 @@
             <br>
             <div class="filter-container">
               <div>
-                <span style="display: block;">Gia</span>
-                <select name="" id="">
-                  <option value="">0-1 trieu</option>
-                  <option value="">1-3 trieu</option>
-                  <option value="">3-5 trieu</option>
-                  <option value="">Hon 5 trieu</option>
+                <span style="display: block;">Giá </span>
+                <select name="Price" id="">
+                  <option value="0 - 1 triệu">0 - 1 triệu</option>
+                  <option value="1-3 triệu">1-3 triệu</option>
+                  <option value="3-5 triệu">3-5 triệu</option>
+                  <option value="5-10 triệu">5-10 triệu</option>
+                  <option value="10-15 triệu">10-15 triệu</option>
+                  <option value="Hơn 15 triệu">Hơn 15 triệu</option>
                 </select>
               </div>
               <div>
-                <span style="display: block;">Dien tich</span>
-                <input type="text" placeholder="Dien tich(m2)">
+                <span style="display: block;">Diện tích </span>
+                <input type="text" placeholder="Dien tich(m2)" name="area">
               </div>
               <div>
-                <span style="display: block;">Loai phong</span>
-                <select name="" id="">
-                  <option value="">0-1 trieu</option>
-                  <option value="">1-3 trieu</option>
+                <span style="display: block;">Loại Phòng </span>
+                <select name="roomType" id="">
+                  <option value="Phòng trọ">Phòng trọ</option>
+                  <option value="Chung cư mini">Chung cư mini</option>
+                  <option value="Nhà nguyên căn">Nhà nguyên căn</option>
+                  <option value="Chung cư nguyên căn">Chung cư nguyên căn</option>
                 </select>
               </div>
             </div>
@@ -81,11 +87,19 @@
               <span>More filter?</span>
             </button>
           </div>
+
           <div class="result-page">
             {% for room in rooms.items%}
+              <div class="room-card" id="{{room.id}}">
+                <div class="room-card-img" id="{{loop.index}}">
+                  <p style="display: none;" id="{{room.image}}"></p>
+                  <a class="prev" onclick = "minusSlide(-1,{{loop.index-1}})">&#10094;</a>
+                  <a class="next" onclick = "plusSlides(1,{{loop.index-1}})">&#10095;</a>
+                  </div>
               {%include 'roomCard.html'%}
+            </div>
             {%endfor%}
-          </div>
+
           {%for page_num in rooms.iter_pages()%}
             {%if page_num%}
               {%if page_num == 1%}
@@ -98,49 +112,28 @@
             {%endif%}
           {%endfor%} 
         </div>
+      </div>
         <div class="detail-search">
-          <h1>Phòng trọ title</h1>
-          <h3>Địa chỉ phòng trọ</h3>
-          <h3>Thông tin liên hệ: 0964313607</h3>
-          <h5>3 phòng ngủ - 2 phòng tắm - Có ban công - Chung chủ</h5>
-          <div class="room-card">
-            <div class="room-card-img detail">
-              <div class="mySlides4" id="mySlides">
-                <img src="{{ url_for('static',filename='/renter/resource/image/Hanoi_City.jpeg')}}"id="mySlides1">
-              </div>
-              <div id="mySlides" class="mySlides4">
-                <img src="{{ url_for('static',filename='/renter/resource/image/HCM_city.jpeg')}}" alt="" id="mySlides1">
-              </div>
-              <div  id='mySlides' class="mySlides4">
-                <img src="{{ url_for('static',filename='/renter/resource/image/DN_City.png')}}" alt="" id="mySlides1">
-              </div>
-              <a class="prev" onclick="plusSlides(-1,3)">&#10094;</a>
-<a class="next" onclick="plusSlides(1,3)">&#10095;</a>
-            </div>
-          </div>
-          <div class="comment">
-            <p style="margin:0px;">Rate this room?</p>
-            <div class='rating-stars text-center'>
+          
+          {%if current_user.is_authenticated%}
+          <div class="user_comment no-display" id="{{current_user.id}}">
+            <div class='rating-stars'>
+              <span>Bạn yêu thích căn phòng này ?</span>
               <ul id='stars'>
                 <li class='star' title='Poor' data-value='1'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
-                <li class='star' title='Fair' data-value='2'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
-                <li class='star' title='Good' data-value='3'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
-                <li class='star' title='Excellent' data-value='4'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
-                <li class='star' title='WOW!!!' data-value='5'>
-                  <i class='fa fa-star fa-fw'></i>
+                  <i class="far fa-heart"></i>
                 </li>
               </ul>
+              <input type="text" placeholder="Leave your comment">
             </div>
-            <input type="text" placeholder="Leave your comment">
+            <div class="post_comment">
+            </div>
           </div>
+          {%else%}
+          <div class="comment">
+            <p style="margin:0px;">Login to comment?</p>
+          </div>
+          {%endif%}
         </div>
     </section>
     <div class="m-dialog dialog-detail" title="Thông tin khách hàng" style="display: none">
@@ -150,32 +143,32 @@
               <div class="m-row m-flex">
                   <div class="m-col el-avatar-customer m-flex-1">
                       <div class="room_and_bed">
-                        <h5>Room and Bed</h5>
+                        <h5>Phòng Tắm và Phòng Ngủ</h5>
                         <div class="bedroom" style="position: relative;">
-                          <p>Phong Ngu</p>
+                          <p>Phòng Ngủ</p>
                           <button class="bonus" style="position: absolute; top:0px;right: 10px;"></button>
                         </div>
                         <div class="bathroom" style="position: relative;">
-                          <p>Phong Tam</p>
+                          <p>Phòng Tắm</p>
                           <button class="bonus" style="position: absolute; top:0px;right: 10px;"></button>
                         </div>
                       </div>
                       <div class="Facilities">
-                        <h5>Facilities</h5>
-                        <div class="dieu_hoa">
-                          <p style="display:absolute;float:left;top: 0px;">Dieu hoa</p>
-                          <input type="checkbox">
+                        <h5>Cơ sở vật chất</h5>
+                        <div class="dieu_hoa" style="display: relative;">
+                          <span>Điều hòa</span>
+                          <input type="checkbox" style="position: absolute; top:0px ;right: 10px;">
                         </div>
-                        <div class="kitchen">
-                          <p style="display:absolute;float:left;top: 0px;">Kitchen</p>
-                          <input type="checkbox">
+                        <div class="kitchen" style="display: relative;">
+                          <span>Bếp</span>
+                          <input type="checkbox"  style="position: relative; float: right; top:0px;right: 10px;">
                         </div>
-                        <div class="nonglanh">
-                          <p style="display:absolute;float:left;top: 0px;">Nong lanh</p>
-                          <input type="checkbox">
+                        <div class="nonglanh" style="display: relative;">
+                          <h6>Bình nóng lạnh</h6>
+                          <input type="checkbox" style="position: absolute;right: 10px;">
                         </div>
-                        <div class="host">
-                          <p style="display:absolute;float:left;top: 0px;">Chung Chu</p>
+                        <div class="host" style="display: relative;">
+                          <p>Chung chủ</p>
                           <input type="checkbox">
                         </div>
                       </div>

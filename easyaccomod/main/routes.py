@@ -5,7 +5,7 @@ from easyaccomod.forms import SearchForm
 from easyaccomod.owner_models import City,District,Ward
 main = Blueprint('main', __name__)
 
-@main.route('/')
+@main.route('/',methods=["POST","GET"])
 @main.route('/home',methods=["POST","GET"])
 def home():
     cities = City.query.all()

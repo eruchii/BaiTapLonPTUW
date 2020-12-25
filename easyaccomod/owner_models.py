@@ -44,6 +44,13 @@ class Room(db.Model):
 
 	post = db.relationship("Post", backref="room", lazy=True)
 
+	def getLocation(self):
+		city = db.session.query(City).filter_by(code = self.city_code).first().name
+		district = db.session.query(District).filter_by(id = self.district_id).first().name
+		street = db.session.query(Ward).filter_by(id = self.ward_id).first().name
+
+		return  "{},{},{}".format(street,district,city)
+
 	def __repr__(self):
 		return "<Room(id='{}', user_id='{}'>".format(self.id, self.user_id)
 
