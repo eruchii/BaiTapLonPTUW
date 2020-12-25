@@ -44,8 +44,10 @@
                 <span>Mã phòng: {{room.id}}</span> 
                 <p class="article-content"> Thành phố {{ room.city.name }} -- Quận {{ room.district.name }} --  Khu vực {{ room.ward.name }}</p>
                 <p class="article-content">Thông tin phòng: {{ room.info }} -- Giá: {{ room.price }} (VNĐ)</p>
+                <p class="article-content">Diện tích: {{ room.dien_tich }} m<sup>2</sup> </p>
                 <p class="article-content">Kiểu phòng: {{ room.roomtype.name }} -- Số phòng: {{ room.room_number }} (phòng)</p>
-                <p class="article-content">Số phòng tắm: {{ room.phong_tam }} (phòng) -- Số phòng bếp: {{ room.phong_bep }} (phòng)</p>
+                <p class="article-content">Số phòng tắm: {{ room.phong_tam }} (phòng) -- Loại phòng tắm: {{ room.bathroomtype.name }}</p>
+                <p class="article-content">Số phòng bếp: {{ room.phong_bep }} (phòng) -- Loại phòng bếp: {{ room.kitchentype.name }}</p>
                 <p class="article-content"> Giá điện:{{ room.gia_dien }} VNĐ/số -- Giá nước {{ room.gia_nuoc }} VNĐ/khối</p>
                 <span id="room_image" style="display: none;" >{{ room.image }}</span>
                 <div id="image">

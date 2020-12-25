@@ -101,6 +101,20 @@
                     {% endif %}
                 </div>
 
+                <div class="form-group">
+                    {{ form.dien_tich.label(class="col-form-label") }}
+                    {% if form.dien_tich.errors %}
+                        {{ form.dien_tich(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.dien_tich.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %} 
+                        {{ form.dien_tich(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
                 <div class="form-check-label">
                     {{ form.chung_chu(class="form-check-inline ") }}
                     {{ form.chung_chu.label(class="form-check-label mr-3") }}
@@ -127,6 +141,20 @@
                 </div>
 
                 <div class="form-group">
+                    {{ form.loai_phong_tam.label(class="form-control-label") }}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                        </div>
+                        <select class="custom-select form-control-lg" id="inputGroupSelect01" name="loai_phong_tam">
+                            {% for key, value in form.loai_phong_tam.choices %}
+                                <option value={{key}}>{{ value }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
                     {{ form.phong_bep.label(class="col-form-label") }}
                     {% if form.phong_bep.errors %}
                         {{ form.phong_bep(class="form-control form-control-lg is-invalid") }}
@@ -138,6 +166,20 @@
                     {% else %} 
                         {{ form.phong_bep(class="form-control form-control-lg") }}
                     {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.loai_phong_bep.label(class="form-control-label") }}
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                        </div>
+                        <select class="custom-select form-control-lg" id="inputGroupSelect01" name="loai_phong_bep">
+                            {% for key, value in form.loai_phong_bep.choices %}
+                                <option value={{key}}>{{ value }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">

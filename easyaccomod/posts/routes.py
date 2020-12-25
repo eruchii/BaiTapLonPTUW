@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 from easyaccomod import db
 from easyaccomod.models import *
 from easyaccomod.owner_models import *
+from easyaccomod.room_models import *
 from easyaccomod.posts.forms import PostForm, RoomForm, UpdatePostForm
 
 from easyaccomod.admin.utils import checkRoomExist, createPostByAdmin, save_room_picture, sendNotification
@@ -103,6 +104,8 @@ def post():
 def delete_post(post_id):
     if current_user.role_id == 1 and current_user.status_confirm == 1:
         post = Post.query.get_or_404(post_id)
+        Comment.query.filter_by(post_id=post_id).delete()
+        Like.query.filter_by(post_id=post_id).delete()
         db.session.delete(post)
         db.session.commit()
         flash(f"Post has been deleted by {current_user.username}!", "success")
@@ -172,10 +175,13 @@ def new_room():
                         room_type_id=form.room_type.data, 
                         room_number=form.room_number.data, 
                         price=form.price.data, 
+                        dien_tich=form.dien_tich.data,
                         chung_chu=form.chung_chu.data, 
                         phong_tam=form.phong_tam.data, 
+                        loai_phong_tam = form.loai_phong_tam.data,
                         nong_lanh=form.nong_lanh.data, 
                         phong_bep=form.phong_bep.data, 
+                        loai_phong_bep = form.loai_phong_bep.data,
                         dieu_hoa=form.dieu_hoa.data, 
                         ban_cong=form.ban_cong.data, 
                         gia_dien=form.gia_dien.data, 
@@ -214,10 +220,13 @@ def update_room(room_id):
             room.room_type_id=form.room_type.data
             room.room_number=form.room_number.data 
             room.price=form.price.data
+            room.dien_tich=form.dien_tich.data
             room.chung_chu=form.chung_chu.data
             room.phong_tam=form.phong_tam.data 
+            room.loai_phong_tam=form.loai_phong_tam.data
             room.nong_lanh=form.nong_lanh.data 
             room.phong_bep=form.phong_bep.data 
+            room.loai_phong_bep=form.loai_phong_bep.data
             room.dieu_hoa=form.dieu_hoa.data
             room.ban_cong=form.ban_cong.data 
             room.gia_dien=form.gia_dien.data 
@@ -239,6 +248,7 @@ def update_room(room_id):
             #form.room_type.data = (room.roomtype.id if room.roomtype else 0)
             form.room_number.data = room.room_number
             form.price.data = room.price
+            form.dien_tich.data = room.dien_tich
             form.chung_chu.data = room.chung_chu
             form.phong_tam.data = room.phong_tam
             form.nong_lanh.data = room.nong_lanh
