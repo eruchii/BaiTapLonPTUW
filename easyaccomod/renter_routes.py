@@ -85,37 +85,55 @@ def getRoomByLocation(city,district=None,street=None):
 #  "tien_ich_khac"]
 
 def getRoomByDetail(obj):
+    filter_value = {}
     
-    filter_value = []
-    filters = ["gia","phong_tam","phong_bep","room_type_id","dieu_hoa","nong_lanh","chung_chu"]
-    # phong ngu,phong tam,gia, Dien tich, loai phong (int), dieu hoa,nonglanh,chungchu,bep(Boolean)
+    filters = ''
+    # Price ,area,roomType,,kitchenRoomType,numberOfBedRoom,bathRoomType,numberOfBathRoom,dieu_hoa,nong_lanh,host
     for key in obj:
-        if obj[key] is not None:
-            for filt in filters:
-                if key == filt:
-                    filter_value.append(obj[key])
+        if obj[key] is not None and obj[key] != '""':
+            filter_value[key] = obj[key]
+            filters+=key +","
         else :
-            filter_value.append("None")
-    filter_value = tuple(filter_value)
-    # # for i, filt in enumerate(filter_value, 0):
-    # #     if filt is not None:
-    # #         d = {'Room.{}'.format(filters[i]):filt}  # filter1 = filters[1]
-    # #         print(d) 
-    # #         res = res.filter(filters[i] )
-    # x = 'Room.' + filters[1] + ' >= 2'
-    # x = "'" + x + "'"
+            filter_value[key] = "None"
+    # Query
+    
+    
     res =  Room.query
-    if filter_value[0] is not None:
-        res =  res.filter(Room.phong_tam >= filter_value[0])
-    if filter_value[1] is not None:
-        res =  res.filter(Room.phong_bep >= filter_value[1])
-    if filter_value[2] is not None:
-        res = res.filter(Room.room_type_id == filter_value[2])
-    if filter_value[3] is not None:
-        res = res.filter(Room.dieu_hoa == filter_value[3])
-    if filter_value[4] is not None:
-        res = res.filter(Room.nong_lanh == filter_value[4])
-    if filter_value[5] is not None:
-        res = res.filter(Room.nong_lanh == filter_value[5])
-    print(res)
-    return res.all()
+    x = filter_value["Price"]
+    fPos = x.index('-')
+    lower =  int(x[0:fPos])
+    
+    sPost = x.rindex(' ')
+    upper = int(x[fPos+1:sPost])
+    
+    
+# Price ,area,roomType,,kitchenRoomType,numberOfBedRoom,bathRoomType,numberOfBathRoom,dieu_hoa,nong_lanh,host
+# Integer field : Price, area, numberOfBedRoom,numberOfBathRoombathRoomType,kitchenRoomType
+    if (filters.find("Price") != -1):
+        res = res.filter(Room.price >= lower).filter(Room.price <= upper)
+    if (filters.find("area") != -1):
+        filter_value["area"] = int(filter_value["area"])
+        res = res.filter(Room.room_type_id >= filter_value["area"])
+    if (filters.find("numberOfBedRoom") != -1):
+        filter_value["numberOfBedRoom"] = int(filter_value["numberOfBedRoom"])
+        res =  res.filter(Room.phong_tam >= filter_value["numberOfBedRoom"])
+    if (filters.find("numberOfBathRoom") != -1):
+        filter_value["numberOfBathRoom"] = int(filter_value["numberOfBathRoom"])
+        res =  res.filter(Room.phong_bep >= filter_value["numberOfBathRoom"])
+    if (filters.find("bathRoomType") != -1):
+        filter_value["bathRoomType"] = int(filter_value["bathRoomType"])
+        res = res.filter(Room.dieu_hoa == filter_value["bathRoomType"])
+    if (filters.find("kitchenRoomType") != -1):
+        filter_value["kitchenRoomType"] = int(filter_value["kitchenRoomType"])
+        res = res.filter(Room.nong_lanh == filter_value["kitchenRoomType"])
+    if (filters.find("dieu_hoa") != -1):
+        res = res.filter(Room.dieu_hoa == True)
+    if (filters.find("nong_lanh") != -1):
+        res = res.filter(Room.nong_lanh == True)
+    if (filters.find("host") != -1):
+        res = res.filter(Room.chung_chu == True)
+    if (filters.find("roomType") != -1):
+        filter_value["roomType"] = int(filter_value["roomType"])
+        res = res.filter(Room.room_type_id == filter_value["roomType"])
+
+    return Room.query.filter(Room.post.any())

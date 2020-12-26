@@ -52,6 +52,11 @@ section.search{
   display: flex;
   flex-direction: row;
 }
+
+.clear{
+    flex-basis: 100%;
+    height: 0;
+}
 /* Style the defualt page nav bar */
 
 .input-group{
@@ -70,17 +75,20 @@ section.search{
   width: 100%;
   height: calc( 100vh - 64px);
   display: flex;
+  position: relative;
 }
 
 /* Style the filter search div */
 .basic-search{
+  position: absolute;
+  top:70px;
   width: 60%;
   height: 100%;
 }
 
 .search-filter{
   width: 100%;
-  height: 12rem;
+  height: auto;
   padding-left: 20px;
 }
 
@@ -103,12 +111,14 @@ section.search{
 }
 
 .filter-container{
-  display: flex;
   width: 100%;
-  height: 24px;
-  align-items: center;
-  justify-content: start;
+  height: auto;
 }
+.filter-container form{
+  display: flex;
+  flex-wrap: wrap;
+}
+
 input, select{
   width: 7rem;
   height: 2rem;
@@ -127,11 +137,11 @@ button{
 /* Style the Room result page */
 
 
-.result-page{
+/* .result-page{
   height: auto;
   width: 100%;
   background-color: #eee;
-}
+} */
 
 
 .room-card{
@@ -386,4 +396,9 @@ border-radius: 3px 0 0 3px;
     width: 100%;
     height: 100%;
   }
+}
+
+.js-hiddenform{
+  display: none;
+  width: 20rem;
 }

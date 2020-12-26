@@ -16,8 +16,9 @@
 </head>
 <body>
   <section id='nav-bar'>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container-fluid">
+          <p class="no-display location-holder">{{city.code}},{{district.id}},{{street.id}}</p>
           <a target="_self" class="navbar-brand" href="{{url_for('main.home')}}"><img src="{{ url_for('static', filename='./renter/resource/image/1054_1343847082_103.png') }}"></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <i class="fa fa-bars" onclick="openNav()"></i>
@@ -57,9 +58,10 @@
             <h3>Chỗ ở đẹp tại {%if street%}{{street.name}},{%endif%} {%if district%}{{district.name}},{%endif%} {{city.name}}</h3>
             <br>
             <div class="filter-container">
-              <div>
+              <form action="#" id="submit_form" class="filter" method="POST"> 
+                <div >
                 <span style="display: block;">Giá </span>
-                <select class="Price" name="Price" id="">
+                <select class="Price" name="Price" id="Price">
                   <option value="0 - 1 triệu">0 - 1 triệu</option>
                   <option value="1-3 triệu">1-3 triệu</option>
                   <option value="3-5 triệu">3-5 triệu</option>
@@ -68,26 +70,85 @@
                   <option value="Hơn 15 triệu">Hơn 15 triệu</option>
                 </select>
               </div>
-              <div>
+              
+              <div >
                 <span style="display: block;">Diện tích </span>
-                <input type="text" placeholder="Dien tich(m2)" name="area">
+                <input type="text" placeholder="Diện tích(m2)" name="area">
               </div>
-              <div>
+              <div >
                 <span style="display: block;">Loại Phòng </span>
-                <select class = "roomType" name="roomType" id="">
+                <select class = "roomType" name="roomType" id="roomType">
                   <option value="Phòng trọ" id="1">Phòng trọ</option>
                   <option value="Chung cư mini" id="2">Chung cư mini</option>
                   <option value="Nhà nguyên căn" id="3">Nhà nguyên căn</option>
                   <option value="Chung cư nguyên căn" id="4">Chung cư nguyên căn</option>
                 </select>
               </div>
+              <div class="clear"></div>
+              <div >
+                <button type="submit" form="submit_form">
+                  <span>Go!</span>
+                </button>
+              </div>
+              <div >
+                <button class="js-expand" type="button">
+                  <span>More filter?</span>
+                </button>
+              </div>
+              <div class="clear"></div>
+              <div class="js-hiddenform">
+                
+            </form>
+            <div class="room_and_bed">
+              <h5>Phòng Tắm và Phòng Bếp</h5>
+              <div class="bedroom" style="position: relative;">
+                <p>Phòng Bếp</p>
+              
+                <p>Loại Phòng Bếp</p>
+                <select name="kitchenRoomType" style="height:30px;width:10rem;position: absolute; top:35px;right: 10px;" id="">
+                  <option value="1">Khu bếp riêng</option>
+                  <option value="2">Khu bếp chung</option>
+                  <option value="3">Không nấu ăn</option>
+                </select>
+                <div >
+                  <input min="0" name="numberOfBedRoom"placeholder="0" type="number" id="bedroom"  style="height:30px;width:10rem;position: absolute; top:0px;right: 10px;"></input>
+                </div>
+                
+              </div>
+              <div class="bathroom" style="position: relative;">
+                <p>Phòng Tắm</p>
+                
+                <p>Loại Phòng Tắm</p>
+                <select name="bathRoomType" style="height:30px;width:10rem;position: absolute; top:35px;right: 10px;" id="">
+                  <option value="1">Khép kín</option>
+                  <option value="2">Chung</option>
+                </select>
+                <div >
+                  <input name="numberOfBathRoom"  placeholder="0" min="0" style="height:30px;width:10rem;position: absolute; top:0px;right: 10px;" type="number" id="bedroom"></input>
+                </div>
+                
+              </div>
+            </div>
+            <div class="Facilities">
+              <h5>Cơ sở vật chất</h5>
+              <div  style="position: relative; display: flex;">
+                <p>Điều hòa</p>
+                <input name="dieu_hoa" class="dieu_hoa" type="checkbox" style="position: absolute; top:0px ;right: 10px;">
+              </div>
+              <div  style="position: relative;display: flex;">
+                <p>Bình nóng lạnh</p>
+                <input name ="nong_lanh"class="nonglanh" type="checkbox" style="position: absolute;right: 10px;">
+              </div>
+              <div style="position: relative;display: flex;">
+                <p>Chung chủ</p>
+                <input name="host" class="host" type="checkbox" style="position: absolute;right: 10px;">
+              </div>
+            </div>
             </div>
             <br>
-            <button class="expand" id="btnAdd">
-              <span>More filter?</span>
-            </button>
+            
           </div>
-
+          </div>
           <div class="result-page">
             {% for room in rooms.items%}
               <div class="room-card" id="{{room.id}}">
@@ -111,8 +172,8 @@
             ...
             {%endif%}
           {%endfor%} 
+          </div>
         </div>
-      </div>
         <div class="detail-search">
           
           {%if current_user.is_authenticated%}
@@ -138,34 +199,35 @@
         </div>
     </section>
     <div class="m-dialog dialog-detail" title="Thông tin khách hàng" style="display: none">
-      <!--<div class="dialog-modal"></div>-->
+      <!--<div class="dialog-modal"> Class = Expand de bat dialog</div>-->
       <div class="dialog-content">
           <div class="dialog-body">
               <div class="m-row m-flex">
                   <div class="m-col el-avatar-customer m-flex-1">
+                    <form action="{{ url_for('renter.search', city=city.code, district=district.id, street=street.id)}}" id="submit_form" method="POST">
                       <div class="room_and_bed">
-                        <h5>Phòng Tắm và Phòng Ngủ</h5>
+                        <h5>Phòng Tắm và Phòng Bếp</h5>
                         <div class="bedroom" style="position: relative;">
-                          <p>Phòng Tắm</p>
-                          <button class="bedminus" style="height:30px;width:30px;position: absolute; top:0px;right: 60px;">
+                          <p>Phòng Bếp</p>
+                          <button type = "button" class="bedminus" style="height:30px;width:30px;position: absolute; top:0px;right: 60px;">
                             <span>-</span>
                           </button>
                           <div style="display:flex; justify-content: center; align-items: center ;height:30px;width:30px;position: absolute; top:0px;right: 38px;">
                             <span id="bedroom">0</span>
                           </div>
-                          <button class="bedbonus" style="height:30px;width:30px;position: absolute; top:0px;right: 10px;">
+                          <button type = "button" class="bedbonus" style="height:30px;width:30px;position: absolute; top:0px;right: 10px;">
                            <span>+</span>
                           </button>
                         </div>
                         <div class="bathroom" style="position: relative;">
                           <p>Phòng Tắm</p>
-                          <button class="bathminus" style="height:30px;width:30px;position: absolute; top:0px;right: 60px;">
+                          <button class="bathminus"type = "button" style="height:30px;width:30px;position: absolute; top:0px;right: 60px;">
                             <span>-</span>
                           </button>
                           <div style="display:flex; justify-content: center; align-items: center ;height:30px;width:30px;position: absolute; top:0px;right: 38px;">
                             <span id="bathroom">0</span>
                           </div>
-                          <button class="bathbonus" style="height:30px;width:30px;position: absolute; top:0px;right: 10px;">
+                          <button class="bathbonus" type = "button" style="height:30px;width:30px;position: absolute; top:0px;right: 10px;">
                             <span>+</span>
                           </button>
                         </div>
@@ -175,10 +237,6 @@
                         <div  style="position: relative; display: flex;">
                           <p>Điều hòa</p>
                           <input class="dieu_hoa" type="checkbox" style="position: absolute; top:0px ;right: 10px;">
-                        </div>
-                        <div style="position: relative;display: flex;">
-                          <p>Bếp</p>
-                          <input   class="kitchen" type="checkbox"  style="position: absolute; float: right; top:0px;right: 10px;">
                         </div>
                         <div  style="position: relative;display: flex;">
                           <p>Bình nóng lạnh</p>
@@ -191,9 +249,10 @@
                       </div>
                   </div>
                   <div class="dialog-footer">
-                      <button id="btnCancel" class="m-btn m-btn-default m-btn-cancel">Hủy</button>
-                      <button id="btnSave" class="m-btn m-btn-default"><i class="far fa-save"></i><span class="btn-text">Lưu</span></button>
+                      <button type="button"  id="btnCancel" class="m-btn m-btn-default m-btn-cancel">Hủy</button>
+                      <button type = "submit" name="submit_form" id="btnSave" class="m-btn m-btn-default"><i class="far fa-save"></i><span class="btn-text">Lưu</span></button>
                   </div>
+                </form>
              </div>
           </div>
         </div>

@@ -32,16 +32,9 @@ def frontPageDisplay():
 @renter_bp.route("/search/<city>/", methods=['POST', "GET"])
 @renter_bp.route("/search/<city>/<district>/", methods=['POST', "GET"])
 @renter_bp.route("/search/<city>/<district>/<street>/",methods=['POST','GET'])
-def search(city,district=None,street=None):
+@renter_bp.route("/search/<city>/<district>/<street>/<rooms>",methods=['POST','GET'])
+def search(city,district=None,street=None,rooms=None):
   currentDateTime = datetime.datetime.utcnow()
-  
-  if (request.method == "POST"):
-    try:
-      # Take Data from POST from
-      data = request.get_json()
-      rooms = getRoomByDetail(data)
-    except:
-      return jsonify({"status":"Error","msg":"Problem searching"})
 
   # Get Room se tra ve list cac Room hop le, tu do" vut vao template
   page = request.args.get('page',1,type=int)
@@ -52,6 +45,17 @@ def search(city,district=None,street=None):
   city = City.query.filter_by(code = city).first()
   district = District.query.filter_by(id = district).first()
   street = Ward.query.filter_by(id = street).first()
+    
+  if (request.method == "POST"):
+    try:
+      # Take Data from POST from
+      
+      rooms = getRoomByDetail(request.form)
+      rooms = rooms.paginate(page=page,per_page=5)
+
+      return render_template("renter/renterSearchPage.html",rooms = rooms, dateTime = currentDateTime,city = city,district=district,street=street)
+    except:
+      return jsonify({"status":"Error","msg":"Problem searching"})
   
   return render_template("renter/renterSearchPage.html",rooms = rooms, dateTime = currentDateTime,city = city,district=district,street=street)
 

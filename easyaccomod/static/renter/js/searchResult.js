@@ -380,8 +380,8 @@ document.querySelector(".bathbonus").addEventListener("click",function(){
   $("#bathroom").text(x);
 })
 
-document.querySelector(".btnSave").addEventListener("click",function(){
-  url = window.location.href;
+document.querySelector("#btnSave").addEventListener("click",function(){
+  url = window.location.pathname;
   data = {}
   
   price = "None"
@@ -390,21 +390,32 @@ document.querySelector(".btnSave").addEventListener("click",function(){
     price = $("select.Price").children("option:selected").val()
 
   if ($("select.roomType").children("option:selected").val() != null)
-      roomType = $("select.roomType").children("option:selected").attr("id")
+      roomType = parseInt($("select.roomType").children("option:selected").attr("id"))
   phong_tam = parseInt($("#bathroom").text());
-  phong_ngu = 0;
+  phong_bep = parseInt($("#bedroom").text());
   dieu_hoa = false;
   if (document.querySelector(".dieu_hoa").checked){
     dieu_hoa = true;
   }
   nong_lanh = false;
-  if (document.querySelector(".nong_lanh").checked){
+  if (document.querySelector(".nonglanh").checked){
     nong_lanh = true;
   }
   chung_chu = false;
   if (document.querySelector(".host").checked){
     chung_chu = true;
   }
+  locations = $("p.location-holder").text()
+  address = locations.split(",");
+  city_code = address[0];
+  district_id = "None"
+  street_id = "None"
+  if (address[1] != "")
+    district_id = address[1]
+  if (address[2] != "")
+    street_id = address[2];
+
+ 
   data["gia"] = price;
   data["roomType"] = roomType;
   data["phong_tam"] = phong_tam;
@@ -412,5 +423,15 @@ document.querySelector(".btnSave").addEventListener("click",function(){
   data["dieu_hoa"] = dieu_hoa;
   data["nong_lanh"] = nong_lanh;
   data["chung_chu"] = chung_chu;
-  postData(url,data)
+  data["city_code"] = city_code
+  data["district_id"] = district_id
+  data["street_id"] = street_id
+
+  postData(url,data).then(
+    response=>console.log(response)
+  )
 })
+
+$(".js-expand").click(function() {
+      $(".js-hiddenform").slideToggle();
+});
