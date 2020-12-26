@@ -17,9 +17,10 @@ function getSearchData(){
 				return response.json();
 		}).then(json =>{
 			localStorage.setItem("search",JSON.stringify(json));
+			findCity();
 		});
 	}
-	findCity();
+	else findCity();
 }
 
 getSearchData();

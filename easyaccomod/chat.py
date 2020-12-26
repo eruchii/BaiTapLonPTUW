@@ -256,8 +256,8 @@ def load_list_notifications():
 	socketio.emit("list notifications", data, room = clients[current_user.username])
 
 
-def create_new_admin_notification():
-	a = AdminNotification(sender = current_user.id, title = "test title", msg = "test msg")
+def create_new_admin_notification(title, msg):
+	a = AdminNotification(sender = current_user.id, title = title, msg = msg)
 	db.session.add(a)
 	db.session.commit()
 	return a
@@ -271,12 +271,7 @@ def send_fake_noti():
 	return jsonify(data)
 
 def send_new_admin_notification(data):
-	id = data["id"]
-	noti = AdminNotification.query.filter_by(id=id).first()
-	if(noti == None):
-		return False
-	if(len(admin) == 0):
-		return False
+	noti = data
 	res = {}
 	res["title"] = noti.title
 	res["msg"] = noti.msg
