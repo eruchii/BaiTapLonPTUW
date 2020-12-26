@@ -6,7 +6,7 @@ import hashlib
 import re
 from easyaccomod.models import User, Post
 from easyaccomod.admin.utils import save_room_picture
-
+from easyaccomod.chat import create_new_admin_notification, send_new_admin_notification
 def encrypt_string(hash_string):
 	bcrypt_hash = bcrypt.generate_password_hash(hash_string).decode('utf-8')
 	return bcrypt_hash
@@ -221,10 +221,14 @@ def update_status(post_id, user_id):
 	if(post.room.status == False):
 		post.room.status = True
 		db.session.commit()
+		new_noti = create_new_admin_notification(title=f"Bài đăng id={post.id} đã thay đổi trạng thái", msg=f"Bài đăng id={post.id} của user {post.author.username} chuyển trạng thái thành 'Đã cho thuê'")
+		send_new_admin_notification(new_noti)
 		return ("success", "thanh cong", 'Chuyển trạng thái thành "Chưa cho thuê"')
 	else:
 		post.room.status = False
 		db.session.commit()
+		new_noti = create_new_admin_notification(title=f"Bài đăng id={post.id} đã thay đổi trạng thái", msg=f"Bài đăng id={post.id} của user {post.author.username} chuyển trạng thái thành 'Chưa cho thuê'")
+		send_new_admin_notification(new_noti)
 		return ("success", "thanh cong", 'Chuyển trạng thái thành "Đã cho thuê"')
 
 def get_owner_by_username(username):

@@ -4,6 +4,7 @@ from flask_login import login_user, current_user, logout_user
 from easyaccomod.owner_models import Owner, Room, User
 from functools import wraps
 from easyaccomod.owner_db import *
+from easyaccomod.chat import send_new_admin_notification, create_new_admin_notification
 
 owner_bp = Blueprint("owner", __name__, template_folder='templates/owner')
 
@@ -284,7 +285,7 @@ def api_change_status(id):
 	res["textNodeValue"] = textValue
 	return jsonify(res)
 
-@owner_bp.route("/profile")
+@owner_bp.route("/profile/")
 @owner_bp.route("/profile/<username>")
 @is_owner
 def profile(username=None):
