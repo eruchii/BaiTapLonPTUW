@@ -18,12 +18,11 @@
   <section id='nav-bar'>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container-fluid">
-          <p class="no-display location-holder">{{city.code}},{{district.id}},{{street.id}}</p>
           <a target="_self" class="navbar-brand" href="{{url_for('main.home')}}"><img src="{{ url_for('static', filename='./renter/resource/image/1054_1343847082_103.png') }}"></a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <i class="fa fa-bars" onclick="openNav()"></i>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
           </button>
-          <div class="collapse navbar-collapse" id="navbarNav">               
+          <div class="collapse navbar-collapse" id="navbarToggle">                
           <ul class="navbar-nav  ml-auto">
             <li class="nav-item">
               <a class="nav-link" href="{{url_for('owner.home')}}">Become Host?</a>
@@ -37,7 +36,7 @@
               <a class="nav-link" href="{{url_for('admin.logout')}}" >Logout</a>
             </li>
               <li class="nav-item">
-                <a class="nav-link" href="">{{current_user.username}}</a>
+                <a class="nav-link" href="{{ url_for('renter.getFavoritePost',username = current_user.username)}}">{{current_user.username}}</a>
               </li>
               {%endif%}
             </ul>
@@ -99,8 +98,7 @@
               </div>
               <div class="clear"></div>
               <div class="js-hiddenform">
-                
-            </form>
+    
             <div class="room_and_bed">
               <h5>Phòng Tắm và Phòng Bếp</h5>
               <div class="kitchen" style="position: relative;">
@@ -150,7 +148,7 @@
             </div>
             </div>
             <br>
-            
+          </form>
           </div>
           </div>
           <div class="result-page">
@@ -167,13 +165,19 @@
 
           {%for page_num in rooms.iter_pages()%}
             {%if page_num%}
-              {%if page_num == 1%}
-              <a href="" class="btn btn-outline-info mb4 pagi" id ={{page_num}} style="margin-left: 20px;">{{page_num}}</a>
+              {%if page_num==1%}
+                {%if  rooms.page == page_num %}
+                <a href="" class="btn btn-info mb4 pagi" id={{page_num}} style="margin-left:20px ;">{{page_num}}</a>
+                {%else%}
+                <a href="" class="btn btn-outline-info mb4 pagi" id={{page_num}} style="margin-left:20px ;">{{page_num}}</a>
+                {%endif%}
               {%else%}
-              <a href="" class="btn btn-outline-info mb4 pagi" id={{page_num}}>{{page_num}}</a>
+                {%if rooms.page == page_num%}
+                <a href="" class="btn btn-info mb4 pagi" id={{page_num}}>{{page_num}}</a>
+                {%else%}
+                <a href="" class="btn btn-outline-info mb4 pagi" id={{page_num}}>{{page_num}}</a>
+                {%endif%}
               {%endif%}
-            {%else%}
-            ...
             {%endif%}
           {%endfor%} 
           </div>
@@ -270,9 +274,10 @@
         </div>
     </div>
 </body>
-
 <scrip src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></scrip>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
+</script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <script src="{{url_for('static', filename='./renter/js/searchResult.js')}}"></script>
 </html>

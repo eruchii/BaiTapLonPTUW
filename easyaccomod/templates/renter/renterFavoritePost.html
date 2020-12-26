@@ -15,176 +15,119 @@
   
 </head>
 <body>
-    <section id='nav-bar'>
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#"><img src="{{ url_for('static', filename='./renter/resource/image/1054_1343847082_103.png') }}"></a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars" onclick="openNav()"></i>
-              </button>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                 <button class="search-button"> 
-                   <i class="fas fa-search">Go!</i>
-                 </button>
-                </div>
-                <input type="text" aria-label="City" class="form-control" placeholder="City" id="city">
-                <input type="text" aria-label="District" class="form-control" placeholder="District">
-                <input type="text" aria-label="Street" class="form-control" placeholder="Street">
-              </div>
-              <div class="collapse navbar-collapse" id="navbarNav">               
-              <ul class="navbar-nav  ml-auto">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Become Host?</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">User</a>
-                  </li>
-                </ul>
-                <img src="{{ url_for('static', filename='./renter/resource/image/pexels-photo-4786270.jpeg') }}" id = "avatar">
-              </div>
-            </div>
-          </nav>
-    </section>
+  <section id='nav-bar'>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container-fluid">
+          <a target="_self" class="navbar-brand" href="{{url_for('main.home')}}"><img src="{{ url_for('static', filename='./renter/resource/image/1054_1343847082_103.png') }}"></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">                
+          <ul class="navbar-nav  ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('owner.home')}}">Become Host?</a>
+            </li>
+            {% if not current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('admin.login')}}" >Login</a>
+            </li>
+            {%else%}
+            <li class="nav-item">
+              <a class="nav-link" href="{{url_for('admin.logout')}}" >Logout</a>
+            </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('renter.getFavoritePost',username = current_user.username)}}">{{current_user.username}}</a>
+              </li>
+              {%endif%}
+            </ul>
+            {%if current_user.is_authenticated%}
+            <img src="{{ url_for('static', filename='./renter/resource/image/pexels-photo-4786270.jpeg') }}" id = "avatar">
+            {%endif%}
+          </div>
+        </div>
+      </nav>
+</section>
     <section class="search-detail">
         <div class="basic-search">
-          <div class="search-filter">
-            <span id="numberOfRooms">So ket qua</span>
-            <h3>Cho o tai</h3><h3>A</h3>
-            <div class="filter-container">
-              <div>
-                <span style="display: block;">Gia</span>
-                <select name="" id="">
-                  <option value="">0-1 trieu</option>
-                  <option value="">1-3 trieu</option>
-                  <option value="">3-5 trieu</option>
-                  <option value="">Hon 5 trieu</option>
-                </select>
-              </div>
-              <div>
-                <span style="display: block;">Dien tich</span>
-                <input type="text" placeholder="Dien tich(m2)">
-              </div>
-              <div>
-                <span style="display: block;">Loai phong</span>
-                <select name="" id="">
-                  <option value="">0-1 trieu</option>
-                  <option value="">1-3 trieu</option>
-                </select>
-              </div>
-            </div>
-            <br>
-            <button class="expand" id="btnAdd">
-              <span>More filter?</span>
-            </button>
-          </div>
           <div class="result-page">
-            {% for room in rooms.items%}
-              {%include 'roomCard.html'%}
+            {% for like in posts.items%}
+              <div class="room-card" id="{{like.post.room.id}}">
+                <div class="room-card-img" id="{{loop.index}}">
+                  <p style="display: none;" id="{{like.post.room.image}}"></p>
+                  <a class="prev" onclick = "minusSlide(-1,{{loop.index-1}})">&#10094;</a>
+                  <a class="next" onclick = "plusSlides(1,{{loop.index-1}})">&#10095;</a>
+                  </div>
+              {%include 'userRoomCard.html'%}
+            </div>
             {%endfor%}
-          </div>
-          {%for page_num in rooms.iter_pages()%}
+
+          {%for page_num in posts.iter_pages()%}
             {%if page_num%}
-            <a id="{{page_num}}" href="" class="btn btn-outline-info mb-4 pagi">{{page_num}}</a>
-            {%else%}
-            ...
+              {%if page_num==1%}
+                {%if  posts.page == page_num %}
+                <a href="" class="btn btn-info mb4 pagi" id={{page_num}} style="margin-left:20px ;">{{page_num}}</a>
+                {%else%}
+                <a href="" class="btn btn-outline-info mb4 pagi" id={{page_num}} style="margin-left:20px ;">{{page_num}}</a>
+                {%endif%}
+              {%else%}
+                {%if posts.page == page_num%}
+                <a href="" class="btn btn-info mb4 pagi" id={{page_num}}>{{page_num}}</a>
+                {%else%}
+                <a href="" class="btn btn-outline-info mb4 pagi" id={{page_num}}>{{page_num}}</a>
+                {%endif%}
+              {%endif%}
             {%endif%}
-          {%endfor%}
+          {%endfor%} 
+          </div>
         </div>
         <div class="detail-search">
-          <h1>Phòng trọ title</h1>
-          <h3>Địa chỉ phòng trọ</h3>
-          <h3>Thông tin liên hệ: 0964313607</h3>
-          <h5>3 phòng ngủ - 2 phòng tắm - Có ban công - Chung chủ</h5>
-          <div class="room-card">
-            <div class="room-card-img detail">
-              <div class="mySlides4" id="mySlides">
-                <img src="{{ url_for('static',filename='/renter/resource/image/Hanoi_City.jpeg')}}"id="mySlides1">
-              </div>
-              <div id="mySlides" class="mySlides4">
-                <img src="../resource/image/HCM_city.jpeg" alt="" id="mySlides1">
-              </div>
-              <div  id='mySlides' class="mySlides4">
-                <img src="../resource/image/DN_City.png" alt="" id="mySlides1">
-              </div>
-              <a class="prev" onclick="plusSlides(-1,3)">&#10094;</a>
-<a class="next" onclick="plusSlides(1,3)">&#10095;</a>
+          
+          {%if current_user.is_authenticated%}
+          <div class="user_comment no-display" id="{{current_user.id}}">
+            <div class="alert alert-warning alert-dismissible fade show no-display" role="alert">
+              <strong> Đã ghi nhận phản hồi ! </strong>Đang chờ xét duyệt của admin.
+              <button type="button" id="comment_span" class="btn-close" style="position: relative; display:flex; align-items: center; justify-content: center; width: 2rem;height: 2rem;" data-bs-dismiss="alert" aria-label="Close">
+                <span >
+                  <i class="far fa-window-close"></i>
+                </span>
+              </button>
             </div>
-          </div>
-          <div class="comment">
-            <p style="margin:0px;">Rate this room?</p>
-            <div class='rating-stars text-center'>
+            <div class='rating-stars'>
+              <span>Bạn yêu thích căn phòng này ?</span>
               <ul id='stars'>
                 <li class='star' title='Poor' data-value='1'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
-                <li class='star' title='Fair' data-value='2'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
-                <li class='star' title='Good' data-value='3'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
-                <li class='star' title='Excellent' data-value='4'>
-                  <i class='fa fa-star fa-fw'></i>
-                </li>
-                <li class='star' title='WOW!!!' data-value='5'>
-                  <i class='fa fa-star fa-fw'></i>
+                  <i class="far fa-heart"></i>
                 </li>
               </ul>
+              <input id ="user_comment" type="text" required placeholder="Leave your comment">
+              <input type="submit" id="submit_comment">
             </div>
-            <input type="text" placeholder="Leave your comment">
+            <div class="post_comment">
+            </div>
           </div>
+          {%else%}
+          <div class="comment">
+            <p style="margin:0px;">Login to comment?</p>
+          </div>
+          {%endif%}
         </div>
     </section>
     <div class="m-dialog dialog-detail" title="Thông tin khách hàng" style="display: none">
-      <!--<div class="dialog-modal"></div>-->
+      <!--<div class="dialog-modal"> Class = Expand de bat dialog</div>-->
       <div class="dialog-content">
           <div class="dialog-body">
               <div class="m-row m-flex">
-                  <div class="m-col el-avatar-customer m-flex-1">
-                      <div class="room_and_bed">
-                        <h5>Room and Bed</h5>
-                        <div class="bedroom" style="position: relative;">
-                          <p>Phong Ngu</p>
-                          <button class="bonus" style="position: absolute; top:0px;right: 10px;"></button>
-                        </div>
-                        <div class="bathroom" style="position: relative;">
-                          <p>Phong Tam</p>
-                          <button class="bonus" style="position: absolute; top:0px;right: 10px;"></button>
-                        </div>
-                      </div>
-                      <div class="Facilities">
-                        <h5>Facilities</h5>
-                        <div class="dieu_hoa">
-                          <p style="display:absolute;float:left;top: 0px;">Dieu hoa</p>
-                          <input type="checkbox">
-                        </div>
-                        <div class="kitchen">
-                          <p style="display:absolute;float:left;top: 0px;">Kitchen</p>
-                          <input type="checkbox">
-                        </div>
-                        <div class="nonglanh">
-                          <p style="display:absolute;float:left;top: 0px;">Nong lanh</p>
-                          <input type="checkbox">
-                        </div>
-                        <div class="host">
-                          <p style="display:absolute;float:left;top: 0px;">Chung Chu</p>
-                          <input type="checkbox">
-                        </div>
-                      </div>
+                  <div class="m-col el-avatar-customer m-flex-1">  
                   </div>
-                  <div class="dialog-footer">
-                      <button id="btnCancel" class="m-btn m-btn-default m-btn-cancel">Hủy</button>
-                      <button id="btnSave" class="m-btn m-btn-default"><i class="far fa-save"></i><span class="btn-text">Lưu</span></button>
-                  </div>
-             </div>
+              </div>
           </div>
-        </div>
+      </div>
     </div>
 </body>
-
 <scrip src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"></scrip>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous">
+</script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 <script src="{{url_for('static', filename='./renter/js/searchResult.js')}}"></script>
 </html>

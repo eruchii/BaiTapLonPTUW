@@ -46,9 +46,17 @@ def addComment(user_id,post_id,content,commit = True):
         db.session.commit()
     return (True,"Comment Succesfully Created!")
 
-def addPriceLog(price):
-    priceRange = PriceLog(price)
-    db.session.add(priceRange)
+def addPriceLog(lower,upper):
+    priceLogId =[1,2,3,4,5,6,7,8,9,10]
+    if (upper >=11):
+        for id in priceLogId:
+            priceLog = PriceLog.query.filter_by(id=id).first()
+            priceLog.count = priceLog.count+1
+    else:
+        for id in priceLogId:
+            if (id >= lower and id <= upper):
+                priceLog = PriceLog.query.filter_by(id=id).first()
+                priceLog.count = priceLog.count+1
     db.session.commit()
 
 

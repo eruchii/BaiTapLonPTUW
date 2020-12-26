@@ -190,7 +190,6 @@ for (let i = 0; i < aElement.length;i++){
     hrefLink = hrefLink.slice(0,index)
     
     hrefLink = hrefLink + aElement[i].id
-    console.log(hrefLink)
     aElement[i].setAttribute('href',hrefLink)
   }
 }
@@ -210,7 +209,7 @@ for (let i = 0; i < aElement.length;i++){
 // }
 
 roomCard = document.querySelectorAll(".room-card")
-$(roomCard).on('click',function(){
+$(roomCard).on('dblclick',function(){
   $('.user_comment').removeClass('no-display')
   data ={}
   data.room_id = this.id
@@ -311,7 +310,7 @@ function loadRoomDetail(data){
         
           <b>Vị trí : ${data.location}.</b>
           <p class="room-detail"></br>
-          Giá cả : ${data.price}VND Giá thuê - ${data.gia_dien}VND Giá / số nước - ${data.gia_nuoc}VND Giá / số điện
+          Giá cả : ${formatNumber(data.price)}VND/tháng - ${formatNumber(data.gia_dien)}VND/ số nước - ${formatNumber(data.gia_nuoc)}VND/ số điện
           </br>       
           Cơ sở vật chất: Diện tích: ${data.dien_tich}m2</br>  Loại phòng: ${data.room_type} -  ${data.phong_tam} phòng tắm - ${data.bath_room_type}- ${data.phong_bep} phòng bếp - ${data.kitchen_room_type}
           </br>
@@ -404,7 +403,6 @@ $("button#comment_span").on('click',function(){
   $('div.alert.alert-warning').addClass("no-display")
 })
 
-function formatPrice(price){
-  prince = price.toString()
-  console.log(price)
+function formatNumber(num) {
+  return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
 }

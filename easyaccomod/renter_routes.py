@@ -121,6 +121,7 @@ def getRoomByDetail(obj,city,district=None,street=None):
 # Price ,area,roomType,,kitchenRoomType,numberOfBedRoom,bathRoomType,numberOfBathRoom,dieu_hoa,nong_lanh,host
 # Integer field : Price, area, numberOfBedRoom,numberOfBathRoombathRoomType,kitchenRoomType
     if (filters.find("Price") != -1):
+        addPriceLog(lower,upper)
         res = res.filter(Room.price >= lower*1000000).filter(Room.price <= upper*1000000)
     if (filters.find("area") != -1):
         filter_value["area"] = int(filter_value["area"])
@@ -148,3 +149,5 @@ def getRoomByDetail(obj,city,district=None,street=None):
         res = res.filter(Room.room_type_id == filter_value["roomType"])
 
     return res.filter(Room.post.any())
+
+# def getPostByRoomID

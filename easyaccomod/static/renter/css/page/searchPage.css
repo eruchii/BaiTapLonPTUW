@@ -34,7 +34,11 @@ a:hover{
     padding-left: 20px;
 
 }
-
+.navbar-nav{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .navbar-nav li{
     padding-left: 0 10px;
@@ -48,7 +52,7 @@ a:hover{
 .fa-bars{
     color:#fff !important;
     font-size: 30px !important;
-
+    z-index: 1500;
 }
 
 .navbar-toggler{
@@ -241,4 +245,15 @@ button.search-button:hover{
 
 .form-control:focus{
     outline:none;
+}
+
+
+
+@media screen and (max-width: 1000px){
+    img#avatar{
+        display: none;
+    }
+    .nav-link{
+        text-transform: uppercase;
+    }
 }

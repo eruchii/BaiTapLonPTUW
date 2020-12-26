@@ -1,0 +1,28 @@
+
+{%if like.post.room.post%}
+{% if like.post.room.post[0].date_out >= dateTime%}
+  <div class="room-info">
+    <h3 class="room-title">{{like.post.room.post[0].title}}</h3> 
+    
+    <h5>Số lượt thích: {{like.post.room.post[0].getLike()}}</h5>
+    <p class="room-detail">
+      Vị trí : {{like.post.room.getLocation()}}.</br>
+      Cơ sở vật chất: {{like.post.room.phong_tam}} phòng tắm - {{like.post.room.phong_bep}} phòng bếp
+      {% if like.post.room.ban_cong %}- Có ban công {%endif%}
+      {%if like.post.room.chung_chu%}- Chung chủ {%endif%}
+    </p>
+    <p class="post-content nono-display">
+      Số lượt xem: {{like.post.room.post[0].count_view}}  
+      </br>
+      {{like.post.room.post[0].content}}
+    </p>
+  </div>
+  {%for comment in like.post.room.post[0].getAllComment() %}
+  <div class="cmt nono-display" style="padding-left:10px; margin-top:10px;width: 100%;height: 5rem; border-radius:0.5rem; border:0.8px solid">
+    <p>Comment By: {{comment.username}}</p>
+    <p>{{comment.content}}</p>
+  </div>
+  
+  {%endfor%}
+  {%endif%}
+{%endif%}

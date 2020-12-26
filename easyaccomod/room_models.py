@@ -7,6 +7,8 @@ class Like(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('post.id'),nullable = False,unique= False,primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable = False,unique = False,primary_key=True)
     date_created = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+    posts = db.relationship("Post", backref="like", lazy=True)
     def __repr__(self):
         return (f"Like for '{self.post_id}' from '{self.user_id}'")
         

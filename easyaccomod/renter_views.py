@@ -196,14 +196,13 @@ def getPost():
   except:
     return jsonify(res)
 
-@renter_bp.route("/<username>/favorite")
-@login_required
+@renter_bp.route("/<username>/favorite",methods=["GET","POST"])
 def getFavoritePost(username):
-  page = request.args.get('page')
-  posts = getUserFavoritePost(username).paginate(page=page,per_page=5)
-
-  return render_template("renter/renterSearchPage.html",posts = posts)
-
+  page = request.args.get('page',1,type=int)
+  posts = getUserFavoritePost(username)
+  posts = posts.paginate(page=page,per_page=5)
+  currentDateTime = datetime.datetime.utcnow()
+  return render_template("renter/renterFavoritePost.html",posts = posts,page=page,dateTime = currentDateTime)
 
 
 @renter_bp.route("/api/checkLikeByUser",methods=["POST"])

@@ -2,6 +2,12 @@ $(document).ready(function()
 {
     // Load District   
     loadDistrisct()
+
+    let header = document.querySelector(".header");
+    let hamburgerMenu = document.querySelector(".navbar-toggler");
+    hamburgerMenu.addEventListener('click',function(){
+        header.classList.toggle("menu-open")
+    })
 })
 
 function loadDistrisct(){
