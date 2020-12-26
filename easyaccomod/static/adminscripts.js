@@ -184,6 +184,24 @@ function validateInput(event) {
     }
 }
 
-function sendYearStatistic(event) {
-    
+function sendPostID(event) {
+    var postID = document.getElementById("searchpost").value;
+    if (postID.length <= 0 || postID == null) {
+        event.preventDefault();
+        console.log("empty input search!!");
+    } else {
+        var str = window.origin + "/post/details/" + postID;
+        window.open(str, "_self");
+    }
+}
+
+function sendRoomID(event) {
+    var roomID = document.getElementById("searchroom").value;
+    if (roomID.length <= 0 || roomID == null) {
+        event.preventDefault();
+        console.log("empty input search!!");
+    } else {
+        var str = window.origin + "/room/details/" + roomID;
+        window.open(str, "_self");
+    }
 }

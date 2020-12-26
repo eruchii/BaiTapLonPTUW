@@ -277,6 +277,17 @@ def confirm_comment():
         comments = Comment.query.order_by(Comment.date_created.desc()).paginate(page=page, per_page=per_page)
         return render_template("admin/confirm_comment.html", comments=comments)
 
+@admin.route("/confirm-comment-post")
+@login_required
+def confirm_comment_post():
+    if current_user.role_id != 1:
+        abort(403)
+    else :
+        post_id = request.args.get("post_id")
+        post = Post.query.filter_by(id=post_id).first_or_404()
+        comments = post.comments
+        return render_template("admin/comment_post.html", comments=comments)
+
 @admin.route("/comment/accept", methods=["GET", "POST"])
 @login_required
 def acceptComment():

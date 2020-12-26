@@ -26,6 +26,12 @@
 
 {% block info %}
     <h1>Manage Room</h1>
+    
+    <nav class="navbar-collapse navbar-light bg-light mb-3 form-inline">
+        <input id="searchroom" class="form-control mr-sm-2" name="room-id" type="number" placeholder="Search/ room-id" aria-label="Search">
+        <input id="search-room-id" class="btn btn-outline-success my-2 my-sm-0" type="button" value="Search" onclick="sendRoomID(event)">
+    </nav>
+
     {% for room in rooms.items %}
         <article class="media content-section max-height-content-section">
             <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + room.user.image_file) }}" alt="image of author">

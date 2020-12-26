@@ -28,13 +28,13 @@
     <h1>Confirm Comment</h1>
 
     <nav class="navbar-collapse navbar-light bg-light mb-3">
-        <form action="{{ url_for('admin.confirm_comment_post') }}" class="form-inline">
+        <form action="" class="form-inline">
             <input id="searchname" class="form-control mr-sm-2" name="post_id" type="search" placeholder="Search/ post-id" aria-label="Search" onchange="validateInput(event)">
             <input id="search-user-name" class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Search" onclick="validateInput(event)">
         </form>
     </nav>
 
-    {% for comment in comments.items %}
+    {% for comment in comments %}
         <article class="media content-section">
             <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + comment.user.image_file) }}" alt="image of author">
             <div class="media-body">
@@ -57,18 +57,6 @@
                 <p class="article-content"> Role: {{ comment.user.roles.name }}</p>
             </div>
         </article>
-    {% endfor %}
-
-    {% for page_num in comments.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=3 ) %}
-        {% if page_num %}
-            {% if comments.page == page_num %}
-                <a class="btn btn-info mb-4" href="{{ url_for('admin.confirm_comment', page=page_num) }}">{{ page_num }}</a>
-            {% else %}
-                <a class="btn btn-outline-info mb-4" href="{{ url_for('admin.confirm_comment', page=page_num) }}">{{ page_num }}</a>
-            {% endif %}    
-        {% else %}
-            ...
-        {% endif %}
     {% endfor %}
 
 {% endblock %}

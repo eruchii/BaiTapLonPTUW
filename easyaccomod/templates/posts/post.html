@@ -25,6 +25,12 @@
 
 {% block info %}
     <h1>Manage Post</h1>
+
+    <nav class="navbar-collapse navbar-light bg-light mb-3 form-inline">
+        <input id="searchpost" class="form-control mr-sm-2" name="post_id" type="number" placeholder="Search/ post-id" aria-label="Search">
+        <input id="search-post-id" class="btn btn-outline-success my-2 my-sm-0" type="button" value="Search" onclick="sendPostID(event)">
+    </nav>
+
     {% for post in posts.items %}
         <article class="media content-section max-height-content-section">
             <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}" alt="image of author">
