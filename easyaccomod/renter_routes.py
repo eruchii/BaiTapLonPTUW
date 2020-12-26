@@ -90,7 +90,7 @@ def getRoomByDetail(obj):
     filters = ''
     # Price ,area,roomType,,kitchenRoomType,numberOfBedRoom,bathRoomType,numberOfBathRoom,dieu_hoa,nong_lanh,host
     for key in obj:
-        if obj[key] is not None and obj[key] != '""':
+        if obj[key] is not None and obj[key] != '':
             filter_value[key] = obj[key]
             filters+=key +","
         else :
@@ -110,22 +110,22 @@ def getRoomByDetail(obj):
 # Price ,area,roomType,,kitchenRoomType,numberOfBedRoom,bathRoomType,numberOfBathRoom,dieu_hoa,nong_lanh,host
 # Integer field : Price, area, numberOfBedRoom,numberOfBathRoombathRoomType,kitchenRoomType
     if (filters.find("Price") != -1):
-        res = res.filter(Room.price >= lower).filter(Room.price <= upper)
+        res = res.filter(Room.price >= lower*1000000).filter(Room.price <= upper*1000000)
     if (filters.find("area") != -1):
         filter_value["area"] = int(filter_value["area"])
-        res = res.filter(Room.room_type_id >= filter_value["area"])
-    if (filters.find("numberOfBedRoom") != -1):
-        filter_value["numberOfBedRoom"] = int(filter_value["numberOfBedRoom"])
-        res =  res.filter(Room.phong_tam >= filter_value["numberOfBedRoom"])
+        res = res.filter(Room.dien_tich >= filter_value["area"])
+    if (filters.find("numberOfKitchenRoom") != -1):
+        filter_value["numberOfKitchenRoom"] = int(filter_value["numberOfKitchenRoom"])
+        res =  res.filter(Room.phong_bep >= filter_value["numberOfKitchenRoom"])
     if (filters.find("numberOfBathRoom") != -1):
         filter_value["numberOfBathRoom"] = int(filter_value["numberOfBathRoom"])
-        res =  res.filter(Room.phong_bep >= filter_value["numberOfBathRoom"])
+        res =  res.filter(Room.phong_tam >= filter_value["numberOfBathRoom"])
     if (filters.find("bathRoomType") != -1):
         filter_value["bathRoomType"] = int(filter_value["bathRoomType"])
-        res = res.filter(Room.dieu_hoa == filter_value["bathRoomType"])
+        res = res.filter(Room.loai_phong_tam == filter_value["bathRoomType"])
     if (filters.find("kitchenRoomType") != -1):
         filter_value["kitchenRoomType"] = int(filter_value["kitchenRoomType"])
-        res = res.filter(Room.nong_lanh == filter_value["kitchenRoomType"])
+        res = res.filter(Room.loai_phong_bep == filter_value["kitchenRoomType"])
     if (filters.find("dieu_hoa") != -1):
         res = res.filter(Room.dieu_hoa == True)
     if (filters.find("nong_lanh") != -1):
@@ -136,4 +136,4 @@ def getRoomByDetail(obj):
         filter_value["roomType"] = int(filter_value["roomType"])
         res = res.filter(Room.room_type_id == filter_value["roomType"])
 
-    return Room.query.filter(Room.post.any())
+    return res.filter_by(Room.post.any())
