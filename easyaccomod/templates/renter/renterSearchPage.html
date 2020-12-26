@@ -168,9 +168,9 @@
           {%for page_num in rooms.iter_pages()%}
             {%if page_num%}
               {%if page_num == 1%}
-              <a href="{{ url_for('renter.search', city=city.code, district=district.id, street=street.id, page=page_num)}}" class="btn btn-outline-info mb4" style="margin-left: 20px;">{{page_num}}</a>
+              <a href="" class="btn btn-outline-info mb4 pagi" id ={{page_num}} style="margin-left: 20px;">{{page_num}}</a>
               {%else%}
-              <a href="{{ url_for('renter.search', city=city.code, district=district.id, street=street.id, page=page_num)}} " class="btn btn-outline-info mb4">{{page_num}}</a>
+              <a href="" class="btn btn-outline-info mb4 pagi" id={{page_num}}>{{page_num}}</a>
               {%endif%}
             {%else%}
             ...

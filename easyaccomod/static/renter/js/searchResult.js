@@ -172,20 +172,23 @@ async function postData(url='',data){
   return response.json(); // parses JSON response into native JavaScript objects
 }
 
-// aElement = document.querySelectorAll(".pagi")
-// for (let i = 0; i < aElement.length;i++){
-//   if (aElement[i].href.includes('page') == false){
-//   hrefLink = window.location.href + "&page="+aElement[i].id
-//   aElement[i].setAttribute('href',hrefLink)
-//   }
-//   else{
-//     hrefLink = window.location.href;
-//     index = hrefLink.indexOf('page')
-//     hrefLink = hrefLink.slice(0,index-1)
-//     hrefLink = hrefLink +"&page=" + aElement[i].id
-//     aElement[i].setAttribute('href',hrefLink)
-//   }
-// }
+aElement = document.querySelectorAll(".pagi")
+for (let i = 0; i < aElement.length;i++){
+  if (aElement[i].href.includes('page') == false){
+  hrefLink = window.location.href + "?page="+aElement[i].id
+  aElement[i].setAttribute('href',hrefLink)
+  }
+  else{
+    hrefLink = window.location.href;
+    index = hrefLink.indexOf('page=');
+    index = index+5;
+    hrefLink = hrefLink.slice(0,index)
+    
+    hrefLink = hrefLink + aElement[i].id
+    console.log(hrefLink)
+    aElement[i].setAttribute('href',hrefLink)
+  }
+}
 
 // roomCard = document.querySelectorAll(".room-card")
 // for (let i =0 ; i < roomCard.length;i++)
@@ -300,7 +303,7 @@ function loadRoomDetail(data){
           <p class="room-detail"></br>
           Giá cả : ${data.price}VND Giá thuê - ${data.gia_dien}VND Giá / số nước - ${data.gia_nuoc}VND Giá / số điện
           </br>       
-          Cơ sở vật chất: ${data.phong_tam} phòng tắm - ${data.phong_bep} phòng bếp
+          Cơ sở vật chất: Loại phòng: ${data.roomType} -  ${data.phong_tam} phòng tắm ${data.loai_phong_tam}- ${data.phong_bep} phòng bếp ${data.loai_phong_bep}
           ${data.ban_cong} ban công - ${data.chung_chu} Chung chủ - ${data.dieu_hoa} điều hòa - ${data.nong_lanh} bình nóng lạnh
           </br>
           Tiện ích khác: ${data.tien_ich_khac}
@@ -380,57 +383,6 @@ document.querySelector(".bathbonus").addEventListener("click",function(){
   $("#bathroom").text(x);
 })
 
-document.querySelector("#btnSave").addEventListener("click",function(){
-  url = window.location.pathname;
-  data = {}
-  
-  price = "None"
-  roomType ="None"
-  if ($("select.Price").children("option:selected").val() != null)
-    price = $("select.Price").children("option:selected").val()
-
-  if ($("select.roomType").children("option:selected").val() != null)
-      roomType = parseInt($("select.roomType").children("option:selected").attr("id"))
-  phong_tam = parseInt($("#bathroom").text());
-  phong_bep = parseInt($("#bedroom").text());
-  dieu_hoa = false;
-  if (document.querySelector(".dieu_hoa").checked){
-    dieu_hoa = true;
-  }
-  nong_lanh = false;
-  if (document.querySelector(".nonglanh").checked){
-    nong_lanh = true;
-  }
-  chung_chu = false;
-  if (document.querySelector(".host").checked){
-    chung_chu = true;
-  }
-  locations = $("p.location-holder").text()
-  address = locations.split(",");
-  city_code = address[0];
-  district_id = "None"
-  street_id = "None"
-  if (address[1] != "")
-    district_id = address[1]
-  if (address[2] != "")
-    street_id = address[2];
-
- 
-  data["gia"] = price;
-  data["roomType"] = roomType;
-  data["phong_tam"] = phong_tam;
-  data["phong_bep"] = phong_bep;
-  data["dieu_hoa"] = dieu_hoa;
-  data["nong_lanh"] = nong_lanh;
-  data["chung_chu"] = chung_chu;
-  data["city_code"] = city_code
-  data["district_id"] = district_id
-  data["street_id"] = street_id
-
-  postData(url,data).then(
-    response=>console.log(response)
-  )
-})
 
 $(".js-expand").click(function() {
       $(".js-hiddenform").slideToggle();
