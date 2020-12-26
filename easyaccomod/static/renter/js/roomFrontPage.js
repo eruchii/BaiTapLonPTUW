@@ -7,26 +7,27 @@ $(document).ready(function()
 function loadDistrisct(){
     data = new Object()
     data.city = document.querySelector("#city").value
-    console.log(data)
+    
     postData("/renter/api/getDistrict",data).
     then( data =>
     {   
-        console.log(data)
         clearOldElement('#district')
         clearOldElement('#street')
-        data.slice(1).forEach(addToDistrictDOM)
+        data.forEach(addToDistrictDOM)
     }).then(loadStreet)
 }
 // Search button event handle
 function loadStreet(){
     data = new Object()
-    data.district = document.querySelector("#district").value
     data.city = document.querySelector("#city").value
+    data.district = document.querySelector("#district").value
+    if (document.querySelector("#district").value == "Tất cả các quận")
+        data.district = "None"
     postData("/renter/api/getStreet",data).
     then( function(data)
         {   
             clearOldElement('#street')
-            data.slice(1).forEach(addToStreetDOM)
+            data.forEach(addToStreetDOM)
         })
 }
 var btn = document.querySelector(".search-button")

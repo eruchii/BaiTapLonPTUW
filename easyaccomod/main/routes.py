@@ -15,10 +15,13 @@ def home():
       city = request.form.getlist('city')
       district = request.form.getlist('district')
       street = request.form.getlist('street')
-      
+      district_id = None
+      street_id = None
       city_code = City.query.filter_by(name = city[0]).first().code
-      district_id = District.query.filter_by(name = district[0]).first().id
-      street_id = Ward.query.filter_by(name = street[0]).first().id
+      if (district[0] !='Tất cả các quận' ):
+        district_id = District.query.filter_by(name = district[0]).first().id
+      if (street[0] != 'Tất cả các phường'):
+        street_id = Ward.query.filter_by(name = street[0]).first().id
       # Pass it to search()
       return redirect(url_for('renter.search',city=city_code,district=district_id,street=street_id))
     return render_template("/renterFrontPage.html",form = form)

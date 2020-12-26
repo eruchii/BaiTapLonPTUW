@@ -67,6 +67,17 @@ class Room(db.Model):
 		street = db.session.query(Ward).filter_by(id = self.ward_id).first().name
 
 		return  "{}, {}, {}".format(street,district,city)
+	def getRoomType(self):
+		roomType = db.session.query(RoomType).filter_by(id = self.room_type_id).first().name
+		return roomType
+
+	def getBathRoomType(self):
+		bathroomType = db.session.query(BathroomType).filter_by(id =self.loai_phong_tam).first().name
+		return bathroomType
+
+	def getKitchenRoomType(self):
+		kitchenRoomType = db.session.query(KitchenType).filter_by(id =self.loai_phong_bep).first().name
+		return kitchenRoomType
 
 	def __repr__(self):
 		return "<Room(id='{}', user_id='{}'>".format(self.id, self.user_id)

@@ -19,10 +19,13 @@ def frontPageDisplay():
       city = request.form.getlist('city')
       district = request.form.getlist('district')
       street = request.form.getlist('street')
-      
+      district_id = None
+      street_id = None
       city_code = City.query.filter_by(name = city[0]).first().code
-      district_id = District.query.filter_by(name = district[0]).first().id
-      street_id = Ward.query.filter_by(name = street[0]).first().id
+      if (district[0] !='Tất cả các quận' ):
+        district_id = District.query.filter_by(name = district[0]).first().id
+      if (street[0] != 'Tất cả các phường'):
+        street_id = Ward.query.filter_by(name = street[0]).first().id
       # Pass it to search()
       return redirect(url_for('renter.search',city=city_code,district=district_id,street=street_id))
     return render_template("/renterFrontPage.html",form = form)
@@ -50,13 +53,17 @@ def search(city,district=None,street=None,rooms=None):
     try:
       # Take Data from POST from
       
-      rooms = getRoomByDetail(request.form)
-      rooms = rooms.paginate(page=page,per_page=5)
+      
 
       return render_template("renter/renterSearchPage.html",rooms = rooms, dateTime = currentDateTime,city = city,district=district,street=street)
     except:
       return jsonify({"status":"Error","msg":"Problem searching"})
-  
+  try:
+    
+    rooms = getRoomByDetail(request.args,city,district,street)
+    rooms = rooms.paginate(page=page,per_page=5)
+  except:
+    pass
   return render_template("renter/renterSearchPage.html",rooms = rooms, dateTime = currentDateTime,city = city,district=district,street=street)
 
 
@@ -132,7 +139,10 @@ def getDistrictAPI():
 def getStreetAPI():
   req = request.get_json()
   # request handler
-  return getStreet(req['district'],req['city'])
+  if (req['district'] !="None"):
+    return getStreet(req['city'],req['district'])
+  else:
+    return getStreet(req['city'])
 
 
 @renter_bp.route("/api/getRoomById",methods=["POST","GET"])
@@ -147,11 +157,15 @@ def getRoom():
     res["status"] = status
     res["msg"] = resp
     return jsonify(res)
-  attrs = ["image","info", "room_type_id", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
+  attrs = ["image","dien_tich","info", "room_number", "price", "phong_tam", "phong_bep", "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", "tien_ich_khac"]
   res["data"]["city"] = resp.city_code
   res["data"]["district"] = resp.ward_id
   res["data"]["ward"] = resp.ward_id
   res["data"]["location"] = resp.getLocation()
+  res["data"]["room_type"] = resp.getRoomType()
+  res["data"]["bath_room_type"] = resp.getBathRoomType()
+  res["data"]["kitchen_room_type"] = resp.getKitchenRoomType()
+  print(resp.getBathRoomType())
   for attr in attrs:
     res["data"][attr] = getattr(resp, attr)
     res["status"] = "success"
@@ -168,11 +182,14 @@ def getPost():
   try:
     status,resp = getPostByRoomID(data["room_id"])
     if (status == "success"):
-      res["status"] = "Succesfully Added"
+      res["status"] = "Succesfully Get Post"
       res["msg"] = "thanh cong"
       res["data"]["like"] = resp.getLike()
       res["data"]["comment"] = resp.getAllComment()
       res["data"]["id"] = resp.id
+      res["data"]["title"] = resp.title
+      res["data"]["content"] = resp.content
+      res["data"]["views"] = resp.count_view
     else:
       res["status"] = "Fail"
     return jsonify(res)

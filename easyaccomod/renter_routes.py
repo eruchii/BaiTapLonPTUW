@@ -29,19 +29,23 @@ def getDistrict(cityName):
     cityCode = City.query.filter_by(name = cityName).first_or_404().code
     district = District.query.filter_by(city_code = cityCode).all()
     
-    ret =['']
+    ret =['Tất cả các quận']
     for _obj in district:
         ret.append(_obj.name)
 
     return make_response(jsonify(ret),200)
 
-def getStreet(districtName,cityName):
+def getStreet(cityName,districtName = None):
     cityCode = City.query.filter_by(name=cityName).first_or_404().code
-    district_id = District.query.filter_by(city_code=cityCode)\
-        .filter_by(name=districtName).first_or_404().id
-    streetList = Ward.query.filter_by(district_id = district_id).all()
+    print(districtName is None)
+    if districtName is not None:
+        district_id = District.query.filter_by(city_code=cityCode)\
+            .filter_by(name=districtName).first_or_404().id
+        streetList = Ward.query.filter_by(district_id = district_id).all()
+    else :
+        streetList = Ward.query.filter_by(city_code=cityCode).all()
     
-    ret = ['']
+    ret = ['Tất cả các phường']
     for _obj in streetList:
         ret.append(_obj.name)
         
@@ -84,7 +88,7 @@ def getRoomByLocation(city,district=None,street=None):
 #  "gia_dien", "gia_nuoc", "chung_chu", "nong_lanh", "dieu_hoa", "ban_cong", 
 #  "tien_ich_khac"]
 
-def getRoomByDetail(obj):
+def getRoomByDetail(obj,city,district=None,street=None):
     filter_value = {}
     
     filters = ''
@@ -98,13 +102,20 @@ def getRoomByDetail(obj):
     # Query
     
     
-    res =  Room.query
-    x = filter_value["Price"]
-    fPos = x.index('-')
-    lower =  int(x[0:fPos])
-    
-    sPost = x.rindex(' ')
-    upper = int(x[fPos+1:sPost])
+    res =  Room.query.filter(Room.city_code == city.code)
+    if district is not None:
+        res =  Room.query.filter(Room.district_id == district.id)
+    if street is not None:
+        res =  Room.query.filter(Room.ward_id == street.id)
+    try:
+        x = filter_value["Price"]
+        fPos = x.index('-')
+        lower =  int(x[0:fPos])
+        
+        sPost = x.rindex(' ')
+        upper = int(x[fPos+1:sPost])
+    except:
+        pass
     
     
 # Price ,area,roomType,,kitchenRoomType,numberOfBedRoom,bathRoomType,numberOfBathRoom,dieu_hoa,nong_lanh,host
@@ -136,4 +147,4 @@ def getRoomByDetail(obj):
         filter_value["roomType"] = int(filter_value["roomType"])
         res = res.filter(Room.room_type_id == filter_value["roomType"])
 
-    return res.filter_by(Room.post.any())
+    return res.filter(Room.post.any())

@@ -174,9 +174,14 @@ async function postData(url='',data){
 
 aElement = document.querySelectorAll(".pagi")
 for (let i = 0; i < aElement.length;i++){
-  if (aElement[i].href.includes('page') == false){
-  hrefLink = window.location.href + "?page="+aElement[i].id
-  aElement[i].setAttribute('href',hrefLink)
+  if (window.location.href.includes('page') == false){
+    if (window.location.href.includes('?')){
+      hrefLink = window.location.href + "&page="+aElement[i].id
+    }
+    else {
+      hrefLink = window.location.href + "?page="+aElement[i].id
+    }
+    aElement[i].setAttribute('href',hrefLink)
   }
   else{
     hrefLink = window.location.href;
@@ -214,6 +219,7 @@ $(roomCard).on('click',function(){
   postData('/renter/api/getRoomById',data).
   then(response => {
     room = response.data
+    
     // ban_cong: true
     // chung_chu: false
     // city: "HN"
@@ -234,7 +240,8 @@ $(roomCard).on('click',function(){
     loadRoomDetail(room)
   }).then( 
     postData('/renter/api/getPostByRoomID',data).then(
-      response => loadComment(response)
+      response => { 
+        loadComment(response)}
     )
   )
 })
@@ -260,12 +267,15 @@ function loadComment(response){
     x.append(comment)
   }
   user_id = $(".user_comment").attr("id")
-
+  var title = `<div class="detail-content"><h2>${response.data["title"]}</h2><h6>Số lượt xem: ${response.data["views"]+1} - Số lượt thích: ${response.data["like"]}</h6>
+  <p>${response.data["content"]}</p></div>
+  `
+  $(title).prependTo($(".detail-search"))
   testCheckLike(user_id,response.data["id"])
 }
 
 function loadRoomDetail(data){
-
+  $('.detail-search .detail-content').remove()
   $('.detail-search .room-info').remove()
   $('.detail-search .room-card').remove()
   if (data.ban_cong)
@@ -299,11 +309,12 @@ function loadRoomDetail(data){
     let roomInfo = 
     `<div class="room-info">
         
-          <h3>Vị trí : ${data.location}.</h3>
+          <b>Vị trí : ${data.location}.</b>
           <p class="room-detail"></br>
           Giá cả : ${data.price}VND Giá thuê - ${data.gia_dien}VND Giá / số nước - ${data.gia_nuoc}VND Giá / số điện
           </br>       
-          Cơ sở vật chất: Loại phòng: ${data.roomType} -  ${data.phong_tam} phòng tắm ${data.loai_phong_tam}- ${data.phong_bep} phòng bếp ${data.loai_phong_bep}
+          Cơ sở vật chất: Diện tích: ${data.dien_tich}m2</br>  Loại phòng: ${data.room_type} -  ${data.phong_tam} phòng tắm - ${data.bath_room_type}- ${data.phong_bep} phòng bếp - ${data.kitchen_room_type}
+          </br>
           ${data.ban_cong} ban công - ${data.chung_chu} Chung chủ - ${data.dieu_hoa} điều hòa - ${data.nong_lanh} bình nóng lạnh
           </br>
           Tiện ích khác: ${data.tien_ich_khac}
@@ -327,9 +338,8 @@ $("#submit_comment").click(function(){
     data["content"] = document.querySelector('#user_comment').value
     data["user_id"] = document.querySelector('.user_comment').id
     data["post_id"] = $(".post_comment").attr("id")
-    console.log($(".post_comment").attr("id"))
     postData("/renter/api/Comment",data)
-    window.alert("Bình luận đã được ghi nhận ! Đang chờ kiểm duyệt")
+    $('div.alert.alert-warning').removeClass("no-display")
     document.querySelector('#user_comment').value = ""
 })
 
@@ -387,3 +397,14 @@ document.querySelector(".bathbonus").addEventListener("click",function(){
 $(".js-expand").click(function() {
       $(".js-hiddenform").slideToggle();
 });
+
+
+
+$("button#comment_span").on('click',function(){
+  $('div.alert.alert-warning').addClass("no-display")
+})
+
+function formatPrice(price){
+  prince = price.toString()
+  console.log(price)
+}

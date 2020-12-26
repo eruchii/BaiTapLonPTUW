@@ -78,16 +78,20 @@ def getRoomById(room_id):
 
 def getPostByRoomID(room_id):
     try:
+        
         post = Post.query.filter_by(room_id = room_id).order_by(Post.date_out.desc()).first()
+        
         if post == None:
             return ("error", "khong ton tai phong")
         else:
+            addView(post.id)
             return ("success",post)
     except:
         return ('error','co loi xay ra')
 
 def checkLikeByUser(user_id,post_id):
     try:
+        
         liked = Like.query.filter_by(user_id = user_id).filter_by(post_id=post_id).first()
         if liked is None:
             return ("False")
@@ -95,3 +99,13 @@ def checkLikeByUser(user_id,post_id):
             return ("True")
     except:
         return ('error','co loi xay ra')
+
+def addView(post_id):
+    try:
+        print('afaf')
+        post = Post.query.filter_by(id = post_id).first()
+        post.count_view = post.count_view + 1
+        db.session.commit()
+    except:
+        pass
+    

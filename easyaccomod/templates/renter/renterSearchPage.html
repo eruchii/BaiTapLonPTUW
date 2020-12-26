@@ -58,7 +58,7 @@
             <h3>Chỗ ở đẹp tại {%if street%}{{street.name}},{%endif%} {%if district%}{{district.name}},{%endif%} {{city.name}}</h3>
             <br>
             <div class="filter-container">
-              <form action="#" id="submit_form" class="filter" method="POST"> 
+              <form action="" id="submit_form" class="filter" method="GET"> 
                 <div >
                 <span style="display: block;">Giá </span>
                 <select class="Price" name="Price" id="Price">
@@ -107,7 +107,7 @@
                 <p>Phòng Bếp</p>
               
                 <p>Loại Phòng Bếp</p>
-                <select name="kitchenRoomType" style="height:30px;width:10rem;position: absolute; top:35px;right: 10px;" id="">
+                <select name="kitchenRoomType" id="kitchenRoomType" style="height:30px;width:10rem;position: absolute; top:35px;right: 10px;" id="">
                   <option value="">Tất cả loại phòng bếp</option>
                   <option value="1">Khu bếp riêng</option>
                   <option value="2">Khu bếp chung</option>
@@ -122,13 +122,13 @@
                 <p>Phòng Tắm</p>
                 
                 <p>Loại Phòng Tắm</p>
-                <select name="bathRoomType" style="height:30px;width:10rem;position: absolute; top:35px;right: 10px;" id="">
+                <select name="bathRoomType" id="bathRoomType"style="height:30px;width:10rem;position: absolute; top:35px;right: 10px;" id="">
                   <option value="">Tất cả loại phòng tắm</option>
                   <option value="1">Khép kín</option>
                   <option value="2">Chung</option>
                 </select>
                 <div >
-                  <input name="numberOfBathRoom"  placeholder="0" min="0" style="height:30px;width:10rem;position: absolute; top:0px;right: 10px;" type="number" id="bedroom"></input>
+                  <input name="numberOfBathRoom"  placeholder="0" min="0" style="height:30px;width:10rem;position: absolute; top:0px;right: 10px;" type="number" id="bathroom"></input>
                 </div>
                 
               </div>
@@ -182,6 +182,14 @@
           
           {%if current_user.is_authenticated%}
           <div class="user_comment no-display" id="{{current_user.id}}">
+            <div class="alert alert-warning alert-dismissible fade show no-display" role="alert">
+              <strong> Đã ghi nhận phản hồi ! </strong>Đang chờ xét duyệt của admin.
+              <button type="button" id="comment_span" class="btn-close" style="position: relative; display:flex; align-items: center; justify-content: center; width: 2rem;height: 2rem;" data-bs-dismiss="alert" aria-label="Close">
+                <span >
+                  <i class="far fa-window-close"></i>
+                </span>
+              </button>
+            </div>
             <div class='rating-stars'>
               <span>Bạn yêu thích căn phòng này ?</span>
               <ul id='stars'>
@@ -189,7 +197,7 @@
                   <i class="far fa-heart"></i>
                 </li>
               </ul>
-              <input id ="user_comment" type="text" placeholder="Leave your comment">
+              <input id ="user_comment" type="text" required placeholder="Leave your comment">
               <input type="submit" id="submit_comment">
             </div>
             <div class="post_comment">
@@ -208,7 +216,7 @@
           <div class="dialog-body">
               <div class="m-row m-flex">
                   <div class="m-col el-avatar-customer m-flex-1">
-                    <form action="{{ url_for('renter.search', city=city.code, district=district.id, street=street.id)}}" id="submit_form" method="POST">
+                    <form action="{{ url_for('renter.search', city=city.code, district=district.id, street=street.id)}}" id="submit_faoijsfdoi" method="GET">
                       <div class="room_and_bed">
                         <h5>Phòng Tắm và Phòng Bếp</h5>
                         <div class="bedroom" style="position: relative;">
