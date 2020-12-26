@@ -20,6 +20,29 @@
             <a style="text-decoration: none; color:#66CDAA" href="{{ url_for('posts.view_room', room_id=post.room.id) }}">Information about Room</a>
             <p class="article-content">Số lượt xem: {{ post.count_view }}</p>
             <p class="article-content">{{ post.content }}</p>
+            <hr>
+            <div id="info-room">
+                <p class="article-content"> Thành phố {{ post.room.city.name }} -- Quận {{ post.room.district.name }} --  Khu vực {{ post.room.ward.name }}</p>
+                <p class="article-content">Thông tin phòng: {{ post.room.info }} -- Giá: {{ post.room.price }} (VNĐ)</p>
+                <p class="article-content">Diện tích: {{ post.room.dien_tich }} m<sup>2</sup> </p>
+                <p class="article-content">Kiểu phòng: {{ post.room.roomtype.name }} -- Số phòng: {{ post.room.room_number }} (phòng)</p>
+                <p class="article-content">Số phòng tắm: {{ post.room.phong_tam }} (phòng) -- Loại phòng tắm: {{ post.room.bathroomtype.name }}</p>
+                <p class="article-content">Số phòng bếp: {{ post.room.phong_bep }} (phòng) -- Loại phòng bếp: {{ post.room.kitchentype.name }}</p>
+                <p class="article-content"> Giá điện: {{ post.room.gia_dien }} VNĐ/số -- Giá nước: {{ post.room.gia_nuoc }} VNĐ/khối</p>
+                <span id="room_image" style="display: none;" >{{ post.room.image }}</span> 
+                <div id="image"></div>
+                {% if post.room.tien_ich_khac %}
+                    <p>Tiện ích khác: {{ post.room.tien_ich_khac }}</p>
+                {% endif %}
+                <div class="pt-2">
+                    <span class="mr-2"> Chung chủ: {% if post.room.chung_chu %} Có {% else %} Không {% endif %} </span>
+                    <span class="mr-2"> Nóng lạnh: {% if post.room.nong_lanh %} Có {% else %} Không {% endif %} </span> 
+                    <span class="mr-2"> Điều hòa: {% if post.room.dieu_hoa %} Có {% else %} Không {% endif %} </span>
+                    <span> Ban công: {% if post.room.ban_cong %} Có {% else %} Không {% endif %} </span>
+                </div>
+                <span><em>Status: {{ post.room.status }}</em> {% if post.room.status %} <u>(Room đã được thuê)</u> {% else %} <u>(Room chưa được thuê)</u> {% endif %} </span>
+            </div>
+            <hr>
             <p class="article-content"> <u>Date created</u> : {{ post.date_created.strftime('%Y-%m-%d') }} and <u>Date posted</u> : {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
             <p class="article-content"> <u>Out of date &lt;may be&gt;</u> : {{ post.date_out.strftime('%Y-%m-%d') }}</p>
             <p class="article-content">{{ post.author.email }}</p>
@@ -66,3 +89,8 @@
 {% block task %}
     <br>
 {% endblock task %}
+
+{% block script %}
+    <script src="{{ url_for('static', filename='adminscripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='admin_loadimage.js') }}"></script>
+{% endblock %}

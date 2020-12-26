@@ -98,9 +98,9 @@ wards = json.load(open("wards.json","r", encoding="utf-8"))
 
 # fake_add_user()
 # fake_add_renter()
-# for i in range(1, 30):
-#     fake_add_comment()
 # add_price_log()
 # add_dummy_room()
 # fake_add_data_price_log()
 # add_dummy_post()
+# for i in range(1, 30):
+#     fake_add_comment()

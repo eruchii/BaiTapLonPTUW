@@ -432,10 +432,13 @@ def add_dummy_room():
             random_owner = random.randint(0, len(owners)-1)
             random_roomtype = random.randint(1,4)
             random_price = random.randint(10,99) * 100000
+            random_dien_tich = random.randint(18,85)
+            random_loai_phong_tam = random.randint(1,2)
+            random_loai_phong_bep = random.randint(1,3)
             room_dummy = Room(user_id=owners[random_owner].user_id, city_code=wards[random_ward].city_code, 
                 district_id=wards[random_ward].district_id, ward_id=wards[random_ward].id, info=f"Create room info",
-                room_type_id=random_roomtype, room_number=random.randint(2,6), price=random_price, chung_chu=random.randint(0,1), phong_tam=random.randint(1,3),
-                nong_lanh=random.randint(0,1), phong_bep=random.randint(1,2), dieu_hoa=random.randint(0,1), ban_cong=random.randint(0,1), gia_dien=random.randint(2000,4500), gia_nuoc=random.randint(7000,25000),
+                room_type_id=random_roomtype, room_number=random.randint(2,6), price=random_price, dien_tich=random_dien_tich, chung_chu=random.randint(0,1), phong_tam=random.randint(1,3), loai_phong_tam=random_loai_phong_tam,
+                nong_lanh=random.randint(0,1), phong_bep=random.randint(1,2), loai_phong_bep=random_loai_phong_bep, dieu_hoa=random.randint(0,1), ban_cong=random.randint(0,1), gia_dien=random.randint(2000,4500), gia_nuoc=random.randint(7000,25000),
                 image=f"['bancong{i}.jpeg', 'bedroom{i}.jpeg', 'kitchen{i}.jpeg', 'livingroom{i}.jpeg']", status=0)
             db.session.add(room_dummy)
             db.session.commit()
