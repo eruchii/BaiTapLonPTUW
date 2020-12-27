@@ -377,7 +377,7 @@ def fake_add_user():
         addUserByAdmin(usn,pw,email)
 
 def fake_add_renter():
-    for i in range(1,50):
+    for i in range(1,150):
         usn = "fakerenter" + str(i)
         email = "fakerenter" + str(i) + ".fake@gmail.com"
         pw = "123456"
@@ -400,9 +400,11 @@ def fake_add_renter():
 
 def fake_add_comment():
     posts = Post.query.all()
-    l = len(posts)
+    users = User.query.all()
     for i in range(1,50):
-        comment = Comment(post_id=random.randint(1,l), user_id=(i+60), comment_content=f"comment content {i}", status=False)
+        random_post = random.randint(1, len(posts)-1)
+        random_user = random.randint(1, len(users)-1)
+        comment = Comment(post_id=posts[random_post].id, user_id=users[random_user].id, comment_content=f"comment content {i}", status=True)
         db.session.add(comment)
     db.session.commit()
 
@@ -449,12 +451,24 @@ def add_dummy_post():
     for i in range(1,500):
         random_room = random.randint(0, len(rooms)-1)
         random_user = random.randint(0, len(owners)-1)
-        title = f"Đăng bài cho thuê nhà {random.randint(1,1000)}"
-        content = f"""Nhà có 8 Phòng đã cho thuê hết 7 cơ hội cho người có Duyên
-Còn duy nhất 1 phòng cho thuê nốt chỉ 2,8 tr/tháng ở Phố Hàng Mành-Hà Nội.
-Phòng Đẹp, khép kín, rộng 22m2, đầy đủ giường tủ, chăn đệm mới tinh chỉ việc dọn về ở.
-Còn phòng cuối cùng nên giảm giá cho những ai may mắn, kinh tế eo hẹp.
-Giờ giấc thoải mái , không chung chủ, An ninh đảm bảo. {random.randint(1,1000)}"""
+        title = f"Đăng bài cho thuê nhà {random.randint(1,10000)} tại {rooms[random_room].city.name} - {rooms[random_room].district.name} - {rooms[random_room].ward.name}"
+        content = f""" *. Vị trí tiện ích:
+Tòa nhà nằm gần mặt đường Nguyễn văn Huyên kéo dài, cách đường Cầu giấy 30m,được thiết kế thông minh, tiện lợi, đầy đủ tiện ích đi kèm, gồm tầng 1 với DT: {rooms[random_room].dien_tich} để xe rộng rãi, giao thông đi lại thuận tiện.
+- Chỉ 3 phút để tiếp cận hệ thống ngân hàng, siêu thị, trung tâm thương mại, trường học quốc tế từ mầm non đến trung học, đại học quanh khu vực cầu giấy...
+*. Thiết kế phòng với phong cách hiện đại, tiện dụng.
+- Đầy đủ tiện nghi: thang máy, cửa khoá vân tay, máy giặt, chỗ để xe, camera an ninh, sảnh lễ tân,...
+- 1 phòng ngủ riêng biệt: Điều hòa 02 chiều, giường, tủ quần áo, sàn gỗ...
+- 1 Phòng khách được thiết kế đẹp có thể làm phòng ngủ nếu nhà đông người.
+- Khu bếp có tủ bếp trên và dưới, chậu rửa bát hiện đại nấu nướng không sợ mùi vào phòng ngủ và khách.
+- WC khép kín hiện đại, bình nóng lạnh, thiết bị vệ sinh Inax.
+- Tòa nhà được lắp camera an ninh, đảm bảo, bảo vệ 24/24h.
+- Gửi xe miễn phí, tối đa mỗi phòng 2 xe máy, truyền hình cáp, internet cáp quang, camera các tầng, có thang máy tốc độ cao...
+- Căn hộ có cửa sổ thoáng mát, chỉ việc xách va li đến ở.
+*. Giá cả:
+- Giá phòng từ :{rooms[random_room].price} VND/tháng.
+- Điện tính theo giá hộ gia đình, {rooms[random_room].gia_dien} đ/ kw.
+- Rất Phù hợp với người đi làm, hộ gia đình trẻ, công tác, du lịch, học tập,...
+Hãy tiết kiệm thời gian quý báu của chính các bạn bằng cách nhấc máy lên và gọi ngay tôi."""
         room_id = rooms[random_room].id
         pending = True
         user_id = owners[random_user].user_id

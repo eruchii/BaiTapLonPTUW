@@ -96,7 +96,6 @@ wards = json.load(open("wards.json","r", encoding="utf-8"))
 
 # db.session.commit()
 
-# fake_add_user()
 # fake_add_renter()
 # add_price_log()
 # add_dummy_room()

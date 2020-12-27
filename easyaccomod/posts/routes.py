@@ -26,7 +26,7 @@ def new_accept_post():
         if current_user.role_id == 1 and current_user.status_confirm == 1:
             post = Post.query.get_or_404(data["post_id"])
             post.pending = True # True -> accept post
-            sendNotification(receiver=post.author.id, title="Accept Post", msg=f"The post with id {post.id} and author : {post.author.username} has been accepted by {current_user.username}")
+            sendNotification(receiver=post.author.id, title="Accept Post", msg=f"Bài viết với id: {post.id} của tác giả: {post.author.username} đã được duyệt bởi admin: {current_user.username}. Bài viết có hạn dự kiến đến {post.date_out.strftime('%Y-%m-%d')}. Trân trọng!")
             db.session.commit()
             resp["status"] = "success"
             resp["msg"] = "Accepted Post - post_id = {}".format(data["post_id"])
@@ -48,7 +48,7 @@ def new_reject_post():
         if current_user.role_id == 1 and current_user.status_confirm == 1:
             post = Post.query.get_or_404(data["post_id"])
             post.pending = False
-            sendNotification(receiver=post.author.id, title="Reject Post", msg=f"The post with id {post.id} and author : {post.author.username} has been REJECTED by {current_user.username}")
+            sendNotification(receiver=post.author.id, title="Reject Post", msg=f"Bài viết với id: {post.id} của ông: {post.author.username} đã bị từ chối bởi admin: {current_user.username}")
             db.session.commit()
             resp["status"] = "success"
             resp["msg"] = f"Rejected Post - post_id = {data['post_id']}"
@@ -94,9 +94,19 @@ def new_post():
 def post():
     if current_user.role_id == 1:
         page = request.args.get('page', 1, type=int)
-        posts = Post.query.order_by(Post.date_created.desc()).paginate(page=page, per_page=10)
-        return render_template("posts/post.html", title="Manage Post", posts=posts)
+        posts = Post.query.order_by(Post.id.desc()).paginate(page=page, per_page=10)
+        return render_template("posts/post.html", title="Manage Post", posts=posts, page=page)
     else:
+        abort(403)
+    
+@posts.route("/post/unaccepted")
+@login_required
+def unaccepted_post():
+    if current_user.role_id == 1:
+        page = request.args.get('page', 1, type=int)
+        posts = Post.query.filter_by(pending=False).order_by(Post.id.desc()).paginate(page=page, per_page=10)
+        return render_template("posts/unaccepted_post.html", title="Unaccepted Post", posts=posts, page=page)
+    else :
         abort(403)
 
 @posts.route("/post/delete/<int:post_id>", methods=["POST"])

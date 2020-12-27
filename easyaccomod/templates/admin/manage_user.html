@@ -28,13 +28,13 @@
     <h1>Manage User Page</h1>
     <ul class="droplinemenu">
         <li>
-            <a href="{{ url_for('admin.manage_user', rolename='user') }}">User</a>
+            <a href="{{ url_for('admin.manage_user', rolename='user', sortby=sortby) }}">User</a>
         </li>
         <li>
-            <a href="{{ url_for('admin.manage_user', rolename='owner') }}">Owner</a>
+            <a href="{{ url_for('admin.manage_user', rolename='owner', sortby=sortby) }}">Owner</a>
         </li>
         <li>
-            <a href="{{ url_for('admin.manage_user', rolename='admin') }}">Admin</a>
+            <a href="{{ url_for('admin.manage_user', rolename='admin', sortby=sortby) }}">Admin</a>
         </li>
     </ul>
 
@@ -67,14 +67,26 @@
             </div>
         </article>
     {% endfor %}
+
+    <div class="mb-2">
+        <form action="{{ url_for('admin.manage_user') }}">
+            <input type="hidden" name="rolename" value="{{ rolename }}">
+            <input type="hidden" name="page" value="{{ page }}">
+            <select class="btn btn-sm mr-1" style="width: 150px; padding: 6px;" name="sortby" id="sortby">
+                <option class="btn-outline-info" value="asc">ID tăng dần</option>
+                <option class="btn-outline-success" value="desc">ID giảm dần</option>
+            </select>
+            <input type="submit" class="btn btn-sm btn-outline-info" value="Submit">
+        </form>
+    </div>
     
     {% for page_num in users.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=3 ) %}
         {% if rolename %}
             {% if page_num %}
                 {% if users.page == page_num %}
-                    <a class="btn btn-info mb-4" href="{{ url_for('admin.manage_user',rolename=rolename, page=page_num) }}">{{ page_num }}</a>
+                    <a class="btn btn-info mb-4" href="{{ url_for('admin.manage_user',rolename=rolename, page=page_num, sortby=sortby) }}">{{ page_num }}</a>
                 {% else %}
-                    <a class="btn btn-outline-info mb-4" href="{{ url_for('admin.manage_user',rolename=rolename, page=page_num) }}">{{ page_num }}</a>
+                    <a class="btn btn-outline-info mb-4" href="{{ url_for('admin.manage_user',rolename=rolename, page=page_num, sortby=sortby) }}">{{ page_num }}</a>
                 {% endif %}    
             {% else %}
                 ...

@@ -205,3 +205,21 @@ function sendRoomID(event) {
         window.open(str, "_self");
     }
 }
+
+function sortBy(self) {
+    var sortBy = self.value;
+    var hrefLocation = window.location.href;
+    if (hrefLocation.includes("?sortby") == false) {
+        var strURL = hrefLocation + "?sortby=" + sortBy;
+        console.log(strURL);
+        window.open(strURL, "_self")
+    } else {
+        var index = hrefLocation.indexOf("?sortby");
+        console.log(index);
+        var tmpURL = hrefLocation.slice(0,index);
+        console.log("tmpURL = ", tmpURL);
+        var strURL = tmpURL + "?sortby=" + sortBy;
+        window.open(strURL, "_self")
+    }
+    
+}

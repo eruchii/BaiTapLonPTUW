@@ -100,14 +100,23 @@ def manage_user():
     if current_user.role_id == 1 and current_user.status_confirm == 1:
         rolename = request.args.get('rolename', 'user', type=str)
         page = request.args.get('page', 1, type=int)
+        sortby = request.args.get('sortby', 'desc', type=str)
         users = []
-        if rolename == "user":
-            users = User.query.order_by(User.id.asc()).paginate(page=page, per_page=15)
-        elif rolename == "owner":
-            users = User.query.filter_by(role_id=3).order_by(User.id.asc()).paginate(page=page, per_page=15)
-        elif rolename == "admin":
-            users = User.query.filter_by(role_id=1).order_by(User.id.asc()).paginate(page=page, per_page=15)
-        return render_template("admin/manage_user.html", title="Manage User", users=users, rolename=rolename)
+        if sortby == "asc" :
+            if rolename == "user":
+                users = User.query.order_by(User.id.asc()).paginate(page=page, per_page=15)
+            elif rolename == "owner":
+                users = User.query.filter_by(role_id=3).order_by(User.id.asc()).paginate(page=page, per_page=15)
+            elif rolename == "admin":
+                users = User.query.filter_by(role_id=1).order_by(User.id.asc()).paginate(page=page, per_page=15)
+        elif sortby == "desc" :
+            if rolename == "user":
+                users = User.query.order_by(User.id.desc()).paginate(page=page, per_page=15)
+            elif rolename == "owner":
+                users = User.query.filter_by(role_id=3).order_by(User.id.desc()).paginate(page=page, per_page=15)
+            elif rolename == "admin":
+                users = User.query.filter_by(role_id=1).order_by(User.id.desc()).paginate(page=page, per_page=15)
+        return render_template("admin/manage_user.html", title="Manage User", users=users, rolename=rolename, page=page, sortby=sortby)
     else:
         abort(403)    
     
@@ -124,7 +133,7 @@ def new_accept_owner():
             own = User.query.filter_by(id=data["user_id"]).first()
             if own :
                 acceptOwner(data["user_id"])
-                sendNotification(receiver=own.id, title="Accept User", msg=f"Account with username {own.username} has been accepted by {current_user.username}!")
+                sendNotification(receiver=own.id, title="Accept User", msg=f"Tài khoản với username: {own.username} đã được duyệt bởi: {current_user.username}! Cám ơn bạn đã đồng hành cùng EasyAccomod Group!")
                 resp["status"] = "success"
                 resp["msg"] = f"Accept user with username: {own.username}, status: {own.confirms.name}"
                 resp["owner_status_confirm"] = own.confirms.name
@@ -148,7 +157,7 @@ def new_reject_owner():
             own_id = rejectUser(data["user_id"])
             if own_id != -1:
                 own = User.query.filter_by(id=own_id).first()
-                sendNotification(receiver=own.id, title="Reject User", msg=f"Account with username {own.username} has been REJECTED by {current_user.username}!")
+                sendNotification(receiver=own.id, title="Reject User", msg=f"Tài khoản với username {own.username} đã bị từ chối bởi admin: {current_user.username}! Vui lòng liên hệ admin để biết thêm chi tiết.")
                 resp["status"] = "success"
                 resp["msg"] = f"Reject user with username: {own.username}, status: {own.confirms.name}"
                 resp["owner_status_confirm"] = own.confirms.name

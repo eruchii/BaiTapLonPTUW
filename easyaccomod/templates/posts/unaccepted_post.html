@@ -24,14 +24,14 @@
 {% endblock %}
 
 {% block info %}
-    <h1>Manage Post</h1>
+    <h1>Unaccepted Post</h1>
 
     <ul class="droplinemenu">
         <li>
             <a href="{{ url_for('posts.post') }}">All Posts</a>
         </li>
         <li>
-            <a href="{{ url_for('posts.unaccepted_post') }}">Unaccepted Post</a>
+            <a href="{{ url_for('posts.unaccepted_post') }}">Unaccepted Posts</a>
         </li>
     </ul>
 
@@ -71,17 +71,9 @@
     {% for page_num in posts.iter_pages(left_edge=2, right_edge=2, left_current=2, right_current=3 ) %}
         {% if page_num %}
             {% if posts.page == page_num %}
-                {% if title == "Manage Post" %}
-                    <a class="btn btn-info mb-4" href="{{ url_for('posts.post', page=page_num) }}">{{ page_num }}</a>
-                {% else %}
-                    <a class="btn btn-info mb-4" href="{{ url_for('posts.manage_my_post', page=page_num) }}">{{ page_num }}</a>
-                {% endif %}
+                <a class="btn btn-info mb-4" href="{{ url_for('posts.unaccepted_post', page=page_num) }}">{{ page_num }}</a>
             {% else %}
-                {% if title == "Manage Post" %}
-                    <a class="btn btn-outline-info mb-4" href="{{ url_for('posts.post', page=page_num) }}">{{ page_num }}</a>
-                {% else %}
-                    <a class="btn btn-outline-info mb-4" href="{{ url_for('posts.manage_my_post', page=page_num) }}">{{ page_num }}</a>
-                {% endif %}
+                <a class="btn btn-outline-info mb-4" href="{{ url_for('posts.unaccepted_post', page=page_num) }}">{{ page_num }}</a>
             {% endif %}    
         {% else %}
             ...

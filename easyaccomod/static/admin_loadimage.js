@@ -35,5 +35,7 @@ function loadImage(check, room_image) {
 
 var arr = document.querySelectorAll("article.media.content-section");
 for (let i = 0; i < arr.length; i++) {
-    loadImage(arr[i], arr[i].querySelector("#room_image").innerHTML);
+    if (arr[i].querySelector("#room_image")) {
+        loadImage(arr[i], arr[i].querySelector("#room_image").innerHTML);
+    }
 }
