@@ -194,13 +194,42 @@
                 </span>
               </button>
             </div>
-            <div class='rating-stars'>
-              <span>Bạn yêu thích căn phòng này ?</span>
-              <ul id='stars'>
-                <li class='star' title='Poor' data-value='1'>
-                  <i class="far fa-heart"></i>
-                </li>
-              </ul>
+            <div class='rating-likes'>
+              <div style="display: flex;">
+                <div style="text-align: center;">
+                  <span>Bạn yêu thích căn phòng này ?</span>
+                  <ul id='likes'>
+                    <li class='likes' title='Like' data-value='1'>
+                    <i class="far fa-heart"></i>
+                    </li>
+                  </ul>
+              </div>
+                <div class="" style="width : 3rem;"></div>
+                <div style="text-align: center;">
+                  <p>Phòng có vấn đề ? - Báo cáo với admin!</p>
+                  <button type="button" id="btnAdd">Report</button>
+                </div>
+              </div>
+              <div class='rating-stars'>
+                <span>Đánh giá căn phòng:</span>
+                <ul id='stars'>
+                  <li class='star' title='Poor' data-value='1'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='Fair' data-value='2'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='Good' data-value='3'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='Excellent' data-value='4'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                  <li class='star' title='WOW!!!' data-value='5'>
+                    <i class='fa fa-star fa-fw'></i>
+                  </li>
+                </ul>
+              </div>
               <input id ="user_comment" type="text" required placeholder="Leave your comment">
               <input type="submit" id="submit_comment">
             </div>
@@ -219,56 +248,76 @@
       <div class="dialog-content">
           <div class="dialog-body">
               <div class="m-row m-flex">
+                <div class="alert alert-warning alert-dismissible fade show no-display" role="alert">
+                  <strong> Đã ghi nhận phản hồi ! </strong>Đang chờ xét duyệt của admin.
+                  <button type="button" id="comment_span" class="btn-close" style="position: relative; display:flex; align-items: center; justify-content: center; width: 2rem;height: 2rem;" data-bs-dismiss="alert" aria-label="Close">
+                    <span >
+                      <i class="far fa-window-close"></i>
+                    </span>
+                  </button>
+                </div>
                   <div class="m-col el-avatar-customer m-flex-1">
-                    <form action="{{ url_for('renter.search', city=city.code, district=district.id, street=street.id)}}" id="submit_faoijsfdoi" method="GET">
-                      <div class="room_and_bed">
-                        <h5>Phòng Tắm và Phòng Bếp</h5>
-                        <div class="bedroom" style="position: relative;">
-                          <p>Phòng Bếp</p>
-                          <button type = "button" class="bedminus" style="height:30px;width:30px;position: absolute; top:0px;right: 60px;">
-                            <span>-</span>
-                          </button>
-                          <div style="display:flex; justify-content: center; align-items: center ;height:30px;width:30px;position: absolute; top:0px;right: 38px;">
-                            <span id="bedroom">0</span>
-                          </div>
-                          <button type = "button" class="bedbonus" style="height:30px;width:30px;position: absolute; top:0px;right: 10px;">
-                           <span>+</span>
-                          </button>
-                        </div>
-                        <div class="bathroom" style="position: relative;">
-                          <p>Phòng Tắm</p>
-                          <button class="bathminus"type = "button" style="height:30px;width:30px;position: absolute; top:0px;right: 60px;">
-                            <span>-</span>
-                          </button>
-                          <div style="display:flex; justify-content: center; align-items: center ;height:30px;width:30px;position: absolute; top:0px;right: 38px;">
-                            <span id="bathroom">0</span>
-                          </div>
-                          <button class="bathbonus" type = "button" style="height:30px;width:30px;position: absolute; top:0px;right: 10px;">
-                            <span>+</span>
-                          </button>
-                        </div>
-                      </div>
-                      <div class="Facilities">
-                        <h5>Cơ sở vật chất</h5>
+            
+                      <h2>Bạn muốn report về vấn đề gì ?</h2>  
+                      <div class="Report Field">
+                        <h5>Nội dung report:</h5>
+                      </br>
                         <div  style="position: relative; display: flex;">
-                          <p>Điều hòa</p>
-                          <input class="dieu_hoa" type="checkbox" style="position: absolute; top:0px ;right: 10px;">
+                          <p>Cơ sở vật chất không giống ảnh chụp</p>
+                          <input class="fake_faci" type="checkbox" style="position: absolute; top:0px ;right: 10px;">
                         </div>
                         <div  style="position: relative;display: flex;">
-                          <p>Bình nóng lạnh</p>
-                          <input class="nonglanh" type="checkbox" style="position: absolute;right: 10px;">
+                          <p>Thông tin sai sự thật ( phòng đã cho thuê mà báo chưa có, ..)</p>
+                          <input class="fake_news" type="checkbox" style="position: absolute;right: 10px;">
                         </div>
                         <div style="position: relative;display: flex;">
-                          <p>Chung chủ</p>
-                          <input class="host" type="checkbox" style="position: absolute;right: 10px;">
+                          <p>Phòng không tồn tại</p>
+                          <input class="fake_exist" type="checkbox" style="position: absolute;right: 10px;">
+                        </div>
+                        <div>
+                          <textarea name="report_content" id="report_content" cols="50" rows="10" placeholder="Nội dung khác : "></textarea>
                         </div>
                       </div>
+                  </div>
+                  <div class='rating-likes commentWhenSmall' style="display: none;">
+                    <div style="display: flex;">
+                      <div style="text-align: center;">
+                          <span>Bạn yêu thích căn phòng này ?</span>
+                          <ul id='likes'>
+                            <li class='likes' title='Like' data-value='1'>
+                            <i class="far fa-heart"></i>
+                            </li>
+                          </ul>
+                      </div>
+                      <div class="" style="width : 3rem;"></div>
+                    </div>
+                    <div class='rating-stars'>
+                      <span>Đánh giá căn phòng:</span>
+                      <ul id='stars'>
+                        <li class='star' title='Poor' data-value='1'>
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='Fair' data-value='2'>
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='Good' data-value='3'>
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='Excellent' data-value='4'>
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                        <li class='star' title='WOW!!!' data-value='5'>
+                          <i class='fa fa-star fa-fw'></i>
+                        </li>
+                      </ul>
+                    </div>
+                    <input id ="user_comment_dialog" type="text" style="width: 80%;"required placeholder="Leave your comment">
+                    <input type="submit" id="dialog_submit_comment">
                   </div>
                   <div class="dialog-footer">
                       <button type="button"  id="btnCancel" class="m-btn m-btn-default m-btn-cancel">Hủy</button>
-                      <button type = "submit" name="submit_form" id="btnSave" class="m-btn m-btn-default"><i class="far fa-save"></i><span class="btn-text">Lưu</span></button>
+                      <button type = "submit" name="submit_form" id="btnSubmitReview" class="m-btn m-btn-default"><i class="far fa-save"></i><span class="btn-text">Lưu</span></button>
                   </div>
-                </form>
              </div>
           </div>
         </div>

@@ -1,10 +1,10 @@
 from flask import *
 from easyaccomod.owner_models import City,District,Ward,Room,RoomType
-from easyaccomod import app
+from easyaccomod import app,db
 from easyaccomod.forms import SearchForm
 from easyaccomod.renter_db import addPriceLog
 from easyaccomod.room_models import Like,Comment
-from easyaccomod.models import User
+from easyaccomod.models import User,Notification
 
 
 # Dinh viet ham de reuse nhung bi bug
@@ -37,7 +37,6 @@ def getDistrict(cityName):
 
 def getStreet(cityName,districtName = None):
     cityCode = City.query.filter_by(name=cityName).first_or_404().code
-    print(districtName is None)
     if districtName is not None:
         district_id = District.query.filter_by(city_code=cityCode)\
             .filter_by(name=districtName).first_or_404().id
@@ -151,3 +150,23 @@ def getRoomByDetail(obj,city,district=None,street=None):
     return res.filter(Room.post.any())
 
 # def getPostByRoomID
+
+def addReport(data,commit=True):
+    
+    try:
+        
+        recver = data["user_id"]
+        msg = data["report_content"]
+        
+        existCheck = Notification.query.filter_by(receiver=recver).filter_by(msg=msg).first()
+        
+        if existCheck != None:
+            return (False,"Already Repost this content")
+        else :
+            report = Notification(receiver = recver,msg = msg)
+            db.session.add(report)
+        if (commit):
+            db.session.commit()
+    except:
+        return (False,"Can't Repost this content")
+    return (True,"Đã báo cáo thành công cho post ")

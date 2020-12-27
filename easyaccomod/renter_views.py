@@ -4,7 +4,7 @@ from easyaccomod.owner_models import City,District,Ward
 from easyaccomod.room_models import Like,Comment
 from easyaccomod import app
 from easyaccomod.forms import SearchForm
-from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getUserFavoritePost,getRoomByLocation,getRoomByDetail
+from easyaccomod.renter_routes import getDistrict,getCity,getStreet,getUserFavoritePost,getRoomByLocation,getRoomByDetail,addReport
 from easyaccomod.renter_db import addLike,removeLike,addComment,getRoomById,getPostByRoomID,checkLikeByUser
 import datetime
 
@@ -165,7 +165,6 @@ def getRoom():
   res["data"]["room_type"] = resp.getRoomType()
   res["data"]["bath_room_type"] = resp.getBathRoomType()
   res["data"]["kitchen_room_type"] = resp.getKitchenRoomType()
-  print(resp.getBathRoomType())
   for attr in attrs:
     res["data"][attr] = getattr(resp, attr)
     res["status"] = "success"
@@ -206,14 +205,26 @@ def getFavoritePost(username):
 
 
 @renter_bp.route("/api/checkLikeByUser",methods=["POST"])
+@login_required
 def check():
   data = request.get_json()
-  print(data["user_id"])
-  print(data["post_id"])
   res = {}
   res["status"] = "Error"
   try:
     status = checkLikeByUser(data["user_id"],data["post_id"])
+    res["status"] = status
+    return jsonify(res)
+  except:
+    return jsonify(res)
+
+@renter_bp.route("/api/Report",methods=["POST"])
+@login_required
+def report():
+  data = request.get_json()
+  res = {}
+  res["status"] = "Error"
+  try:
+    status = addReport(data)
     res["status"] = status
     return jsonify(res)
   except:

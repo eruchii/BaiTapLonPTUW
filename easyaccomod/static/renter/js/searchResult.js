@@ -1,5 +1,6 @@
 $(document).ready(function(){
   /* 1. Visualizing things on Hover - See next part for action on click */
+
   $('#stars li').on('mouseover', function(){
     var onStar = parseInt($(this).data('value'), 10); // The star currently mouse on
    
@@ -22,9 +23,23 @@ $(document).ready(function(){
   
   /* 2. Action to perform on click */
   $('#stars li').on('click', function(){
-    cnt = 0;
     var onStar = parseInt($(this).data('value'), 10); // The star currently selected
     var stars = $(this).parent().children('li.star');
+    
+    for (i = 0; i < stars.length; i++) {
+      $(stars[i]).removeClass('selected');
+    }
+    
+    for (i = 0; i < onStar; i++) {
+      $(stars[i]).addClass('selected');
+    }
+  });
+  
+  
+  /* 2. Action to perform on click */
+  $('#likes li').on('click', function(){
+     // The star currently selected
+    var stars = $(this).parent().children('li.likes');
     
     data = {}
     data.user_id = $(".user_comment").attr('id')
@@ -43,6 +58,7 @@ $(document).ready(function(){
         $(stars).addClass('selected') 
       )
     }
+
 });
 
   // 3. Open the dialog when the user hit more filter
@@ -208,8 +224,7 @@ for (let i = 0; i < aElement.length;i++){
 //   detailSearch.appendChild(element)
 // }
 
-roomCard = document.querySelectorAll(".room-card")
-$(roomCard).on('dblclick',function(){
+function loadRoomCard(){
   $('.user_comment').removeClass('no-display')
   data ={}
   data.room_id = this.id
@@ -218,24 +233,6 @@ $(roomCard).on('dblclick',function(){
   postData('/renter/api/getRoomById',data).
   then(response => {
     room = response.data
-    
-    // ban_cong: true
-    // chung_chu: false
-    // city: "HN"
-    // dieu_hoa: false
-    // district: "9658"
-    // gia_dien: 2552
-    // gia_nuoc: 9066
-    // image: "['bancong7.jpeg', 'bedroom7.jpeg', 'kitchen7.jpeg', 'livingroom7.jpeg']"
-    // info: "Create room info"
-    // nong_lanh: true
-    // phong_bep: 2
-    // phong_tam: 2
-    // price: 2900000
-    // room_number: 4
-    // room_type_id: 3
-    // tien_ich_khac: null
-    // ward: "9658"
     loadRoomDetail(room)
   }).then( 
     postData('/renter/api/getPostByRoomID',data).then(
@@ -243,7 +240,12 @@ $(roomCard).on('dblclick',function(){
         loadComment(response)}
     )
   )
-})
+}
+
+roomCard = document.querySelectorAll(".room-card")
+$(roomCard).on('dblclick',loadRoomCard)
+
+
 
 
 function loadComment(response){
@@ -343,6 +345,34 @@ $("#submit_comment").click(function(){
 })
 
 
+$("#btnSubmitReview").click(function(){
+  data = {}
+  data["report_content"] =''
+  data["user_id"] = document.querySelector('.user_comment').id
+  data["post_id"] = $(".post_comment").attr("id")
+  if ($(".fake_faci").is(":checked"))
+  data["report_content"]+='Cơ sở vật chất không giống ảnh chụp\n'
+  if ($(".fake_news").is(":checked"))
+  data["report_content"]+="Thông tin sai sự thật ( phòng đã cho thuê mà báo chưa có, ..)\n"
+  if ($(".fake_exist").is(":checked"))
+  data["report_content"]+="Phòng không tồn tại\n"
+  if ($("#report_content").val() !="")
+  data["report_content"] = data["report_content"] + "Nội dung khác "+$("#report_content").val()
+  if ( !$(".fake_faci").is(":checked") && !$(".fake_news").is(":checked") && !$(".fake_exist").is(":checked") && $("#report_content").val() =="")
+  alert("Khôgn thể báo cáo mà không có nội dung!")
+  else{
+    postData("/renter/api/Report",data).then(
+      response =>{ 
+        let x = response.status[1] + data["post_id"] + "!"
+        alert(x)
+        dialog.dialog('close');
+      }
+    )
+  }
+  
+})
+
+
 function testCheckLike(user_id,post_id){
   data = {}
   data["user_id"] = user_id
@@ -351,46 +381,17 @@ function testCheckLike(user_id,post_id){
     response => {
       if (response.status == "True")
       {
-        let likeIcon = document.querySelector("li.star")
+        let likeIcon = document.querySelector("li.likes")
         likeIcon.classList.add("selected")
       }
       else
       {
-        let likeIcon = document.querySelector("li.star")
+        let likeIcon = document.querySelector("li.likes")
         likeIcon.classList.remove("selected")
       }
     }
   )
 }
-
-
-document.querySelector(".bedminus").addEventListener("click",function(){
-  x = parseInt($("#bedroom").text())
-  if (x > 0 ){
-    x-=1;
-  }
-  $("#bedroom").text(x);
-})
-
-document.querySelector(".bedbonus").addEventListener("click",function(){
-  x = parseInt($("#bedroom").text())
-  x+=1;
-  $("#bedroom").text(x);
-})
-
-document.querySelector(".bathminus").addEventListener("click",function(){
-  x = parseInt($("#bathroom").text())
-  if (x > 0 ){
-    x-=1;
-  }
-  $("#bathroom").text(x);
-})
-
-document.querySelector(".bathbonus").addEventListener("click",function(){
-  x = parseInt($("#bathroom").text())
-  x+=1;
-  $("#bathroom").text(x);
-})
 
 
 $(".js-expand").click(function() {
@@ -405,4 +406,76 @@ $("button#comment_span").on('click',function(){
 
 function formatNumber(num) {
   return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+
+
+
+
+function responsive(e){
+  if (e.matches) {
+    $(roomCard).on('dblclick',function(){
+      dialog.dialog('open');
+    })
+  } else {
+    $(roomCard).off('dblclick',f)
+  }
+
+}
+var mediaQueryList = window.matchMedia('(max-width: 1280px)');
+
+
+mediaQueryList.addListener(function(){
+  if (mediaQueryList.matches){
+    $(roomCard).off('dblclick',loadRoomCard)
+    $(roomCard).on('dblclick',commentWhenSmall)
+    $("#btnSubmitReview").attr("style","display:none")
+  }
+  else{
+    $(roomCard).on('dblclick',loadRoomCard)
+    $(roomCard).off('dblclick',commentWhenSmall)
+    $('.commentWhenSmall').attr("style","display:none")
+    $("#btnSubmitReview").attr("style","")
+  }
+})
+
+function commentWhenSmall(){
+  dialog.dialog('open');
+  $('.commentWhenSmall').attr("style","")
+  $("#dialog_submit_comment").click(function(){
+    commentData ={}
+    commentData["content"] = document.querySelector('#user_comment_dialog').value
+    commentData["user_id"] = document.querySelector('.user_comment').id
+    commentData["post_id"] = $(".post_comment").attr("id")
+    postData("/renter/api/Comment",commentData).
+    then( response =>
+    {
+    $('div.alert.alert-warning').removeClass("no-display")
+    document.querySelector('#user_comment_dialog').value = ""
+    
+    data = {}
+    data["report_content"] =''
+    data["user_id"] = document.querySelector('.user_comment').id
+    data["post_id"] = $(".post_comment").attr("id")
+    if ($(".fake_faci").is(":checked"))
+    data["report_content"]+='Cơ sở vật chất không giống ảnh chụp\n'
+    if ($(".fake_news").is(":checked"))
+    data["report_content"]+="Thông tin sai sự thật ( phòng đã cho thuê mà báo chưa có, ..)\n"
+    if ($(".fake_exist").is(":checked"))
+    data["report_content"]+="Phòng không tồn tại\n"
+    if ($("#report_content").val() !="")
+    data["report_content"] = data["report_content"] + "Nội dung khác "+$("#report_content").val()
+    if ( !$(".fake_faci").is(":checked") && !$(".fake_news").is(":checked") && !$(".fake_exist").is(":checked") && $("#report_content").val() =="")
+    alert("Khôgn thể báo cáo mà không có nội dung!")
+    else{
+      postData("/renter/api/Report",data).then(
+        response =>{ 
+          let x = response.status[1] + data["post_id"] + "!"
+          alert(x)
+          dialog.dialog('close');
+        }
+      )
+    }
+  })
+  
+})
 }

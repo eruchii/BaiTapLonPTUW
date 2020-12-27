@@ -249,6 +249,45 @@ border-radius: 3px 0 0 3px;
 .user_comment{
   width: 100%;
 }
+.user_comment .rating-likes input{
+  width: 100%;
+}
+
+.rating-likes{
+  width: 100%;
+  height: 3rem;
+  display: inline;
+}
+
+.rating-likes ul {
+  list-style-type:none;
+  padding:0;
+  
+  -moz-user-select:none;
+  -webkit-user-select:none;
+}
+.rating-likes ul > li.likes {
+  display:inline-block;
+  
+}
+
+/* Idle State of the stars */
+.rating-likes ul > li.likes > i.fa {
+  font-size:1rem; /* Change the size of the stars */
+  color:#ccc; /* Color on idle state */
+}
+
+/* Hover state of the stars */
+
+/* Selected state of the stars */
+.rating-likes ul > li.likes.selected > i.far {
+  color:#9b1338;
+}
+
+
+.user_comment{
+  width: 100%;
+}
 .user_comment .rating-stars input{
   width: 100%;
 }
@@ -277,12 +316,16 @@ border-radius: 3px 0 0 3px;
   color:#ccc; /* Color on idle state */
 }
 
-/* Hover state of the stars */
+.rating-stars ul > li.star.hover > i.fa {
+  color:#FFCC36;
+}
 
 /* Selected state of the stars */
-.rating-stars ul > li.star.selected > i.far {
-  color:#9b1338;
+.rating-stars ul > li.star.selected > i.fa {
+  color:#FF912C;
 }
+
+
 
 /* Style the dialog modal */
 .m-dialog {

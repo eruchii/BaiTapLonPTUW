@@ -110,7 +110,6 @@ def checkLikeByUser(user_id,post_id):
 
 def addView(post_id):
     try:
-        print('afaf')
         post = Post.query.filter_by(id = post_id).first()
         post.count_view = post.count_view + 1
         db.session.commit()
