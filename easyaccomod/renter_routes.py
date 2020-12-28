@@ -5,6 +5,7 @@ from easyaccomod.forms import SearchForm
 from easyaccomod.renter_db import addPriceLog
 from easyaccomod.room_models import Like,Comment
 from easyaccomod.models import User,Notification
+from easyaccomod.owner_models import AdminNotification
 
 
 # Dinh viet ham de reuse nhung bi bug
@@ -158,12 +159,12 @@ def addReport(data,commit=True):
         recver = data["user_id"]
         msg = data["report_content"]
         
-        existCheck = Notification.query.filter_by(receiver=recver).filter_by(msg=msg).first()
+        existCheck = AdminNotification.query.filter_by(sender=recver).filter_by(msg=msg).first()
         
         if existCheck != None:
             return (False,"Already Repost this content")
         else :
-            report = Notification(receiver = recver,msg = msg)
+            report = AdminNotification(sender = recver, msg = msg, title="Report")
             db.session.add(report)
         if (commit):
             db.session.commit()
