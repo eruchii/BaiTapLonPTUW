@@ -39,6 +39,8 @@ def addComment(user_id,post_id,content,commit = True):
 
     if existCheck != None:
         return (False,"Already Commented this comment")
+    elif content =="":
+        return (False,"Nội dung comment rỗng!")
     else :
         cmt = Comment(user_id = user_id,post_id = post_id,comment_content = content,status = False)
         db.session.add(cmt)

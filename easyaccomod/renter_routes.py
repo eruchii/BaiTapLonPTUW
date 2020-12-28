@@ -163,6 +163,8 @@ def addReport(data,commit=True):
         
         if existCheck != None:
             return (False,"Already Repost this content")
+        elif data["report_content"] == "":
+            return (False,"Nội dung report rỗng !")
         else :
             report = AdminNotification(sender = recver, msg = msg, title="Report")
             db.session.add(report)
