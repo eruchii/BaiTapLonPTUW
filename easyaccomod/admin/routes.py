@@ -349,7 +349,7 @@ def rejectComment():
 @login_required
 def admin_notifications():
     if current_user.role_id == 1 and current_user.status_confirm == 1:
-        notifications = AdminNotification.query.all()
+        notifications = AdminNotification.query.order_by(AdminNotification.id.desc()).all()
         if notifications:
             for notification in notifications:
                 notification.seen = True

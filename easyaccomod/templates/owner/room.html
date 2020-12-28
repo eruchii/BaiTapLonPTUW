@@ -11,9 +11,9 @@
                     <a class="mr-2" href="{{ url_for('owner.profile', username=post.author.username) }}">{{ post.author.username }}</a>
                     {% if post.pending == True %}
                         {% if post.room.status == False %}
-                        <a id="room_status" class="btn btn-primary btn-sm mt-1 mb-1" onclick="update_status(this, '{{post.id}}')">Chuyển trạng thái thành "Đã cho thuê"</a>
+                        <a id="room_status" class="btn btn-success btn-sm mt-1 mb-1" onclick="update_status(this, '{{post.id}}')">Chuyển trạng thái thành "Đã cho thuê"</a>
                         {% else %}
-                        <a id="room_status" class="btn btn-primary btn-sm mt-1 mb-1" onclick="update_status(this, '{{post.id}}')">Chuyển trạng thái thành "Chưa cho thuê"</a>
+                        <a id="room_status" class="btn btn-success btn-sm mt-1 mb-1" onclick="update_status(this, '{{post.id}}')">Chuyển trạng thái thành "Chưa cho thuê"</a>
                         {% endif %}
                     {% else %}
                         <a id="edit" class="btn btn-warning btn-sm mt-1 mb-1" href="{{ url_for('owner.route_update_post', id= post.id) }}">Chỉnh sửa</a>

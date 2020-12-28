@@ -446,14 +446,14 @@ def add_dummy_room():
             db.session.commit()
 
 def add_dummy_post():
-    owners = Owner.query.all()
-    rooms = Room.query.all()
-    for i in range(1,500):
-        random_room = random.randint(0, len(rooms)-1)
-        random_user = random.randint(0, len(owners)-1)
-        title = f"Đăng bài cho thuê nhà {random.randint(1,10000)} tại {rooms[random_room].city.name} - {rooms[random_room].district.name} - {rooms[random_room].ward.name}"
+    owners = Owner.query.filter_by(user_id=53).first()
+    rooms = Room.query.filter_by(id=794).first()
+    for i in range(1,6):
+        random_room = owners
+        random_user = rooms
+        title = f"Đăng bài cho thuê nhà {random.randint(1,10000)} tại {rooms.city.name} - {rooms.district.name} - {rooms.ward.name}"
         content = f""" *. Vị trí tiện ích:
-Tòa nhà nằm gần mặt đường Nguyễn văn Huyên kéo dài, cách đường Cầu giấy 30m,được thiết kế thông minh, tiện lợi, đầy đủ tiện ích đi kèm, gồm tầng 1 với DT: {rooms[random_room].dien_tich} để xe rộng rãi, giao thông đi lại thuận tiện.
+Tòa nhà nằm gần mặt đường Nguyễn văn Huyên kéo dài, cách đường Cầu giấy 30m,được thiết kế thông minh, tiện lợi, đầy đủ tiện ích đi kèm, gồm tầng 1 với DT: {rooms.dien_tich} để xe rộng rãi, giao thông đi lại thuận tiện.
 - Chỉ 3 phút để tiếp cận hệ thống ngân hàng, siêu thị, trung tâm thương mại, trường học quốc tế từ mầm non đến trung học, đại học quanh khu vực cầu giấy...
 *. Thiết kế phòng với phong cách hiện đại, tiện dụng.
 - Đầy đủ tiện nghi: thang máy, cửa khoá vân tay, máy giặt, chỗ để xe, camera an ninh, sảnh lễ tân,...
@@ -465,13 +465,13 @@ Tòa nhà nằm gần mặt đường Nguyễn văn Huyên kéo dài, cách đư
 - Gửi xe miễn phí, tối đa mỗi phòng 2 xe máy, truyền hình cáp, internet cáp quang, camera các tầng, có thang máy tốc độ cao...
 - Căn hộ có cửa sổ thoáng mát, chỉ việc xách va li đến ở.
 *. Giá cả:
-- Giá phòng từ :{rooms[random_room].price} VND/tháng.
-- Điện tính theo giá hộ gia đình, {rooms[random_room].gia_dien} đ/ kw.
+- Giá phòng từ :{rooms.price} VND/tháng.
+- Điện tính theo giá hộ gia đình, {rooms.gia_dien} đ/ kw.
 - Rất Phù hợp với người đi làm, hộ gia đình trẻ, công tác, du lịch, học tập,...
 Hãy tiết kiệm thời gian quý báu của chính các bạn bằng cách nhấc máy lên và gọi ngay tôi."""
-        room_id = rooms[random_room].id
+        room_id = rooms.id
         pending = True
-        user_id = owners[random_user].user_id
+        user_id = owners.user_id
         post = Post(title=title, content=content, room_id=room_id, pending=pending, user_id=user_id)
         db.session.add(post)
     db.session.commit()
